@@ -8,3 +8,5 @@
 
 ## Asset delivery
 Keep authoritative originals and generators in design/assets. Apps keep their packaged subset to work offline and avoid fragile recursive submodules. Record asset hashes in the design catalog and reference the design commit; explicit asset sync commits make updates reviewable. A separate assets repo is unnecessary at current scale.
+
+Android tooling and AVD commands are recorded in [ANDROID_DEVELOPMENT.md](ANDROID_DEVELOPMENT.md).
