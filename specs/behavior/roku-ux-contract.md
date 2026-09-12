@@ -44,16 +44,19 @@ The fixed left navigation rail order is **Profile, Home, Discover, Live TV, My L
 
 Home is shelf-first. Its stable order puts Continue Watching first, then recently watched live, then the remaining curated shelves; completion order of network requests must not reorder shelves. [MainScene.brs:3210-3219](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/MainScene.brs); [Current Home and browse source](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/MainScene.brs).
 
-Home has a featured hero and action row for the currently focused item. The primary action follows item state:
+Home has a featured hero and action row for the currently focused item. This table describes the **hero primary action**, not a shelf card. An eligible queue context takes precedence over its hold action: when logical Home row 0 is selected, a non-live, non-action item opens queue Manage even if the hero primary is focused. Manage offers Resume when the retained item (or its `previous_episode`) has progress, Choose source, Remove from Continue Watching, and Cancel.
 
-| Item/state | Primary activation | Hold `OK` / overflow |
+| Hero item/state | Primary activation | Hold `OK` / overflow, after queue interception |
 | --- | --- | --- |
-| New VOD or episode | Open title/episode, then manual source selection | no special hold contract |
+| New movie or selected episode | Manual source selection | Open the same explicit source picker |
+| Series without a selected episode | Episodes | no special hold |
 | Resumable VOD/episode | Resume exact saved source | Choose source (the explicit picker) |
-| Queue item marked `next` in final ten seconds | Play next episode | Manage queue card, including resume of the preserved previous episode and Choose source |
-| Live | Watch live | ordinary context menu behavior |
+| Queue item marked `next` | Controlled next-episode selection | Manage queue, including the preserved previous episode |
+| Live | Watch live | no special hold |
 
-Holding the Home primary action on a resumable non-live movie or episode opens Sources. Holding a queue/Home action first offers queue management where applicable. This protects a learned pattern: tap resumes, hold changes source. [PresentationScene.brs:1346-1360](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/PresentationScene.brs); [ContinuationScene.brs:182-201](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/ContinuationScene.brs).
+Shelf-card holds follow a separate rule. Eligible non-live, non-action cards on logical Home row 0 open queue Manage, regardless of whether their queue status is `next`, resumable, or new. Other Home shelf cards have no special hold action; a held activation falls through to their normal selection. Do not reuse the hero's Choose source hold predicate for those cards. My List and episode-card menus follow the exhaustive activation inventory below.
+
+This distinction is extracted from the frozen runtime: [PresentationScene.brs:1346–1366](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/PresentationScene.brs#L1346) checks `queueMenu()` before its hero-primary source hold and does not require saved progress for that source hold; [ContinuationScene.brs:168–200](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/ContinuationScene.brs#L168) limits Home queue management to logical row 0 and otherwise performs normal selection. This clarifies the earlier short table; it does not change Roku behavior.
 
 On Home focus, title/action/context update immediately. The hero uses the current card’s image for continuity while its full-quality backdrop is warmed in four hidden texture slots, so a focus change should show a sharp hero without a timed delay or a blank swap. This is presentation behavior that clients should preserve even when their image cache implementation differs. [MainScene.brs:2576-2669](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/MainScene.brs); [PresentationScene.brs:1037-1078](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/PresentationScene.brs); [HeroPanel.brs:1-73](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/HeroPanel.brs).
 
