@@ -8,3 +8,7 @@ Added exact dynamic guide geometry, search debounce/focus/partial-failure behavi
 
 ## TV platform implementation
 Authorized Android TV Compose and one shared Tizen/Vizio React frontend, with platform playback modules and design-based visual/remote testing. The baseline UX is preserved; host exit and on-screen keyboard equivalents are documented in TV_IMPLEMENTATION.md.
+
+## 2026-09-12 TV implementation candidate
+
+Added the Android TV/shared Tizen-Vizio implementation checkpoint and owner-requested deferred joint testing. No Roku behavior or visual contract changed.
