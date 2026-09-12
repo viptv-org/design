@@ -77,7 +77,7 @@ The focus owner controls visual focus. A card selected by data but in an unfocus
 
 Landscape card image: 256×144 with 8px rounded visual clipping. Its title begins y=152 and subtitle y=178. Title/subtitle are scrolling single lines. Fallback is a centered 3-line muted title inside a neutral 256×144 surface. A logo source uses scale-to-fit in an inner 176×100 area at x=40, y=22. Portrait artwork may crop to fill a landscape card; never stretch.
 
-Continue progress uses a 240×6 track at x=8, y=134. Hide both track and fill when unknown; hide fill at zero; draw a minimum 6px rounded dot for nonzero progress. The full card has a 2px rounded white focus frame only while its owning row/grid has focus.
+Continue progress uses a 240×6 track at x=8, y=134. Hide both track and fill when unknown; hide fill at zero; draw a minimum 6px rounded dot for nonzero progress. HomeCard uses the exact `ui-card-focus.png` raster over the 256×144 artwork only, not the full 256×200 slot. Its inactive outline remains at 0.35 opacity; active ownership overlays the same raster at full opacity. Title size is 21px and subtitle is 17px. Subtitle uses PresentationContext (season, episode, episode title and `Resume at m:ss`, or the queue-status wording) when nonempty, otherwise PresentationFacts. Home shelf headings are uppercase. These measurements follow actual HomeCard.xml/HomeCard.brs and MainScene.homeRow; the episode card has its own focus geometry.
 
 ### Image rules
 
