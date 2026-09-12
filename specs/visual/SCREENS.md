@@ -24,13 +24,13 @@ Shelf order: Continue Watching; Recently Watched Live TV; trending movie/series;
 
 Browse header: identity x=930 y=34, right-aligned 284×32 muted; heading x=100 y=54; caption x=100 y=126. Discover filters are x=100 y=178, four 256×48 chips with 24px gaps. The generic poster grid begins x=100 y=198. With Discover filters visible it begins x=100 y=248. It is four columns by two rows, 256×192 slots, 24px horizontal/28px vertical gap.
 
-An action list is x=100 y=184, seven 536×56 rows with 12px vertical gap. Detail actions are x=100 y=436, four 192×56 controls with 16px gaps.
+Settings and generic action lists use x=100, y=144 when the caption is empty, or y=176 when present; rows are 536×56 with 12px gaps. Heading is (100,54), 42px. Focus updates a right-hand title at (778,listY+8), width424, 28px; description at (778,listY+52), 424×208, 22px, maximum seven lines. The action background uses ui-round-fill.9.png, generated with an 8px radius. Detail actions are x=100 y=436, four 192×56 controls with 16px gaps.
 
-Movie detail keeps dimmed backdrop artwork from y=0..620 underneath the dark overlay and gradients. Portrait is x=112 y=126, 236×354. Its structured text column is title x=380 y=126, max width 804 at 46px; facts x=380 y=198, 706×48; synopsis x=380 y=276, width 804 at 23px, measured to at most four lines/128px. Action rows are x=380 at `276 + renderedSynopsisHeight + 28`; credits are x=380 at `276 + renderedSynopsisHeight + 108`, width 804, max 3 lines. Do not reserve an arbitrary blank synopsis height: measure it before placing actions and credits. Maintain contrast over artwork.
+Movie and series detail both keep a backdrop cropped into 1280×620 from y=0..620, followed by a canvas-colour overlay at 0.52 opacity and the packaged ui-hero-left/ui-hero-bottom gradients. This is distinct from Home’s 1280×720 backdrop framing. Portrait is x=112 y=126, 236×354. Its structured text column is title x=380 y=126, max width 804 at 46px; facts x=380 y=198, 706×48; synopsis x=380 y=276, width 804 at 23px, measured to at most four lines/128px. Action rows are x=380 at `276 + renderedSynopsisHeight + 28`; credits are x=380 at `276 + renderedSynopsisHeight + 108`, width 804, max 3 lines. Movie actions are `Choose source`, `+ My List` (or `Remove from My List`), and `More info`; positive resume position inserts `Resume at m:ss` before the source action. Do not reserve an arbitrary blank synopsis height: measure it before placing actions and credits. Maintain contrast over artwork.
 
 Series detail overrides the generic detail column: title x=112 y=74, max width 900 at 36px; facts x=112 y=132; its long synopsis and portrait are hidden. Controls are x=112 y=188 as three 256×48 chips with 24px gap; their labels are the selected season dropdown, My List state, and More info. Episode heading is x=976 y=198, width 220 right-aligned. Episode grid x=112 y=262, four columns × two real rows, 256×330 slots, 24px horizontal/28px vertical gap, clipped to 1096×330. Only one row is visibly presented at a time; Down reveals the next four as a row. Preserve column where possible at row/page boundaries.
 
-Episode card: art 256×144, watched badge at x=160 y=10 (86×26 white pill, dark `WATCHED`); 4px progress x=8 y=134 width based on 240px. Number y=158, title y=190, synopsis y=226 max 4 lines in 94px. Focus adds the 2px white rounded frame and brightens title/summary.
+Episode card: art 256×144, watched badge at x=160 y=10 (86×26 white pill, dark `WATCHED`); 4px progress x=8 y=134 width based on 240px. Number y=158, title y=190, synopsis y=226 max 4 lines in 94px. Focus overlays ui-card-focus.png on the 256×144 artwork only and brightens title/summary; it never outlines the full 330px episode slot. The episode-number label uses the platform SmallSystemFont (22px reference), and absent thumbnail artwork shows the V mark and `Preview unavailable`.
 
 ## Source picker
 
@@ -46,7 +46,7 @@ The guide is its own full-screen presentation. Left menu starts around x=104 and
 
 ## Search
 
-Search panel is a `canvas` surface from x=88 y=130, 1192×590. Query label x=100 y=164, 304×44. The MiniKeyboard is x=96 y=216, scaled 0.82, with white keys and white rounded focus outline. Help text x=100 y=572, 304×64: `Type here or use the Roku app. Play/Pause opens results.` Result carousels live in a clipped group x=456 y=164, 740×484; status x=456 y=660. The query label is nonfocusable: focus begins on a key and returning from results restores that key.
+Search heading is x=100 y=54 at 44px. Search panel is a `canvas` surface from x=88 y=130, 1192×590. Query label x=100 y=164, 304×44. The MiniKeyboard is x=96 y=216, scaled 0.82; its visible 300×322 charcoal tile grid begins around x=102 y=226. Keys are adjacent 50×46 cells, white text, with the white rounded focus outline extending 6–7px beyond the focused cell and drawn above neighbours. Alphabetic/numeric ordering is `abcdefghijklmnopqrstuvwxyz1234567890`; the final row has three 100px clear/space/delete symbol keys. Help text x=100 y=572, 304×64: `Type here or use the Roku app. Play/Pause opens results.` Result carousels live in a clipped group x=456 y=164, 740×484; status x=456 y=660. The query label is nonfocusable: focus begins on a key and returning from results restores that key.
 
 ## Profiles and dialogs
 
@@ -83,3 +83,11 @@ Prefetch schedule for the five visible channels plus the next two, with at most 
 ## Search composition details
 
 Search has two result rows in its 740×484 clipped viewport. Each card is 256×200 with 20px horizontal and 8px row spacing. Its native text-edit box is hidden; the MiniKeyboard drives that box, which caps the query at 256 characters. The status line at (456,660) is 740×36. Keyboard focus and the results viewport are separate focus regions; the query label itself is not a focus target.
+
+Guide display labels preserve the API `timeline[].display_time`, programme `display_time` and timezone. Device-local formatting is only a fallback when no server label exists; never drop the server zone label during decoding.
+
+## Runtime settings and profile overrides
+
+Settings actions, in order: Switch profile; Playback preferences; Manage profiles; About VIPTV; Addons; Sign out. About displays installed version and server origin in the right-hand description; activating it does not open another page. Preferences has six actions: Preferred audio; Preferred subtitles; Start with subtitles; Subtitle size; Subtitle appearance; Maximum quality. Selected values appear in the right-hand description, not appended to action labels. Addons begins with Install addon, followed by addon names; Enabled/Disabled appears in the right panel.
+
+Profile chooser actions say Add profile and Manage profiles, or Done during management. Both 180×40 paging actions remain visible when multiple pages exist, centred at x452/x648, y612; indicator at (860,615) reads `1 / 3`. Profile editor title is42px; create action says Create profile. The avatar at (256,302),176×176 is actionable; Change avatar at y486 is a plain label. Avatar picker says Find your favorite and starts with category focus. Focusing categories updates the grid; selecting one enters it. Category changes reset to page1. Previous/Next are adjacent at x360/x552,y662 and wrap; selecting either returns focus to the grid. Category/page indicator is (812,664),372px, right-aligned.
