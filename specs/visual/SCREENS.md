@@ -71,3 +71,15 @@ The video remains under a full-screen overlay; overlay gradients must cover the 
 Body: eyebrow x=64 y=460, title x=64 y=486 max 1090 at 32px, context x=64 y=524. Busy spinner is centred x=610 y=330 at 60×60. Timeline x=64 y=572, width 1152, height 6; time labels y=584. The VOD track has white fill, 16px thumb and muted scrub preview marker. Live replaces it with programme progress and `ON NOW`/minutes-left labels.
 
 Controls begin x=64 y=624. They have no permanent backing surface; focus is a 64×64 white rounded pill. VOD positions: rewind 0; pause 80; forward 160; Audio 928; Captions 1008; Exit 1088; Next episode 240 when available. Live exposes Audio at 544 and Exit at 1088; hide unsupported seek/skip controls. Use 28px icons inset 18px. Hint is x=64 y=672, centred in 1152×28 when needed.
+
+## Guide geometry and live refresh details
+
+The timeline displays a fixed two-hour interval `[window, window + 7200)` across 804px. Four half-hour labels start at x=`432 + 201*i`, each 197px wide. Programme geometry uses `int((time - window) / 7200 * 804)` and clips both ends to the interval. Fill schedule gaps with `No schedule available`; cap each row at 32 cells. Draw each cell at `max(1, geometry.width - 3)` wide, and show up to two title lines only when its original geometry width exceeds 52px.
+
+Show five channel rows. The first visible row is `max(0, selectedRow - 4)`; each visible slot starts y=`166 + 91*n` and is 87px high. The guide page contains 40 channels. The independent now marker starts y=150, is 2×470px in `#FFFFFF80`, and appears at x=`432 + int((now-window)*804/7200)` only when `432 <= x < 1236`. It can overlap the selected programme. Selection uses `#F5F5F5` with a 3px white leading edge.
+
+Prefetch schedule for the five visible channels plus the next two, with at most three concurrent requests. Cache 40 channel entries: successful schedule data lasts 300 seconds; failures last 60 seconds. Coalesce grid refresh at 180ms, reveal the initial grid after at most 800ms, and refresh a visible grid every 30 seconds. Reuse available schedule immediately during these updates rather than replacing it with an empty screen.
+
+## Search composition details
+
+Search has two result rows in its 740×484 clipped viewport. Each card is 256×200 with 20px horizontal and 8px row spacing. Its native text-edit box is hidden; the MiniKeyboard drives that box, which caps the query at 256 characters. The status line at (456,660) is 740×36. Keyboard focus and the results viewport are separate focus regions; the query label itself is not a focus target.

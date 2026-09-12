@@ -277,3 +277,31 @@ This matrix is the implementation handoff: every row names the source owner, nor
 | `LibraryScene` | Library | Test 40-item paging, failed page Try again, removal focus restoration, watched/unwatched/restart. |
 | `AccountScene`, `ProfileEditor`, `TextEntry` | Account/profile/PIN | Test QR fallback/expiry, 12-profile paging, non-primary deletion confirmation, each parent PIN cancel/retry/rate limit/success route. |
 | `AddonScene` | Settings/addons | Test installation entry cancel, enable/disable reload, nested remove cancellation/confirmation, account-wide explanatory copy. |
+
+## Guide input and search precision
+
+The guide displays five rows within a 40-channel page and a two-hour time window. Future-programme **OK** opens programme details; **Play** watches that channel immediately even when the selected programme is in the future. While details are open, Back closes them and OK watches; all other keys are consumed. Rewind shifts the window back one hour, never earlier than the current half-hour. Left/Right move between programme cells and cross window edges by one hour; the future limit is the current half-hour plus 24 hours. Left at the earliest edge moves to filters. Replay/Instant Replay restores follow-now.
+
+Guide search is separate from the general search keyboard. Search Live TV opens TextEntry titled `Search Live TV`, capped at 128 characters. Submit trims the result, sets the guide query and restores the guide. Its empty result message is `No matching US channels or current programmes. Try a channel name, section, or another title.`
+
+Acceptance: select a future programme and compare OK (details) with Play (watch now); press an unrelated key in details and verify it is consumed; move Left through the current window to filters; move a future window then Replay and verify current-time following resumes; search with surrounding whitespace and verify trimmed results and exact empty copy.
+
+## General search timing and focus precision
+
+Each edit cancels prior browse work, clears sections/results immediately, trims the query and resets a one-shot **650ms** delay. Blank status is `Find your next favorite.`; nonblank initial status is `Searching…`. During incoming results show `Searching…  {n} results`, then `{n} results` once settled, or `No results. Try another title.` when empty. Any request failure appends `  Some sources couldn't load.`
+
+Keep at most 24 unique item IDs per source-labelled section; deduplication is within a section, not across different sources. Bound catalog discovery to 128 and source requests to three concurrent. The live request uses limit 80 and is included unless scope is movies or series. Preserve incoming-result focus by the combined section name and item ID. Enter/Play or Right from the keyboard attempts to move to results; with none, focus stays on the keyboard. Left from the first result returns to the keyboard.
+
+Acceptance: blank the query during an outstanding search and verify late results cannot repopulate it; edit again before 650ms and verify the previous delay is replaced; focus a result while another source returns and verify the same section/item remains selected; test Enter/Play/Right both before and after any results exist; verify a partial source failure retains successful results and adds the failure suffix.
+
+## Server-owned queue and next-episode eligibility
+
+The queue is profile-scoped and excludes live progress. Group history by media type plus title identity and use only the latest activity row per title. Hide suppressed queue titles. A row requires positive progress or an explicit progress correction. Movies leave Continue Watching when marked watched, or when known-duration progress reaches **95%**. Unknown-duration movies remain eligible. Series remain eligible so completion can lead to another episode.
+
+For a series, set pending continuation when `duration > 10` and `position >= duration - 10`, **or** when explicitly marked watched. A duration of exactly ten seconds does not satisfy the automatic near-end rule. Only a matching continuation cache entry less than one hour old supplies a resolved queue state. A cached next episode replaces the displayed queue item but retains previous source hints, audio language, activity timestamp, queue title identity and the complete previous episode. Therefore its Manage Resume/Choose source actions still address the previous episode. Cached caught-up, upcoming and unavailable states remain distinct.
+
+Next metadata must identify a strictly later season/episode in the same numbering scheme. No later episode means caught up; an unreleased date means upcoming; invalid or ambiguous metadata means unavailable. Never infer “next” by incrementing a title string or replaying the current episode.
+
+Acceptance: verify a movie at 94.9% remains and at 95% disappears; unknown duration remains; mark a series episode watched before its final ten seconds and verify continuation eligibility; test durations below/equal/above ten seconds; expire the one-hour cache and verify stale next metadata is not presented as fresh; verify Next shows the next episode while Manage Resume opens the full prior episode at its saved position.
+
+Precision source references: [guide geometry and input](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/EpgGrid.brs), [guide interval geometry](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/source/EpgPolicy.brs), [search behavior](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/SearchScene.brs), [backend queue and continuation](https://github.com/viptv-org/backend/blob/3f1b46b94573a3b3c31932b617146c54e2d1e568/server/src/continuation.rs).
