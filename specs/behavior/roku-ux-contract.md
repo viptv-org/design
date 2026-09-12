@@ -77,11 +77,11 @@ Source discovery draws sources into a manual list as they arrive, de-duplicates 
 
 Choosing a source starts that exact source. A selected-source failure, early end, expired identifier or preparation failure does **not** advance to another candidate. The recovery screen offers Retry and Choose another source while preserving title and absolute position. Source retry is bounded to three attempts / 180 seconds where continuation logic applies. [PLAYBACK.md](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/PLAYBACK.md); `MainScene.brs:1451-1477, 2770-2944`; `ContinuationScene.brs:211-251`.
 
-Resume uses stable identity: saved `source_addon_id` plus source name, originating from a prior explicit selection. Missing/stale identity opens manual sources. Opening Sources, Play, episode selection, and returning from player never consumes a resume intent. Back during automatic Resume cancels it and leaves manual sources available. [Explicit Resume and seek source](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/MainScene.brs); `MainScene.brs:2864-2895, 3307-3315`.
+Resume requires the exact saved `source_addon_id` plus a nonempty server-authored `source_fingerprint`, originating from a prior explicit selection. Human source names and ephemeral stream IDs never authorize Resume. A same-name release with a different fingerprint is not a match; missing/stale identity opens manual sources. This is baseline behavior in [Util.brs:45–59](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/source/Util.brs#L45). Opening Sources, Play, episode selection, and returning from player never consumes a resume intent. Back during automatic Resume cancels it and leaves manual sources available. [Explicit Resume and seek source](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/MainScene.brs); `MainScene.brs:2864-2895, 3307-3315`.
 
 ### Acceptance scenarios
 
-* With two discovered sources, select A, stop playback, then Resume: A starts. Remove A from discovery and resume again: show sources, never start B.
+* With two discovered sources, select A, stop playback, then Resume: A starts. Remove A from discovery and resume again: show sources, never start B. Repeat with B using the same source name and addon as A but a different fingerprint: it still must not start. Legacy history without a fingerprint remains manual.
 * Filter sources to a provider with zero matches: focus moves to the provider chips and the explanatory empty state appears.
 * Cause preparation failure for A: present retry/Choose another source at the retained time; do not silently test B.
 

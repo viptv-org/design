@@ -12,3 +12,7 @@ Authorized Android TV Compose and one shared Tizen/Vizio React frontend, with pl
 ## 2026-09-12 TV implementation candidate
 
 Added the Android TV/shared Tizen-Vizio implementation checkpoint and owner-requested deferred joint testing. No Roku behavior or visual contract changed.
+
+## 2026-09-12 — Resume identity extraction correction
+
+Corrected the behavioral contract from addon plus human source name to addon plus nonempty server-authored source fingerprint. `Util.brs:45–59` at the frozen Roku revision already requires fingerprint equality. This repairs an extraction error; it does not change Roku or introduce a new UX. Added same-name/different-fingerprint and legacy missing-fingerprint acceptance cases.
