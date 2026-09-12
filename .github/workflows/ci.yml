@@ -1,0 +1,37 @@
+name: Design contract validation
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  design:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/validate.py
+      - name: Package the design and assets
+        run: git archive --format=tar.gz --output=viptv-design.tar.gz HEAD && sha256sum viptv-design.tar.gz > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: design-specification
+          path: |
+            viptv-design.tar.gz
+            SHA256SUMS
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: design
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: design-specification
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release create "$GITHUB_REF_NAME" viptv-design.tar.gz SHA256SUMS --verify-tag --generate-notes

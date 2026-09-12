@@ -1,0 +1,7 @@
+__pycache__/
+*.tar.gz
+SHA256SUMS
+DEV.local.md
+.env
+node_modules/
+**/node_modules/

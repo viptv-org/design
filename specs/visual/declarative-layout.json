@@ -1,0 +1,4106 @@
+{
+  "source_commit": "7d6b4131a44d87b58edcf12709af5851da387176",
+  "interpretation": "Declarative initial properties. Runtime overrides documented in SCREENS.md and STATES_AND_MOTION.md take precedence. This is not a screenshot or runtime code dependency.",
+  "components": {
+    "ActionRow": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "renderFocus"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "listHasFocus",
+                "type": "boolean",
+                "onChange": "renderFocus"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "gridHasFocus",
+                "type": "boolean",
+                "onChange": "renderFocus"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "surface",
+                "width": "536",
+                "height": "56",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#202224FF"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "label",
+                "translation": "[0,0]",
+                "width": "536",
+                "height": "56",
+                "horizAlign": "center",
+                "vertAlign": "center",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#F5F5F5"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "ApiTask": {
+      "extends": "Task",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "request",
+                "type": "assocarray"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "result",
+                "type": "assocarray",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "cancel",
+                "type": "boolean",
+                "value": "false"
+              }
+            }
+          ]
+        }
+      ],
+      "children": []
+    },
+    "AvatarTile": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "focus"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "gridHasFocus",
+                "type": "boolean",
+                "onChange": "focus"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "frame",
+                "width": "128",
+                "height": "128",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#292B2E"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "image",
+                "translation": "[8,8]",
+                "width": "112",
+                "height": "112",
+                "loadWidth": "112",
+                "loadHeight": "112"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "outline",
+                "width": "128",
+                "height": "128",
+                "uri": "pkg:/images/ui-round-outline.9.png",
+                "visible": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "BrowsePoster": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "contentChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "focusChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "listHasFocus",
+                "type": "boolean",
+                "onChange": "focusChanged"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Rectangle",
+              "properties": {
+                "id": "surface",
+                "translation": "[0,0]",
+                "width": "256",
+                "height": "192",
+                "color": "#202224"
+              }
+            },
+            {
+              "type": "MaskGroup",
+              "properties": {
+                "id": "artworkMask",
+                "maskUri": "pkg:/images/ui-corner-mask.png",
+                "maskSize": "[256,144]",
+                "translation": "[0,0]"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "poster",
+                    "translation": "[0,0]",
+                    "width": "256",
+                    "height": "144",
+                    "loadWidth": "512",
+                    "loadHeight": "288",
+                    "loadDisplayMode": "scaleToFit"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "fallback",
+                "translation": "[0,0]",
+                "width": "256",
+                "height": "144",
+                "numLines": "4",
+                "wrap": "true",
+                "horizAlign": "center",
+                "vertAlign": "center",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#6B6E73",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "title",
+                "translation": "[4,148]",
+                "maxWidth": "248",
+                "height": "22",
+                "horizAlign": "left",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#A0A4A8",
+                "repeatCount": "0"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "focusFrame",
+                "translation": "[-3,-3]",
+                "width": "262",
+                "height": "198",
+                "uri": "pkg:/images/ui-frame-home.png",
+                "visible": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "ChannelRow": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "renderFocus"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "listHasFocus",
+                "type": "boolean",
+                "onChange": "renderFocus"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "surface",
+                "width": "588",
+                "height": "74",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#191B1DFF"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "logo",
+                "translation": "[16,11]",
+                "width": "64",
+                "height": "52",
+                "loadWidth": "128",
+                "loadHeight": "104",
+                "loadDisplayMode": "scaleToFit"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "fallback",
+                "translation": "[16,22]",
+                "width": "64",
+                "height": "30",
+                "text": "TV",
+                "horizAlign": "center",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#A6A8AA"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "title",
+                "translation": "[100,23]",
+                "maxWidth": "428",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#F5F5F5",
+                "repeatCount": "0",
+                "scrollSpeed": "48"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "favorite",
+                "translation": "[547,23]",
+                "width": "28",
+                "height": "30",
+                "text": "+",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#F5F5F5",
+                "visible": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "EpgGrid": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "active",
+                "type": "boolean",
+                "value": "true",
+                "onChange": "epgRender"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "data",
+                "type": "assocarray",
+                "onChange": "epgData"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "categories",
+                "type": "array",
+                "onChange": "epgCategories"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "guide",
+                "type": "assocarray",
+                "alwaysNotify": "true",
+                "onChange": "epgGuide"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "needed",
+                "type": "array",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "route",
+                "type": "assocarray",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "watch",
+                "type": "assocarray",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "query",
+                "type": "string",
+                "onChange": "epgSearchChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "searchRequested",
+                "type": "boolean",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "leave",
+                "type": "boolean",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "chooseFilter"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "open"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "resume"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Rectangle",
+              "properties": {
+                "translation": "[88,0]",
+                "width": "1192",
+                "height": "720",
+                "color": "#101112"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "translation": "[112,34]",
+                "width": "220",
+                "text": "Live TV",
+                "font": "font:MediumBoldSystemFont",
+                "color": "#FFFFFF"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "clock",
+                "translation": "[112,91]",
+                "width": "190",
+                "color": "#FFFFFF",
+                "font": "font:SmallBoldSystemFont"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "day",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "selection",
+                "translation": "[432,635]",
+                "width": "804",
+                "height": "38",
+                "font": "font:MediumBoldSystemFont"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "ticks"
+              }
+            },
+            {
+              "type": "Rectangle",
+              "properties": {
+                "translation": "[112,149]",
+                "width": "1124",
+                "height": "1",
+                "color": "#303234"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "filters"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "rows"
+              }
+            },
+            {
+              "type": "Rectangle",
+              "properties": {
+                "id": "nowLine",
+                "translation": "[432,150]",
+                "width": "2",
+                "height": "470",
+                "color": "#FFFFFF80"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "empty",
+                "translation": "[450,292]",
+                "width": "770",
+                "height": "130",
+                "wrap": "true",
+                "font": "font:MediumSystemFont"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "position",
+                "translation": "[300,639]",
+                "width": "124",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "translation": "[112,682]",
+                "width": "1124",
+                "text": "OK  Watch / Details     *  Details     Replay  Now     Back  Sidebar",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "details",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Rectangle",
+                  "properties": {
+                    "width": "1280",
+                    "height": "720",
+                    "color": "#000000",
+                    "opacity": "0.78"
+                  }
+                },
+                {
+                  "type": "Rectangle",
+                  "properties": {
+                    "translation": "[224,195]",
+                    "width": "1012",
+                    "height": "360",
+                    "color": "#242628"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "detailHeading",
+                    "translation": "[254,219]",
+                    "width": "952",
+                    "height": "64",
+                    "font": "font:MediumBoldSystemFont",
+                    "wrap": "true"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "detailBody",
+                    "translation": "[254,297]",
+                    "width": "952",
+                    "height": "174",
+                    "font": "font:SmallSystemFont",
+                    "wrap": "true",
+                    "numLines": "6"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "translation": "[254,499]",
+                    "width": "952",
+                    "text": "OK  Watch this channel live     Back  Return to guide",
+                    "color": "#FFFFFF",
+                    "font": "font:SmallBoldSystemFont"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "guideBatch",
+                "duration": "0.18",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "guideReveal",
+                "duration": "0.8",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "refresh",
+                "duration": "30",
+                "repeat": "true"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "EpisodeCard": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "renderFocus"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "gridHasFocus",
+                "type": "boolean",
+                "onChange": "renderFocus"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "width": "256",
+                "height": "144",
+                "uri": "pkg:/images/ui-corner-mask.png",
+                "blendColor": "#242628FF"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "placeholder"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "translation": "[112,35]",
+                    "width": "32",
+                    "height": "32",
+                    "uri": "pkg:/images/viptv-mark.png",
+                    "opacity": "0.35"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "translation": "[12,84]",
+                    "width": "232",
+                    "height": "28",
+                    "text": "Preview unavailable",
+                    "horizAlign": "center",
+                    "font": "font:SmallSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "MaskGroup",
+              "properties": {
+                "id": "artworkClip",
+                "maskUri": "pkg:/images/ui-corner-mask.png",
+                "maskSize": "[256,144]"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "thumbnail",
+                    "width": "256",
+                    "height": "144",
+                    "loadWidth": "512",
+                    "loadHeight": "288",
+                    "loadDisplayMode": "scaleToZoom"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "watchedBadge",
+                "translation": "[160,10]",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "width": "86",
+                    "height": "26",
+                    "uri": "pkg:/images/ui-round-fill.9.png",
+                    "blendColor": "#F5F5F5FF"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "width": "86",
+                    "height": "26",
+                    "text": "WATCHED",
+                    "horizAlign": "center",
+                    "vertAlign": "center",
+                    "color": "#101112"
+                  },
+                  "children": [
+                    {
+                      "type": "Font",
+                      "properties": {
+                        "role": "font",
+                        "size": "14"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Rectangle",
+              "properties": {
+                "id": "progress",
+                "translation": "[8,134]",
+                "width": "0",
+                "height": "4",
+                "color": "#F5F5F5",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "surface",
+                "width": "256",
+                "height": "144",
+                "uri": "pkg:/images/ui-card-focus.png",
+                "blendColor": "#F5F5F5FF",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "number",
+                "translation": "[0,158]",
+                "width": "256",
+                "height": "28",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "title",
+                "translation": "[0,190]",
+                "maxWidth": "256",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#F5F5F5",
+                "repeatCount": "0",
+                "scrollSpeed": "48"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "summary",
+                "translation": "[0,226]",
+                "width": "256",
+                "height": "94",
+                "wrap": "true",
+                "numLines": "4",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "FilterChip": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "gridHasFocus",
+                "type": "boolean",
+                "onChange": "render"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "surface",
+                "width": "256",
+                "height": "48",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#202224FF"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "label",
+                "translation": "[18,11]",
+                "maxWidth": "192",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#A6A8AA",
+                "repeatCount": "0",
+                "scrollSpeed": "48"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "chevron",
+                "translation": "[222,15]",
+                "width": "18",
+                "height": "18",
+                "uri": "pkg:/images/ui-nav-chevron.png",
+                "visible": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "HeroPanel": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "artState",
+                "type": "string",
+                "value": "none"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "model",
+                "type": "assocarray",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "compact",
+                "type": "boolean",
+                "value": "false",
+                "onChange": "render"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Rectangle",
+              "properties": {
+                "id": "base",
+                "width": "1280",
+                "height": "720",
+                "color": "#101112"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "backdropInstant",
+                "width": "1280",
+                "height": "720",
+                "loadWidth": "256",
+                "loadHeight": "144",
+                "loadDisplayMode": "scaleToZoom",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "backdrop",
+                "width": "1280",
+                "height": "720",
+                "loadWidth": "1280",
+                "loadHeight": "720",
+                "loadDisplayMode": "scaleToZoom",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "gradientLeft",
+                "width": "1280",
+                "height": "720",
+                "uri": "pkg:/images/ui-hero-left.png"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "gradientBottom",
+                "width": "1280",
+                "height": "720",
+                "uri": "pkg:/images/ui-hero-bottom.png"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "portrait",
+                "translation": "[938,102]",
+                "width": "252",
+                "height": "378",
+                "loadWidth": "280",
+                "loadHeight": "420",
+                "loadDisplayMode": "scaleToFit",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "eyebrow",
+                "translation": "[100,128]",
+                "width": "560",
+                "height": "26",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#C5C6C7"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "title",
+                "translation": "[100,166]",
+                "maxWidth": "600",
+                "font": "font:LargeBoldSystemFont",
+                "color": "#F5F5F5",
+                "repeatCount": "-1",
+                "scrollSpeed": "48"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "summary",
+                "translation": "[100,228]",
+                "width": "548",
+                "height": "80",
+                "numLines": "3",
+                "wrap": "true",
+                "font": "font:SmallSystemFont",
+                "color": "#D5D6D7"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "facts",
+                "translation": "[100,322]",
+                "maxWidth": "650",
+                "font": "font:SmallSystemFont",
+                "color": "#B6B8BA",
+                "repeatCount": "-1",
+                "scrollSpeed": "42"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "HoldGrid": {
+      "extends": "MarkupGrid",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "activation",
+                "type": "assocarray",
+                "alwaysNotify": "true"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "holdTimer",
+                "duration": "0.7",
+                "repeat": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "HoldRowList": {
+      "extends": "RowList",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "activation",
+                "type": "assocarray",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "navigation",
+                "type": "string",
+                "alwaysNotify": "true"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "holdTimer",
+                "duration": "0.7",
+                "repeat": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "HomeCard": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "contentChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "focusChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "rowFocusPercent",
+                "type": "float",
+                "value": "1",
+                "onChange": "focusChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "rowListHasFocus",
+                "type": "boolean",
+                "onChange": "focusChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "gridHasFocus",
+                "type": "boolean",
+                "onChange": "focusChanged"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "surface",
+                "width": "256",
+                "height": "144",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#202224FF"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "poster",
+                "width": "256",
+                "height": "144",
+                "loadWidth": "256",
+                "loadHeight": "144",
+                "loadDisplayMode": "scaleToZoom"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "artworkMask",
+                "width": "256",
+                "height": "144",
+                "uri": "pkg:/images/ui-card-corners.png"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "outline",
+                "width": "256",
+                "height": "144",
+                "uri": "pkg:/images/ui-card-focus.png",
+                "opacity": "0.35"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "fallback",
+                "translation": "[16,16]",
+                "width": "224",
+                "height": "112",
+                "numLines": "3",
+                "wrap": "true",
+                "horizAlign": "center",
+                "vertAlign": "center",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#A6A8AA",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "progressTrack",
+                "translation": "[8,134]",
+                "width": "240",
+                "height": "6",
+                "uri": "pkg:/images/ui-progress-pill.9.png",
+                "blendColor": "#4A4C4EFF",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "progressFill",
+                "translation": "[8,134]",
+                "width": "0",
+                "height": "6",
+                "uri": "pkg:/images/ui-progress-pill.9.png",
+                "blendColor": "#F5F5F5FF",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "title",
+                "translation": "[0,152]",
+                "maxWidth": "256",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#F5F5F5",
+                "repeatCount": "0",
+                "scrollSpeed": "48"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "subtitle",
+                "translation": "[0,178]",
+                "maxWidth": "256",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "repeatCount": "0",
+                "scrollSpeed": "42"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "focusFrame",
+                "translation": "[0,0]",
+                "width": "256",
+                "height": "144",
+                "uri": "pkg:/images/ui-card-focus.png",
+                "visible": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "MainScene": {
+      "extends": "Scene",
+      "interface": [],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Rectangle",
+              "properties": {
+                "width": "1280",
+                "height": "720",
+                "color": "#101112"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "detailAtmosphere",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "detailBackdrop",
+                    "width": "1280",
+                    "height": "620",
+                    "loadWidth": "960",
+                    "loadHeight": "540",
+                    "loadDisplayMode": "scaleToZoom"
+                  }
+                },
+                {
+                  "type": "Rectangle",
+                  "properties": {
+                    "width": "1280",
+                    "height": "620",
+                    "color": "#101112",
+                    "opacity": "0.52"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "width": "1280",
+                    "height": "620",
+                    "uri": "pkg:/images/ui-hero-left.png"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "width": "1280",
+                    "height": "620",
+                    "uri": "pkg:/images/ui-hero-bottom.png"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "homePanel",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "HeroPanel",
+                  "properties": {
+                    "id": "homeHeroPanel"
+                  }
+                },
+                {
+                  "type": "HoldGrid",
+                  "properties": {
+                    "id": "homeActions",
+                    "translation": "[100,375]",
+                    "itemComponentName": "ActionRow",
+                    "itemSize": "[144,50]",
+                    "itemSpacing": "[12,0]",
+                    "numColumns": "2",
+                    "numRows": "1",
+                    "drawFocusFeedback": "false",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "homeTitle",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "homeSummary",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Group",
+                  "properties": {
+                    "id": "homeShelves",
+                    "translation": "[92,466]",
+                    "clippingRect": "[0,0,1188,254]"
+                  },
+                  "children": [
+                    {
+                      "type": "HoldRowList",
+                      "properties": {
+                        "id": "homeRows",
+                        "skipFocusAnimations": "true",
+                        "translation": "[8,8]",
+                        "itemComponentName": "HomeCard",
+                        "itemSize": "[1180,242]",
+                        "rowItemSize": "[[256,200]]",
+                        "rowItemSpacing": "[[24,0]]",
+                        "itemSpacing": "[0,12]",
+                        "numRows": "2",
+                        "showRowLabel": "[true]",
+                        "showRowCounter": "[false]",
+                        "rowLabelOffset": "[[0,12]]",
+                        "rowLabelFont": "font:MediumBoldSystemFont",
+                        "rowLabelColor": "#F5F5F5",
+                        "rowFocusAnimationStyle": "floatingFocus",
+                        "vertFocusAnimationStyle": "fixedFocus",
+                        "drawFocusFeedback": "false"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Button",
+                  "properties": {
+                    "id": "homeRetry",
+                    "translation": "[1030,64]",
+                    "minWidth": "160",
+                    "maxWidth": "184",
+                    "text": "Try again",
+                    "visible": "false"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "gatewayBrand",
+                "translation": "[96,44]",
+                "width": "42",
+                "height": "36",
+                "uri": "pkg:/images/viptv-mark.png",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "identity",
+                "translation": "[930,34]",
+                "width": "284",
+                "height": "32",
+                "horizAlign": "right",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "heading",
+                "translation": "[100,54]",
+                "width": "1096",
+                "height": "64",
+                "font": "font:LargeBoldSystemFont",
+                "color": "#F5F5F5"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "pageCaption",
+                "translation": "[100,126]",
+                "maxWidth": "1096",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "repeatCount": "-1",
+                "scrollSpeed": "48"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "status",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "footer",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupGrid",
+              "properties": {
+                "id": "discoverFilters",
+                "translation": "[100,178]",
+                "itemComponentName": "FilterChip",
+                "itemSize": "[256,48]",
+                "itemSpacing": "[24,0]",
+                "numColumns": "4",
+                "numRows": "1",
+                "drawFocusFeedback": "false",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupList",
+              "properties": {
+                "id": "list",
+                "translation": "[100,184]",
+                "itemSize": "[536,56]",
+                "numRows": "7",
+                "itemSpacing": "[0,12]",
+                "itemComponentName": "ActionRow",
+                "vertFocusAnimationStyle": "floatingFocus",
+                "drawFocusFeedback": "false",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "HoldGrid",
+              "properties": {
+                "id": "posterGrid",
+                "translation": "[100,248]",
+                "itemComponentName": "HomeCard",
+                "itemSize": "[256,192]",
+                "itemSpacing": "[24,28]",
+                "numColumns": "4",
+                "numRows": "2",
+                "drawFocusFeedback": "false",
+                "vertFocusAnimationStyle": "floatingFocus",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "HoldGrid",
+              "properties": {
+                "id": "detailActions",
+                "translation": "[100,436]",
+                "itemComponentName": "ActionRow",
+                "itemSize": "[192,56]",
+                "itemSpacing": "[16,0]",
+                "numColumns": "4",
+                "numRows": "1",
+                "drawFocusFeedback": "false",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupGrid",
+              "properties": {
+                "id": "seasonList",
+                "translation": "[112,188]",
+                "itemComponentName": "FilterChip",
+                "itemSize": "[256,48]",
+                "itemSpacing": "[24,0]",
+                "numColumns": "3",
+                "numRows": "1",
+                "drawFocusFeedback": "false",
+                "vertFocusAnimationStyle": "floatingFocus",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "seasonHeading",
+                "translation": "[100,282]",
+                "text": "SEASONS",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "episodesHeading",
+                "translation": "[976,198]",
+                "width": "220",
+                "horizAlign": "right",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupGrid",
+              "properties": {
+                "id": "episodeList",
+                "translation": "[112,262]",
+                "itemComponentName": "EpisodeCard",
+                "itemSize": "[256,330]",
+                "itemSpacing": "[24,28]",
+                "numColumns": "4",
+                "numRows": "2",
+                "itemClippingRect": "[0,0,1096,330]",
+                "drawFocusFeedback": "false",
+                "vertFocusAnimationStyle": "fixedFocus",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupGrid",
+              "properties": {
+                "id": "liveTabs",
+                "translation": "[100,142]",
+                "itemComponentName": "FilterChip",
+                "itemSize": "[256,48]",
+                "itemSpacing": "[24,0]",
+                "numColumns": "4",
+                "numRows": "1",
+                "drawFocusFeedback": "false",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupList",
+              "properties": {
+                "id": "channelList",
+                "translation": "[100,234]",
+                "itemComponentName": "ChannelRow",
+                "itemSize": "[588,74]",
+                "itemSpacing": "[0,10]",
+                "numRows": "5",
+                "drawFocusFeedback": "false",
+                "vertFocusAnimationStyle": "floatingFocus",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "liveListHeading",
+                "translation": "[100,204]",
+                "width": "588",
+                "text": "CHANNELS",
+                "color": "#A6A8AA",
+                "font": "font:SmallSystemFont",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupGrid",
+              "properties": {
+                "id": "sourceFilters",
+                "translation": "[100,166]",
+                "itemComponentName": "FilterChip",
+                "itemSize": "[256,48]",
+                "numColumns": "1",
+                "numRows": "1",
+                "drawFocusFeedback": "false",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "detailCredits",
+                "translation": "[380,520]",
+                "width": "804",
+                "height": "104",
+                "wrap": "true",
+                "numLines": "3",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupList",
+              "properties": {
+                "id": "sourceList",
+                "translation": "[100,234]",
+                "itemComponentName": "SourceCard",
+                "itemSize": "[1096,216]",
+                "itemSpacing": "[0,16]",
+                "numRows": "2",
+                "vertFocusAnimationStyle": "floatingFocus",
+                "drawFocusFeedback": "false",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "sourceContext",
+                "translation": "[100,119]",
+                "maxWidth": "1096",
+                "font": "font:MediumSystemFont",
+                "color": "#F5F5F5",
+                "repeatCount": "-1",
+                "scrollSpeed": "48",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "sourceState",
+                "translation": "[384,178]",
+                "width": "480",
+                "height": "30",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "sourceHelp",
+                "translation": "[804,178]",
+                "width": "350",
+                "height": "30",
+                "horizAlign": "right",
+                "text": "*  Full source details",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "BusySpinner",
+              "properties": {
+                "id": "sourceSpinner",
+                "translation": "[1172,174]",
+                "spinInterval": "1.1",
+                "control": "stop",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "ScrollableText",
+              "properties": {
+                "id": "sourceText",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Rectangle",
+              "properties": {
+                "id": "detailPanel",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "art",
+                "translation": "[954,110]",
+                "width": "236",
+                "height": "354",
+                "loadWidth": "280",
+                "loadHeight": "420",
+                "loadDisplayMode": "scaleToFit",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "detailTitle",
+                "translation": "[778,252]",
+                "maxWidth": "424",
+                "font": "font:MediumBoldSystemFont",
+                "color": "#F5F5F5",
+                "repeatCount": "-1",
+                "scrollSpeed": "48",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "detailInfo",
+                "translation": "[778,312]",
+                "width": "424",
+                "height": "70",
+                "wrap": "true",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "description",
+                "translation": "[778,402]",
+                "width": "424",
+                "height": "208",
+                "numLines": "7",
+                "wrap": "true",
+                "font": "font:SmallSystemFont",
+                "color": "#C5C6C7",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "heroPrefetch",
+                "translation": "[-4000,-4000]"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "heroPf0",
+                    "width": "8",
+                    "height": "8",
+                    "loadDisplayMode": "scaleToZoom",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "heroPf1",
+                    "width": "8",
+                    "height": "8",
+                    "loadDisplayMode": "scaleToZoom",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "heroPf2",
+                    "width": "8",
+                    "height": "8",
+                    "loadDisplayMode": "scaleToZoom",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "heroPf3",
+                    "width": "8",
+                    "height": "8",
+                    "loadDisplayMode": "scaleToZoom",
+                    "visible": "false"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "pairPanel",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "pairInstruction",
+                    "translation": "[96,260]",
+                    "width": "640",
+                    "height": "84",
+                    "wrap": "true",
+                    "numLines": "2",
+                    "text": "Scan the QR code with your phone.",
+                    "font": "font:MediumSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "pairAddress",
+                    "translation": "[96,364]",
+                    "width": "640",
+                    "height": "72",
+                    "wrap": "true",
+                    "numLines": "2",
+                    "font": "font:SmallSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "pairCode",
+                    "translation": "[96,450]",
+                    "width": "640",
+                    "height": "60",
+                    "font": "font:LargeBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "pairQrSurface",
+                    "translation": "[886,184]",
+                    "width": "298",
+                    "height": "298",
+                    "uri": "pkg:/images/ui-round-fill.9.png"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "pairQr",
+                    "translation": "[910,208]",
+                    "width": "250",
+                    "height": "250",
+                    "loadWidth": "250",
+                    "loadHeight": "250",
+                    "loadDisplayMode": "scaleToFit",
+                    "visible": "false"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "MarkupGrid",
+              "properties": {
+                "id": "profileGrid",
+                "translation": "[127,252]",
+                "itemComponentName": "ProfileCard",
+                "itemSize": "[178,210]",
+                "itemSpacing": "[34,28]",
+                "numColumns": "5",
+                "numRows": "1",
+                "drawFocusFeedback": "false",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupGrid",
+              "properties": {
+                "id": "profileActions",
+                "translation": "[392,530]",
+                "itemComponentName": "ActionRow",
+                "itemSize": "[240,56]",
+                "itemSpacing": "[16,0]",
+                "numColumns": "2",
+                "numRows": "1",
+                "drawFocusFeedback": "false",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "MarkupGrid",
+              "properties": {
+                "id": "profilePages",
+                "translation": "[452,612]",
+                "itemComponentName": "ActionRow",
+                "itemSize": "[180,40]",
+                "itemSpacing": "[16,0]",
+                "numColumns": "2",
+                "numRows": "1",
+                "drawFocusFeedback": "false",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "profilePageLabel",
+                "translation": "[860,615]",
+                "width": "160",
+                "height": "36",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "appChrome",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Rectangle",
+                  "properties": {
+                    "id": "railShade",
+                    "translation": "[88,0]",
+                    "width": "1192",
+                    "height": "720",
+                    "color": "#101112B0",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Rectangle",
+                  "properties": {
+                    "id": "railSurface",
+                    "width": "88",
+                    "height": "720",
+                    "color": "#101112"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "translation": "[32,29]",
+                    "width": "36",
+                    "height": "31",
+                    "uri": "pkg:/images/viptv-mark.png"
+                  }
+                },
+                {
+                  "type": "MarkupList",
+                  "properties": {
+                    "id": "sidebar",
+                    "translation": "[21,108]",
+                    "itemSize": "[60,60]",
+                    "numRows": "7",
+                    "itemSpacing": "[0,14]",
+                    "itemComponentName": "NavIcon",
+                    "vertFocusAnimationStyle": "floatingFocus",
+                    "drawFocusFeedback": "false"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "emptyState",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "emptyTitle",
+                    "translation": "[250,304]",
+                    "width": "780",
+                    "height": "62",
+                    "horizAlign": "center",
+                    "font": "font:LargeBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "emptyMessage",
+                    "translation": "[250,360]",
+                    "width": "780",
+                    "height": "0",
+                    "numLines": "0",
+                    "maxLines": "3",
+                    "wrap": "true",
+                    "horizAlign": "center",
+                    "font": "font:MediumSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "EpgGrid",
+              "properties": {
+                "id": "epgGrid",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Rectangle",
+              "properties": {
+                "id": "playerBackdrop",
+                "width": "1280",
+                "height": "720",
+                "color": "#080909",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Video",
+              "properties": {
+                "id": "video",
+                "width": "1280",
+                "height": "720",
+                "visible": "false",
+                "enableUI": "false"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "playerHint",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "PlayerOverlay",
+              "properties": {
+                "id": "playerOverlay",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "busyPanel",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Rectangle",
+                  "properties": {
+                    "id": "busyShade",
+                    "width": "1280",
+                    "height": "720",
+                    "color": "#101112C8"
+                  }
+                },
+                {
+                  "type": "BusySpinner",
+                  "properties": {
+                    "id": "busySpinner",
+                    "translation": "[610,330]",
+                    "spinInterval": "1.1",
+                    "control": "stop"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "busyMessage",
+                    "translation": "[280,414]",
+                    "width": "720",
+                    "height": "40",
+                    "horizAlign": "center",
+                    "text": "Loading",
+                    "font": "font:SmallSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "noticePanel",
+                "translation": "[320,42]",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "width": "640",
+                    "height": "100",
+                    "uri": "pkg:/images/ui-round-fill.9.png",
+                    "blendColor": "#292B2EFF"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "noticeText",
+                    "translation": "[28,18]",
+                    "width": "584",
+                    "height": "70",
+                    "wrap": "true",
+                    "numLines": "2",
+                    "font": "font:SmallSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "UiChoice",
+              "properties": {
+                "id": "choicePanel",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "fullTextPanel",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Rectangle",
+                  "properties": {
+                    "width": "1280",
+                    "height": "720",
+                    "color": "#101112F8"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "fullTextTitle",
+                    "translation": "[100,72]",
+                    "width": "1050",
+                    "height": "60",
+                    "text": "Source details",
+                    "font": "font:LargeBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "ScrollableText",
+                  "properties": {
+                    "id": "fullTextBody",
+                    "translation": "[100,158]",
+                    "width": "1060",
+                    "height": "460",
+                    "font": "font:MediumSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "translation": "[100,650]",
+                    "width": "1000",
+                    "height": "32",
+                    "text": "Back to close",
+                    "font": "font:SmallSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "SearchPanel",
+              "properties": {
+                "id": "searchPanel",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "searchDelay",
+                "duration": "0.65",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "ProfileEditor",
+              "properties": {
+                "id": "profileEditor",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "TextEntry",
+              "properties": {
+                "id": "textEntry",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "authLoading",
+                "visible": "true"
+              },
+              "children": [
+                {
+                  "type": "Rectangle",
+                  "properties": {
+                    "width": "1280",
+                    "height": "720",
+                    "color": "#101112"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "width": "1280",
+                    "height": "720",
+                    "loadSync": "true",
+                    "uri": "pkg:/images/splash-hd.jpg"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "startupText",
+                    "translation": "[160,630]",
+                    "width": "960",
+                    "height": "36",
+                    "text": "Starting VIPTV\u2026",
+                    "horizAlign": "center",
+                    "vertAlign": "center",
+                    "font": "font:SmallSystemFont",
+                    "color": "#B6B8BA"
+                  }
+                },
+                {
+                  "type": "BusySpinner",
+                  "properties": {
+                    "id": "authLoadingSpinner",
+                    "translation": "[610,476]",
+                    "spinInterval": "1.1",
+                    "control": "stop"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "startupReadyTimer",
+                "duration": "0.15",
+                "repeat": "true"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "pairQrTimer",
+                "duration": "6",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "detailLayoutTimer",
+                "duration": "0.05",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "artworkTimer",
+                "duration": "0.15",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "heroArtTimer",
+                "duration": "0.35",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "noticeTimer",
+                "duration": "5",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "authTimer",
+                "duration": "5",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "playerTick",
+                "duration": "0.5",
+                "repeat": "true"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "budgetTimer",
+                "duration": "180",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "listFocusTimer",
+                "duration": "0.15",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "homeFocusTimer",
+                "duration": "0.15",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "hintTimer",
+                "duration": "7",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "dispatch",
+                "duration": "0.2",
+                "repeat": "true"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "poll",
+                "duration": "1.5",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "startup",
+                "duration": "25",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "seekTimer",
+                "duration": "35",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "heartbeat",
+                "duration": "15",
+                "repeat": "true"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "NavIcon": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "contentChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "listHasFocus",
+                "type": "boolean",
+                "onChange": "render"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "surface",
+                "width": "212",
+                "height": "60",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#F5F5F5FF",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "icon",
+                "translation": "[15,15]",
+                "width": "30",
+                "height": "30",
+                "loadWidth": "64",
+                "loadHeight": "64"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "avatarFallback",
+                "translation": "[8,8]",
+                "width": "44",
+                "height": "44",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#303234FF",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "initial",
+                "translation": "[8,8]",
+                "width": "44",
+                "height": "44",
+                "horizAlign": "center",
+                "vertAlign": "center",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#F5F5F5",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "avatar",
+                "translation": "[8,8]",
+                "width": "44",
+                "height": "44",
+                "loadWidth": "88",
+                "loadHeight": "88",
+                "loadDisplayMode": "scaleToFit",
+                "visible": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "PlayerOverlay": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "model",
+                "type": "assocarray",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "command",
+                "type": "assocarray",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "opened",
+                "type": "boolean",
+                "value": "true",
+                "onChange": "openedChanged"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "bottomGradient",
+                "translation": "[0,382]",
+                "width": "1280",
+                "height": "338",
+                "uri": "pkg:/images/player-gradient-bottom.png"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "topGradient",
+                "width": "1280",
+                "height": "210",
+                "uri": "pkg:/images/player-gradient-top.png"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "branding"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "brandMark",
+                    "translation": "[64,40]",
+                    "width": "36",
+                    "height": "32",
+                    "uri": "pkg:/images/viptv-mark.png"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "brandWordmark",
+                    "translation": "[112,36]",
+                    "width": "700",
+                    "height": "40",
+                    "vertAlign": "center",
+                    "text": "",
+                    "font": "font:MediumBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "playbackStatus",
+                    "translation": "[1048,36]",
+                    "width": "168",
+                    "height": "40",
+                    "horizAlign": "right",
+                    "vertAlign": "center",
+                    "font": "font:SmallBoldSystemFont",
+                    "text": "PLAYING"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "channelIdentity",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "channelLogoSurface",
+                    "translation": "[64,34]",
+                    "width": "84",
+                    "height": "56",
+                    "uri": "pkg:/images/ui-round-fill.9.png",
+                    "blendColor": "#242628E8"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "channelLogo",
+                    "translation": "[72,40]",
+                    "width": "68",
+                    "height": "48",
+                    "loadDisplayMode": "scaleToFit"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "channelName",
+                    "translation": "[164,42]",
+                    "width": "1018",
+                    "height": "36",
+                    "font": "font:MediumBoldSystemFont"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "eyebrow",
+                "translation": "[64,460]",
+                "width": "1100",
+                "height": "26",
+                "color": "#C5C6C7"
+              },
+              "children": [
+                {
+                  "type": "Font",
+                  "properties": {
+                    "role": "font",
+                    "size": "18"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "programmeProgress",
+                "visible": "false",
+                "translation": "[64,572]"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "width": "1152",
+                    "height": "6",
+                    "uri": "pkg:/images/ui-progress-pill.9.png",
+                    "blendColor": "#5A5C5EFF"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "programmeFill",
+                    "width": "1",
+                    "height": "6",
+                    "uri": "pkg:/images/ui-progress-pill.9.png",
+                    "blendColor": "#F5F5F5FF"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "title",
+                "translation": "[64,486]",
+                "maxWidth": "1090",
+                "color": "#F5F5F5",
+                "scrollSpeed": "48"
+              },
+              "children": [
+                {
+                  "type": "Font",
+                  "properties": {
+                    "role": "font",
+                    "size": "32"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "context",
+                "translation": "[64,524]",
+                "width": "1152",
+                "height": "30",
+                "color": "#BFC1C3"
+              },
+              "children": [
+                {
+                  "type": "Font",
+                  "properties": {
+                    "role": "font",
+                    "size": "20"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BusySpinner",
+              "properties": {
+                "id": "spinner",
+                "translation": "[610,330]",
+                "spinInterval": "1.1",
+                "control": "stop",
+                "visible": "false"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "seekRow",
+                "translation": "[64,572]"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "seekTrack",
+                    "width": "1152",
+                    "height": "6",
+                    "uri": "pkg:/images/ui-progress-pill.9.png",
+                    "blendColor": "#5A5C5EFF"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "seekFill",
+                    "width": "0",
+                    "height": "6",
+                    "uri": "pkg:/images/ui-progress-pill.9.png",
+                    "blendColor": "#F5F5F5FF"
+                  }
+                },
+                {
+                  "type": "Rectangle",
+                  "properties": {
+                    "id": "seekPreviewMarker",
+                    "width": "3",
+                    "height": "10",
+                    "color": "#A6A8AA",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "seekThumb",
+                    "width": "16",
+                    "height": "16",
+                    "uri": "pkg:/images/player-circle.png",
+                    "blendColor": "#F5F5F5FF",
+                    "visible": "false"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "timeLeft",
+                "translation": "[64,584]",
+                "width": "576",
+                "height": "32",
+                "font": "font:SmallSystemFont",
+                "color": "#F5F5F5"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "timeRight",
+                "translation": "[640,584]",
+                "width": "576",
+                "height": "32",
+                "horizAlign": "right",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "controlRow",
+                "translation": "[398,604]"
+              },
+              "children": [
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "controlSurface",
+                    "width": "484",
+                    "height": "64",
+                    "uri": "pkg:/images/ui-round-fill.9.png",
+                    "blendColor": "#242628C8"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "focusPill",
+                    "width": "64",
+                    "height": "64",
+                    "uri": "pkg:/images/ui-round-fill.9.png",
+                    "blendColor": "#F5F5F5FF",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "btnRewindIcon",
+                    "translation": "[18,18]",
+                    "width": "28",
+                    "height": "28",
+                    "uri": "pkg:/images/ui-nav-player-rewind.png"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "btnRewindLabel",
+                    "translation": "[42,0]",
+                    "width": "110",
+                    "height": "56",
+                    "text": "\u221210 sec",
+                    "horizAlign": "center",
+                    "vertAlign": "center",
+                    "font": "font:SmallBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "btnPauseIcon",
+                    "translation": "[102,18]",
+                    "width": "28",
+                    "height": "28",
+                    "uri": "pkg:/images/ui-nav-player-pause.png"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "btnPauseLabel",
+                    "translation": "[218,0]",
+                    "width": "110",
+                    "height": "56",
+                    "text": "Pause",
+                    "horizAlign": "center",
+                    "vertAlign": "center",
+                    "font": "font:SmallBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "btnForwardIcon",
+                    "translation": "[186,18]",
+                    "width": "28",
+                    "height": "28",
+                    "uri": "pkg:/images/ui-nav-player-forward.png"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "btnForwardLabel",
+                    "translation": "[394,0]",
+                    "width": "110",
+                    "height": "56",
+                    "text": "+30 sec",
+                    "horizAlign": "center",
+                    "vertAlign": "center",
+                    "font": "font:SmallBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "btnAudioIcon",
+                    "translation": "[270,18]",
+                    "width": "28",
+                    "height": "28",
+                    "uri": "pkg:/images/ui-nav-player-audio.png"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "btnAudioLabel",
+                    "translation": "[570,0]",
+                    "width": "110",
+                    "height": "56",
+                    "text": "Audio",
+                    "horizAlign": "center",
+                    "vertAlign": "center",
+                    "font": "font:SmallBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "btnSubtitlesIcon",
+                    "translation": "[354,18]",
+                    "width": "28",
+                    "height": "28",
+                    "uri": "pkg:/images/ui-nav-player-captions.png"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "btnSubtitlesLabel",
+                    "translation": "[746,0]",
+                    "width": "110",
+                    "height": "56",
+                    "text": "Captions",
+                    "horizAlign": "center",
+                    "vertAlign": "center",
+                    "font": "font:SmallBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "btnNextIcon",
+                    "width": "28",
+                    "height": "28",
+                    "uri": "pkg:/images/ui-nav-player-forward.png"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "btnNextLabel",
+                    "text": "Next episode",
+                    "visible": "false"
+                  }
+                },
+                {
+                  "type": "Poster",
+                  "properties": {
+                    "id": "btnExitIcon",
+                    "translation": "[438,18]",
+                    "width": "28",
+                    "height": "28",
+                    "uri": "pkg:/images/ui-nav-player-exit.png"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "btnExitLabel",
+                    "translation": "[922,0]",
+                    "width": "110",
+                    "height": "56",
+                    "text": "Exit",
+                    "horizAlign": "center",
+                    "vertAlign": "center",
+                    "font": "font:SmallBoldSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "hint",
+                "translation": "[64,672]",
+                "width": "1152",
+                "height": "28",
+                "horizAlign": "center",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "seekDebounceTimer",
+                "duration": "0.8",
+                "repeat": "false"
+              }
+            },
+            {
+              "type": "Timer",
+              "properties": {
+                "id": "hideTimer",
+                "duration": "7",
+                "repeat": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "ProfileCard": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "renderFocus"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "gridHasFocus",
+                "type": "boolean",
+                "onChange": "renderFocus"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "avatarFallback",
+                "translation": "[9,9]",
+                "width": "160",
+                "height": "160",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#202224FF"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "initial",
+                "translation": "[9,9]",
+                "width": "160",
+                "height": "160",
+                "horizAlign": "center",
+                "vertAlign": "center",
+                "font": "font:LargeBoldSystemFont",
+                "color": "#F5F5F5"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "avatar",
+                "translation": "[9,9]",
+                "width": "160",
+                "height": "160",
+                "loadWidth": "256",
+                "loadHeight": "256",
+                "loadDisplayMode": "scaleToFit"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "translation": "[9,9]",
+                "width": "160",
+                "height": "160",
+                "uri": "pkg:/images/ui-profile-corners.png"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "focusFrame",
+                "width": "178",
+                "height": "178",
+                "uri": "pkg:/images/ui-profile-focus.png",
+                "opacity": "0"
+              }
+            },
+            {
+              "type": "ScrollingLabel",
+              "properties": {
+                "id": "name",
+                "translation": "[0,181]",
+                "width": "178",
+                "maxWidth": "178",
+                "horizAlign": "center",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA",
+                "repeatCount": "0",
+                "scrollSpeed": "42"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "ProfileEditor": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "draft",
+                "type": "assocarray"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "action",
+                "type": "string",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "message",
+                "type": "string",
+                "alias": "error.text"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "saving",
+                "type": "boolean",
+                "value": "false"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "open"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "refresh"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Rectangle",
+              "properties": {
+                "width": "1280",
+                "height": "720",
+                "color": "#101112"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "translation": "[96,44]",
+                "width": "42",
+                "height": "36",
+                "uri": "pkg:/images/viptv-mark.png"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "form"
+              },
+              "children": [
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "title",
+                    "translation": "[256,148]",
+                    "width": "850",
+                    "height": "64",
+                    "text": "Add a profile",
+                    "font": "font:LargeBoldSystemFont"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "translation": "[256,222]",
+                    "width": "850",
+                    "height": "40",
+                    "text": "A space for their favorites, shows, and discoveries.",
+                    "font": "font:MediumSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                },
+                {
+                  "type": "MarkupGrid",
+                  "properties": {
+                    "id": "avatar",
+                    "translation": "[256,302]",
+                    "itemComponentName": "AvatarTile",
+                    "itemSize": "[176,176]",
+                    "numColumns": "1",
+                    "numRows": "1",
+                    "drawFocusFeedback": "false",
+                    "vertFocusAnimationStyle": "floatingFocus",
+                    "skipFocusAnimations": "true"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "translation": "[256,486]",
+                    "width": "176",
+                    "height": "32",
+                    "text": "Change avatar",
+                    "horizAlign": "center",
+                    "font": "font:SmallSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "translation": "[464,292]",
+                    "width": "600",
+                    "height": "36",
+                    "text": "PROFILE NAME",
+                    "font": "font:SmallSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                },
+                {
+                  "type": "MarkupList",
+                  "properties": {
+                    "id": "name",
+                    "translation": "[464,338]",
+                    "itemComponentName": "ActionRow",
+                    "itemSize": "[560,64]",
+                    "numRows": "1",
+                    "drawFocusFeedback": "false",
+                    "vertFocusAnimationStyle": "floatingFocus",
+                    "skipFocusAnimations": "true"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "translation": "[464,420]",
+                    "width": "560",
+                    "height": "54",
+                    "wrap": "true",
+                    "text": "Select to type with your remote or the Roku app.",
+                    "font": "font:SmallSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "error",
+                    "translation": "[464,484]",
+                    "width": "560",
+                    "height": "60",
+                    "wrap": "true",
+                    "font": "font:SmallSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "MarkupGrid",
+                  "properties": {
+                    "id": "actions",
+                    "translation": "[256,574]",
+                    "itemComponentName": "ActionRow",
+                    "itemSize": "[240,56]",
+                    "itemSpacing": "[16,0]",
+                    "numColumns": "2",
+                    "numRows": "1",
+                    "drawFocusFeedback": "false",
+                    "vertFocusAnimationStyle": "floatingFocus",
+                    "skipFocusAnimations": "true"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "id": "picker",
+                "visible": "false"
+              },
+              "children": [
+                {
+                  "type": "Label",
+                  "properties": {
+                    "translation": "[96,112]",
+                    "width": "1050",
+                    "height": "62",
+                    "text": "Find your favorite",
+                    "font": "font:LargeBoldSystemFont"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "pickerHint",
+                    "translation": "[96,178]",
+                    "width": "1050",
+                    "height": "36",
+                    "text": "576 avatars. Pick a world, then pick your character.",
+                    "font": "font:MediumSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                },
+                {
+                  "type": "Group",
+                  "properties": {
+                    "translation": "[96,238]",
+                    "clippingRect": "[0,0,216,408]"
+                  },
+                  "children": [
+                    {
+                      "type": "MarkupList",
+                      "properties": {
+                        "id": "categories",
+                        "translation": "[0,0]",
+                        "itemComponentName": "ActionRow",
+                        "itemSize": "[216,44]",
+                        "itemSpacing": "[0,8]",
+                        "numRows": "8",
+                        "drawFocusFeedback": "false",
+                        "vertFocusAnimationStyle": "floatingFocus",
+                        "skipFocusAnimations": "true"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "MarkupGrid",
+                  "properties": {
+                    "id": "avatars",
+                    "translation": "[360,238]",
+                    "itemComponentName": "AvatarTile",
+                    "itemSize": "[128,128]",
+                    "itemSpacing": "[12,12]",
+                    "numColumns": "6",
+                    "numRows": "3",
+                    "drawFocusFeedback": "false",
+                    "vertFocusAnimationStyle": "floatingFocus",
+                    "skipFocusAnimations": "true"
+                  }
+                },
+                {
+                  "type": "MarkupGrid",
+                  "properties": {
+                    "id": "pages",
+                    "translation": "[360,662]",
+                    "itemComponentName": "ActionRow",
+                    "itemSize": "[180,40]",
+                    "itemSpacing": "[12,0]",
+                    "numColumns": "2",
+                    "numRows": "1",
+                    "drawFocusFeedback": "false",
+                    "vertFocusAnimationStyle": "floatingFocus",
+                    "skipFocusAnimations": "true"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "pickedName",
+                    "translation": "[360,664]",
+                    "width": "440",
+                    "height": "36",
+                    "font": "font:SmallSystemFont",
+                    "color": "#F5F5F5"
+                  }
+                },
+                {
+                  "type": "Label",
+                  "properties": {
+                    "id": "page",
+                    "translation": "[812,664]",
+                    "width": "372",
+                    "height": "36",
+                    "horizAlign": "right",
+                    "font": "font:SmallSystemFont",
+                    "color": "#A6A8AA"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "SearchPanel": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "query",
+                "type": "string",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "results",
+                "type": "node",
+                "onChange": "updateResults"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "selected",
+                "type": "intarray",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "status",
+                "type": "string",
+                "alias": "statusLabel.text"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "position",
+                "type": "intarray",
+                "alias": "resultsList.rowItemFocused"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "open"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "focusField"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "focusResults"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Rectangle",
+              "properties": {
+                "translation": "[88,130]",
+                "width": "1192",
+                "height": "590",
+                "color": "#101112"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "queryLabel",
+                "translation": "[100,164]",
+                "width": "304",
+                "height": "44",
+                "font": "font:MediumSystemFont",
+                "color": "#F5F5F5"
+              }
+            },
+            {
+              "type": "MiniKeyboard",
+              "properties": {
+                "id": "keys",
+                "translation": "[96,216]",
+                "scale": "[0.82,0.82]",
+                "showTextEditBox": "false",
+                "keyColor": "#F5F5F5",
+                "focusedKeyColor": "#F5F5F5",
+                "focusBitmapUri": "pkg:/images/ui-round-outline.9.png"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "translation": "[100,572]",
+                "width": "304",
+                "height": "64",
+                "wrap": "true",
+                "text": "Type here or use the Roku app. Play/Pause opens results.",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            },
+            {
+              "type": "Group",
+              "properties": {
+                "translation": "[456,164]",
+                "clippingRect": "[0,0,740,484]"
+              },
+              "children": [
+                {
+                  "type": "RowList",
+                  "properties": {
+                    "id": "resultsList",
+                    "itemComponentName": "HomeCard",
+                    "itemSize": "[740,236]",
+                    "rowItemSize": "[[256,200]]",
+                    "rowItemSpacing": "[[20,0]]",
+                    "itemSpacing": "[0,8]",
+                    "numRows": "2",
+                    "showRowLabel": "[true]",
+                    "showRowCounter": "[false]",
+                    "rowLabelOffset": "[[0,8]]",
+                    "rowLabelFont": "font:MediumBoldSystemFont",
+                    "rowLabelColor": "#F5F5F5",
+                    "drawFocusFeedback": "false",
+                    "rowFocusAnimationStyle": "floatingFocus",
+                    "vertFocusAnimationStyle": "fixedFocus"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "statusLabel",
+                "translation": "[456,660]",
+                "width": "740",
+                "height": "36",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "SourceCard": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "itemContent",
+                "type": "node",
+                "onChange": "contentChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "focusPercent",
+                "type": "float",
+                "onChange": "focusChanged"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "listHasFocus",
+                "type": "boolean",
+                "onChange": "focusChanged"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "surface",
+                "width": "1096",
+                "height": "216",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#202224FF"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "provider",
+                "translation": "[20,10]",
+                "width": "1056",
+                "height": "30",
+                "font": "font:SmallBoldSystemFont"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "description",
+                "translation": "[20,46]",
+                "width": "1056",
+                "height": "142",
+                "numLines": "6",
+                "wrap": "true",
+                "font": "font:SmallSystemFont",
+                "color": "#A6A8AA"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "badges",
+                "translation": "[20,190]",
+                "width": "1056",
+                "height": "22",
+                "font": "font:SmallBoldSystemFont",
+                "color": "#C5C6C7"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "TextEntry": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "secret",
+                "type": "boolean",
+                "value": "false"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "heading",
+                "type": "string"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "value",
+                "type": "string"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "limit",
+                "type": "integer",
+                "value": "256"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "result",
+                "type": "assocarray",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "open"
+              }
+            },
+            {
+              "type": "function",
+              "properties": {
+                "name": "clear"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Rectangle",
+              "properties": {
+                "width": "1280",
+                "height": "720",
+                "color": "#101112"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "translation": "[96,44]",
+                "width": "42",
+                "height": "36",
+                "uri": "pkg:/images/viptv-mark.png"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "title",
+                "translation": "[180,112]",
+                "width": "860",
+                "height": "64",
+                "font": "font:LargeBoldSystemFont"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "translation": "[180,182]",
+                "width": "860",
+                "height": "40",
+                "text": "Use your remote or the keyboard in the Roku app.",
+                "color": "#A6A8AA",
+                "font": "font:SmallSystemFont"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "valueLabel",
+                "translation": "[180,242]",
+                "width": "860",
+                "height": "44",
+                "font": "font:MediumSystemFont",
+                "color": "#F5F5F5"
+              }
+            },
+            {
+              "type": "Keyboard",
+              "properties": {
+                "id": "keys",
+                "showTextEditBox": "false",
+                "translation": "[180,300]",
+                "keyColor": "#F5F5F5",
+                "focusedKeyColor": "#F5F5F5",
+                "focusBitmapUri": "pkg:/images/ui-round-outline.9.png"
+              }
+            },
+            {
+              "type": "MarkupGrid",
+              "properties": {
+                "id": "actions",
+                "translation": "[180,608]",
+                "itemComponentName": "ActionRow",
+                "itemSize": "[240,56]",
+                "itemSpacing": "[16,0]",
+                "numColumns": "2",
+                "numRows": "1",
+                "drawFocusFeedback": "false"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "UiChoice": {
+      "extends": "Group",
+      "interface": [
+        {
+          "type": "interface",
+          "properties": {},
+          "children": [
+            {
+              "type": "field",
+              "properties": {
+                "id": "model",
+                "type": "assocarray",
+                "onChange": "render"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "selection",
+                "type": "assocarray",
+                "alwaysNotify": "true"
+              }
+            },
+            {
+              "type": "field",
+              "properties": {
+                "id": "dismissed",
+                "type": "boolean",
+                "alwaysNotify": "true"
+              }
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "children",
+          "properties": {},
+          "children": [
+            {
+              "type": "Rectangle",
+              "properties": {
+                "width": "1280",
+                "height": "720",
+                "color": "#080909DC"
+              }
+            },
+            {
+              "type": "Poster",
+              "properties": {
+                "id": "surface",
+                "translation": "[200,60]",
+                "width": "880",
+                "height": "600",
+                "uri": "pkg:/images/ui-round-fill.9.png",
+                "blendColor": "#191B1DFF"
+              }
+            },
+            {
+              "type": "Label",
+              "properties": {
+                "id": "title",
+                "translation": "[244,98]",
+                "width": "792",
+                "height": "54",
+                "font": "font:LargeBoldSystemFont",
+                "color": "#F5F5F5"
+              }
+            },
+            {
+              "type": "MarkupList",
+              "properties": {
+                "id": "choices",
+                "translation": "[244,178]",
+                "itemComponentName": "ActionRow",
+                "itemSize": "[792,52]",
+                "itemSpacing": "[0,10]",
+                "numRows": "7",
+                "vertFocusAnimationStyle": "floatingFocus",
+                "drawFocusFeedback": "false"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

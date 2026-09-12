@@ -1,0 +1,14 @@
+{
+  "name": "viptv-roku-design-assets",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pinned local dependencies for regenerating VIPTV Roku design assets.",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@dicebear/core": "10.6.0",
+    "@dicebear/styles": "10.6.0",
+    "sharp": "0.34.3"
+  }
+}
