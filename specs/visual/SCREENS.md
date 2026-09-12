@@ -70,7 +70,7 @@ The video remains under a full-screen overlay; overlay gradients must cover the 
 
 Body: eyebrow x=64 y=460, title x=64 y=486 max 1090 at 32px, context x=64 y=524. Busy spinner is centred x=610 y=330 at 60×60. Timeline x=64 y=572, width 1152, height 6; time labels y=584. The VOD track has white fill, 16px thumb and muted scrub preview marker. Live replaces it with programme progress and `ON NOW`/minutes-left labels.
 
-Controls begin x=64 y=624. They have no permanent backing surface; focus is a 64×64 white rounded pill. VOD positions: rewind 0; pause 80; forward 160; Audio 928; Captions 1008; Exit 1088; Next episode 240 when available. Live exposes Audio at 544 and Exit at 1088; hide unsupported seek/skip controls. Use 28px icons inset 18px. Hint is x=64 y=672, centred in 1152×28 when needed.
+Controls begin x=64 y=624. They have no permanent backing surface; focus is a 64×64 white rounded pill. All following control positions are offsets within that row (add 64 to obtain canvas x). VOD positions: rewind 0; pause 80; forward 160; Audio 928; Captions 1008; Exit 1088; Next episode 240 when available. Live exposes Audio at 544 and Exit at 1088; hide unsupported seek/skip controls. Use 28px icons inset 18px. Hint is x=64 y=672, centred in 1152×28 when needed.
 
 ## Guide geometry and live refresh details
 
