@@ -2,6 +2,8 @@
 
 Status: implementation authorized 2026-09-12. This adds platform implementations of the existing Roku baseline; it does not change Roku behavior. Android TV uses native Jetpack Compose. Tizen and Vizio use one React frontend in viptv-org/tv-web with a replaceable platform player module. React is selected here to share the existing TypeScript controller ecosystem and permit automated DOM/remote acceptance; SolidTV/LightningJS is not required for the shared-frontend contract.
 
+The shared Tizen/Vizio presentation replacement is governed by [TV_WEB_UI_REBUILD.md](TV_WEB_UI_REBUILD.md). Design updates and per-platform acceptance follow [DESIGN_SYNC.md](DESIGN_SYNC.md). Historical functional checks do not qualify replacement visuals.
+
 ## Product contract
 
 Implement the visual, interaction and server queue specifications under specs/. Use the canonical 1280×720 TV frame uniformly scaled to viewport. Preserve pairing/profile gates, stable Home shelves/hero, Discover/search, movie and series/episode detail, manual sources, exact-source Resume, controlled Next, My List/queue/corrections, Guide, preferences, profiles and parent unlock behavior. Media loading and failure retain the same source/position/focus intent. UI assets come from design with pinned provenance; no screenshot files are committed.

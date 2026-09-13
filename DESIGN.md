@@ -10,6 +10,8 @@ This repository is the source of truth for viptv product UI, UX and app assets. 
 5. assets/ contains app artwork, fonts/icons where available, generators and provenance. It contains no screenshots.
 6. REPOSITORIES.md and specs/repos/ define ownership and delivery contracts.
 
+For the shared Tizen/Vizio presentation replacement, read [TV_WEB_UI_REBUILD.md](TV_WEB_UI_REBUILD.md). For every platform UI change, pin update, asset import or parity claim, follow [DESIGN_SYNC.md](DESIGN_SYNC.md). It defines immutable adoption, integrity versus freshness, per-state evidence and the proposed future Figma authoring workflow.
+
 ## Required format for any new or revised feature
 State its stable identifier, status (baseline or proposed), source revision, user intent, entry/exit points, complete visible copy and data, layout in reference coordinates, focus order/restoration, every input's press/release/repeat/hold behavior and threshold, disabled/loading/empty/error states, cancellation and recovery, timing, accessibility and platform equivalents. Supply concrete acceptance scenarios including failure and return navigation. Explicitly mark unknown measurements; never invent parity evidence.
 
