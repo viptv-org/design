@@ -24,3 +24,7 @@ Authorized the Roku-matching presentation replacement for the shared Tizen/Vizio
 ## 2026-09-13 — Rail and action alignment extraction precision
 
 Corrected the rail origin, row spacing and V-mark geometry from frozen Roku MainScene.xml, and made ActionRow horizontal/vertical centering explicit for Settings. These are source-backed extraction corrections, not Roku changes. Documented the shared TV-web existing source-quality filter as a retained implementation adaptation with explicit acceptance and parity limits; no owner-approved exception or completed parity is claimed.
+
+## 2026-09-13 — Shared TV rebuild delivery
+
+Recorded the shared React replacement, scoped 43-unit/49-browser validation, Settings/Search comparisons, source-filter difference, and immutable sync/PR workflow in [TV_WEB_UI_REBUILD.md](TV_WEB_UI_REBUILD.md). Physical TVs and other matched-content visual states remain pending.
