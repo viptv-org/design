@@ -1,0 +1,97 @@
+/* Appearance authority: RESPONSIVE_VIPTV_ALIGNMENT.md. Responsive geometry stays in revision.css. */
+:root{font-family:Arial,"Liberation Sans",sans-serif}
+h1,h2,h3,.feature-title{font-weight:700;letter-spacing:normal}
+h1,.feature-title{font-size:44px;line-height:1.2}
+h2{font-size:26px}.page-heading p{font-size:19px}
+p{font-size:19px;line-height:1.4}
+button{border:0;border-radius:12px;font-size:22px;font-weight:700;min-height:48px;background:var(--surface);color:var(--text)}
+button:hover{background:var(--selected)}
+button:focus-visible{background:var(--focus);color:#101112;outline:2px solid var(--focus);outline-offset:3px}
+button.primary,.title-actions .primary,.feature .title-actions .primary{background:var(--surface);color:var(--text);border:0;border-radius:12px;min-height:56px;font-size:22px;font-weight:700;padding:12px 24px}
+button.primary:hover,.title-actions .primary:hover{background:var(--selected)}
+button.primary:focus-visible,.title-actions .primary:focus-visible,.feature .title-actions .primary:focus-visible{background:var(--focus);color:#101112}
+.viptv-icon{display:inline-block;object-fit:contain;flex-shrink:0;vertical-align:middle;filter:none}
+button:focus-visible .viptv-icon{filter:brightness(0)}
+.app-header nav button{border-radius:12px;font-weight:700;padding:12px 16px;gap:10px}
+.app-header nav span{font-size:18px;font-weight:700}
+.app-header nav button:focus-visible{background:var(--focus);color:#101112}
+.app-header .cast-button{font-size:16px;border-radius:12px;min-height:48px}
+.app-header .brand{width:108px}
+.eyebrow,.feature-copy .eyebrow{font-size:17px;font-weight:700;letter-spacing:normal;color:var(--secondary);margin-bottom:16px}
+.feature-copy{text-align:left}
+.feature-copy .metadata,.detail-copy .metadata{font-size:17px;color:var(--secondary);justify-content:flex-start}
+.feature-copy .synopsis,.detail-copy>.synopsis{font-size:20px;line-height:1.4;color:var(--secondary);max-width:58ch}
+.feature-copy .episode-context,.detail-copy .episode-context{font-size:17px;color:var(--secondary)}
+.media-title.has-logo{margin-bottom:24px}
+.title-logo{object-position:left center;margin-left:0}
+.feature-art,.detail-art{border-radius:8px;background:var(--surface)}
+.title-actions{gap:12px}
+.title-actions .round-action,.title-actions .desktop-action{min-height:56px;height:56px;border-radius:12px;background:var(--surface);color:var(--text);font-size:22px;font-weight:700;border:0}
+.title-actions .round-action{width:56px;min-width:56px;padding:14px}
+.title-actions .round-action[aria-pressed=true]{box-shadow:inset 0 0 0 2px var(--text)}
+.title-actions .round-action:focus-visible,.title-actions .desktop-action:focus-visible{background:var(--focus);color:#101112}
+.shelf{margin-bottom:32px}
+.shelf>header{min-height:38px;margin-bottom:8px}
+.shelf h2{font-size:22px;font-weight:700;line-height:26px;text-transform:uppercase;letter-spacing:normal}
+.shelf-items{gap:24px;padding-top:0;margin-top:0}
+.media-card{flex:0 0 256px;min-width:0}
+.card-art{margin-bottom:8px;border-radius:8px}
+.card-art::after{content:"";position:absolute;inset:0;background:url('/art/viptv/ui-card-focus.png') center/100% 100% no-repeat;opacity:.35;pointer-events:none}
+.card-hit>strong{font-size:21px;font-weight:700;line-height:25px;padding-right:36px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-hit>span{font-size:17px;font-weight:400;line-height:22px;color:var(--muted);margin-top:4px;padding-right:30px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-menu{top:auto;bottom:0;right:-8px;background:transparent;font-size:20px}
+.card-menu:hover{background:var(--selected)}
+.card-hit:focus-visible{background:transparent!important;color:var(--text)}
+.card-hit:focus-visible .card-art,.card-hit:hover .card-art{outline:none}
+.card-hit:hover .card-art::after{opacity:.6}
+.card-hit:focus-visible .card-art::after{opacity:1}
+.card-progress i{min-width:6px;border-radius:4px}
+.card-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,256px),1fr));gap:24px}
+.art-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:400;letter-spacing:normal;background:var(--surface);color:var(--muted);padding:24px}
+.episodes-heading h2{font-size:26px;letter-spacing:normal;font-weight:700}
+.episodes-heading p{font-size:17px}
+.episodes-heading select,select{border-radius:12px;background:var(--surface);font-size:19px;min-height:48px;border:0;color:var(--text)}
+.episode-art{margin-bottom:8px}
+.episode-number{font-size:14px;letter-spacing:normal;margin-bottom:4px;font-weight:400}
+.episode-hit>strong{font-size:21px;font-weight:700;line-height:25px}
+.episode-synopsis{font-size:17px;line-height:1.4;margin-top:8px}
+.episode-duration{font-size:14px;border-radius:6px;background:#242628e8}
+.episode-play{border-radius:12px;background:#242628e8;color:var(--text);width:48px;height:48px}
+.episode-hit:focus-visible{background:transparent!important;color:var(--text)}
+.episode-hit:focus-visible .episode-play{background:var(--focus)}
+.episode-hit:focus-visible .episode-play .viptv-icon{filter:brightness(0)}
+.episode-hit:focus-visible .episode-art{outline:2px solid var(--focus);outline-offset:3px}
+.avatar{overflow:visible;background:var(--surface)}
+.avatar>img{width:100%;height:100%;display:block;object-fit:cover;border-radius:50%}
+.profile-tile{font-size:22px}
+.profile-tile small{font-size:17px}
+.profile-page .muted{font-size:17px}
+.profile-tile:focus-visible{background:transparent!important;color:var(--text)}
+.settings-section>p{font-size:19px;line-height:1.4}
+.settings-section>.muted{font-size:17px}
+.theme-option{border:2px solid transparent;border-radius:12px}
+.theme-option[aria-pressed=true]{border-color:var(--text)}
+.theme-option>strong{font-size:22px}.theme-option>span:not(.theme-preview){font-size:17px;line-height:1.4}
+.guide-row h2{font-size:24px}.guide-row small,.guide-row p{font-size:17px}.channel-logo{border-radius:12px;font-weight:700;font-size:18px}
+.search-field{border-radius:12px;background:var(--surface);border:0}.search-field input{font-size:22px}.result-label{font-size:17px}
+dialog.sheet{width:640px;border-radius:12px;background:var(--canvas)}
+.dialog-content>h2{font-size:32px;line-height:1.2;font-weight:700;letter-spacing:normal}
+.dialog-content p{font-size:19px;line-height:1.4}
+.dialog-content .eyebrow{font-size:17px}
+.menu-list{gap:12px}
+.menu-list button{border-radius:12px;min-height:56px;font-size:22px;padding:16px;justify-content:space-between}
+.menu-list strong{font-size:22px}.menu-list small{font-size:17px;line-height:1.4}
+.sheet form label{font-size:19px}.sheet input:not([type=checkbox]){border-radius:12px;font-size:22px}
+.connected-device{border-radius:12px}.connected-device strong{font-size:22px}.connected-device small{font-size:17px}
+.remote-pad button{border-radius:12px}.simulation-toggle{font-size:17px}
+.player-controls p,.player-toolbar>span{font-size:17px}.player-toolbar button{border-radius:12px}.video-surface button{border-radius:12px}
+.toast,.dialog-toast{background:var(--muted-surface);color:var(--text);border-radius:12px;font-size:19px;border:0}
+main{padding-bottom:96px}
+.study-tools p,.study-tools summary{font-size:11px}.study-tools select{font-size:11px}
+@media(max-width:1199px){.app-header nav button{padding:12px;gap:8px}.app-header nav span{font-size:16px}.app-header .cast-button{font-size:14px}.feature-copy .synopsis,.detail-copy>.synopsis{font-size:19px}.title-actions .desktop-action{font-size:19px;padding:12px 16px}.title-actions .primary,.feature .title-actions .primary{font-size:20px;padding:12px 20px}.title-actions{gap:8px}}
+@media(min-width:600px) and (max-width:899px){.app-header nav span{display:none}.app-header .cast-button span{display:none}.feature-copy .metadata,.detail-copy .metadata{font-size:17px}}
+@media(max-width:599px){h1,.feature-title{font-size:32px}.page-heading h1{font-size:32px}.page-heading p{font-size:16px}.app-header .brand{width:88px}.app-header .cast-button{font-size:12px}.app-header nav button{border-radius:0;padding:10px 0 8px;gap:5px}.app-header nav span{font-size:12px}.app-header nav button.active{background:var(--surface)}.app-header nav button.active:after{display:none}.feature-copy,.detail-copy{text-align:left}.title-logo{object-position:left center;margin-left:0}.feature-copy .eyebrow,.detail-copy .eyebrow{font-size:14px;line-height:20px;letter-spacing:normal;margin-bottom:12px}.feature-copy .metadata,.detail-copy .metadata{font-size:14px;justify-content:flex-start}.feature-copy .episode-context,.detail-copy .episode-context{font-size:14px}.feature-copy .synopsis,.detail-copy>.synopsis{font-size:16px;line-height:1.4}.title-actions{gap:12px}.title-actions .primary,.feature .title-actions .primary{font-size:18px;min-height:52px;height:52px;border-radius:12px;padding:12px 16px}.title-actions .round-action{min-width:52px;width:52px;height:52px;min-height:52px;border-radius:12px;padding:12px}.title-actions .desktop-action{display:none}.shelf h2{font-size:20px;line-height:24px}.shelf-items{gap:16px}.media-card{flex-basis:232px}.card-hit>strong{font-size:17px;line-height:22px}.card-hit>span{font-size:14px;line-height:20px}.shelf>header{min-height:32px;margin-bottom:8px}.card-grid{grid-template-columns:1fr;gap:24px}.episodes-heading h2{font-size:24px}.episodes-heading select{font-size:17px}.episode-hit>strong{font-size:18px;line-height:23px}.episode-synopsis{font-size:15px}.episode-number,.episode-duration{font-size:13px}.settings-section>p{font-size:16px}.settings-section>.muted{font-size:14px}.theme-option>strong{font-size:18px}.theme-option>span:not(.theme-preview){font-size:15px}.profile-tile{font-size:19px}.profile-tile small,.profile-page .muted{font-size:14px}.search-field input{font-size:18px}.result-label{font-size:15px}.guide-row h2{font-size:20px}.guide-row small,.guide-row p{font-size:14px}.channel-logo{font-size:12px}.guide-row>button{font-size:18px}.sheet .dialog-content{padding:28px 24px calc(28px + env(safe-area-inset-bottom))}dialog.sheet{border-radius:12px 12px 0 0}.dialog-content>h2{font-size:26px}.dialog-content p,.dialog-content .eyebrow{font-size:16px}.menu-list button,.menu-list strong{font-size:18px;min-height:52px}.menu-list small{font-size:15px}.sheet form label{font-size:16px}.sheet input:not([type=checkbox]){font-size:19px}.connected-device strong{font-size:19px}.connected-device small{font-size:15px}.remote-pad button{font-size:19px}.dialog-content .actions>button{font-size:16px}.simulation-toggle{font-size:15px}.player-toolbar>span{font-size:12px}.toast,.dialog-toast{font-size:16px}.feature.variant-B .title-actions{gap:8px}.feature.variant-B .media-title{font-size:26px}.feature.variant-B .metadata{justify-content:flex-start;font-size:14px}.feature.variant-B .episode-context{font-size:14px}.feature.variant-B .feature-title.has-logo{margin-bottom:0}.feature.variant-C .feature-title{font-size:32px}main{padding-bottom:calc(128px + env(safe-area-inset-bottom))}}
+
+/* Original transport assets include internal padding; TV-web renders these at 28px. */
+.title-actions .primary{white-space:normal;line-height:1.2}
+@media(max-width:599px){.title-actions .primary,.feature .title-actions .primary{height:auto;min-height:52px}.feature.variant-B .title-actions .primary{padding-inline:4px;gap:8px}}

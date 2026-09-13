@@ -27,7 +27,7 @@ export async function loadFixtures() {
     {id:'demo-direct',name:'Original · 1080p',title:'Original quality · English audio',provider:'Fixture library',quality:'1080p'},
     {id:'demo-alternate',name:'Alternate · 720p',title:'English audio · alternate source',provider:'Fixture library',quality:'720p'},
   ].map(source => project<MediaSource>('source', source));
-  const profiles: Profile[] = [{id:'profile-main',name:'Alex',primary:true,setupComplete:true,raw:{}},{id:'profile-kids',name:'Kids',kid:true,setupComplete:true,raw:{}}];
+  const profiles: Profile[] = [{id:'profile-main',name:'Alex',avatar:'/art/viptv/critters-1.png',primary:true,setupComplete:true,raw:{}},{id:'profile-kids',name:'Kids',avatar:'/art/viptv/critters-2.png',kid:true,setupComplete:true,raw:{}}];
   const playback: PlaybackSession = {id:'demo-session',url:'https://example.test/media/demo',headers:{},format:'mp4',mode:'direct',videoMode:'copy',audioMode:'copy',position:1240,duration:2940,live:false,audioTracks:[{inputIndex:0,language:'en',languageStatus:'confirmed',title:'English',selected:true,supported:true,selectable:true}],subtitleTracks:[{inputIndex:1,language:'en',languageStatus:'confirmed',title:'English CC',selected:false,supported:true,selectable:true}],subtitlesSupported:true};
   return { items, sources, profiles, playback, present:(item:MediaItem) => project<MediaPresentation>('presentation', item) };
 }

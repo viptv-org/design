@@ -1,6 +1,6 @@
 # VIPTV responsive design study
 
-**Throwaway prototype on `prototype/responsive-ui-oled`; not a production app or release candidate.** Review it with [the proposed responsive contract](../../RESPONSIVE_UI.md) and [design tokens](../../tokens/responsive.json). Android phone remains Kotlin/Compose; this React study is its visual/interaction reference and the proposed shared responsive UI for mobile web, desktop web and Tauri. TV continues using its existing remote-first composition.
+**Throwaway prototype on `prototype/responsive-ui-oled`; not a production app or release candidate.** Review it first with [the implemented VIPTV alignment specification](../../RESPONSIVE_VIPTV_ALIGNMENT.md), then [the responsive layout contract](../../RESPONSIVE_UI.md) and [design tokens](../../tokens/responsive.json). Android phone remains Kotlin/Compose; this React study is its visual/interaction reference and the proposed shared responsive UI for mobile web, desktop web and Tauri. TV continues using its existing remote-first composition.
 
 ## Run and review
 
@@ -55,3 +55,5 @@ The browser command needs Playwright's compatible Chromium installed. Run one br
 Future implementation should adopt the approved composition and immutable design/core pins, not merge this prototype's simulated transport/state into an app. Keep the alternatives off production until reviewed.
 
 The reviewed revision uses horizontal desktop navigation aligned to the content frame, large episode cards, and one-row mobile Play/Resume + My list + More actions. See RUI-014–017 in the responsive specification for the supplied reference, geometry and behavior.
+
+The latest appearance pass restores canonical VIPTV type, card frame, graphite rounded-rectangle controls, focus inversion and component/avatar assets in that layout. `ASSET_SOURCES.json` records unchanged design source paths and hashes. B/C remain comparison URLs; default A is the implementation direction. OLED now changes the canvas while keeping the same VIPTV component surfaces.

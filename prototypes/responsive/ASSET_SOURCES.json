@@ -1,0 +1,57 @@
+{
+  "designSourceRevision": "7ef865be5d49b03dddf910f2216972dcc694ac01",
+  "files": {
+    "public/art/viptv/ui-nav-home.png": {
+      "source": "assets/roku/roku/images/ui-nav-home.png",
+      "sha256": "6b23507794d677c319cbf27fa8fa44a0f3c23c26a8d781236ff1a0b5b8e35aec"
+    },
+    "public/art/viptv/ui-nav-search.png": {
+      "source": "assets/roku/roku/images/ui-nav-search.png",
+      "sha256": "92143ddcf8fffe385afc42639be34aac34f06ee6ccb75b567b3d99161526be50"
+    },
+    "public/art/viptv/ui-nav-tv.png": {
+      "source": "assets/roku/roku/images/ui-nav-tv.png",
+      "sha256": "5d34e713cd870ad6bd88965fb624377fea3808328a438ddb0403c25687531688"
+    },
+    "public/art/viptv/ui-nav-list.png": {
+      "source": "assets/roku/roku/images/ui-nav-list.png",
+      "sha256": "74ae5e08da34514af9109e7fc3bb97bd8928f59407fe4f5030ba45910b13a14b"
+    },
+    "public/art/viptv/ui-nav-settings.png": {
+      "source": "assets/roku/roku/images/ui-nav-settings.png",
+      "sha256": "43c542510b9e303cdc32c59466064a0e52d2d43476bc2d3779e646acb89ef3ce"
+    },
+    "public/art/viptv/ui-nav-player-play.png": {
+      "source": "assets/roku/roku/images/ui-nav-player-play.png",
+      "sha256": "476c416136860a8500ef66500f01e4bdc0b452ca028603cba633e4221114890a"
+    },
+    "public/art/viptv/ui-nav-player-pause.png": {
+      "source": "assets/roku/roku/images/ui-nav-player-pause.png",
+      "sha256": "6251c3b79775aa2e7d92d3c647d46ec2528e486aefef87b46381708194573d92"
+    },
+    "public/art/viptv/ui-nav-player-audio.png": {
+      "source": "assets/roku/roku/images/ui-nav-player-audio.png",
+      "sha256": "aa41a3b44f405f7b73256c264b6114d8a06270c6c38ebd4ff7d14c4a26558781"
+    },
+    "public/art/viptv/ui-nav-player-captions.png": {
+      "source": "assets/roku/roku/images/ui-nav-player-captions.png",
+      "sha256": "69ff1e7c02a4707f2be63ebce555d70ba666750075c225f9919fa66f93cfa9df"
+    },
+    "public/art/viptv/ui-nav-player-rewind.png": {
+      "source": "assets/roku/roku/images/ui-nav-player-rewind.png",
+      "sha256": "fe36351a70e580bff2dcc79826c2b03e5a34dfe87bbcca72d6a84db54308d65d"
+    },
+    "public/art/viptv/ui-card-focus.png": {
+      "source": "assets/roku/roku/images/ui-card-focus.png",
+      "sha256": "594b1a4f08500cdb0688c2540c7a51c59f6d72f8b6dec0c11eb4fe524b83c585"
+    },
+    "public/art/viptv/critters-1.png": {
+      "source": "assets/roku/roku/images/avatar-catalog/critters-1.png",
+      "sha256": "4ad5abf2b69487d03cde5cee5fadd8d59399b581b85dd8a911112a2e5dcc2f95"
+    },
+    "public/art/viptv/critters-2.png": {
+      "source": "assets/roku/roku/images/avatar-catalog/critters-2.png",
+      "sha256": "06872c5eef5b16fc8aec948d250566b1e943b13f3f9c07ca62e39edd55ce8564"
+    }
+  }
+}
