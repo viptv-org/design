@@ -12,6 +12,12 @@ Use one uniformly scaled canonical TV canvas and the design-owned packaged asset
 
 A discrepancy with actual frozen Roku dynamic layout is an extraction correction: identify the exact source revision and state, correct its owning visual/behavior section in design first, then sync both web TV targets. A new interaction or deliberate platform exception is proposed separately. Neither a passing Android screen nor an old TV-web fixture overrides the normative contract.
 
+## Retained source-filter adaptation
+
+The existing shared TV-web frontend exposes a separate `Quality: {selection}` filter alongside `Provider: {selection}`. This rebuild retains that keyboard/pointer/remote-accessible control rather than silently removing existing filtering. It is an implementation adaptation, not a frozen Roku control or an owner-approved visual-parity exception. Track its remaining difference explicitly in TVW-09 evidence.
+
+The provider keeps the canonical source-filter position. Quality occupies x=804, y=166, 256×48 in the source-help region; status stays x=384, y=178 with its text bounded before Quality. Full source details remain available through the source action menu/hold/right-click. Both filters open choice dialogs, preserve the other selection, return to their triggering control on dismissal and never start playback. Empty combined results retain both filters and restore provider focus; changing filters must not discard the saved playback position or source identity. Verify this behavior for both shared configurations. The Roku source-picker geometry in SCREENS.md remains unchanged.
+
 ## Required screen and state acceptance
 
 Stable IDs below belong in the implementation parity matrix. Every row needs initial entry, populated success, loading, empty or unavailable content, failure/retry, cancellation and return-focus coverage where applicable. A genuinely inapplicable state must have a reason. Carry every activation branch in the behavior contract's complete activation inventory and feature coverage matrix; these rows do not reduce that inventory.

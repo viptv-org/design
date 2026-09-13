@@ -12,7 +12,7 @@ This token and component baseline is reconstructed from the pinned [Roku visual 
 | Standard content right edge | x=1196; player x=64..1216 |
 | Header heading | x=100, y=54, 1096×64 |
 | Header caption | x=100, y=126 |
-| Rail touch zone | x=0..300; visible icon rail aligns x=28..88 |
+| Rail touch zone | x=0..300; rail surface x=0..88; icon-row origin x=21, y=108 |
 | Base rhythm | 8px; standard card gap 24px; vertical list gap 12px |
 
 Use a dark, restrained cinema surface. Remote artwork supplies colour; interface chrome is neutral white and graphite. Do not add brand-colour gradients, shadows, glass, or floating text panels.
@@ -67,7 +67,7 @@ The focus owner controls visual focus. A card selected by data but in an unfocus
 
 ### Action row
 
-`ActionRow`: default 536×56 (detail variants may be 192×56; Home uses 144×50). It is a 12px-radius graphite pill (`ui-round-fill.9.png`) with centered 22px bold label. Focus becomes solid white with dark text.
+`ActionRow`: default 536×56 (detail variants may be 192×56; Home uses 144×50). It is a 12px-radius graphite pill (`ui-round-fill.9.png`) with a 22px bold label centered horizontally and vertically across the whole control. This alignment also applies to Settings and generic action-list rows; it is not the left-inset label alignment of FilterChip. [ActionRow.xml at the frozen split revision](https://github.com/viptv-org/roku/blob/a047d9ca5fc80898013eefb66120d20fab5048c0/roku/components/ActionRow.xml#L13) supplies the alignment. Focus becomes solid white with dark text.
 
 ### Filter chip
 
