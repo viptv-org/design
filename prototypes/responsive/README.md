@@ -27,13 +27,13 @@ Use the Settings screen to compare appearance. Try Home, Search, details/episode
 
 ## Shared data provenance and limits
 
-`CORE_REF` pins `viptv-org/core` at `1bf880a1f8c826a09aae2995d903cf090859d1f6`. `vendor/` is an unchanged copy of that revision's generated TypeScript wire definitions, WASM JavaScript/types and WASM binary. `CORE_ARTIFACTS.sha256` verifies these copied artifacts from the design repository root:
+`CORE_REF` pins `viptv-org/core` at `d1897fb8fc0401368074698f6b49f1941823f5e5`. `vendor/` is an unchanged copy of that revision's generated TypeScript wire definitions, WASM JavaScript/types and WASM binary. `CORE_ARTIFACTS.sha256` verifies these copied artifacts from the design repository root:
 
 ```sh
 sha256sum -c prototypes/responsive/CORE_ARTIFACTS.sha256
 ```
 
-`src/data.ts` feeds fictional media/source fixtures through the actual Rust `normalize` bridge. Hero/poster/episode image selection, title/episode labels, normalized progress and primary-action labels come from `MediaPresentation`, not ad-hoc UI JSON. Normalized episode `name` is the parent series name; `episodeTitle`/`episodeLabel` supply the individual episode context. Raw provider payloads are never a rendering dependency.
+`src/data.ts` feeds fictional media/source fixtures through the actual Rust `normalize` bridge. Hero/poster/episode/title-logo image selection, title/episode labels, normalized progress and primary-action labels come from `MediaPresentation`, not ad-hoc UI JSON. Normalized episode `name` is the parent series name; `episodeTitle`/`episodeLabel` supply the individual episode context. Raw provider payloads are never a rendering dependency.
 
 This is not a complete Crux app adoption. Fixtures, source delay, profile/list state, local search, Next preview sequencing, player transport and SmartCast transitions are deliberate UI simulations. Actual controllers and player capabilities require host integration. Native Tauri fetch versus browser fetch is a host capability, independent of viewport; it must not migrate into screen components. The spec records missing typed screen/action/preferences/device state rather than pretending the existing bridge exposes it.
 
@@ -41,7 +41,7 @@ State resets on reload, except layout/theme/host values retained in this URL. Th
 
 ## Artwork provenance
 
-`public/art/` contains twelve original geometric SVG study illustrations created for this prototype (six landscapes and six matching portrait crops/compositions). They depict fictional titles and carry no third-party stills, posters, photos, logos or screenshots. They are demonstration content, not the app's production asset catalog. Production app assets remain owned by `design/assets` and its existing provenance manifest. Icons are Lucide React (ISC); React is MIT. Generated core artifacts remain governed by the core repository and dependencies. No new licensing claim is made over copied code.
+`public/art/` contains the unchanged design-owned transparent viptv wordmark, two original fictional transparent title-logo SVGs, and twelve original geometric SVG study illustrations created for this prototype (six landscapes and six matching portrait crops/compositions). They depict fictional titles and carry no third-party stills, posters, photos, logos or screenshots. They are demonstration content, not the app's production asset catalog. Production app assets remain owned by `design/assets` and its existing provenance manifest. Icons are Lucide React (ISC); React is MIT. Generated core artifacts remain governed by the core repository and dependencies. No new licensing claim is made over copied code.
 
 ## Validation
 
@@ -53,3 +53,5 @@ NODE_OPTIONS=--max-old-space-size=256 npm test
 The browser command needs Playwright's compatible Chromium installed. Run one browser job at a time. It reads `PROTOTYPE_URL` (default `http://127.0.0.1:4180`) and writes private visual inspection files plus result JSON under `/tmp/viptv-responsive-review`. No screenshots belong in git or release assets. See [VALIDATION.md](VALIDATION.md) for the completed scope and remaining platform checks.
 
 Future implementation should adopt the approved composition and immutable design/core pins, not merge this prototype's simulated transport/state into an app. Keep the alternatives off production until reviewed.
+
+The reviewed revision uses horizontal desktop navigation aligned to the content frame, large episode cards, and one-row mobile Play/Resume + My list + More actions. See RUI-014–017 in the responsive specification for the supplied reference, geometry and behavior.

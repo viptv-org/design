@@ -16,11 +16,12 @@ export async function loadFixtures() {
   ];
   const items = titles.map((name, index) => project<MediaItem>('media', {
     id: `demo-${index}`, type: index === 0 ? 'series' : 'movie', name,
+    ...(index===0 || index===3 ? {logo:`/art/title-${index}.svg`} : {}),
     background: `/art/landscape-${index}.svg`, poster: `/art/poster-${index}.svg`,
     description: descriptions[index], year: 2026 - index, genres: index % 2 ? ['Drama'] : ['Adventure', 'Drama'],
     position: index === 0 ? 1240 : index === 2 ? 580 : 0, duration: index === 0 ? 2940 : 6300,
     ...(index === 0 ? {season: 1, episode: 3, episode_title: 'Signals from the valley', series_id: 'demo-series'} : {}),
-    episodes: index === 0 ? [1,2,3,4].map(episode => ({id:`demo-episode-${episode}`,type:'episode',name:['Arrival','The weather station','Signals from the valley','A different sky'][episode-1],season:1,episode,series_id:'demo-series',thumbnail:`/art/landscape-${episode}.svg`,duration:2940})) : [],
+    episodes: index === 0 ? [1,2,3,4].map(episode => ({id:`demo-episode-${episode}`,type:'episode',name:['Arrival','The weather station','Signals from the valley','A different sky'][episode-1],season:1,episode,series_id:'demo-series',thumbnail:`/art/landscape-${episode}.svg`,duration:2940,position:episode===3?1240:0,description:['The team returns to the valley, where a familiar signal leads them into unfamiliar territory.','An empty weather station offers the first clue to what happened before the evacuation.','A message from beyond the ridge challenges everything the team believes about their mission.','As the storm breaks, the team must choose between the route home and one last unanswered question.'][episode-1]})) : [],
   }));
   const sources = [
     {id:'demo-direct',name:'Original · 1080p',title:'Original quality · English audio',provider:'Fixture library',quality:'1080p'},

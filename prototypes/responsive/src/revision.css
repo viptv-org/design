@@ -1,0 +1,58 @@
+/* Responsive revision: content-aligned header, artwork-led titles, and deliberate actions. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.app-header.rail{position:sticky;top:0;inset-inline:auto;width:100%;max-width:1700px;height:96px;margin:0 auto;padding:0 40px;display:flex;flex-direction:row;align-items:center;gap:32px;border:0;background:var(--canvas)}
+.app-header .brand{display:flex;margin:0;flex-shrink:0;width:108px}
+.app-header .brand img{display:block;width:100%;height:auto;max-height:40px;object-fit:contain}
+.app-header nav{flex:1;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:8px;height:auto}
+.app-header nav button{position:relative;min-height:48px;justify-content:center;padding:12px 16px;gap:8px;border-radius:24px}
+.app-header nav span{display:inline;font-size:13px}
+.app-header nav button.active{background:var(--surface)}
+.app-header .top-actions{margin-left:auto;flex-shrink:0;gap:12px}
+.workspace{margin-left:0}
+main{padding-top:24px}
+.feature{gap:48px;margin-top:8px}
+.feature.variant-A{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+.feature-art{max-width:none}
+.title-logo{display:block;width:min(100%,420px);height:128px;object-fit:contain;object-position:left center}
+.media-title.has-logo{line-height:0;margin:0 0 24px}
+.title-actions{flex-wrap:nowrap;gap:12px;margin:24px 0}
+.title-actions .primary{min-height:52px;padding:12px 28px;border-radius:28px;font-size:15px;white-space:nowrap}
+.round-action{width:52px;height:52px;min-height:52px;border-radius:50%;padding:12px;flex-shrink:0;background:var(--surface);border:1px solid transparent}
+.round-action[aria-pressed=true]{border-color:var(--text)}
+.round-action svg{width:22px;height:22px}
+.title-actions .desktop-action{background:transparent;border-color:var(--border);border-radius:26px;min-height:52px}
+.feature-copy>.synopsis{margin-top:20px}
+.feature.variant-B .title-logo{height:90px;width:min(100%,340px)}
+.feature.variant-C .title-logo{height:104px}
+.detail-feature{max-width:none;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center;margin:24px 0 56px}
+.detail-art{width:100%;aspect-ratio:16/9;border-radius:12px;background:var(--surface);overflow:hidden}
+.detail-art img{width:100%;height:100%;display:block;object-fit:contain}
+.detail-copy{min-width:0}
+.detail-copy>.synopsis{font-size:15px;max-width:58ch;margin-bottom:0}
+.detail-copy>.episode-context{margin:16px 0}
+.episodes{max-width:none;margin-top:24px}
+.episodes-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px}
+.episodes-heading h2{font-size:25px;margin:0 0 8px}
+.episodes-heading p{font-size:13px;color:var(--muted);margin:0}
+.episodes-heading select{min-width:144px}
+.episode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;align-items:start}
+.episode-card{min-width:0}
+.episode-hit{width:100%;padding:0;display:flex;flex-direction:column;align-items:stretch;text-align:left;border:0;background:transparent!important;gap:0;border-radius:0}
+.episode-art{position:relative;aspect-ratio:16/9;width:100%;border-radius:8px;background:var(--surface);margin-bottom:18px}
+.episode-art>img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px}
+.episode-hit:focus-visible{outline:none}
+.episode-hit:focus-visible .episode-art{outline:2px solid var(--focus);outline-offset:3px}
+.episode-hit:hover .episode-art{outline:1px solid var(--secondary);outline-offset:3px}
+.episode-play{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);height:48px;width:48px;display:grid;place-items:center;border-radius:50%;background:#f5f5f5;color:#101112}
+.episode-duration{position:absolute;right:12px;bottom:16px;padding:5px 8px;border-radius:4px;background:#101112;color:#f5f5f5;font-size:11px;font-weight:500}
+.episode-number{font-size:10px;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
+.episode-hit>strong{font-size:19px;line-height:1.25;font-weight:550}
+.episode-synopsis{font-size:13px;line-height:1.6;color:var(--muted);margin:10px 0 0;max-width:48ch}
+@media(min-width:1800px){.app-header.rail{padding:0 40px}.feature.variant-A{gap:64px}.feature-art{max-width:none}.title-logo{height:148px;width:min(100%,460px)}}
+@media(max-width:1199px){.app-header.rail{height:80px;padding:0 28px;gap:20px}.app-header .brand{width:92px}.app-header nav{gap:4px}.app-header nav button{padding:12px}.app-header nav span{display:inline}.app-header .top-actions{gap:8px}.app-header .cast-button{padding:10px}.feature,.detail-feature{gap:32px}.title-actions{gap:8px}.title-actions .primary{padding:12px 22px}.title-logo{height:112px}.detail-copy>.synopsis{font-size:14px}}
+@media(min-width:600px) and (max-width:899px){.app-header nav span{display:none}.app-header nav button{width:44px;min-width:44px;padding:10px}.app-header .cast-button span{display:none}.app-header .cast-button{width:48px}.app-header .brand{width:88px}.app-header nav{gap:2px}.app-header.rail{gap:12px}.feature.variant-A{grid-template-columns:1fr}.feature-copy{max-width:none}.detail-feature{grid-template-columns:1fr}.detail-art{max-height:400px}.detail-copy{max-width:620px}.title-logo{height:112px}.feature.variant-C{grid-template-columns:200px minmax(0,1fr)}}
+@media(max-width:759px){.episode-grid{display:flex;gap:16px;overflow:auto;scroll-snap-type:x proximity;scroll-padding:4px;padding:6px 20px 20px 4px;margin:-6px -20px 0 -4px;overscroll-behavior-x:contain;scrollbar-width:thin}.episode-card{flex:0 0 min(420px,calc(100% - 28px));scroll-snap-align:start}.episodes-heading{gap:12px}.episodes-heading p{display:none}.episodes-heading h2{font-size:23px;margin:0}.episodes-heading select{min-width:128px}.episode-hit>strong{font-size:19px}}
+@media(max-width:599px){.app-header.rail{position:relative;top:auto;height:72px;padding:0 20px;gap:12px;margin:0;border:0}.app-header .brand{display:flex;width:88px}.app-header .top-actions{gap:4px}.app-header .cast-button{padding:10px 6px}.app-header .cast-button span{display:inline}.app-header nav{position:fixed;bottom:0;left:0;right:0;z-index:4;flex-direction:row;justify-content:space-around;height:calc(72px + env(safe-area-inset-bottom));padding:0 8px env(safe-area-inset-bottom);gap:0;background:var(--canvas);border-top:1px solid var(--border)}.app-header nav button{flex:1;flex-direction:column;gap:5px;padding:10px 0 8px;border-radius:0;min-width:0;height:72px}.app-header nav span{display:block;font-size:10px}.app-header nav button.active{background:transparent}.app-header nav button.active:after{left:calc(50% - 8px);bottom:7px}.app-header .top-actions>.avatar{width:36px;height:36px;min-height:36px}main{padding-top:12px}.feature.variant-A{grid-template-columns:1fr;gap:24px}.feature-copy{text-align:center;max-width:none}.title-logo{width:min(100%,300px);height:96px;object-position:center;margin:auto}.media-title.has-logo{margin-bottom:18px}.feature-copy .metadata{justify-content:center}.feature-copy .episode-context{margin-bottom:0}.feature-copy .synopsis{font-size:14px;line-height:1.6;margin-top:20px;margin-bottom:0;text-align:left}.title-actions{display:flex;gap:12px;flex-wrap:nowrap;align-items:center;width:100%;margin:20px 0}.title-actions .primary,.feature .title-actions .primary{flex:1;min-width:0;min-height:52px;padding:12px 16px;font-size:15px}.title-actions .desktop-action{display:none}.title-actions .round-action{display:inline-flex;width:52px;height:52px;min-height:52px;padding:12px}.detail-feature{display:flex;flex-direction:column;align-items:stretch;gap:24px;margin:20px 0 36px}.detail-art{border-radius:8px}.detail-copy{text-align:center}.detail-copy .metadata{justify-content:center}.detail-copy>.synopsis{text-align:left;font-size:14px}.detail-feature .actions{margin-left:0;padding-top:0}.detail-copy .eyebrow{margin-bottom:16px}.episodes{margin-top:20px}.episode-synopsis{font-size:14px}.feature.variant-B{grid-template-columns:96px minmax(0,1fr);gap:12px;padding:20px;text-align:center}.feature.variant-B .feature-copy{display:contents}.variant-B .feature-art{grid-column:1;grid-row:1;width:96px;align-self:center}.variant-B .feature-copy>.eyebrow{display:none}.variant-B .media-title{grid-column:2;grid-row:1;margin:0;font-size:23px}.feature.variant-B .title-logo{height:64px;width:100%}.variant-B .metadata{grid-column:1/-1;grid-row:2;margin:8px 0 0;justify-content:center}.variant-B .episode-context{grid-column:1/-1;grid-row:3;margin:0;font-size:12px}.variant-B .title-actions{grid-column:1/-1;grid-row:4;margin:8px 0 0;gap:8px}.variant-B .synopsis{display:none}.feature.variant-C{grid-template-columns:1fr}.feature.variant-C .title-logo{height:96px}.feature.variant-C .synopsis{display:block}.study-tools{bottom:calc(84px + env(safe-area-inset-bottom))}}
+@media(max-height:500px) and (min-width:600px){.app-header.rail{height:64px}.app-header .brand{margin:0}.feature.variant-A,.detail-feature{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.title-logo{height:80px}.feature-copy .title-actions{margin:12px 0}.detail-art{max-height:240px}.detail-copy .synopsis{display:none}}
+
+.episode-hit,.card-hit{scroll-margin-block:110px}
