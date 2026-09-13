@@ -12,6 +12,8 @@ This repository is the source of truth for viptv product UI, UX and app assets. 
 
 For the shared Tizen/Vizio presentation replacement, read [TV_WEB_UI_REBUILD.md](TV_WEB_UI_REBUILD.md). For every platform UI change, pin update, asset import or parity claim, follow [DESIGN_SYNC.md](DESIGN_SYNC.md). It defines immutable adoption, integrity versus freshness, per-state evidence and the proposed future Figma authoring workflow.
 
+For proposed responsive mobile-web and Tauri desktop presentation, shared card semantics, OLED mode, and the constrained Android/Tauri SmartCast controller contract, read [RESPONSIVE_UI.md](RESPONSIVE_UI.md). It is not an adoption or device-validation claim.
+
 ## Required format for any new or revised feature
 State its stable identifier, status (baseline or proposed), source revision, user intent, entry/exit points, complete visible copy and data, layout in reference coordinates, focus order/restoration, every input's press/release/repeat/hold behavior and threshold, disabled/loading/empty/error states, cancellation and recovery, timing, accessibility and platform equivalents. Supply concrete acceptance scenarios including failure and return navigation. Explicitly mark unknown measurements; never invent parity evidence.
 

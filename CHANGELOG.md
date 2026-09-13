@@ -1,5 +1,9 @@
 # Design changes
 
+## 2026-09-13 — Proposed responsive UI and OLED contract
+
+Added [RESPONSIVE_UI.md](RESPONSIVE_UI.md): a proposed responsive mobile-web/Tauri desktop contract aligned to the unadopted responsive study. It specifies ordinary vertically scrolling documents, contained `heroImage` artwork without CSS backgrounds or gradients, A/B/C feature variants, study-derived card/type/gap/breakpoint/OLED tokens, current wire mappings and typed gaps, future screen/input/error/return inventory, and proposed acceptance. Android mobile remains Compose. It specifies Android/Tauri-only Vizio SmartCast pairing and Conjure launch of hosted VIPTV, with honest browser limits: no mirroring, casting, native app installation, or playback-confirmation claim. Added versioned responsive tokens and a browser study with 56 passing checks, plus explicit per-platform adoption/persistence/window/input rules. The study simulates sources, profiles, playback, SmartCast, mutations, and persistence; no platform adoption, screenshot, parity, or physical-device evidence is claimed.
+
 ## Initial extraction — 2026-09-12
 Captured the Roku baseline at vynxc/viptv@7d6b413 and established design-first cross-platform governance. This changes repository ownership, not Roku behavior. Android-only imports and proposed platform adapters are tracked separately from current Roku behavior.
 
