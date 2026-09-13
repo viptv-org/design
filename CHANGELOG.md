@@ -1,5 +1,9 @@
 # Design changes
 
+## 2026-09-13 — VIPTV appearance, responsive arrangement
+
+The owner retained the responsive layout direction but rejected a separate visual identity. Added [RESPONSIVE_VIPTV_ALIGNMENT.md](RESPONSIVE_VIPTV_ALIGNMENT.md), RUI-018–021: canonical VIPTV type, card geometry/frame, navigation assets, graphite rounded-rectangle actions, focus inversion, uppercase shelf hierarchy and consistent OLED component surfaces. Implementation and browser evidence follow in the responsive study.
+
 ## 2026-09-13 — Responsive study revision after owner review
 
 Replaced the detached desktop sidebar with content-aligned top navigation, adopted the existing transparent viptv wordmark and core-projected title logos, replaced small episode rows with large landscape cards, and rebuilt phone action groups as primary / My list / More. The supplied Behance detail reference informed hierarchy and affordances while VIPTV colors/cards and contained artwork remain. RUI-014–017 specify geometry, logo fallback, source/episode identity and return behavior. Core title-logo contract and generated bridges are additive; the study remains off-main and simulated.

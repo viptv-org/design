@@ -14,6 +14,8 @@ For the shared Tizen/Vizio presentation replacement, read [TV_WEB_UI_REBUILD.md]
 
 For proposed responsive mobile-web and Tauri desktop presentation, shared card semantics, OLED mode, and the constrained Android/Tauri SmartCast controller contract, read [RESPONSIVE_UI.md](RESPONSIVE_UI.md). It is not an adoption or device-validation claim.
 
+For the owner-directed current VIPTV appearance in the responsive layout, [RESPONSIVE_VIPTV_ALIGNMENT.md](RESPONSIVE_VIPTV_ALIGNMENT.md) supersedes the initial study styling.
+
 ## Required format for any new or revised feature
 State its stable identifier, status (baseline or proposed), source revision, user intent, entry/exit points, complete visible copy and data, layout in reference coordinates, focus order/restoration, every input's press/release/repeat/hold behavior and threshold, disabled/loading/empty/error states, cancellation and recovery, timing, accessibility and platform equivalents. Supply concrete acceptance scenarios including failure and return navigation. Explicitly mark unknown measurements; never invent parity evidence.
 

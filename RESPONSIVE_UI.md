@@ -1,5 +1,7 @@
 # Responsive mobile web and Tauri desktop UI
 
+**Appearance override:** [RESPONSIVE_VIPTV_ALIGNMENT.md](RESPONSIVE_VIPTV_ALIGNMENT.md) specifies the owner-directed VIPTV component styling in this layout, superseding earlier circular controls, small typography, and OLED surface differences.
+
 **Status:** proposed design contract plus an unadopted responsive study. It changes no Roku, TV-web, Android, browser, Tauri, backend, core, device, or release claim. Android phone remains a native Compose renderer. Source evidence is the frozen Roku contract at `vynxc/viptv@7d6b413` and the [generated wire bridge at `viptv-org/core@d1897fb`](https://github.com/viptv-org/core/blob/d1897fb8fc0401368074698f6b49f1941823f5e5/generated/typescript/wire.ts). Related delivery issues are design [#3](https://github.com/viptv-org/design/issues/3), [#4](https://github.com/viptv-org/design/issues/4), [#5](https://github.com/viptv-org/design/issues/5), and [#6](https://github.com/viptv-org/design/issues/6).
 
 The [responsive study](prototypes/responsive/) is a static, local-fixture exploration. It has real Rust presentation fixtures and a typed wire snapshot, but simulated sources, profiles, playback, SmartCast, mutations, and persistence. It is evidence of neither application adoption nor production behaviour. This document distinguishes the study's implemented subset from the future normative inventory.
