@@ -70,3 +70,7 @@ A live logo occupies the same artwork box as every other card. Its full image el
 - Exercise Home → detail → sources → Back → Back, browser Back/Forward, direct live entry, loading cancellation and error recovery. Restore the same profile, query, filters, shelf position and focus without a top-of-page flash.
 - Toggle OLED in Settings, navigate away and reload. Verify the stored appearance, canonical surfaces and absence of an OLED header button.
 - Keep screenshots private. Record browser geometry/controller evidence separately from real upstream decoding and physical device validation.
+
+### Shared card presentation authority
+
+The shared Rust API owns the complete card presentation: artwork URL and role, parent title, episode/context label, normalized progress, live identity and primary activation intent. React receives that typed presentation and renders it directly. It must not choose between `poster`, `background`, `thumbnail` or `logo`, guess a card's media type, construct continuation labels, or reinterpret progress to decide how activation works. Core tests must cover live-logo containment intent, episode thumbnails, missing landscape artwork, resumed episodes, next episodes and retained previous episodes. Browser tests use the backend's actual live and continuation payload shapes through that core boundary. Platform adapters perform the requested effect; they do not duplicate its data selection policy.
