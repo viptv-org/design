@@ -39,5 +39,5 @@ Specified RUI-028 in [RESPONSIVE_VIPTV_ALIGNMENT.md](RESPONSIVE_VIPTV_ALIGNMENT.
 
 ## 2026-09-14 — Responsive guide channel loading and route layout stability
 
-Extended RUI-028 in [RESPONSIVE_VIPTV_ALIGNMENT.md](RESPONSIVE_VIPTV_ALIGNMENT.md): the responsive guide no longer shows Previous/Next channel buttons and instead loads the next channel page when its scroll reaches the end of the loaded rows; the application and guide scrollers reserve their scrollbar gutter and the header profile control uses a fixed slot so navigating between tall and short routes cannot shift the frame or reflow the header. Supersedes the responsive paging control named in RESPONSIVE_PRODUCTION.md RUI-027.
+Extended RUI-028 in [RESPONSIVE_VIPTV_ALIGNMENT.md](RESPONSIVE_VIPTV_ALIGNMENT.md): the responsive guide no longer shows Previous/Next channel buttons and instead loads the next channel page when its scroll reaches the end of the loaded rows; the application and guide scrollers keep a permanent vertical scrollbar slot and the header profile control uses a fixed slot so navigating between tall and short routes cannot shift the frame or reflow the header. Supersedes the responsive paging control named in RESPONSIVE_PRODUCTION.md RUI-027.
 
