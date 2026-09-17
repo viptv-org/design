@@ -32,3 +32,7 @@ Recorded the shared React replacement, scoped 43-unit/49-browser validation, Set
 ## 2026-09-14 — Responsive history and populated-card corrections
 
 Specified RUI-023 in [RESPONSIVE_PRODUCTION.md](RESPONSIVE_PRODUCTION.md): actual page history and return context, top-left Back, OLED in Settings, direct live-channel activation, real Continue Watching semantics, stacked hero focus stability and contained live logos. These are owner-requested corrections under implementation; browser and hardware results remain separate evidence.
+
+## 2026-09-17 — Shared platform matrix and playback consolidation decision
+
+Recorded the accepted platform matrix (shared tv-web UI for web, Tizen, Vizio and desktop; Android keeps its own UI; no transcode on Android and desktop, probe-first on web, native-preferred on Tizen, managed-allowed on Vizio), the WebCodecs-not-WebAssembly browser gate, the verified absence of a deployed Vizio cast receiver, and the decision that tv-web's player stack becomes the canonical implementation moved into the video package while video's guest-js backends are replaced. No behavior changed; Roku remains the frozen baseline. See [docs/adr/0003-shared-platform-matrix-and-playback-consolidation.md](docs/adr/0003-shared-platform-matrix-and-playback-consolidation.md).
