@@ -36,3 +36,12 @@ Specified RUI-023 in [RESPONSIVE_PRODUCTION.md](RESPONSIVE_PRODUCTION.md): actua
 ## 2026-09-17 — Shared platform matrix and playback consolidation decision
 
 Recorded the accepted platform matrix (shared tv-web UI for web, Tizen, Vizio and desktop; Android keeps its own UI; no transcode on Android and desktop, probe-first on web, native-preferred on Tizen, managed-allowed on Vizio), the WebCodecs-not-WebAssembly browser gate, the verified absence of a deployed Vizio cast receiver, and the decision that tv-web's player stack becomes the canonical implementation moved into the video package while video's guest-js backends are replaced. No behavior changed; Roku remains the frozen baseline. See [docs/adr/0003-shared-platform-matrix-and-playback-consolidation.md](docs/adr/0003-shared-platform-matrix-and-playback-consolidation.md).
+
+## 2026-09-18 — Desktop-first layout specification
+
+Recorded the desktop shell decisions: a non-expanding left sidebar, no max
+width with a window minimum instead of mobile breakpoints, hover/focus card
+affordance, a hero with its own catalog-mix data decoupled from Continue
+Watching, and card selection navigating directly to the info page instead of
+mutating the hero. The layout shares tv-web components per the
+shared-platform matrix; implementation is tracked separately.
