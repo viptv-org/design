@@ -32,3 +32,16 @@ shares tv-web's components, per the shared-platform matrix in
    detail components are reused; only the shell (sidebar, grid, sizing,
    window minimum) is desktop-specific. The responsive web, Tizen, and
    Vizio layout is untouched.
+8. **Integrated frameless titlebar (30px).** Full-width dark header (`#141618`)
+   at the top of the desktop shell containing the VIPTV brandmark, draggable
+   spacer, search pill, bookmarks icon, profile avatar, and window controls
+   (minimize, maximize, close). The window drag region is constrained to
+   non-interactive areas, with interactive controls explicitly isolated from
+   drag events.
+9. **Thinner fixed left sidebar (54px).** Positioned directly beneath the 30px
+   titlebar, reduced from 72px to 54px for a compact footprint, with centered
+   icon buttons and profile avatar.
+10. **Scrollbar containment.** The main content scrollable track begins at
+    `top: 30px` directly beneath the titlebar, preventing scrollbars from
+    overlapping or starting above the window titlebar.
+
