@@ -44,4 +44,22 @@ shares tv-web's components, per the shared-platform matrix in
 10. **Scrollbar containment.** The main content scrollable track begins at
     `top: 30px` directly beneath the titlebar, preventing scrollbars from
     overlapping or starting above the window titlebar.
+11. **Frameless window decorations & border resizing.** When windowed (not maximized,
+    not fullscreen), the window renders a subtle outline (`1px solid rgba(255, 255, 255, 0.14)`)
+    and rounded corners (`10px`). Eight resize handles along edges (6px) and corners (12px)
+    invoke Tauri's `startResizeDragging` for native Wayland/KDE Plasma compatibility.
+12. **Titlebar focus elimination and back navigation.** Titlebar buttons use `tabIndex={-1}`
+    and blur-on-activate with transparent focus overrides, eliminating focus retention after click.
+    A back arrow (`<`) appears dynamically in the titlebar when in-app navigation history is available.
+13. **Desktop player controls and layout.** Windowed playback retains the desktop titlebar
+    (with player height adjusted to `calc(100% - 30px)`), auto-hiding the titlebar upon entering fullscreen.
+    The player overlay features a top-left back button, top-right fullscreen toggle, custom volume
+    slider with draggable thumb, grey buffered range on the seekbar, 2.5s auto-hide timeout, and live TV
+    streams toggle mute instead of pause.
+14. **Anchored track selector popup.** Audio and subtitle selectors use an anchored floating popup
+    card with active track indicators (`✓`) rather than full-page modal dialogs.
+15. **Sleek non-modal notifications.** Error toasts use glassmorphism with automatic 4-second auto-dismiss.
+16. **Compact live TV guide and desktop settings.** Channel list rows are compact (60px) and the guide
+    extends to the bottom of the window; settings navigation rail is constrained to 260px on desktop.
+
 

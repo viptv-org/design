@@ -53,3 +53,14 @@ window with isolated drag regions and no-drag button isolation, a 54px compact
 left sidebar anchored beneath the titlebar, and scrollbar slot containment
 starting beneath the header.
 
+## 2026-09-20 — Desktop window decorations, player overlay, and selector UX
+
+Specified frameless Wayland window resizing via 8-zone directional handles and
+native outline/rounding (`10px`), titlebar focus elimination (`tabIndex={-1}` and
+transparent focus override), back navigation in desktop header, windowed player
+titlebar retention with fullscreen toggle, 2.5s player controls timeout, grey
+buffered seekbar progress, live TV mute toggle semantic, sleek anchored audio and
+subtitle popup cards with active track indicators, fixed 44x44 action buttons, and
+compact 60px live TV channel rows.
+
+
