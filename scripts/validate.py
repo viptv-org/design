@@ -22,7 +22,13 @@ for p in (x for x in walk(root) if x.suffix=='.md'):
         path=link.split('#')[0]
         assert not path.startswith('/home/'), f'Local-only link: {p}: {link}'
         assert (p.parent/path).exists(), f'Broken link: {p}: {link}'
+css=(root/'tokens/tokens.css').read_text()
+tokens=json.loads((root/'tokens/responsive.json').read_text())
+for theme,values in tokens['themes'].items():
+    for name,value in values.items():
+        assert f'--viptv-{name}: {value};' in css, f'tokens.css out of sync: {theme}/{name}'
+assert f'--viptv-radius-action: {tokens["actions"]["radius"]}px;' in css, 'tokens.css out of sync: actions.radius'
 m=json.loads((root/'assets/FILES.json').read_text())
 actual={str(p.relative_to(root/'assets')):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(walk(root/'assets')) if p.is_file() and p.name!='FILES.json'}
 assert actual==m['files'], 'Asset inventory mismatch; update intentionally with provenance'
-print(f'Design validated: {len(required)} required docs, {len(actual)} asset files')
+print(f'Design validated: {len(required)} required docs, {len(actual)} asset files, tokens in sync')
