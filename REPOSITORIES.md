@@ -11,7 +11,6 @@ All repositories are independent copies, not GitHub forks. Product/source reposi
 | [tv-web](https://github.com/viptv-org/tv-web) | Shared React viewing client for web, Smart TVs (Tizen/Vizio), and desktop | [SPEC.md](https://github.com/viptv-org/tv-web/blob/main/SPEC.md) |
 | [desktop](https://github.com/viptv-org/desktop) | Native Tauri v2 desktop application for Linux, Windows, macOS | [README.md](https://github.com/viptv-org/desktop/blob/main/README.md) |
 | [android](https://github.com/viptv-org/android) | Android / Android TV Media3 playback library imported from air-tv/video; future app workspace | [SPEC.md](https://github.com/viptv-org/android/blob/main/SPEC.md) |
-| [mediamp](https://github.com/viptv-org/mediamp) | Android-only media player modules imported from air-tv/mediamp | [SPEC.md](https://github.com/viptv-org/mediamp/blob/main/SPEC.md) |
 | [tauri-video-plugin](https://github.com/viptv-org/tauri-video-plugin) | Desktop playback plugin copied from get-air/tauri-video-plugin | [SPEC.md](https://github.com/viptv-org/tauri-video-plugin/blob/main/SPEC.md) |
 | [video](https://github.com/viptv-org/video) | Web playback library copied from get-air/video | [SPEC.md](https://github.com/viptv-org/video/blob/main/SPEC.md) |
 | [.github](https://github.com/viptv-org/.github) | Public viptv organization profile | [SPEC.md](https://github.com/viptv-org/.github/blob/main/SPEC.md) |
