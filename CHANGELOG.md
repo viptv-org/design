@@ -64,3 +64,7 @@ subtitle popup cards with active track indicators, fixed 44x44 action buttons, a
 compact 60px live TV channel rows.
 
 
+
+## 2026-09-21 — Proposed local addon mode contract
+
+Added [LOCAL_MODE.md](LOCAL_MODE.md) proposing account-free operation of the shared viewing client from an on-device addon registry: build-level availability (never in the backend-hosted flavor), sign-in-screen entry, a versioned registry schema with install/remove/error states, discover reuse of the RUI-030 hierarchy with the shared negotiation rules, direct-first playback without server sessions, and privacy rules treating manifest URLs as credentials. Watch-state is explicitly out of scope. Status: proposed; no adoption is claimed for any platform.
