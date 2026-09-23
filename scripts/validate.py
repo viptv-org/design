@@ -6,7 +6,7 @@ def walk(base):
     for directory, folders, names in os.walk(base):
         folders[:]=[x for x in folders if x not in {'.git','node_modules','__pycache__'}]
         for name in names: yield Path(directory)/name
-required=['DESIGN.md','CONTEXT.md','PLATFORM_PLAN.md','DEVELOPMENT.md','REPOSITORIES.md','SPEC.md','specs/behavior/roku-ux-contract.md','specs/visual/SCREENS.md','specs/visual/VISUAL_SYSTEM.md']
+required=['DESIGN.md','CONTEXT.md','PLATFORM_PLAN.md','DEVELOPMENT.md','REPOSITORIES.md','SPEC.md','specs/behavior/roku-ux-contract.md','viptv-design-system/README.md','viptv-design-system/components.md','viptv-design-system/copy.md','viptv-design-system/decisions.md','viptv-design-system/tokens/tokens.json']
 for name in required: assert (root/name).is_file(), name
 for p in walk(root):
     if '.git' in p.parts: continue
@@ -22,13 +22,20 @@ for p in (x for x in walk(root) if x.suffix=='.md'):
         path=link.split('#')[0]
         assert not path.startswith('/home/'), f'Local-only link: {p}: {link}'
         assert (p.parent/path).exists(), f'Broken link: {p}: {link}'
-css=(root/'tokens/tokens.css').read_text()
-tokens=json.loads((root/'tokens/responsive.json').read_text())
-for theme,values in tokens['themes'].items():
-    for name,value in values.items():
-        assert f'--viptv-{name}: {value};' in css, f'tokens.css out of sync: {theme}/{name}'
-assert f'--viptv-radius-action: {tokens["actions"]["radius"]}px;' in css, 'tokens.css out of sync: actions.radius'
+ds=root/'viptv-design-system'
+tokens=json.loads((ds/'tokens/tokens.json').read_text())
+css=(ds/'tokens/tokens.css').read_text()
+def leaves(o,path=()):
+    if isinstance(o,dict):
+        if '$value' in o: yield path,o['$value']; return
+        for k,v in o.items():
+            if not k.startswith('$'): yield from leaves(v,path+(k,))
+count=sum(1 for _ in leaves(tokens))
+assert count>100, 'tokens.json looks empty'
+for path,value in leaves(tokens.get('color',{})):
+    if isinstance(value,str) and value.startswith('#'):
+        assert value.lower() in css.lower(), f'tokens.css missing color {".".join(path)}={value}'
 m=json.loads((root/'assets/FILES.json').read_text())
 actual={str(p.relative_to(root/'assets')):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(walk(root/'assets')) if p.is_file() and p.name!='FILES.json'}
 assert actual==m['files'], 'Asset inventory mismatch; update intentionally with provenance'
-print(f'Design validated: {len(required)} required docs, {len(actual)} asset files, tokens in sync')
+print(f'Design validated: {len(required)} required docs, {len(actual)} asset files, {count} design tokens')
