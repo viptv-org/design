@@ -1,0 +1,9 @@
+## UI and design system
+
+All VIPTV UI follows the design system in `design/viptv-design-system/`.
+
+- Before building or changing any screen or component, use the `viptv-ui` skill (`.claude/skills/viptv-ui/SKILL.md`).
+- Tokens: `design/viptv-design-system/tokens/` (`tokens.css`, `tailwind.preset.js`, `tokens.ts`; `tokens.json` is the source of truth). Never hard-code colours, font sizes, radii or shadows.
+- Component rules: `design/viptv-design-system/components.md`. Copy: `copy.md`. Decisions: `decisions.md`.
+- Reference screens (the visual target): `design/viptv-design-system/reference/screens/` (images in `img/`, exact markup in `html/`, list in `index.json`).
+- Platforms: phone (390 × 844, bottom nav), desktop Tauri app (1440 × 900, 40 px title bar + 84 px rail), web (1280 × 800), TV (1920 × 1080, D-pad focus).
