@@ -68,6 +68,7 @@ module.exports = {
         "fill-grabber": "var(--viptv-color-fill-grabber)",
         "fill-icon-disc-tv": "var(--viptv-color-fill-icon-disc-tv)",
         "fill-cue-glass": "var(--viptv-color-fill-cue-glass)",
+        "fill-profile-letter": "var(--viptv-color-fill-profile-letter)",
         "scrim-sheet": "var(--viptv-color-scrim-sheet)",
         "scrim-dialog": "var(--viptv-color-scrim-dialog)",
         "scrim-tv-panel": "var(--viptv-color-scrim-tv-panel)",
@@ -254,6 +255,14 @@ module.exports = {
             "fontWeight": "700"
           }
         ],
+        "phone-subpage-title": [
+          "28px",
+          {
+            "lineHeight": "1.1",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
         "desktop-page-title": [
           "40px",
           {
@@ -388,6 +397,30 @@ module.exports = {
             "lineHeight": "1",
             "letterSpacing": "0em",
             "fontWeight": "600"
+          }
+        ],
+        "desktop-card-title": [
+          "30px",
+          {
+            "lineHeight": "1.1",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "desktop-device-code": [
+          "24px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0.08em",
+            "fontWeight": "700"
+          }
+        ],
+        "desktop-app-mark": [
+          "27px",
+          {
+            "lineHeight": "1",
+            "letterSpacing": "0em",
+            "fontWeight": "800"
           }
         ],
         "tv-screen-title": [
@@ -548,6 +581,30 @@ module.exports = {
             "lineHeight": "1.15",
             "letterSpacing": "0em",
             "fontWeight": "700"
+          }
+        ],
+        "tv-gateway-title": [
+          "64px",
+          {
+            "lineHeight": "1.05",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "tv-pair-code": [
+          "88px",
+          {
+            "lineHeight": "1",
+            "letterSpacing": "0.08em",
+            "fontWeight": "800"
+          }
+        ],
+        "tv-app-mark": [
+          "32px",
+          {
+            "lineHeight": "1",
+            "letterSpacing": "0em",
+            "fontWeight": "800"
           }
         ]
       },
