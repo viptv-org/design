@@ -376,6 +376,7 @@ module.exports = {
       "boxShadow": {
         "focus-desktop": "var(--viptv-focus-desktop)",
         "focus-desktop-hover-card": "var(--viptv-focus-desktop-hover-card)",
+        "focus-tv-shadow": "var(--viptv-focus-tv-shadow)",
         "shadow-nav": "var(--viptv-shadow-nav)",
         "shadow-popover": "var(--viptv-shadow-popover)",
         "shadow-toast": "var(--viptv-shadow-toast)",

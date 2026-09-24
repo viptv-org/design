@@ -38,6 +38,7 @@ export const tokens = {
   "color.scrim.tv-fullscreen": "rgba(11,11,12,0.94)",
   "font.family.display": [
     "Bricolage Grotesque",
+    "Bricolage Grotesque Variable",
     "Helvetica Neue",
     "sans-serif"
   ],
@@ -56,6 +57,7 @@ export const tokens = {
   "type.phone.screen-title": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -67,6 +69,7 @@ export const tokens = {
   "type.phone.sheet-title": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -78,6 +81,7 @@ export const tokens = {
   "type.phone.wordmark": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -89,6 +93,7 @@ export const tokens = {
   "type.phone.section": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -188,6 +193,7 @@ export const tokens = {
   "type.desktop.page-title": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -199,6 +205,7 @@ export const tokens = {
   "type.desktop.hero-title": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -210,6 +217,7 @@ export const tokens = {
   "type.desktop.dialog-title": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -221,6 +229,7 @@ export const tokens = {
   "type.desktop.section": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -232,6 +241,7 @@ export const tokens = {
   "type.desktop.wordmark": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -331,6 +341,7 @@ export const tokens = {
   "type.tv.screen-title": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -342,6 +353,7 @@ export const tokens = {
   "type.tv.panel-title": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -353,6 +365,7 @@ export const tokens = {
   "type.tv.section": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -364,6 +377,7 @@ export const tokens = {
   "type.tv.wordmark": {
     "fontFamily": [
       "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
       "Helvetica Neue",
       "sans-serif"
     ],
@@ -553,10 +567,16 @@ export const tokens = {
   "focus.tv-fill": "background #F4F2EE; color #111113; box-shadow 0 0 0 4px #FFFFFF, 0 24px 60px rgba(0,0,0,0.65); scale 1.05",
   "focus.tv-ring": "box-shadow 0 0 0 4px #FFFFFF, 0 24px 60px rgba(0,0,0,0.65); scale 1.06",
   "focus.phone": "none — pressed state (surface step + scale 0.97) replaces hover/focus.",
+  "focus.tv-shadow": "0 0 0 4px #FFFFFF, 0 24px 60px rgba(0,0,0,0.65)",
+  "focus.tv-scale-button": 1.05,
+  "focus.tv-scale-row": 1.02,
+  "focus.tv-scale-tile": 1.06,
+  "focus.tv-caption-shift": "8px",
   "shadow.nav": "0 12px 32px rgba(0,0,0,0.55)",
   "shadow.popover": "0 20px 60px rgba(0,0,0,0.55)",
   "shadow.toast": "0 12px 30px rgba(0,0,0,0.5)",
   "shadow.tv-panel": "-40px 0 100px rgba(0,0,0,0.6)",
+  "motion.focus": "150ms",
   "motion.pressed-scale": 0.97,
   "motion.toast-notice": "5000ms",
   "motion.toast-error": "4000ms",

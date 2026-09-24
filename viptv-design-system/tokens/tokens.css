@@ -40,7 +40,7 @@
   --viptv-color-scrim-tv-panel: rgba(0,0,0,0.60);
   --viptv-color-scrim-tv-menu: rgba(0,0,0,0.55);
   --viptv-color-scrim-tv-fullscreen: rgba(11,11,12,0.94);
-  --viptv-font-family-display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+  --viptv-font-family-display: 'Bricolage Grotesque', 'Bricolage Grotesque Variable', 'Helvetica Neue', sans-serif;
   --viptv-font-family-ui: Onest, system-ui, sans-serif;
   --viptv-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --viptv-radius-xs: 4px;
@@ -114,10 +114,16 @@
   --viptv-size-progress-tv: 6px;
   --viptv-focus-desktop: 0 0 0 2px #0B0B0C, 0 0 0 4px #F4F2EE;
   --viptv-focus-desktop-hover-card: inset 0 0 0 2px #F4F2EE;
+  --viptv-focus-tv-shadow: 0 0 0 4px #FFFFFF, 0 24px 60px rgba(0,0,0,0.65);
+  --viptv-focus-tv-scale-button: 1.05;
+  --viptv-focus-tv-scale-row: 1.02;
+  --viptv-focus-tv-scale-tile: 1.06;
+  --viptv-focus-tv-caption-shift: 8px;
   --viptv-shadow-nav: 0 12px 32px rgba(0,0,0,0.55);
   --viptv-shadow-popover: 0 20px 60px rgba(0,0,0,0.55);
   --viptv-shadow-toast: 0 12px 30px rgba(0,0,0,0.5);
   --viptv-shadow-tv-panel: -40px 0 100px rgba(0,0,0,0.6);
+  --viptv-motion-focus: 150ms;
   --viptv-motion-pressed-scale: 0.97;
   --viptv-motion-toast-notice: 5000ms;
   --viptv-motion-toast-error: 4000ms;
