@@ -12,10 +12,14 @@ module.exports = {
         "surface-2": "var(--viptv-color-surface-2)",
         "surface-3": "var(--viptv-color-surface-3)",
         "surface-4": "var(--viptv-color-surface-4)",
+        "surface-1-pressed": "var(--viptv-color-surface-1-pressed)",
+        "surface-avatar": "var(--viptv-color-surface-avatar)",
         "text-primary": "var(--viptv-color-text-primary)",
         "text-body": "var(--viptv-color-text-body)",
         "text-secondary": "var(--viptv-color-text-secondary)",
         "text-tertiary": "var(--viptv-color-text-tertiary)",
+        "text-on-light-secondary": "var(--viptv-color-text-on-light-secondary)",
+        "text-on-light-accent": "var(--viptv-color-text-on-light-accent)",
         "on-light": "var(--viptv-color-on-light)",
         "on-accent": "var(--viptv-color-on-accent)",
         "accent-default": "var(--viptv-color-accent-default)",
@@ -27,19 +31,44 @@ module.exports = {
         "status-danger": "var(--viptv-color-status-danger)",
         "status-danger-tv": "var(--viptv-color-status-danger-tv)",
         "status-spinner-track": "var(--viptv-color-status-spinner-track)",
+        "status-danger-on-light": "var(--viptv-color-status-danger-on-light)",
+        "status-spinner-on-accent": "var(--viptv-color-status-spinner-on-accent)",
         "line-hairline": "var(--viptv-color-line-hairline)",
         "line-chip": "var(--viptv-color-line-chip)",
         "line-outline": "var(--viptv-color-line-outline)",
         "line-strong": "var(--viptv-color-line-strong)",
+        "line-control": "var(--viptv-color-line-control)",
+        "line-link-hover": "var(--viptv-color-line-link-hover)",
+        "line-keycap-tv": "var(--viptv-color-line-keycap-tv)",
+        "line-on-accent": "var(--viptv-color-line-on-accent)",
         "fill-tv-unfocused": "var(--viptv-color-fill-tv-unfocused)",
         "fill-tv-selected": "var(--viptv-color-fill-tv-selected)",
         "fill-glass": "var(--viptv-color-fill-glass)",
         "fill-badge-glass": "var(--viptv-color-fill-badge-glass)",
+        "fill-white": "var(--viptv-color-fill-white)",
+        "fill-light-pressed": "var(--viptv-color-fill-light-pressed)",
+        "fill-wash": "var(--viptv-color-fill-wash)",
+        "fill-wash-pressed": "var(--viptv-color-fill-wash-pressed)",
+        "fill-tag": "var(--viptv-color-fill-tag)",
+        "fill-tv-field": "var(--viptv-color-fill-tv-field)",
+        "fill-buffered": "var(--viptv-color-fill-buffered)",
+        "fill-scrollbar": "var(--viptv-color-fill-scrollbar)",
+        "fill-on-accent-hover": "var(--viptv-color-fill-on-accent-hover)",
+        "fill-on-light-badge": "var(--viptv-color-fill-on-light-badge)",
+        "fill-live-glass": "var(--viptv-color-fill-live-glass)",
+        "fill-watching-badge": "var(--viptv-color-fill-watching-badge)",
+        "fill-notice-glass": "var(--viptv-color-fill-notice-glass)",
+        "fill-notice-glass-tv": "var(--viptv-color-fill-notice-glass-tv)",
+        "fill-popover-glass": "var(--viptv-color-fill-popover-glass)",
+        "fill-dot": "var(--viptv-color-fill-dot)",
+        "fill-dot-over-art": "var(--viptv-color-fill-dot-over-art)",
         "scrim-sheet": "var(--viptv-color-scrim-sheet)",
         "scrim-dialog": "var(--viptv-color-scrim-dialog)",
         "scrim-tv-panel": "var(--viptv-color-scrim-tv-panel)",
         "scrim-tv-menu": "var(--viptv-color-scrim-tv-menu)",
         "scrim-tv-fullscreen": "var(--viptv-color-scrim-tv-fullscreen)",
+        "skeleton-ground": "var(--viptv-color-skeleton-ground)",
+        "skeleton-card": "var(--viptv-color-skeleton-card)",
         "accent": "var(--viptv-accent)"
       },
       "borderRadius": {
@@ -52,7 +81,12 @@ module.exports = {
         "2xl": "var(--viptv-radius-2xl)",
         "3xl": "var(--viptv-radius-3xl)",
         "sheet": "var(--viptv-radius-sheet)",
-        "phone-frame": "var(--viptv-radius-phone-frame)"
+        "phone-frame": "var(--viptv-radius-phone-frame)",
+        "2xs": "var(--viptv-radius-2xs)",
+        "sm-plus": "var(--viptv-radius-sm-plus)",
+        "xl-plus": "var(--viptv-radius-xl-plus)",
+        "2xl-plus": "var(--viptv-radius-2xl-plus)",
+        "sheet-top": "var(--viptv-radius-sheet-top)"
       },
       "spacing": {
         "0": "var(--viptv-space-0)",
@@ -172,6 +206,22 @@ module.exports = {
             "fontWeight": "600"
           }
         ],
+        "phone-button-detail": [
+          "18px",
+          {
+            "lineHeight": "1",
+            "letterSpacing": "0em",
+            "fontWeight": "700"
+          }
+        ],
+        "phone-empty-title": [
+          "22px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "700"
+          }
+        ],
         "desktop-page-title": [
           "40px",
           {
@@ -276,6 +326,14 @@ module.exports = {
             "fontWeight": "600"
           }
         ],
+        "desktop-empty-title": [
+          "26px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "700"
+          }
+        ],
         "tv-screen-title": [
           "56px",
           {
@@ -371,6 +429,46 @@ module.exports = {
             "letterSpacing": "0em",
             "fontWeight": "400"
           }
+        ],
+        "tv-empty-title": [
+          "40px",
+          {
+            "lineHeight": "1.15",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "tv-field": [
+          "30px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0em",
+            "fontWeight": "400"
+          }
+        ],
+        "tv-field-large": [
+          "34px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0em",
+            "fontWeight": "600"
+          }
+        ],
+        "tv-entry": [
+          "38px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0em",
+            "fontWeight": "600"
+          }
+        ],
+        "tv-status": [
+          "20px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0.1em",
+            "fontWeight": "700"
+          }
         ]
       },
       "boxShadow": {
@@ -380,7 +478,12 @@ module.exports = {
         "shadow-nav": "var(--viptv-shadow-nav)",
         "shadow-popover": "var(--viptv-shadow-popover)",
         "shadow-toast": "var(--viptv-shadow-toast)",
-        "shadow-tv-panel": "var(--viptv-shadow-tv-panel)"
+        "shadow-tv-panel": "var(--viptv-shadow-tv-panel)",
+        "shadow-dialog": "var(--viptv-shadow-dialog)",
+        "shadow-drawer": "var(--viptv-shadow-drawer)",
+        "shadow-banner": "var(--viptv-shadow-banner)",
+        "shadow-popup": "var(--viptv-shadow-popup)",
+        "shadow-tv-dialog": "var(--viptv-shadow-tv-dialog)"
       },
       "fontFamily": {
         "display": "var(--viptv-font-family-display)",
