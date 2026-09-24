@@ -86,6 +86,16 @@ module.exports = {
         "guide-airing-tv": "var(--viptv-color-guide-airing-tv)",
         "guide-upcoming-tv": "var(--viptv-color-guide-upcoming-tv)",
         "guide-empty-tv": "var(--viptv-color-guide-empty-tv)",
+        "player-back-phone": "var(--viptv-color-player-back-phone)",
+        "player-back-desktop": "var(--viptv-color-player-back-desktop)",
+        "player-control-hover": "var(--viptv-color-player-control-hover)",
+        "player-control-active": "var(--viptv-color-player-control-active)",
+        "player-shade": "var(--viptv-color-player-shade)",
+        "player-shade-mid-desktop": "var(--viptv-color-player-shade-mid-desktop)",
+        "player-shade-end-desktop": "var(--viptv-color-player-shade-end-desktop)",
+        "player-shade-mid-tv": "var(--viptv-color-player-shade-mid-tv)",
+        "player-shade-end-tv": "var(--viptv-color-player-shade-end-tv)",
+        "player-up-next": "var(--viptv-color-player-up-next)",
         "accent": "var(--viptv-accent)"
       },
       "borderRadius": {
@@ -103,7 +113,8 @@ module.exports = {
         "sm-plus": "var(--viptv-radius-sm-plus)",
         "xl-plus": "var(--viptv-radius-xl-plus)",
         "2xl-plus": "var(--viptv-radius-2xl-plus)",
-        "sheet-top": "var(--viptv-radius-sheet-top)"
+        "sheet-top": "var(--viptv-radius-sheet-top)",
+        "player-card-tv": "var(--viptv-radius-player-card-tv)"
       },
       "spacing": {
         "0": "var(--viptv-space-0)",
@@ -261,6 +272,22 @@ module.exports = {
             "lineHeight": "1.1",
             "letterSpacing": "-0.02em",
             "fontWeight": "700"
+          }
+        ],
+        "phone-player-title": [
+          "20px",
+          {
+            "lineHeight": "1.15",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "700"
+          }
+        ],
+        "phone-mono": [
+          "12.5px",
+          {
+            "lineHeight": "1.5",
+            "letterSpacing": "0",
+            "fontWeight": "400"
           }
         ],
         "desktop-page-title": [
@@ -421,6 +448,22 @@ module.exports = {
             "lineHeight": "1",
             "letterSpacing": "0em",
             "fontWeight": "800"
+          }
+        ],
+        "desktop-player-title": [
+          "24px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0",
+            "fontWeight": "700"
+          }
+        ],
+        "desktop-mono": [
+          "12.5px",
+          {
+            "lineHeight": "1.5",
+            "letterSpacing": "0",
+            "fontWeight": "400"
           }
         ],
         "tv-screen-title": [
