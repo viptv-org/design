@@ -65,6 +65,7 @@ export const tokens = {
   "color.fill.icon-disc-tv": "rgba(255,255,255,0.08)",
   "color.fill.cue-glass": "rgba(22,22,24,0.95)",
   "color.fill.profile-letter": "#C24E6B",
+  "color.fill.overflow-disc": "rgba(0,0,0,0.60)",
   "color.scrim.sheet": "rgba(0,0,0,0.62)",
   "color.scrim.dialog": "rgba(0,0,0,0.55)",
   "color.scrim.tv-panel": "rgba(0,0,0,0.60)",
@@ -585,6 +586,17 @@ export const tokens = {
     "lineHeight": 1.5,
     "letterSpacing": "0"
   },
+  "type.desktop.search-field": {
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
+    "fontSize": "18px",
+    "fontWeight": 400,
+    "lineHeight": 1.2,
+    "letterSpacing": "0em"
+  },
   "type.tv.screen-title": {
     "fontFamily": [
       "Bricolage Grotesque",
@@ -847,6 +859,18 @@ export const tokens = {
     "lineHeight": 1,
     "letterSpacing": "0em"
   },
+  "type.tv.monogram": {
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Bricolage Grotesque Variable",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
+    "fontSize": "44px",
+    "fontWeight": 800,
+    "lineHeight": 1,
+    "letterSpacing": "-0.02em"
+  },
   "radius.xs": "4px",
   "radius.sm": "8px",
   "radius.field-titlebar": "9px",
@@ -927,6 +951,7 @@ export const tokens = {
   "size.button.pill": "44px",
   "size.button.small": "40px",
   "size.button.split-chevron": "44px",
+  "size.button.row-nav": "36px",
   "size.chip.phone": "44px",
   "size.chip.desktop": "40px",
   "size.chip.desktop-drawer": "36px",
@@ -938,6 +963,7 @@ export const tokens = {
   "size.field.tv-entry": "96px",
   "size.field.search-phone": "52px",
   "size.field.search-titlebar-width": "460px",
+  "size.field.search-page": "56px",
   "size.field-radius.phone": "16px",
   "size.field-radius.desktop": "12px",
   "size.field-radius.tv": "20px",
@@ -1061,6 +1087,8 @@ export const tokens = {
   "size.tile.phone-avatar.height": "96px",
   "size.tile.phone-source-quality.width": "56px",
   "size.tile.phone-source-quality.height": "44px",
+  "size.tile.phone-episode.width": "128px",
+  "size.tile.phone-episode.height": "72px",
   "size.tile.desktop-poster.width": "172px",
   "size.tile.desktop-poster.height": "258px",
   "size.tile.web-poster.width": "164px",
@@ -1111,6 +1139,8 @@ export const tokens = {
   "size.blur.glass": "20px",
   "size.blur.notice": "16px",
   "size.blur.badge": "12px",
+  "size.blur.ambient": "90px",
+  "size.blur.ambient-tv": "80px",
   "size.timeline.height": "20px",
   "size.timeline.knob": "14px",
   "size.timeline.marker": "12px",
@@ -1183,6 +1213,7 @@ export const tokens = {
   "shadow.banner": "0 20px 50px rgba(0,0,0,0.55)",
   "shadow.popup": "0 24px 60px rgba(0,0,0,0.6)",
   "shadow.tv-dialog": "0 40px 100px rgba(0,0,0,0.6)",
+  "shadow.hero-art": "0 30px 80px rgba(0,0,0,0.5)",
   "motion.focus": "150ms",
   "motion.pressed-scale": 0.97,
   "motion.toast-notice": "5000ms",

@@ -69,6 +69,7 @@ module.exports = {
         "fill-icon-disc-tv": "var(--viptv-color-fill-icon-disc-tv)",
         "fill-cue-glass": "var(--viptv-color-fill-cue-glass)",
         "fill-profile-letter": "var(--viptv-color-fill-profile-letter)",
+        "fill-overflow-disc": "var(--viptv-color-fill-overflow-disc)",
         "scrim-sheet": "var(--viptv-color-scrim-sheet)",
         "scrim-dialog": "var(--viptv-color-scrim-dialog)",
         "scrim-tv-panel": "var(--viptv-color-scrim-tv-panel)",
@@ -466,6 +467,14 @@ module.exports = {
             "fontWeight": "400"
           }
         ],
+        "desktop-search-field": [
+          "18px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0em",
+            "fontWeight": "400"
+          }
+        ],
         "tv-screen-title": [
           "56px",
           {
@@ -649,6 +658,14 @@ module.exports = {
             "letterSpacing": "0em",
             "fontWeight": "800"
           }
+        ],
+        "tv-monogram": [
+          "44px",
+          {
+            "lineHeight": "1",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "800"
+          }
         ]
       },
       "boxShadow": {
@@ -665,7 +682,8 @@ module.exports = {
         "shadow-drawer": "var(--viptv-shadow-drawer)",
         "shadow-banner": "var(--viptv-shadow-banner)",
         "shadow-popup": "var(--viptv-shadow-popup)",
-        "shadow-tv-dialog": "var(--viptv-shadow-tv-dialog)"
+        "shadow-tv-dialog": "var(--viptv-shadow-tv-dialog)",
+        "shadow-hero-art": "var(--viptv-shadow-hero-art)"
       },
       "fontFamily": {
         "display": "var(--viptv-font-family-display)",
