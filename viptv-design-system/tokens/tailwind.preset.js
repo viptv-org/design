@@ -64,6 +64,9 @@ module.exports = {
         "fill-dot": "var(--viptv-color-fill-dot)",
         "fill-dot-over-art": "var(--viptv-color-fill-dot-over-art)",
         "fill-tv-switch-off": "var(--viptv-color-fill-tv-switch-off)",
+        "fill-glass-button": "var(--viptv-color-fill-glass-button)",
+        "fill-grabber": "var(--viptv-color-fill-grabber)",
+        "fill-icon-disc-tv": "var(--viptv-color-fill-icon-disc-tv)",
         "scrim-sheet": "var(--viptv-color-scrim-sheet)",
         "scrim-dialog": "var(--viptv-color-scrim-dialog)",
         "scrim-tv-panel": "var(--viptv-color-scrim-tv-panel)",
@@ -71,6 +74,7 @@ module.exports = {
         "scrim-tv-fullscreen": "var(--viptv-color-scrim-tv-fullscreen)",
         "scrim-card-hover": "var(--viptv-color-scrim-card-hover)",
         "scrim-card-pressed": "var(--viptv-color-scrim-card-pressed)",
+        "scrim-card-actions": "var(--viptv-color-scrim-card-actions)",
         "skeleton-ground": "var(--viptv-color-skeleton-ground)",
         "skeleton-card": "var(--viptv-color-skeleton-card)",
         "skeleton-shimmer": "var(--viptv-color-skeleton-shimmer)",
@@ -227,6 +231,22 @@ module.exports = {
             "fontWeight": "700"
           }
         ],
+        "phone-dialog-title": [
+          "24px",
+          {
+            "lineHeight": "1.15",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "phone-group-label": [
+          "12px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0.08em",
+            "fontWeight": "700"
+          }
+        ],
         "desktop-page-title": [
           "40px",
           {
@@ -345,6 +365,22 @@ module.exports = {
             "lineHeight": "1",
             "letterSpacing": "-0.02em",
             "fontWeight": "800"
+          }
+        ],
+        "desktop-nav-label": [
+          "11px",
+          {
+            "lineHeight": "1.2",
+            "letterSpacing": "0.08em",
+            "fontWeight": "700"
+          }
+        ],
+        "desktop-keycap": [
+          "11px",
+          {
+            "lineHeight": "1",
+            "letterSpacing": "0em",
+            "fontWeight": "600"
           }
         ],
         "tv-screen-title": [
@@ -482,12 +518,37 @@ module.exports = {
             "letterSpacing": "0.1em",
             "fontWeight": "700"
           }
+        ],
+        "tv-keycap": [
+          "16px",
+          {
+            "lineHeight": "1",
+            "letterSpacing": "0em",
+            "fontWeight": "700"
+          }
+        ],
+        "tv-list-row": [
+          "26px",
+          {
+            "lineHeight": "1.3",
+            "letterSpacing": "0em",
+            "fontWeight": "600"
+          }
+        ],
+        "tv-description-title": [
+          "40px",
+          {
+            "lineHeight": "1.15",
+            "letterSpacing": "0em",
+            "fontWeight": "700"
+          }
         ]
       },
       "boxShadow": {
         "focus-desktop": "var(--viptv-focus-desktop)",
         "focus-desktop-hover-card": "var(--viptv-focus-desktop-hover-card)",
         "focus-tv-shadow": "var(--viptv-focus-tv-shadow)",
+        "focus-desktop-card-inset": "var(--viptv-focus-desktop-card-inset)",
         "shadow-nav": "var(--viptv-shadow-nav)",
         "shadow-popover": "var(--viptv-shadow-popover)",
         "shadow-toast": "var(--viptv-shadow-toast)",
