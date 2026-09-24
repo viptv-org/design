@@ -1,66 +1,79 @@
-/** VIPTV Tailwind preset — generated from tokens.json.
- *  Usage: module.exports = { presets: [require('./tailwind.preset.js')], ... }
- *  Set --viptv-accent on :root to the user's accent choice. */
+// GENERATED FILE — DO NOT EDIT.
+// Source: design/viptv-design-system/tokens/tokens.json
+// Regenerate: node design/viptv-design-system/tools/gen-themes.mjs
+// Requires tokens.css (the CSS variables) to be loaded.
 module.exports = {
-  "darkMode": "class",
   "theme": {
     "extend": {
       "colors": {
-        "bg": "#0B0B0C",
-        "oled": "#000000",
-        "surface": {
-          "1": "#161618",
-          "2": "#212124",
-          "3": "#2A2A2E",
-          "4": "#34343A"
-        },
-        "text": {
-          "primary": "#F4F2EE",
-          "body": "#DAD8D3",
-          "secondary": "#B6B4AF",
-          "tertiary": "#8F8D89"
-        },
-        "on": {
-          "light": "#111113",
-          "accent": "#15130F"
-        },
-        "accent": {
-          "DEFAULT": "var(--viptv-accent, #F5C542)",
-          "gold": "#F5C542",
-          "coral": "#FF8B5C",
-          "mint": "#62D9BC",
-          "periwinkle": "#A3BCFF"
-        },
-        "live": "#FF5A4E",
-        "danger": {
-          "DEFAULT": "#FF7A6E",
-          "tv": "#FF8A7E"
-        },
-        "line": {
-          "hairline": "rgba(255,255,255,0.07)",
-          "chip": "rgba(255,255,255,0.10)",
-          "outline": "rgba(255,255,255,0.14)",
-          "strong": "rgba(255,255,255,0.22)"
-        }
+        "bg": "var(--viptv-color-bg)",
+        "bg-oled": "var(--viptv-color-bg-oled)",
+        "surface-1": "var(--viptv-color-surface-1)",
+        "surface-2": "var(--viptv-color-surface-2)",
+        "surface-3": "var(--viptv-color-surface-3)",
+        "surface-4": "var(--viptv-color-surface-4)",
+        "text-primary": "var(--viptv-color-text-primary)",
+        "text-body": "var(--viptv-color-text-body)",
+        "text-secondary": "var(--viptv-color-text-secondary)",
+        "text-tertiary": "var(--viptv-color-text-tertiary)",
+        "on-light": "var(--viptv-color-on-light)",
+        "on-accent": "var(--viptv-color-on-accent)",
+        "accent-default": "var(--viptv-color-accent-default)",
+        "accent-options-gold": "var(--viptv-color-accent-options-gold)",
+        "accent-options-coral": "var(--viptv-color-accent-options-coral)",
+        "accent-options-mint": "var(--viptv-color-accent-options-mint)",
+        "accent-options-periwinkle": "var(--viptv-color-accent-options-periwinkle)",
+        "status-live": "var(--viptv-color-status-live)",
+        "status-danger": "var(--viptv-color-status-danger)",
+        "status-danger-tv": "var(--viptv-color-status-danger-tv)",
+        "status-spinner-track": "var(--viptv-color-status-spinner-track)",
+        "line-hairline": "var(--viptv-color-line-hairline)",
+        "line-chip": "var(--viptv-color-line-chip)",
+        "line-outline": "var(--viptv-color-line-outline)",
+        "line-strong": "var(--viptv-color-line-strong)",
+        "fill-tv-unfocused": "var(--viptv-color-fill-tv-unfocused)",
+        "fill-tv-selected": "var(--viptv-color-fill-tv-selected)",
+        "fill-glass": "var(--viptv-color-fill-glass)",
+        "fill-badge-glass": "var(--viptv-color-fill-badge-glass)",
+        "scrim-sheet": "var(--viptv-color-scrim-sheet)",
+        "scrim-dialog": "var(--viptv-color-scrim-dialog)",
+        "scrim-tv-panel": "var(--viptv-color-scrim-tv-panel)",
+        "scrim-tv-menu": "var(--viptv-color-scrim-tv-menu)",
+        "scrim-tv-fullscreen": "var(--viptv-color-scrim-tv-fullscreen)",
+        "accent": "var(--viptv-accent)"
       },
-      "fontFamily": {
-        "display": [
-          "Bricolage Grotesque",
-          "Helvetica Neue",
-          "sans-serif"
-        ],
-        "ui": [
-          "Onest",
-          "system-ui",
-          "sans-serif"
-        ],
-        "mono": [
-          "ui-monospace",
-          "SFMono-Regular",
-          "Menlo",
-          "Consolas",
-          "monospace"
-        ]
+      "borderRadius": {
+        "xs": "var(--viptv-radius-xs)",
+        "sm": "var(--viptv-radius-sm)",
+        "field-titlebar": "var(--viptv-radius-field-titlebar)",
+        "md": "var(--viptv-radius-md)",
+        "lg": "var(--viptv-radius-lg)",
+        "xl": "var(--viptv-radius-xl)",
+        "2xl": "var(--viptv-radius-2xl)",
+        "3xl": "var(--viptv-radius-3xl)",
+        "sheet": "var(--viptv-radius-sheet)",
+        "phone-frame": "var(--viptv-radius-phone-frame)"
+      },
+      "spacing": {
+        "0": "var(--viptv-space-0)",
+        "1": "var(--viptv-space-1)",
+        "2": "var(--viptv-space-2)",
+        "3": "var(--viptv-space-3)",
+        "4": "var(--viptv-space-4)",
+        "5": "var(--viptv-space-5)",
+        "6": "var(--viptv-space-6)",
+        "7": "var(--viptv-space-7)",
+        "8": "var(--viptv-space-8)",
+        "9": "var(--viptv-space-9)",
+        "12": "var(--viptv-space-12)",
+        "16": "var(--viptv-space-16)",
+        "24": "var(--viptv-space-24)",
+        "0.5": "var(--viptv-space-0_5)",
+        "1.5": "var(--viptv-space-1_5)",
+        "2.5": "var(--viptv-space-2_5)",
+        "3.5": "var(--viptv-space-3_5)",
+        "4.5": "var(--viptv-space-4_5)",
+        "5.5": "var(--viptv-space-5_5)"
       },
       "fontSize": {
         "phone-screen-title": [
@@ -360,61 +373,18 @@ module.exports = {
           }
         ]
       },
-      "borderRadius": {
-        "xs": "4px",
-        "sm": "8px",
-        "md": "12px",
-        "lg": "14px",
-        "xl": "16px",
-        "2xl": "18px",
-        "3xl": "22px",
-        "sheet": "28px"
-      },
-      "spacing": {
-        "0": "0px",
-        "0.5": "2px",
-        "1": "4px",
-        "1.5": "6px",
-        "2": "8px",
-        "2.5": "10px",
-        "3": "12px",
-        "3.5": "14px",
-        "4": "16px",
-        "4.5": "18px",
-        "5": "20px",
-        "5.5": "22px",
-        "6": "24px",
-        "7": "28px",
-        "8": "32px",
-        "9": "36px",
-        "12": "48px",
-        "16": "64px",
-        "24": "96px"
-      },
       "boxShadow": {
-        "focus": "0 0 0 2px #0B0B0C, 0 0 0 4px #F4F2EE",
-        "card-hover": "inset 0 0 0 2px #F4F2EE",
-        "tv-focus": "0 0 0 4px #FFFFFF, 0 24px 60px rgba(0,0,0,0.65)",
-        "nav": "0 12px 32px rgba(0,0,0,0.55)",
-        "popover": "0 20px 60px rgba(0,0,0,0.55)",
-        "toast": "0 12px 30px rgba(0,0,0,0.5)",
-        "tv-panel": "-40px 0 100px rgba(0,0,0,0.6)"
+        "focus-desktop": "var(--viptv-focus-desktop)",
+        "focus-desktop-hover-card": "var(--viptv-focus-desktop-hover-card)",
+        "shadow-nav": "var(--viptv-shadow-nav)",
+        "shadow-popover": "var(--viptv-shadow-popover)",
+        "shadow-toast": "var(--viptv-shadow-toast)",
+        "shadow-tv-panel": "var(--viptv-shadow-tv-panel)"
       },
-      "height": {
-        "btn-phone": "54px",
-        "btn-desktop": "48px",
-        "btn-tv": "72px",
-        "chip-phone": "44px",
-        "chip-desktop": "40px",
-        "titlebar": "40px"
-      },
-      "width": {
-        "rail": "84px",
-        "tv-rail": "144px",
-        "tv-menu": "520px",
-        "tv-panel": "820px",
-        "dialog": "460px",
-        "popup": "340px"
+      "fontFamily": {
+        "display": "var(--viptv-font-family-display)",
+        "ui": "var(--viptv-font-family-ui)",
+        "mono": "var(--viptv-font-family-mono)"
       }
     }
   }

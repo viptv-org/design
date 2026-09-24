@@ -1,4 +1,6 @@
-// VIPTV design tokens — generated from tokens.json. Import and use in React / React Native / Tauri.
+// GENERATED FILE — DO NOT EDIT.
+// Source: design/viptv-design-system/tokens/tokens.json
+// Regenerate: node design/viptv-design-system/tools/gen-themes.mjs
 export const tokens = {
   "color.bg": "#0B0B0C",
   "color.bg-oled": "#000000",
@@ -52,259 +54,407 @@ export const tokens = {
     "monospace"
   ],
   "type.phone.screen-title": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "34px",
     "fontWeight": 700,
     "lineHeight": 1.05,
     "letterSpacing": "-0.02em"
   },
   "type.phone.sheet-title": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "24px",
     "fontWeight": 700,
     "lineHeight": 1.2,
     "letterSpacing": "-0.01em"
   },
   "type.phone.wordmark": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "24px",
     "fontWeight": 800,
     "lineHeight": 1,
     "letterSpacing": "-0.03em"
   },
   "type.phone.section": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "20px",
     "fontWeight": 650,
     "lineHeight": 1.15,
     "letterSpacing": "-0.01em"
   },
   "type.phone.button-primary": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "17px",
     "fontWeight": 700,
     "lineHeight": 1,
     "letterSpacing": "0em"
   },
   "type.phone.body-strong": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "16px",
     "fontWeight": 600,
     "lineHeight": 1.35,
     "letterSpacing": "0em"
   },
   "type.phone.body": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "15px",
     "fontWeight": 400,
     "lineHeight": 1.45,
     "letterSpacing": "0em"
   },
   "type.phone.label": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "14px",
     "fontWeight": 600,
     "lineHeight": 1.3,
     "letterSpacing": "0em"
   },
   "type.phone.meta": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "13px",
     "fontWeight": 400,
     "lineHeight": 1.35,
     "letterSpacing": "0em"
   },
   "type.phone.caption": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "12px",
     "fontWeight": 400,
     "lineHeight": 1.35,
     "letterSpacing": "0em"
   },
   "type.phone.eyebrow": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "11px",
     "fontWeight": 700,
     "lineHeight": 1.2,
     "letterSpacing": "0.08em"
   },
   "type.phone.nav-label": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "11px",
     "fontWeight": 600,
     "lineHeight": 1,
     "letterSpacing": "0.01em"
   },
   "type.desktop.page-title": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "40px",
     "fontWeight": 700,
     "lineHeight": 1.05,
     "letterSpacing": "-0.02em"
   },
   "type.desktop.hero-title": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "30px",
     "fontWeight": 800,
     "lineHeight": 1.05,
     "letterSpacing": "-0.02em"
   },
   "type.desktop.dialog-title": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "24px",
     "fontWeight": 700,
     "lineHeight": 1.2,
     "letterSpacing": "-0.01em"
   },
   "type.desktop.section": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "22px",
     "fontWeight": 650,
     "lineHeight": 1.15,
     "letterSpacing": "-0.01em"
   },
   "type.desktop.wordmark": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "13px",
     "fontWeight": 700,
     "lineHeight": 1,
     "letterSpacing": "0.02em"
   },
   "type.desktop.button": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "16px",
     "fontWeight": 600,
     "lineHeight": 1,
     "letterSpacing": "0em"
   },
   "type.desktop.body": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "16px",
     "fontWeight": 400,
     "lineHeight": 1.5,
     "letterSpacing": "0em"
   },
   "type.desktop.label": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "15px",
     "fontWeight": 600,
     "lineHeight": 1.3,
     "letterSpacing": "0em"
   },
   "type.desktop.row": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "14px",
     "fontWeight": 600,
     "lineHeight": 1.3,
     "letterSpacing": "0em"
   },
   "type.desktop.meta": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "13px",
     "fontWeight": 400,
     "lineHeight": 1.35,
     "letterSpacing": "0em"
   },
   "type.desktop.caption": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "12px",
     "fontWeight": 400,
     "lineHeight": 1.35,
     "letterSpacing": "0em"
   },
   "type.desktop.eyebrow": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "12px",
     "fontWeight": 700,
     "lineHeight": 1.2,
     "letterSpacing": "0.06em"
   },
   "type.desktop.rail-label": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "11px",
     "fontWeight": 600,
     "lineHeight": 1,
     "letterSpacing": "0em"
   },
   "type.tv.screen-title": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "56px",
     "fontWeight": 700,
     "lineHeight": 1.05,
     "letterSpacing": "-0.02em"
   },
   "type.tv.panel-title": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "44px",
     "fontWeight": 700,
     "lineHeight": 1.1,
     "letterSpacing": "-0.01em"
   },
   "type.tv.section": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "32px",
     "fontWeight": 650,
     "lineHeight": 1.1,
     "letterSpacing": "-0.01em"
   },
   "type.tv.wordmark": {
-    "fontFamily": "{font.family.display}",
+    "fontFamily": [
+      "Bricolage Grotesque",
+      "Helvetica Neue",
+      "sans-serif"
+    ],
     "fontSize": "40px",
     "fontWeight": 800,
     "lineHeight": 1,
     "letterSpacing": "-0.02em"
   },
   "type.tv.row": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "28px",
     "fontWeight": 600,
     "lineHeight": 1.3,
     "letterSpacing": "0em"
   },
   "type.tv.button": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "26px",
     "fontWeight": 700,
     "lineHeight": 1,
     "letterSpacing": "0em"
   },
   "type.tv.body": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "26px",
     "fontWeight": 400,
     "lineHeight": 1.45,
     "letterSpacing": "0em"
   },
   "type.tv.label": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "24px",
     "fontWeight": 600,
     "lineHeight": 1.3,
     "letterSpacing": "0em"
   },
   "type.tv.meta": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "22px",
     "fontWeight": 400,
     "lineHeight": 1.35,
     "letterSpacing": "0em"
   },
   "type.tv.caption": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "20px",
     "fontWeight": 400,
     "lineHeight": 1.35,
     "letterSpacing": "0em"
   },
   "type.tv.eyebrow": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "18px",
     "fontWeight": 700,
     "lineHeight": 1.2,
     "letterSpacing": "0.08em"
   },
   "type.tv.min": {
-    "fontFamily": "{font.family.ui}",
+    "fontFamily": [
+      "Onest",
+      "system-ui",
+      "sans-serif"
+    ],
     "fontSize": "18px",
     "fontWeight": 400,
     "lineHeight": 1.3,
@@ -323,17 +473,11 @@ export const tokens = {
   "radius.avatar": 0.2,
   "radius.pill": "height / 2",
   "space.0": "0px",
-  "space.0.5": "2px",
   "space.1": "4px",
-  "space.1.5": "6px",
   "space.2": "8px",
-  "space.2.5": "10px",
   "space.3": "12px",
-  "space.3.5": "14px",
   "space.4": "16px",
-  "space.4.5": "18px",
   "space.5": "20px",
-  "space.5.5": "22px",
   "space.6": "24px",
   "space.7": "28px",
   "space.8": "32px",
@@ -341,6 +485,12 @@ export const tokens = {
   "space.12": "48px",
   "space.16": "64px",
   "space.24": "96px",
+  "space.0.5": "2px",
+  "space.1.5": "6px",
+  "space.2.5": "10px",
+  "space.3.5": "14px",
+  "space.4.5": "18px",
+  "space.5.5": "22px",
   "layout.phone.frame": "390 x 844",
   "layout.phone.gutter": "16px",
   "layout.phone.top-inset": "58px",
@@ -414,3 +564,12 @@ export const tokens = {
   "motion.up-next-countdown": "[8] s"
 } as const;
 export type TokenName = keyof typeof tokens;
+export const accentOptions = {
+  "gold": "#F5C542",
+  "coral": "#FF8B5C",
+  "mint": "#62D9BC",
+  "periwinkle": "#A3BCFF"
+} as const;
+export type AccentName = keyof typeof accentOptions;
+/** CSS custom property for a token path, e.g. cssVar('color.surface.1'). */
+export const cssVar = (name: TokenName): string => `var(--viptv-${name.replace(/\./g, '-')})`;
