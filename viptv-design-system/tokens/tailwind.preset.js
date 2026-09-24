@@ -67,6 +67,7 @@ module.exports = {
         "fill-glass-button": "var(--viptv-color-fill-glass-button)",
         "fill-grabber": "var(--viptv-color-fill-grabber)",
         "fill-icon-disc-tv": "var(--viptv-color-fill-icon-disc-tv)",
+        "fill-cue-glass": "var(--viptv-color-fill-cue-glass)",
         "scrim-sheet": "var(--viptv-color-scrim-sheet)",
         "scrim-dialog": "var(--viptv-color-scrim-dialog)",
         "scrim-tv-panel": "var(--viptv-color-scrim-tv-panel)",
@@ -78,6 +79,12 @@ module.exports = {
         "skeleton-ground": "var(--viptv-color-skeleton-ground)",
         "skeleton-card": "var(--viptv-color-skeleton-card)",
         "skeleton-shimmer": "var(--viptv-color-skeleton-shimmer)",
+        "guide-airing": "var(--viptv-color-guide-airing)",
+        "guide-empty": "var(--viptv-color-guide-empty)",
+        "guide-upcoming-text": "var(--viptv-color-guide-upcoming-text)",
+        "guide-airing-tv": "var(--viptv-color-guide-airing-tv)",
+        "guide-upcoming-tv": "var(--viptv-color-guide-upcoming-tv)",
+        "guide-empty-tv": "var(--viptv-color-guide-empty-tv)",
         "accent": "var(--viptv-accent)"
       },
       "borderRadius": {
@@ -549,6 +556,7 @@ module.exports = {
         "focus-desktop-hover-card": "var(--viptv-focus-desktop-hover-card)",
         "focus-tv-shadow": "var(--viptv-focus-tv-shadow)",
         "focus-desktop-card-inset": "var(--viptv-focus-desktop-card-inset)",
+        "focus-tv-shadow-block": "var(--viptv-focus-tv-shadow-block)",
         "shadow-nav": "var(--viptv-shadow-nav)",
         "shadow-popover": "var(--viptv-shadow-popover)",
         "shadow-toast": "var(--viptv-shadow-toast)",
