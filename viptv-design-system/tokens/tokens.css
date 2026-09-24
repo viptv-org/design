@@ -430,6 +430,9 @@
   --viptv-motion-shimmer: 1400ms;
   --viptv-motion-pressed-scale-row: 0.99;
   --viptv-motion-pressed-scale-card: 0.98;
+  --viptv-motion-marquee-delay: 1000ms;
+  --viptv-motion-up-next-tick: 250ms;
+  --viptv-motion-pressed-scale-control: 0.94;
   --viptv-type-phone-screen-title-size: 34px;
   --viptv-type-phone-screen-title-weight: 700;
   --viptv-type-phone-screen-title-line-height: 1.05;

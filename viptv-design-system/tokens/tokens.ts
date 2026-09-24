@@ -1223,7 +1223,10 @@ export const tokens = {
   "motion.spinner": "800ms",
   "motion.shimmer": "1400ms",
   "motion.pressed-scale-row": 0.99,
-  "motion.pressed-scale-card": 0.98
+  "motion.pressed-scale-card": 0.98,
+  "motion.marquee-delay": "1000ms",
+  "motion.up-next-tick": "250ms",
+  "motion.pressed-scale-control": 0.94
 } as const;
 export type TokenName = keyof typeof tokens;
 export const accentOptions = {
