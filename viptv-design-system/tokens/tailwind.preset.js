@@ -41,6 +41,7 @@ module.exports = {
         "line-link-hover": "var(--viptv-color-line-link-hover)",
         "line-keycap-tv": "var(--viptv-color-line-keycap-tv)",
         "line-on-accent": "var(--viptv-color-line-on-accent)",
+        "line-selected-tv": "var(--viptv-color-line-selected-tv)",
         "fill-tv-unfocused": "var(--viptv-color-fill-tv-unfocused)",
         "fill-tv-selected": "var(--viptv-color-fill-tv-selected)",
         "fill-glass": "var(--viptv-color-fill-glass)",
@@ -62,13 +63,17 @@ module.exports = {
         "fill-popover-glass": "var(--viptv-color-fill-popover-glass)",
         "fill-dot": "var(--viptv-color-fill-dot)",
         "fill-dot-over-art": "var(--viptv-color-fill-dot-over-art)",
+        "fill-tv-switch-off": "var(--viptv-color-fill-tv-switch-off)",
         "scrim-sheet": "var(--viptv-color-scrim-sheet)",
         "scrim-dialog": "var(--viptv-color-scrim-dialog)",
         "scrim-tv-panel": "var(--viptv-color-scrim-tv-panel)",
         "scrim-tv-menu": "var(--viptv-color-scrim-tv-menu)",
         "scrim-tv-fullscreen": "var(--viptv-color-scrim-tv-fullscreen)",
+        "scrim-card-hover": "var(--viptv-color-scrim-card-hover)",
+        "scrim-card-pressed": "var(--viptv-color-scrim-card-pressed)",
         "skeleton-ground": "var(--viptv-color-skeleton-ground)",
         "skeleton-card": "var(--viptv-color-skeleton-card)",
+        "skeleton-shimmer": "var(--viptv-color-skeleton-shimmer)",
         "accent": "var(--viptv-accent)"
       },
       "borderRadius": {
@@ -332,6 +337,14 @@ module.exports = {
             "lineHeight": "1.2",
             "letterSpacing": "-0.01em",
             "fontWeight": "700"
+          }
+        ],
+        "desktop-monogram": [
+          "30px",
+          {
+            "lineHeight": "1",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "800"
           }
         ],
         "tv-screen-title": [
