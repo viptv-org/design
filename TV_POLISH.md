@@ -67,6 +67,10 @@ Resume styling. Implementation/browser/device evidence remains separate.
   viewport at the top. Lower shelves scroll naturally. Returning to the first
   row or hero reveals the complete hero. Cards remain 320×180, gap 36, and
   shelf spacing includes captions as in Android TV.
+- Hero blur matches Android TV in the 1920px logical frame: the hero stage is
+  664px high, the sharp art is 1120px wide at the right, and the full-size ambient
+  image uses a 72px blur at 0.6 opacity. Shared left/bottom scrims keep copy legible
+  and adapt to OLED ground. The art scrolls with the hero.
 - Resume uses the selected accent with dark foreground on Android TV and
   Vizio, including while focused. Retain a white focus ring without changing
   its size. Other action/focus colors keep their established meaning.
