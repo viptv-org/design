@@ -156,3 +156,10 @@ Up Next, missing/zero progress, movies, logo/rating hydration, metadata arriving
 after focus changes, and a changed episode of an already cached series. Verify
 actual title text and measured adjacency on the physical TV; do not infer success
 from a build, a screen-name checklist or an unrelated screenshot.
+
+The same matched episode title must reach Continue Watching card captions.
+Use compact `S2 E1 · [episode title]` there; include elapsed time only when the
+short title fits. Long titles ellipsize inside the 213px card caption without
+scrolling on focus. Metadata updates keep the caption in the same format as the
+initial render. Focus changes the ring and caption contrast, never card size or
+caption position. Movies show resume time without an empty episode field.
