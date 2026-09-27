@@ -1,7 +1,7 @@
 {
   "source_commit": "7d6b4131a44d87b58edcf12709af5851da387176",
   "files": {
-    "ASSET_MANIFEST.md": "e840beab31b66afd226604287e59fa181d6900555651e3be5d3640d5404c2765",
+    "ASSET_MANIFEST.md": "380adc06ab55d841ea4008d520ed01901f58af363879f8f8b838d832c4557743",
     "fonts/README.md": "7102f4162f3d7e0d1e1b5429aa2ea9606e0ad23d3ec2a99b13af665d27b53a5b",
     "fonts/bricolage-grotesque-LICENSE.txt": "923f4ddf0fd39f9b7794ab0df7332f3d95dc43e8ad7ec2289d6d9e8491177f51",
     "fonts/bricolage_grotesque_700.ttf": "01e40bbb8f88549e8603fb5b5facb3aa87d7ab96bcfc6da1298bbabbb493273d",
@@ -648,6 +648,21 @@
     "roku/roku/images/browse-focus.png": "e01ca6533492941e510ae30008327a54755696617e0629f321f1feacff496f43",
     "roku/roku/images/channel-poster-hd.jpg": "6092f7b9f9a2231b464475816f2efa1f207a8148607d91980b8f951251487477",
     "roku/roku/images/chip-focus.png": "c4b41d150686fa901d1020a404428251b55673ec432868c2de83f2fec7c782c3",
+    "roku/roku/images/design/card-corners.png": "0bc638fd83874ce7c20622820cf657538e4c49eaa0b918b55d5031c20c65d8f3",
+    "roku/roku/images/design/card-focus.png": "b43117e653ee87d14cab2b6e799ea7257549ac51364f5f8b48e9dee12cd6fb29",
+    "roku/roku/images/design/card-mask.png": "24c4169879a009e40fca5677003e34127b7aed6ec25a5cd97e72b640eee540e3",
+    "roku/roku/images/design/episode-corners.png": "f7cbeca0a2a413d3b13e29eb4f60886b5c8dd6763554db7374ebb297bb72ab79",
+    "roku/roku/images/design/episode-focus.png": "474e9b13d38a7881fa5c9284f72b6aff85a8998340f6d3558c426dff90a6f568",
+    "roku/roku/images/design/episode-mask.png": "29c3d3c072d79ced4d889e40ae9840d80d6d8dce916f556942aa4c221e7a6f0f",
+    "roku/roku/images/design/hero-bottom.png": "d04936e24955d22cd5d60fa1fa0ce16f703c15a1d38e5c0a14de5c51584a05ee",
+    "roku/roku/images/design/hero-left.png": "9ec7cc2cd5523069dcb917cc87ff2242af225b752cd352ebd55a0784210db8bc",
+    "roku/roku/images/design/pill-focus.9.png": "f13b7dbd78237fee87e890f4958db77972202ef3165b6ccbbc25c4683e188259",
+    "roku/roku/images/design/pill.9.png": "8e5bfdcf21d01b872724522a55e343a1d8f64a070bdb217ffd48bcab49d65727",
+    "roku/roku/images/design/profile-corners.png": "f2621cc46ccd69a247b5f8a322145cca2d7bea09f50ee680373049a90a61c15f",
+    "roku/roku/images/design/profile-focus.png": "1e9701f0f3d4845d230f13a78a7781e6d04ba6b79cfd79e6c14b74dda313b9bb",
+    "roku/roku/images/design/profile-mask.png": "d921db1e01e64eaf39c2f0c1fed53fd69b6296632bed355a7b8d04efbd19b865",
+    "roku/roku/images/design/row.9.png": "1318396673201afe2fdb5627046c602367a8555700829ff7b7e4cd845baf0c57",
+    "roku/roku/images/design/spinner.png": "87c2fa02c296f351e7bab21f656101c9cb2c9c888fb18908265e89e23ae89e4d",
     "roku/roku/images/home-focus.png": "304ff47d4ad3a74c212e9ea59358138f5c63d71a7ce81d4f13817a02bd690a8a",
     "roku/roku/images/lucide/LICENSE": "1e7290b35280a048667bbf0ebabac1c7fd52a75300e8b2946ac165715997f2bc",
     "roku/roku/images/lucide/README.md": "92de549f60899ebbac53ef54f5b224946c7a5d81f48413d06a8972892cb33a2c",
@@ -827,6 +842,7 @@
     "roku/roku/tools/generate_player_assets.py": "e92b336e5d4f332c5fb82f1d7461c273948fcf6aa3c00c68d9dd96ba391e000e",
     "roku/roku/tools/make_avatar_catalog.mjs": "edfaea90ee9ede4350e14b28b91bda8c00182ee1c3c658aaa9e7ed9972b8ca49",
     "roku/roku/tools/make_brand_assets.cjs": "380c4f66c644d07feee784efa8f95678201b135e9bc1b5a8782968fb159f3a49",
+    "roku/roku/tools/make_design_assets.py": "cec9349f28bed71a342697c18237e31cb9a075d01b60dd7f50e211dc199edcff",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
     "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350"
   }
