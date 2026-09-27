@@ -18,6 +18,7 @@ def patch(name, radius, border=0):
         return (255, 255, 255, round(255*shapes.clamp(alpha)))
     shapes.png(name, size+2, size+2, pixel)
 
+shapes.rounded("circle.png", 96, 96, 48)
 patch("pill.9.png", 24)
 patch("pill-focus.9.png", 24, 3)
 patch("pill-small.9.png", 16)

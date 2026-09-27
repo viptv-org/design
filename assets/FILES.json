@@ -863,8 +863,9 @@
     "roku/roku/tools/generate_player_assets.py": "e92b336e5d4f332c5fb82f1d7461c273948fcf6aa3c00c68d9dd96ba391e000e",
     "roku/roku/tools/make_avatar_catalog.mjs": "edfaea90ee9ede4350e14b28b91bda8c00182ee1c3c658aaa9e7ed9972b8ca49",
     "roku/roku/tools/make_brand_assets.cjs": "380c4f66c644d07feee784efa8f95678201b135e9bc1b5a8782968fb159f3a49",
-    "roku/roku/tools/make_design_assets.py": "5b2437621d371e87db22b87ace997179770b3a6888a9d9b3ba124a68bea842aa",
+    "roku/roku/tools/make_design_assets.py": "fd8256cc0090493734c687f3c6700e441711cc64b339bc3f70b37c95534d91ad",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
-    "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350"
+    "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350",
+    "roku/roku/images/design/circle.png": "89fea9f218f0e0b6865577e1e671130be4b5011894acdacd6efeb8064c759ba6"
   }
 }
