@@ -25,7 +25,7 @@ for name, w, h, radius in [("card",213,120,11),("episode",240,135,11),("profile"
     shapes.rounded(name+"-corners.png",w,h,radius,inverse=True)
     shapes.rounded(name+"-focus.png",w,h,radius,3)
     shapes.rounded(name+"-mask.png",w,h,radius)
-shapes.png("hero-left.png",1280,1,lambda x,y:(11,11,12,round(255*shapes.clamp(1-(x-400)/550))))
+shapes.png("hero-left.png",1280,1,lambda x,y:(11,11,12,round(255*shapes.clamp(1-(x-533)/533))))
 shapes.png("hero-bottom.png",1,633,lambda x,y:(11,11,12,round(255*shapes.clamp((y-293)/340))))
 def spinner(x,y):
     dx,dy=x+.5-32,y+.5-32
