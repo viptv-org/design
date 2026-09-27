@@ -20,6 +20,8 @@ def patch(name, radius, border=0):
 
 patch("pill.9.png", 24)
 patch("pill-focus.9.png", 24, 3)
+patch("pill-small.9.png", 16)
+patch("pill-small-focus.9.png", 16, 3)
 patch("row.9.png", 15)
 for name, w, h, radius in [("card",213,120,11),("episode",240,135,11),("profile",146,146,29)]:
     shapes.rounded(name+"-corners.png",w,h,radius,inverse=True)

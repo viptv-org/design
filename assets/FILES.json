@@ -657,6 +657,8 @@
     "roku/roku/images/design/hero-bottom.png": "d04936e24955d22cd5d60fa1fa0ce16f703c15a1d38e5c0a14de5c51584a05ee",
     "roku/roku/images/design/hero-left.png": "19aed131566f787f5163a9d911e0980dc8167e2f4602a79ca399091c95b915f0",
     "roku/roku/images/design/pill-focus.9.png": "f13b7dbd78237fee87e890f4958db77972202ef3165b6ccbbc25c4683e188259",
+    "roku/roku/images/design/pill-small-focus.9.png": "45c6508671efb69d2b3d97f8f2d9b4d674962b668e8a4b75fa3fa211b14dbbb6",
+    "roku/roku/images/design/pill-small.9.png": "ae0bf7099a756632c7293765e85621af1c85f904d63b30ccd71193068f12c242",
     "roku/roku/images/design/pill.9.png": "8e5bfdcf21d01b872724522a55e343a1d8f64a070bdb217ffd48bcab49d65727",
     "roku/roku/images/design/profile-corners.png": "f2621cc46ccd69a247b5f8a322145cca2d7bea09f50ee680373049a90a61c15f",
     "roku/roku/images/design/profile-focus.png": "1e9701f0f3d4845d230f13a78a7781e6d04ba6b79cfd79e6c14b74dda313b9bb",
@@ -842,7 +844,7 @@
     "roku/roku/tools/generate_player_assets.py": "e92b336e5d4f332c5fb82f1d7461c273948fcf6aa3c00c68d9dd96ba391e000e",
     "roku/roku/tools/make_avatar_catalog.mjs": "edfaea90ee9ede4350e14b28b91bda8c00182ee1c3c658aaa9e7ed9972b8ca49",
     "roku/roku/tools/make_brand_assets.cjs": "380c4f66c644d07feee784efa8f95678201b135e9bc1b5a8782968fb159f3a49",
-    "roku/roku/tools/make_design_assets.py": "33ff485f2bdc68cd66c795bac137e308f291429e0c1577c66a17444455fa2df6",
+    "roku/roku/tools/make_design_assets.py": "5b2437621d371e87db22b87ace997179770b3a6888a9d9b3ba124a68bea842aa",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
     "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350"
   }
