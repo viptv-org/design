@@ -8,11 +8,11 @@ const ui = createRequire(resolve(process.argv[2], '_export.cjs'));
 const raster = createRequire(resolve(process.argv[3], '_export.cjs'));
 const React = ui('react');
 const { renderToStaticMarkup } = ui('react-dom/server');
-const { UserRound, Puzzle, Trash2 } = ui('lucide-react');
+const { UserRound, Puzzle, Trash2, Delete, Space } = ui('lucide-react');
 const { createCanvas, loadImage } = raster('canvas');
 const out = resolve(__dirname, '../images/lucide');
 (async () => {
-  for (const [name, icon] of Object.entries({ profile: UserRound, addons: Puzzle, delete: Trash2 })) {
+  for (const [name, icon] of Object.entries({ profile: UserRound, addons: Puzzle, delete: Trash2, backspace: Delete, space: Space })) {
     for (const [variant, color] of Object.entries({ primary: '#F4F2EE', secondary: '#B6B4AF', focus: '#111113' })) {
       const svg = renderToStaticMarkup(React.createElement(icon, { width: 96, height: 96, color, strokeWidth: 1.8 }));
       writeFileSync(resolve(out, `${name}-${variant}.svg`), svg + '\n');

@@ -858,7 +858,7 @@
     "roku/roku/images/ui-spinner.png": "c9b3228c374b1671949558920bf6e3902d7e304fd68665c0c98694159cd259f4",
     "roku/roku/images/viptv-mark.png": "2911d72cee27925cb5b483da60a2222b5590fb048bb27928e00f568d55c82866",
     "roku/roku/images/viptv-wordmark.png": "4d6d473c5ba0f9ab6cf7b26a36f8fa85da3abeb543817480a2af6512b47c8f7b",
-    "roku/roku/tools/export_design_controls.cjs": "990229dbf93ac28da25c30dcd7cb97e4a52af489178e76dd513095c2e680074f",
+    "roku/roku/tools/export_design_controls.cjs": "325dd8a33337e0a94ceb5fb3ab3536d0457f13d9eb401add62b01ffc0815b862",
     "roku/roku/tools/fetch_character_avatars.py": "d5f0cf0faa3697c2a00b14a8f9f1515f3f3d365a85d46225dbc687351f287e18",
     "roku/roku/tools/generate_player_assets.py": "e92b336e5d4f332c5fb82f1d7461c273948fcf6aa3c00c68d9dd96ba391e000e",
     "roku/roku/tools/make_avatar_catalog.mjs": "edfaea90ee9ede4350e14b28b91bda8c00182ee1c3c658aaa9e7ed9972b8ca49",
@@ -866,6 +866,18 @@
     "roku/roku/tools/make_design_assets.py": "fd8256cc0090493734c687f3c6700e441711cc64b339bc3f70b37c95534d91ad",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
     "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350",
-    "roku/roku/images/design/circle.png": "89fea9f218f0e0b6865577e1e671130be4b5011894acdacd6efeb8064c759ba6"
+    "roku/roku/images/design/circle.png": "89fea9f218f0e0b6865577e1e671130be4b5011894acdacd6efeb8064c759ba6",
+    "roku/roku/images/lucide/backspace-primary.svg": "29b2e53a17312590faa23febbb9c3bacee815066695c073f357b91793ddddea4",
+    "roku/roku/images/lucide/backspace-primary.png": "fcd4dc36373494d414b06c3f04d241e71e8dac1d7108eb4f3fa4382a4379108d",
+    "roku/roku/images/lucide/backspace-secondary.svg": "1939cab16296aff3c9e32d3241e2f458af95e365bc9999edcc6dfeddb117666b",
+    "roku/roku/images/lucide/backspace-secondary.png": "b53b854bcf86c812cfeba7810bab2f73d8bbf0cc61261b14090dab90b781f7cb",
+    "roku/roku/images/lucide/backspace-focus.svg": "1b67fd213169c4f0eaba8e17b3d72a3f37f5f4a83d5b0961e0baa2cf8c777936",
+    "roku/roku/images/lucide/backspace-focus.png": "55c610bf4fe01e861fc09135e54b2901b692a7bf77ef5d7794b75ff9e4a4a987",
+    "roku/roku/images/lucide/space-primary.svg": "f88ddb7c8fbeea401d77efd0e6240b307deda856cbf23b1d2b5713e15e7240a8",
+    "roku/roku/images/lucide/space-primary.png": "af1cbad51e9a3bcc53846dfba3e10af98b36b68d8e334006da61b9f84f528b3e",
+    "roku/roku/images/lucide/space-secondary.svg": "5d40b34166bd6c630aee923849034afee3a0c371e890e9dba115a2e4b5a7dbfe",
+    "roku/roku/images/lucide/space-secondary.png": "f38d4e83a44c55d6e665b9404701f1d3ac26fb647438639530df89f8af6773dd",
+    "roku/roku/images/lucide/space-focus.svg": "af58dd4989907d155caaa6e4d11147ef64c52c8dce6ee13f03f99c997b9288c7",
+    "roku/roku/images/lucide/space-focus.png": "e5fdb19913b59378972265ca58b9852885d1851936faef992c2f69b19cd40cf5"
   }
 }

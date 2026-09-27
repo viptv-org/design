@@ -122,3 +122,10 @@ movie and series title composition; traverse an episode strip longer than eight;
 inspect Live header/categories/programmes and expanded rail above them; check
 Resume accent and all primary action focus states. Publish per-screen evidence
 and explicit remaining differences separately from automated checks.
+
+ROK-043 audit follow-through: Search uses the six-column TvSearch keypad with
+rounded keys and Lucide Space/Backspace/Delete, retaining mobile literal input.
+My List exposes My List and Continue Watching segments. Programme details use
+the TvLiveDetails side panel with explicit Watch and Close actions. PIN and
+full text-entry still retain the native input semantics while using the shared
+full-screen surface; these controls are never described as measured pixel parity.
