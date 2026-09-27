@@ -163,3 +163,12 @@ short title fits. Long titles ellipsize inside the 213px card caption without
 scrolling on focus. Metadata updates keep the caption in the same format as the
 initial render. Focus changes the ring and caption contrast, never card size or
 caption position. Movies show resume time without an empty episode field.
+
+Direct playback of a series from an unloaded Home card must also show the
+matching episode title in player chrome. Resolve it from already fetched
+metadata or request that series metadata alongside source discovery. The title
+request never blocks playback, survives preparation's transport cleanup only
+while owned by the same account/profile/episode, and cannot relabel a later
+session. Back and next-episode focus/identity continue to use the original
+playback route. Verify a fast selection before card metadata arrives and a late
+response after switching episodes or profiles.
