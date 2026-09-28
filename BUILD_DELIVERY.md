@@ -42,3 +42,23 @@ Samsung and LG installers launch hosted content. Manually deploy the matching
 TV ZIP using the workspace's HTTPS process; preserve existing Host/Origin
 rewrites. Do not report new runtime behavior live until its served asset hash
 is verified. This policy does not authorize deleting production infrastructure.
+
+## Verified downloads and remaining setup
+
+| Target | Build evidence |
+| --- | --- |
+| Android phone + TV | [Universal APK](https://github.com/viptv-org/android/actions/runs/36362048135): downloaded checksum verified, all three native ABIs, no fixture CA. Phone remote pairing/buttons/swipe/recovery and TV navigation exercised on dedicated API 36 emulators with synthetic HTTPS fixtures. |
+| Linux x64 | [DEB and AppImage](https://github.com/viptv-org/desktop/actions/runs/36360249014): both checksums verified. DEB installed and stayed running for 20 seconds in a disposable Ubuntu 24.04 container without developer SDKs; AppImage also passed an isolated host launch. Headless startup does not qualify GPU/media playback. |
+| Windows x64 | [NSIS installer](https://github.com/viptv-org/desktop/actions/runs/36362010700): native compilation, release tests, silent installation and eight-second installed startup passed. The launch test excludes the GStreamer SDK from PATH. Actual Windows video/TextureStream qualification remains separate. This run also produced Linux installers from the same revision. |
+| Roku | [main push](https://github.com/viptv-org/roku/actions/runs/36360098005) and [existing UI branch manual build](https://github.com/viptv-org/roku/actions/runs/36360294508) passed. Compiled ZIP checksum verified. The existing UI branch was not merged into main. |
+| LG and hosted TV | [IPK and hosting ZIP](https://github.com/viptv-org/tv-web/actions/runs/36361962677) uploaded. HTTPS Chromium pairing/Home/Sources/Player fixtures and host lifecycle/key tests passed; physical LG qualification remains outstanding. |
+| Samsung | Signing cannot run until the four secrets above are configured. The job fails explicitly; other TV artifacts still upload. No unsigned package is represented as installable. |
+
+Older workflows were removed from first-party default branches; their history
+remains in Git. No branch protections or rulesets required obsolete check names
+when inspected. No production deployment or store publication was performed.
+
+The subsequent desktop configuration selects zlib instead of default LZMA
+compression for future installers. The initial verified Windows build spent
+over 15 minutes compressing its bundled runtimes; the optimization changes
+packaging, not application behavior or included runtime files.
