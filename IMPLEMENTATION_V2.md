@@ -304,8 +304,8 @@ This is an execution checklist, not a completion claim. User decisions are in
   backup-first operation, and protected accounts cannot downgrade new writes by
   removing keys or deleting every addon. New encrypted IDs are not reused.
 - Small configuration revisions avoid hashing large encrypted manifests on
-  playback checks. The addon payload bound preserves the prior manifest size
-  allowance without widening normal gateway/provider secret limits. V2 source
+  playback checks. Addons use a separately bounded document envelope without
+  widening normal gateway/provider secret limits. V2 source
   publication and polling recheck addon ownership/enabled state after revocation.
 - Offline inspect/apply/encrypt-addon commands preserve IDs and require complete
   reviewed maps for unassigned records; initialization no longer assigns secrets
@@ -321,6 +321,33 @@ This is an execution checklist, not a completion claim. User decisions are in
   adoption, bulk rotation or legacy removal. Unmigrated compatibility writes still
   exist until cutover. No production database or deployment was touched; encrypted
   storage is not a claim of whole-database encryption or complete platform parity.
+
+## Guarded addon management and egress checkpoint — 2026-09-29
+
+- Backend `c16cdb3` adds v2 account addon create/list/enable/delete APIs, with
+  bounded account-cursor pages, redacted manifest URLs and logo metadata. Writes
+  revalidate authorization after network preparation and compare configuration
+  snapshots, preventing stale reinstalls from resurrecting deleted sources.
+- Paired devices can read redacted metadata with a selected authorized profile;
+  mutations still require account sessions, and parent restrictions remain.
+  Protected cache/flight namespaces cannot reuse legacy or other-account results.
+- Shared JSON egress validates/pins every destination and rejects private/reserved
+  addresses, userinfo and HTTPS downgrades. Addons support up to ten validated
+  public redirects without ambient cookies, Authorization, Referer or automatic
+  original-query copying. Xtream retains its no-redirect policy; HTTP remains
+  supported. Separate install/check and viewing slots protect browsing capacity.
+- Legacy unkeyed saves recheck encryption state transactionally after download.
+  The document limit is stated as a serialized-payload bound, not a guarantee
+  that every wire-size-bounded document has the same serialized size.
+- Full backend suite: 275 passed, four opt-in fixtures skipped; strict Clippy
+  passed. Final focused management fixtures passed. Evidence includes cross-origin
+  redirects, loops/private targets/downgrades, account/device/parent rules, cursor
+  isolation, stale/deleted configs, revoked sessions, cache trust separation,
+  independent browsing slots and late legacy downgrade prevention.
+- These are synthetic backend fixtures, not visual/device acceptance. Client/admin
+  adoption, operator-managed private-network exceptions, child-policy migration,
+  legacy removal and remaining gateway/cutover requirements stay open. No
+  production migration or deployment occurred.
 
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
