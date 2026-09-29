@@ -296,6 +296,32 @@ This is an execution checklist, not a completion claim. User decisions are in
   Those and the other unchecked migration/cutover items remain open. No production
   migration, device playback or deployment occurred.
 
+## Addon secret storage checkpoint — 2026-09-29
+
+- Backend `ae2ce5b` encrypts addon URLs and complete manifests with account/ID/
+  purpose binding. Configured-key installations and encrypted reinstalls use the
+  protected store; settings redact URLs. Legacy conversion requires the separate
+  backup-first operation, and protected accounts cannot downgrade new writes by
+  removing keys or deleting every addon. New encrypted IDs are not reused.
+- Small configuration revisions avoid hashing large encrypted manifests on
+  playback checks. The addon payload bound preserves the prior manifest size
+  allowance without widening normal gateway/provider secret limits. V2 source
+  publication and polling recheck addon ownership/enabled state after revocation.
+- Offline inspect/apply/encrypt-addon commands preserve IDs and require complete
+  reviewed maps for unassigned records; initialization no longer assigns secrets
+  to the first owner-role account. Private backup/export precede mutation, and
+  compaction now also rebuilds the derived VOD FTS index to protect rowid-based
+  search consistency. Backups/exports intentionally remain sensitive.
+- Full backend suite: 265 passed, four opt-in fixtures skipped; strict Clippy
+  passed. Final addon-focused fixtures passed too. Evidence covers large manifests,
+  identity/redaction, key/owner/ciphertext failures, no downgrade, network install,
+  late/cached revocation, explicit ownership, rollback, executable gates, private
+  artifacts, preserved history and post-compaction search rebuild.
+- This does not finish protected addon transport, guarded v2 management/client
+  adoption, bulk rotation or legacy removal. Unmigrated compatibility writes still
+  exist until cutover. No production database or deployment was touched; encrypted
+  storage is not a claim of whole-database encryption or complete platform parity.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
