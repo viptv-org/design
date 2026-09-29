@@ -114,6 +114,26 @@ This is an execution checklist, not a completion claim. User decisions are in
   discovery isolation, client adoption, gateway integration and final rollback
   qualification remain. No production migration, read or deployment occurred.
 
+## Encrypted gateway configuration checkpoint — 2026-09-29
+
+- Backend gateway configuration is account-owned, with explicit additional
+  grants and no implicit public/family default. Recipient and operator roles
+  cannot edit another account's private connection.
+- Integration keys are saved in authenticated encryption envelopes bound to
+  owner/purpose/record/key ID. An operator-supplied keyring is required; missing,
+  incorrect and retired keys fail closed rather than falling back to plaintext.
+- HTTPS endpoint/key/scope checks precede persistence. DNS destinations are
+  validated and pinned; redirects, inherited proxies and oversized responses
+  are rejected. Concurrent checks are bounded and API responses are no-store.
+- Backend default suite: 224 passed, three opt-in fixtures skipped; strict Clippy
+  passed. The new executable interoperability fixture separately passed against
+  the independent gateway. Its capability API now reports operation scopes;
+  the gateway default suite remains at 86 passing tests.
+- This does not complete gateway playback selection/affinity/session forwarding,
+  provider/addon credential migration, private-network operator policy, bulk
+  re-encryption or legacy playback removal. No production secrets were provisioned
+  and no deployment occurred.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
