@@ -31,6 +31,20 @@ This is an execution checklist, not a completion claim. User decisions are in
   was 0.12 ms versus 145.66 ms in the local Python/SQLite harness. This is not
   a production end-to-end measurement. Backend docs record reproduction.
 
+## Credential boundary checkpoint — 2026-09-29
+
+- Gateway control has bootstrap-authenticated HTTP key issuance/list/revocation
+  routes and per-viewer media capability validation. Rotation, lease expiry and
+  key revocation deny subsequent authorization without waiting for cleanup.
+- Shared-job failure transitions use safe public codes and retain quota
+  reservations until worker teardown. Control tests: 15 passing; extracted
+  engine default suite: 64 passing, 16 opt-in tests excluded from that count.
+- Media routing and workers are still not connected; these checks do not prove
+  end-to-end playback, shared upstream counts or readiness for deployment.
+- Two opt-in tests additionally passed with installed FFmpeg/ffprobe: real
+  remux/transcode/cleanup and rejection of nested local segments/AES keys. This
+  is engine evidence only, not verification of the new gateway media routes.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
