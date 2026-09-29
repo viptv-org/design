@@ -375,6 +375,25 @@ This is an execution checklist, not a completion claim. User decisions are in
   remaining gateway/network/cutover gates. Legacy live/playback routes are
   explicitly temporary. No production migration or deployment occurred.
 
+## Independent-gateway player preparation — 2026-09-29
+
+- Video `75d533a`, adopted by TV-web `a701fe5`, separates delivery kind from
+  processing mode and permits backend-authorized gateway fallback for native
+  direct-capable clients. Gateway processing `direct` no longer implies an
+  original-file timeline. Native HTTP direct inputs remain supported.
+- Fetch-managed media/HLS supports a selected independent HTTPS origin/base path,
+  fences dependent resources to its session directory, rejects redirects, and
+  omits Authorization/cookies/Referer. Native HTML HLS remains browser-owned;
+  gateway-side URL validation/rewriting and physical TV qualification are still
+  required. This is not a claim of JS interception of native-HLS resources.
+- Video: 103 tests, typecheck and build passed. Real Chromium decoded generated
+  640x360 HLS across two trusted loopback HTTPS origins, including child playlist
+  and segments. Seven observed requests were credential-free; Range survived,
+  and a refused redirect never reached its target. No provider was contacted.
+- TV-web: 223 tests, build and two HTTPS discovery regressions passed after pin
+  adoption. Full v2 playback envelope/start/status/renew/release adoption is still
+  pending, as are the remaining live/admin/gateway/cutover checklist requirements.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
