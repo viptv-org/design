@@ -462,6 +462,21 @@ This is an execution checklist, not a completion claim. User decisions are in
   decoding or device acceptance. Backend profile preference resolution, active
   client lifecycle ownership and the remaining original checklist stay open.
 
+## Backend profile defaults for v2 playback — 2026-09-29
+
+- Backend `e6b12df` snapshots the authenticated selected profile's audio and
+  enabled subtitle languages for new admissions, with explicit overrides and
+  subtitle-off/track precedence. Reads revalidate the lease off the async runtime.
+- Idempotency remains based on the caller's body: changing saved preferences
+  does not alter an existing playback or break its retry; a new request uses
+  updated defaults. The legacy profile quality cap is not applied to v2.
+- Full backend suite: 278 passed, four opt-in fixtures ignored; strict Clippy
+  passed. The new fixture covers native metadata, managed output defaults,
+  overrides, subtitle-off, stable retries and unchanged 2160p decoder facts.
+- Ordinary player activation, active renewal/background recovery, other clients,
+  raw live migration and all remaining original checklist gates are still open.
+  No production migration, deployment or hardware qualification occurred.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
