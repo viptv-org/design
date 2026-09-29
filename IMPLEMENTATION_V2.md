@@ -394,6 +394,23 @@ This is an execution checklist, not a completion claim. User decisions are in
   adoption. Full v2 playback envelope/start/status/renew/release adoption is still
   pending, as are the remaining live/admin/gateway/cutover checklist requirements.
 
+## Shared v2 playback lease contract — 2026-09-29
+
+- Core `f48f983` adds generated lease/request/client types and closed platform,
+  delivery-kind and lifecycle-status enums. Pending/terminal states never expose
+  a session URL; ready gateway delivery requires HTTPS and excludes credential
+  headers. Native direct HTTP delivery preserves validated source headers.
+- Canonical v2 start/status/heartbeat/stop serialization preserves real 4K
+  capability facts. Unknown legacy options are rejected rather than silently
+  dropped. Expiry is normalized to Unix milliseconds; renewal remains seconds.
+- Core: 57 native tests, strict Clippy, generated native/WASM builds and actual
+  WASM contracts passed. Android `773a820` and TV-web `03435ee` pin the same core.
+  Android host/unit/three-ABI/APK checks passed, with a JNI/generated-Kotlin lease
+  decoding fixture. TV-web passed 223 tests, build and two HTTPS discovery checks.
+- This is protocol adoption, not activated v2 playback. The start/poll/renew/
+  release client loops, conversion and track-preference parity, raw live migration
+  and all other remaining checklist gates stay open. No production work occurred.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
