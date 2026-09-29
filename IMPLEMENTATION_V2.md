@@ -583,6 +583,36 @@ This is an execution checklist, not a completion claim. User decisions are in
   redirect/4K/tracks, legacy cleanup, admin and all other original gates remain
   open. This does not complete the all-client or integration checklist items.
 
+## Exact live source and shared cursor preparation — 2026-09-29
+
+- Backend `4d7fadb` adds exact selected-channel source resolution without addon
+  fan-out or a discovery job. Opaque cards expose no media authority. Ownership,
+  enabled live scope, parent policy and credential proof are rechecked; old URLs
+  cannot acquire a newer credential fingerprint. Native direct v2 admission/
+  release from that exact source passed with synthetic HTTP input.
+- Raw catalog pages now support profile-owned favorites/recent subsets of the
+  selected/default provider, retaining provider order. Personal cursors bind the
+  authenticated selected profile; foreign/default/override/composite isolation,
+  no caller profile override, bounds and no total counter pass route fixtures.
+  Backend: 281 tests passed/four opt-in ignored; strict Clippy passed.
+- Core `b75393e` generates raw live/category pages and canonical cursor/source/
+  guide requests without legacy offset/US/family filters or fabricated totals.
+  Provider order/HTTP logos survive. Opaque source parsing rejects URL/header
+  authority. All 63 native tests, strict Clippy, generated Kotlin/native/WASM and
+  actual WASM contracts passed. No production state was accessed or changed.
+- TV-web `bf92331` and Android `7f2652a` pin that same core and expose tested
+  explicit transports. TV-web: 250 tests/typechecks/build plus 32 trusted-HTTPS
+  browser regressions passed. Android: 137 tests, a fresh 108-app-test rerun,
+  three ABIs, APK and lint passed. Bodyless native POST support was fixed.
+- The first Android JVM run aborted with native RustBuffer assertions/SIGSEGV.
+  The same library's C ABI check and later JVM runs did not reproduce it; its
+  cause is unresolved and its crash record stays private. Passing reruns do not
+  close native stress/device qualification. No installation or deploy occurred.
+- Ordinary Guide/Home/SolidTV live callers still use legacy paging/playback.
+  This is transport preparation, not a completed cursor/lease cutover. Default
+  playlist swap UI stays deferred. Roku, quality/local-only/embedded-engine and
+  advanced-policy removal, admin, integration and all original gates remain open.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
