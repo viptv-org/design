@@ -447,6 +447,21 @@ This is an execution checklist, not a completion claim. User decisions are in
   activation, fresh gateway packaging and the rest of the checklist remain open.
   No production or provider traffic was involved.
 
+## Shared player-option mapping — 2026-09-29
+
+- Core `4418f1d` generates conversion/track preference fields and implements
+  playbackV2Intent, mapping measured player facts and options into the canonical
+  request. It preserves 4K dimensions, omits profile quality caps, maps scoped
+  audio/video conversion, and resolves explicit subtitle-off without contradictory
+  track preferences. Direct response language metadata remains bounded.
+- Core: 59 tests, strict Clippy, native/WASM builds and WASM contracts passed.
+  TV-web `36b6278` and Android `08c9eea` pin the same core. TV-web passed 235 tests,
+  build/typechecks and two HTTPS discovery regressions. Android passed host/unit,
+  three-ABI and APK checks with an actual JNI/generated-type mapping fixture.
+- These API/native bridge checks are not ordinary player activation, real gateway
+  decoding or device acceptance. Backend profile preference resolution, active
+  client lifecycle ownership and the remaining original checklist stay open.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
