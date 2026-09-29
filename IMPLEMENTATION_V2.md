@@ -197,6 +197,29 @@ This is an execution checklist, not a completion claim. User decisions are in
   global discovery is not claimed to have the v2 isolation guarantees. No deploy
   or production migration occurred; the full Xtream checklist remains open.
 
+## Provider credential migration checkpoint — 2026-09-29
+
+- Backend `423484d` adds an encrypted Xtream tuple reader and an explicit offline
+  `provider-owners encrypt` command. The operator keyring seals URL/username/
+  password with account/provider/purpose binding. An explicit format marker
+  prevents a missing ciphertext record from becoming a plaintext fallback.
+- Private SQLite backup and advanced export are durable before transactional
+  encryption. Source identities/history/manual matches remain; credential-bearing
+  detail caches are invalidated. WAL checkpoint/compaction runs after commit;
+  cleanup failure explicitly reports that encryption has already committed.
+- Full backend suite: 242 passed, four opt-in fixtures skipped; strict Clippy
+  passed. Final focused encryption fixtures also passed. Evidence covers rollback
+  after a later invalid provider, preserved backups/history, no fixture plaintext
+  in compacted DB/WAL, key/owner failures, restart schema/reader behavior, HTTP
+  identity preservation, direct admission and CLI confirmation/keyring gates.
+- Legacy connection mutation/pool paths reject migrated providers. Migrated
+  native admission no longer uses cross-provider pool policy. Legacy family
+  matcher snapshot schema was updated to avoid regressing unmigrated providers.
+- This is not production-approved: backups/exports still contain plaintext;
+  external copies and storage remnants are not securely erased. New connection
+  CRUD, addon encryption, bulk rotation, child policy, client adoption and retired
+  module removal remain open. No production data was read, migrated or deployed.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
