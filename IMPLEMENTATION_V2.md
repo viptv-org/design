@@ -523,6 +523,41 @@ This is an execution checklist, not a completion claim. User decisions are in
   emulator/codec/PiP qualification, Roku, raw catalogs and all other remaining
   original gates stay open. This host evidence is not device acceptance.
 
+## Native direct headers and desktop promotion — 2026-09-29
+
+- Video `058bfb1` preserves all required original-source headers through Tauri,
+  rejects invalid/conflicting credentials before replacing active native media,
+  and explicitly refuses unsupported header transports. Direct transport/header
+  refusal may request gateway proxy output once, without forcing encoding.
+- Native plugin `c7e4aa6` validates requests and emits safe typed authorization,
+  connection and missing-source errors rather than raw engine/debug strings.
+  Linux real header-required HTTP MP4 decode/seek and HTTP401 refusal passed;
+  all 13 native tests/strict Clippy and 31 JS tests/build passed. Windows mirrors
+  the classification but was not built/run on Windows.
+- TV-web `6ede3ca` pins the player and passes 244 tests/typechecks/build, 32
+  trusted-HTTPS browser cases and SolidTV Home/player simulations. Five initial
+  preview-fixture cases used the wrong API origin; the corrected local-origin
+  rerun passed. Capture inspected privately; no screenshot/physical parity claim.
+- Desktop `5812aad` pins that UI plus matching core/native revisions. Linux
+  cargo check and five shell tests passed; one existing real-device test ignored.
+  Installed surface, Windows installers, 4K/track/device evidence and remaining
+  original gates are open. No production work occurred.
+
+## Android same-source delivery recovery — 2026-09-29
+
+- Android `0da5c80` applies the authorized same-source direct/gateway/conversion
+  ladder to initial open and active decoder refusal. Conversion only follows
+  decoder failure; control refusals and HTTP access/limit/missing-source causes
+  do not trigger it. Source/position/tracks stay fixed; successful delivery intent
+  survives seek/pause/track replacements and resets for a new source.
+- Failed admitted media releases before retry under a separate five-second bound.
+  Cancellation/stale generations cannot advance the ladder. Nine new pure,
+  coroutine and native-core/HTTP fixtures passed; full host suites: 132 passed,
+  no failures/skips. Three ABIs, debug APK and lint passed with existing warnings/
+  baseline findings. The APK was not installed, published or deployed.
+- Live, Roku, raw catalogs, emulator/codec/PiP and real managed native playback,
+  quality/local-only cleanup, admin and all other original gates remain open.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
