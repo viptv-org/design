@@ -249,6 +249,31 @@ This is an execution checklist, not a completion claim. User decisions are in
   client/admin cutover remain open. The Xtream checklist item is not complete.
   No production migration or deployment occurred.
 
+## Background catalog refresh checkpoint — 2026-09-29
+
+- Backend `8ec2a6c` queues initial encrypted-connection imports transactionally
+  and exposes account-owned refresh status/retry/cancel controls. Connection
+  records include refresh state. Successful runs repeat after six hours; failures
+  retry after five minutes while the prior snapshot remains available.
+- Durable claims are bounded to two running catalogs and favor another waiting
+  account. Runs are configuration-owned rather than browser-session-owned, with
+  account/ownership/configuration revalidation, unique run tokens, 120-second
+  deadlines and stale-claim recovery after 125 seconds. Missing keyrings fail
+  explicitly instead of leaving indefinitely queued work.
+- Protected login and sequential bounded index fetches precede atomic catalog,
+  generation and success-status publication. Valid authenticated empty catalogs
+  remain valid raw replacements. Cancellation/configuration changes and dropped
+  workers invalidate late publication. Legacy refresh rejects encrypted sources.
+- Full backend suite: 252 passed, four opt-in fixtures skipped; strict Clippy
+  passed. Final focused refresh fixtures passed too. Synthetic HTTP tests cover
+  initial import, failed refresh retaining the previous snapshot, successful empty
+  replacement preserving favorites, in-flight cancellation, expired-token recovery,
+  changed configuration, claim bounds/account fairness and missing keyrings.
+- This is backend fixture evidence, not deployed/browser/native validation.
+  Addon encryption, child-policy migration, detailed playback error parity,
+  admin/client adoption, legacy removal and remaining gateway/cutover gates are
+  still unfinished. No production provider, migration or deployment was used.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
