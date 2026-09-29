@@ -558,6 +558,31 @@ This is an execution checklist, not a completion claim. User decisions are in
 - Live, Roku, raw catalogs, emulator/codec/PiP and real managed native playback,
   quality/local-only cleanup, admin and all other original gates remain open.
 
+## Roku VOD leases and managed timeline — 2026-09-29
+
+- Roku `3438995` migrates movie/exact-episode discovery and playback to v2.
+  Device facts retain 2160p declarations; gateway delivery is mandatory, with
+  no native original-URL attempt if authorization is absent. Startup/polling,
+  cancellation and identical-body reconciliation have independent bounds.
+- V2 controls stay on the configured HTTPS backend. Active/paused/seek/Next
+  admissions retain individual logical leases. Definite refusal/expiry stops
+  media; network retries cannot extend the deadline, and late heartbeats cannot
+  recreate released entries. Gateway processing direct stays a managed timeline.
+- Managed Pause freezes title time; Resume replaces at that anchor rather than
+  continuing a stale HLS window. Partial discovery retains healthy sources and
+  safe causes. Viewing geometry/account/profile/history semantics are unchanged.
+- All 31 runtime harnesses, seven static scripts, standalone v2 contract,
+  BrighterScript 0.73.1 compile/staging and design/migration integrity passed.
+  Two ZIP candidates were built, not installed. HTTP/device/SceneGraph boundaries
+  are fixtures; the older broad schema simulator could not run with missing
+  native registry/filesystem types and is not counted as passing evidence.
+- Four existing extraction-inventory mismatches were traced to committed
+  `8e24931` font/artwork/error changes and documented without changing those
+  runtime bytes. Original extraction hashes remain. No production work occurred.
+- Raw live catalogs/playback, real backend/gateway/device media, background/TLS/
+  redirect/4K/tracks, legacy cleanup, admin and all other original gates remain
+  open. This does not complete the all-client or integration checklist items.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
