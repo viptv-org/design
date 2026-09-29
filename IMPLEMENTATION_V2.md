@@ -477,6 +477,32 @@ This is an execution checklist, not a completion claim. User decisions are in
   raw live migration and all remaining original checklist gates are still open.
   No production migration, deployment or hardware qualification occurred.
 
+## Active viewing-client VOD cutover — 2026-09-29
+
+- TV-web `64e8b9f` activates normal movie/exact-episode playback through v2 in
+  both React and SolidTV. Platform facts, conversion and track options use the
+  shared mapper; active leases renew, expire, and revalidate on foreground return.
+  Refusal stops media; retries cannot reset expiry, and late renewals cannot
+  restore a released cache entry. Old VOD responses fail instead of bypassing v2.
+- Video `f4218cb` adds operation-scoped admission cancellation, generation-safe
+  stop acknowledgements and one authorized proxy attempt for failed direct media
+  transport without forcing encoding. Backend `0969694` applies browser HTTP/
+  header restrictions to webOS HTML delivery as well as ordinary web playback.
+- TV-web: 243 tests/build/typechecks passed. Video: 106 tests/build passed.
+  Backend: 278 tests/strict Clippy passed. Twenty-seven trusted HTTPS app cases
+  passed using synthetic API/decoder boundaries, including failed Next/Resume,
+  foreground revocation, Back/Forward, remote controls and queue behavior.
+- SolidTV Home playback/release/failure/retry passed in browser simulations for
+  Tizen, Vizio and webOS, with platform and v2 release assertions. The required
+  canvas TvPlayer resume/seek capture passed and was inspected privately. No
+  physical-TV, full visual-parity or production qualification is claimed.
+- Live still uses the explicitly tracked legacy path. Android/Roku playback,
+  installed desktop/custom-header and track parity, raw catalogs, quality/local-
+  only control removal, admin work and remaining gateway/cutover gates stay open.
+  In particular, the native desktop adapter still needs auditing beyond its
+  Cookie/User-Agent forwarding; this checkpoint does not certify arbitrary source
+  headers on installed desktop players. No production changes occurred.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
