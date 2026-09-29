@@ -274,6 +274,28 @@ This is an execution checklist, not a completion claim. User decisions are in
   admin/client adoption, legacy removal and remaining gateway/cutover gates are
   still unfinished. No production provider, migration or deployment was used.
 
+## Discovery error contract checkpoint — 2026-09-29
+
+- Backend `2762f08` gives v2 producer failures readable `error` and stable
+  `error_code` fields while retaining healthy sources. Guides preserve known
+  provider/storage/key classifications, and discovery JSON/query/job rejections
+  have structured responses. Unknown diagnostics are replaced with closed copy.
+- Provider classification is shared by registration, refresh and discovery.
+  Addon access/rate/timeout/protocol failures remain addon-specific; malformed
+  successful addon payloads no longer silently become empty source lists.
+  API 429 is not guessed to mean an IPTV stream connection limit.
+- Request/body timeout predicates avoid formatting credential-bearing HTTP
+  client errors. Interrupted bodies remain distinct from timeouts. Unsupported
+  source registration has its own code, including when other sources are usable.
+- Full backend suite: 257 passed, four opt-in fixtures skipped; strict Clippy
+  passed. Synthetic fixtures cover 401/429/503, invalid JSON/success shapes,
+  healthy-provider preservation, guide parity, addon failures, malformed discovery
+  requests/queries, missing jobs, secret-redaction fallbacks and socket deadlines.
+- This does not prove client presentation, native decoder errors, gateway media
+  error classification or consistency of every remaining endpoint/extractor.
+  Those and the other unchecked migration/cutover items remain open. No production
+  migration, device playback or deployment occurred.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
