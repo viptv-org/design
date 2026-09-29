@@ -175,6 +175,28 @@ This is an execution checklist, not a completion claim. User decisions are in
   client adoption remain open. This does not complete the Xtream checklist item.
   No production database, provider subscription or deployment was used.
 
+## Owned IPTV discovery checkpoint — 2026-09-29
+
+- Backend `228b244` adds v2 incremental source-discovery start/poll routes and
+  owned raw-channel Xtream guide reads. Candidate SQL filters account ownership;
+  all enabled owned providers participate independently of the live default.
+- Ownership and credential freshness are checked before queued detail requests,
+  with ownership checks on cache access, enrichment and late publication. Polls
+  redact a revoked provider's cached event without changing sequence positions.
+  Raw scoped live reads bypass retired family-lineup mappings.
+- Full backend suite: 239 passed, four opt-in fixtures skipped; strict all-target
+  Clippy passed. The live-source fixture was additionally expanded and passed.
+  Synthetic HTTP fixtures verify three-provider movie/exact-episode resolution,
+  no requests to foreign/unassigned providers, cross-account job denial, sparse
+  limits, revocation during fetch, cached-result redaction and owned guide reads.
+- Source cards contain opaque backend IDs rather than provider credentials;
+  internal HTTP live/episode URLs are preserved. No production provider was used.
+  V2 currently uses polling, and restricted profiles require parent unlock.
+- Connection CRUD/encryption, child-policy migration, detailed upstream errors,
+  client cutover and legacy route removal are still incomplete. Existing legacy
+  global discovery is not claimed to have the v2 isolation guarantees. No deploy
+  or production migration occurred; the full Xtream checklist remains open.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
