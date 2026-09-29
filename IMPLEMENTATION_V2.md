@@ -154,6 +154,27 @@ This is an execution checklist, not a completion claim. User decisions are in
   encryption, preference/transport parity, restart/stress qualification, gateway
   multi-output accounting and removal of legacy modules remain unfinished.
 
+## Account live-catalog paging checkpoint — 2026-09-29
+
+- Backend `e4cae75` adds account-scoped v2 live channel/category pages, using the
+  persisted default or an explicit per-request catalog override. Unowned,
+  disabled and absent catalogs do not fall back to another account's provider.
+- Additive snapshot storage preserves provider stream/category order and logos,
+  including HTTP logos. Catalog replacement and generation changes are atomic;
+  failed refreshes retain the previous snapshot. Historical rows use insertion
+  order until refresh because their original category order was not stored.
+- Pages return at most 200 items (default 50), without a full count. Tokens bind
+  account, filters, route, resolved catalog and generation; refresh/default
+  changes require a restart instead of silently mixing snapshots.
+- Full backend suite: 235 passed, four opt-in fixtures skipped; strict all-target
+  Clippy passed. Fixtures cover complete 235-channel traversal, tenant isolation,
+  defaults/overrides, original logos, bounds, snapshot invalidation and rollback.
+- Paired devices can browse with a selected profile; restricted profiles still
+  require parent unlock for raw catalogs. Child-policy migration, source/guide
+  integration, owned connection CRUD/encryption, multi-provider VOD discovery and
+  client adoption remain open. This does not complete the Xtream checklist item.
+  No production database, provider subscription or deployment was used.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
