@@ -349,6 +349,32 @@ This is an execution checklist, not a completion claim. User decisions are in
   legacy removal and remaining gateway/cutover requirements stay open. No
   production migration or deployment occurred.
 
+## Viewing-client VOD discovery checkpoint — 2026-09-29
+
+- Core `4817b07` adds explicit v2 discovery request operations and generated
+  Kotlin/TypeScript poll state retaining bounded, safe producer errors. Native
+  bindings and WASM were regenerated; 52 workspace tests, strict Clippy and the
+  actual WASM contract suite passed.
+- TV-web `c431051` and Android `ad8c94d` pin that same revision and use v2 for
+  movies/exact episodes. Empty failed jobs report actionable messages; partial
+  success retains healthy sources. TV-web retries discard failed discovery jobs
+  and HTTP failures no longer masquerade as backend connectivity outages.
+- Backend `abc0de2` preserves approved children's VOD policy on v2 endpoints,
+  sanitizes untrusted discovery hints and rejects invalidated policy scopes.
+  Raw live/guide still require parent authorization. Backend suite: 276 passed,
+  four opt-in fixtures ignored, strict Clippy passed.
+- TV-web: 223 unit tests and production build passed. Two trusted local-HTTPS
+  Chromium fixtures prove visible safe connection-limit errors, fresh retry and
+  healthy partial results. API/artwork were synthetic, external traffic blocked;
+  this is not real-provider, decoder or hardware acceptance.
+- Android: JDK 17 host native preparation, both unit suites, all three Android
+  ABIs and debug APK assembly passed. Native HTTP fixtures include safe empty
+  failure and healthy partial results. No emulator or physical-device claim.
+- Work remains on v2 playback lifecycles/gateway URLs, raw live paging and child
+  live policy, admin/client management, quality/local-only removal and the
+  remaining gateway/network/cutover gates. Legacy live/playback routes are
+  explicitly temporary. No production migration or deployment occurred.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
