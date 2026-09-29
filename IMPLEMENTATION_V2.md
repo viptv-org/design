@@ -134,6 +134,26 @@ This is an execution checklist, not a completion claim. User decisions are in
   re-encryption or legacy playback removal. No production secrets were provisioned
   and no deployment occurred.
 
+## Backend playback forwarding checkpoint — 2026-09-29
+
+- /api/v2/playback now owns scoped asynchronous startup, status, heartbeat and
+  release. It consumes only backend-issued source IDs, rechecks source ownership/
+  configuration and returns direct or gateway delivery without backend media relay.
+- Roku/Vizio cannot bypass required gateway delivery. Other eligible native
+  clients can use direct delivery. Account-authorized active affinity precedes
+  healthy priority/capacity selection; the gateway reports per-key capacity hints.
+- Tests cover source changes, no private/family fallback, explicit grant
+  revocation, independent viewer release, stale/foreign media URL rejection,
+  actionable failures, idempotency and release of a late viewer after cancellation.
+- Backend default suite: 230 passed, four opt-in fixtures skipped; strict Clippy
+  passed. Gateway default suite remains 86 passing. An isolated network-none
+  container fixture passed real FFmpeg HLS playback, renewal and revocation via
+  the backend and independent gateway while the backend engine stayed idle.
+- A fresh gateway image f215fa924b8f was built for that fixture. It is not deployed.
+  Clients still use legacy paths; account-owned discovery/catalogs, provider/addon
+  encryption, preference/transport parity, restart/stress qualification, gateway
+  multi-output accounting and removal of legacy modules remain unfinished.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
