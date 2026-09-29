@@ -45,6 +45,19 @@ This is an execution checklist, not a completion claim. User decisions are in
   remux/transcode/cleanup and rejection of nested local segments/AES keys. This
   is engine evidence only, not verification of the new gateway media routes.
 
+## Engine boundary checkpoint — 2026-09-29
+
+- Extracted gateway engine no longer hands upstream URLs/credentials to native
+  clients; backend direct playback remains the product-owned decision.
+- Removed remaining original-delivery dimension clamps, with declared-envelope
+  4K/8K tests. Existing codec/decoder checks remain in place.
+- Media subprocesses clear inherited proxy variables. A real FFmpeg/ffprobe
+  fixture verifies explicit proxy use for root/redirect/segment/key requests and
+  rejects raw TCP/TLS segment bypasses. Real remux/transcode/cleanup passes too.
+- Default workspace suite: 65 engine tests and 15 control tests passing;
+  17 opt-in tests are excluded from that default count. Certificate/hostname
+  validation, media routing and actual worker sharing are still acceptance gaps.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
