@@ -220,6 +220,35 @@ This is an execution checklist, not a completion claim. User decisions are in
   CRUD, addon encryption, bulk rotation, child policy, client adoption and retired
   module removal remain open. No production data was read, migrated or deployed.
 
+## Xtream connection management checkpoint — 2026-09-29
+
+- Backend `7ccfbde` adds account-owned connection create/list/patch/delete and
+  password renewal. Login validation precedes encrypted persistence; password
+  renewal compares the prior ciphertext and preserves catalog identity. Server/
+  login identity changes require a separate connection rather than guessed remaps.
+- Connection pages are bounded and account-cursor scoped. Default assignment and
+  fallback are transactional, and duplicate detection is account-local. Legacy
+  plaintext rows require reviewed migration before v2 mutation. New registration
+  is capped at 64 owned connections; larger existing sets remain readable.
+- Scoped/encrypted Xtream fetches support HTTP and HTTPS with public destination
+  validation, fresh DNS pinning, bounded responses/timeouts and no redirects or
+  inherited proxies. Explicit test-only loopback access is not a production
+  private-network policy. Reported native connection limits do not manufacture
+  a one-stream allowance when the provider omits that information.
+- Encrypted connections also seal cached Xtream detail/EPG payloads, which can
+  contain upstream credentials. Missing or invalid encrypted cache entries do
+  not become plaintext fallbacks. Deletion removes idle admission bookkeeping
+  while existing permits retain their lifetime until playback cleanup.
+- Full backend suite: 247 passed, four opt-in fixtures skipped; strict Clippy
+  passed. Final management fixtures also passed, covering defaults, duplicates,
+  account/device isolation, secret redaction, rejected login/redirect/rate/size
+  responses, in-flight account revocation, encrypted offline cache reads and
+  deletion while a native permit exists. Fixtures use synthetic HTTP providers.
+- Account-scoped background refresh/initial indexing, addon encryption, private
+  network operator policy, child policy, detailed playback error parity and all
+  client/admin cutover remain open. The Xtream checklist item is not complete.
+  No production migration or deployment occurred.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
