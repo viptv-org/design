@@ -58,6 +58,20 @@ This is an execution checklist, not a completion claim. User decisions are in
   17 opt-in tests are excluded from that default count. Certificate/hostname
   validation, media routing and actual worker sharing are still acceptance gaps.
 
+## Worker integration checkpoint — 2026-09-29
+
+- Engine preparation now returns its own normalized output plan before worker
+  startup, with independent inspection/output capacity and drop-safe admission.
+- The control worker bridge uses that plan directly, shares compatible workers,
+  checks independent viewer credentials for media, and retains quota until
+  cancellation/stop cleanup finishes. Reaping is serialized and bounded.
+- Five-viewer/single-worker and cancelled-start fixtures pass with scripted
+  processes. Default suite: 66 engine tests plus 17 control tests; 17 opt-in
+  engine tests excluded. The real FFmpeg remux/transcode fixture also passes and
+  verifies prepared-plan versus actual response mode/format consistency.
+- Real single-upstream sharing, public session/media routes, service packaging,
+  TLS acceptance and the remaining cross-repository cutover are still pending.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
