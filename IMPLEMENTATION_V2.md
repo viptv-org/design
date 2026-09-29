@@ -6,7 +6,7 @@ This is an execution checklist, not a completion claim. User decisions are in
 - [x] Approved decisions captured; production mutation excluded.
 - [ ] Versioned public contracts and migration fixtures executable.
 - [ ] VOD 10k/100k baseline captured and bounded query implemented.
-- [ ] Independent engine extraction and container build.
+- [x] Independent engine extraction and container build.
 - [ ] Gateway key scopes, jobs, viewer leases and safe media ingress.
 - [ ] Backend HTTP gateway selection/affinity and encrypted secrets.
 - [ ] Account-owned Xtream, default playlist and catalog paging.
@@ -71,6 +71,26 @@ This is an execution checklist, not a completion claim. User decisions are in
   verifies prepared-plan versus actual response mode/format consistency.
 - Real single-upstream sharing, public session/media routes, service packaging,
   TLS acceptance and the remaining cross-repository cutover are still pending.
+
+## Standalone service checkpoint — 2026-09-29
+
+- Generic session/media HTTP API and standalone executable are implemented;
+  control credentials and viewer media capabilities remain independent. Stable
+  idempotent URLs, scoped reads, renewal/release and non-cacheable media pass
+  route tests. Default suite: 86 tests passing; 20 opt-in fixtures excluded.
+- Real plain-HTTP live source: five compatible viewers keep one active upstream
+  connection; a separate namespace gets a distinct input. Viewer release does
+  not stop the other viewers. This also passes with the container's FFmpeg.
+- TLS fixtures accept trusted matching HTTPS media and reject untrusted/wrong-
+  hostname certificates and untrusted HTTPS children of HTTP playlists. Native
+  and container media binaries pass. HTTP provider inputs remain supported.
+- Docker image built and reported healthy under UID 10001, read-only root,
+  dropped capabilities and no-new-privileges. Native service TCP readiness,
+  exclusive storage locking and graceful shutdown were checked.
+- This does not complete gateway acceptance: pending inspection admission,
+  detailed upstream errors, all-format network enforcement, multi-output input
+  sharing and crash containment remain. Backend/client integration and the
+  other unchecked items are still open. No production deployment occurred.
 
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while

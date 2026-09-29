@@ -66,8 +66,11 @@ Remove the 1080p clamp and profile quality cap; retain actual decoder constraint
 
 SSRF protections apply to source/gateway registration, redirects, DNS resolution,
 and every nested playlist resource. Private network access is operator-managed,
-never enabled by arbitrary end-user URLs. HTTPS is required between deployments;
-in-process/loopback fixtures are explicit test exceptions. Media authorization
+never enabled by arbitrary end-user URLs. HTTPS is required on public client /
+backend-to-gateway connections. IPTV provider inputs may use HTTP or HTTPS:
+HTTP-only providers remain supported, and the gateway can deliver their media
+over HTTPS to clients. That does not encrypt the HTTP provider hop. Local
+loopback fixtures are explicit test exceptions. Media authorization
 must cover child playlists, segments, initialization data, subtitles and keys.
 
 VIPTV playback v2 retains a backend playback ID for progress and renewal. Its
