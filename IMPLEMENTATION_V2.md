@@ -503,6 +503,26 @@ This is an execution checklist, not a completion claim. User decisions are in
   Cookie/User-Agent forwarding; this checkpoint does not certify arbitrary source
   headers on installed desktop players. No production changes occurred.
 
+## Active Android VOD cutover — 2026-09-29
+
+- Android `2806204` activates v2 movie/exact-episode playback through native core,
+  with phone/TV facts, bounded startup and independent cancellation cleanup.
+  Lease renewal/expiry now retires playback instead of swallowing every failure;
+  foreground validation respects newer pause intent, preserves title position
+  for recovery and stops stale progress writes. Safe HTTP error codes survive.
+- Gateway delivery no longer trips the old direct-only rejection. Managed output
+  starts at native zero with its title offset even when processing mode is direct;
+  original HTTP URLs keep required headers. Server language/track metadata feeds
+  native options. Copy URL rejects gateway capabilities and releases its lease.
+- JDK 17 host/native preparation, 123 library/app tests (no failures or skips),
+  three Android ABIs and debug APK assembly passed. Eleven new coroutine/JNI
+  cases exercise admission, cancellation, deadlines, renewal, safe failures and
+  managed timeline semantics. Wire fixtures cover platform/header/progress/copy
+  behavior. The APK was not installed or deployed in this pass.
+- Live playback, Android same-source gateway fallback after decoder refusal,
+  emulator/codec/PiP qualification, Roku, raw catalogs and all other remaining
+  original gates stay open. This host evidence is not device acceptance.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
