@@ -5,7 +5,7 @@ This is an execution checklist, not a completion claim. User decisions are in
 
 - [x] Approved decisions captured; production mutation excluded.
 - [ ] Versioned public contracts and migration fixtures executable.
-- [ ] VOD 10k/100k baseline captured and bounded query implemented.
+- [x] VOD 10k/100k baseline captured and bounded query implemented.
 - [x] Independent engine extraction and container build.
 - [ ] Gateway key scopes, jobs, viewer leases and safe media ingress.
 - [ ] Backend HTTP gateway selection/affinity and encrypted secrets.
@@ -91,6 +91,28 @@ This is an execution checklist, not a completion claim. User decisions are in
   detailed upstream errors, all-format network enforcement, multi-output input
   sharing and crash containment remain. Backend/client integration and the
   other unchecked items are still open. No production deployment occurred.
+
+## Backend account-query and migration checkpoint — 2026-09-29
+
+- Startup initializes additive v2 ownership/default/index tables without
+  assigning legacy providers. Account-scoped matches GET/PUT and live-default
+  GET/PUT routes are compiled into the backend. The existing web/viewing
+  consumers have not yet cut over to these endpoints.
+- Router tests verify bounded pages, account-bound cursors, protected edits,
+  default persistence/fallback, no operator-role ownership bypass, and denial of
+  management operations to paired devices or locked kids profiles.
+- A separate provider-owners executable inspects read-only and requires explicit
+  confirmation plus a complete owner map. SQLite online backup and a versioned,
+  streamed private advanced-config export precede transactional assignment.
+  WAL, identity/history/match preservation, rollback on invalid maps, duplicate
+  owner rejection, non-overwrite and no credential output have fixture coverage.
+- Full backend suite: 219 passed, two existing real-media fixtures ignored;
+  strict all-target Clippy passed. Three stale assertions from the earlier
+  playback-error change now check the existing human messages and stable codes.
+- The migration tool currently handles export/ownership, not the entire future
+  encrypted-credential and catalog cutover. Legacy routes/modules, source CRUD/
+  discovery isolation, client adoption, gateway integration and final rollback
+  qualification remain. No production migration, read or deployment occurred.
 
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
