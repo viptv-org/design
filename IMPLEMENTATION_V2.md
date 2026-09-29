@@ -429,6 +429,24 @@ This is an execution checklist, not a completion claim. User decisions are in
   need implementation and integration evidence. All other open checklist gates
   remain open. No real provider, production migration or deployment was involved.
 
+## Gateway conversion and track options — 2026-09-29
+
+- Gateway `dc70c7f` exposes generic auto/audio/video/audio_video conversion plus
+  explicit track and bounded language-preference controls. Its existing inspected
+  planner receives these values; no VIPTV identity or arbitrary execution args
+  enter the gateway contract. Subtitle-off conflicts are rejected explicitly.
+- Backend `58b462f` validates/forwards the choices and requires an authorized
+  gateway for explicit conversion/server-side track changes even on native clients.
+  Native direct preference metadata is separate; 4K decoder dimensions survive.
+  Changed choices conflict with an existing idempotency request as intended.
+- Gateway: 87 tests passed, 20 opt-in fixtures ignored, strict Clippy passed.
+  Backend: 277 tests passed, four opt-in fixtures ignored, strict Clippy passed.
+  Router fixtures prove no-gateway refusal and exact authorized output forwarding.
+- This is schema/forwarding evidence, not new real-codec or hardware acceptance.
+  Shared-core option mapping, profile-preference integration, ordinary player
+  activation, fresh gateway packaging and the rest of the checklist remain open.
+  No production or provider traffic was involved.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
