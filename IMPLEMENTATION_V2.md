@@ -411,6 +411,24 @@ This is an execution checklist, not a completion claim. User decisions are in
   release client loops, conversion and track-preference parity, raw live migration
   and all other remaining checklist gates stay open. No production work occurred.
 
+## V2 playback client transport — 2026-09-29
+
+- TV-web `0893c84` adds explicit canonical v2 start/status/renew/release methods.
+  Startup polling checks identity/expiry under a 45-second deadline. Cancellation
+  releases known admissions; ambiguous network/proxy admissions are reconciled
+  with the identical request id/body then released under a separate five-second
+  cleanup bound. Control traffic never follows the delivery URL.
+- Eleven API-boundary fixtures cover pending/ready, cancellation before/after
+  admission, ambiguous POSTs, definitive refusal, malformed/mismatched responses,
+  expired/failed renewal and startup/cleanup deadlines. Full TV-web suite: 234
+  passed; typechecks/build passed. Two existing HTTPS discovery regressions
+  passed after the build completed; an overlapping pre-completion run failed and
+  is not counted as evidence.
+- The ordinary player path remains unconverted. Capability/track/conversion
+  mapping, active renewal/background recovery and Android/Roku adoption still
+  need implementation and integration evidence. All other open checklist gates
+  remain open. No real provider, production migration or deployment was involved.
+
 Initial audit: playback engine is a local crate; managed job sharing and provider
 reservations still cross the backend boundary. Providers are server-wide while
 add-ons already have account ownership. The VOD matches endpoint materializes
