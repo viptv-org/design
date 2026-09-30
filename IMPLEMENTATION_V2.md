@@ -44,9 +44,9 @@ The earlier populated admin scenarios confirmed two logic gaps: VOD retained
 data grew beyond its twenty-row DOM window, and the provider dropdown omitted
 owned connections beyond its first 200. The separately reviewed bounded-VOD
 slice below now fixes and qualifies these against synthetic data.
-The qualified Linux/SubRip sharing slice is recorded below; other subtitle,
-progressive and unlisted gateway sharing, Android active-media foreground checks,
-physical/signing acceptance and
+The qualified Linux/SubRip sharing and narrow Android foreground/media slices
+are recorded below; other subtitle, progressive and unlisted gateway sharing,
+broader native stress, physical/signing acceptance and
 production cutover are not complete. App PiP is not implemented; its current
 background-stop contract is not a PiP claim. No new scope or production action
 was started to conceal these gaps. All owned QA resources are stopped; fixture
@@ -173,9 +173,54 @@ format, native caption renderer, merge, deployment or public ingress claim.
 Detailed reproduction and limits:
 [SHARED_SUBTITLES.md](https://github.com/viptv-org/playback-gateway/blob/92b8ed55b779ee0a34b97f3cb9d31359554bb50d/docs/SHARED_SUBTITLES.md).
 
-Broader gateway/cutover gates and progressive issue 1 remain open. Android
-foreground work is independently under qualification against AND-041; its host
-checks and isolated fixture readiness alone are not actual-media completion.
+Broader gateway/cutover gates and progressive issue 1 remain open. Android's
+narrow AND-041 qualification is recorded independently below.
+
+## Android foreground/media slice — 2026-09-30
+
+[Android issue 4](https://github.com/viptv-org/android/issues/4) is qualified for
+its narrow source/emulator deliverable in
+[Android PR7](https://github.com/viptv-org/android/pull/7), branch
+`fix/android-foreground-lifecycle` at
+`3a9c57e78083936b75d475c70ccdf24feeb6a8e7` (runtime source `ce0f33b`).
+Design-first AND-041 pin is `9bb130ae80af18d41c411c137c6a515b175a5991`;
+Core8 remains unchanged. AND-036 background-stop, absolute exact-source Resume
+and no silent native gateway/transcode policies remain; no PiP was added.
+
+- Actual backend token rotation reproduced canceled foreground validation losing
+  an accepted grant. Session-owned bounded single-flight refresh fixes the same
+  phone/TV native loop: confirmed profile/Home/Resume retained, one rotation and
+  no new pairing. Rejected refresh clears protected presentation to sign-in.
+- API36 x86_64 phone/TV decoded actual required-header gateway-produced finite
+  H264/AAC provider bytes from Resume20. Source26.280/app26 and source24.480/app24
+  agree on the absolute120second timeline. Actual heartbeat/progress passed;
+  HOME/STOPPED released each exact backend lease (DELETE200), left no app codec
+  clients and retained matching-source progress. This is a normal direct backend
+  descriptor, not native-managed gateway control or a finite gateway contract.
+- The dispatch-proven held-refresh profile-choice failure was fixture connection
+  framing, not lost intent. After removing all QA-only client-header/debug
+  changes, the ordinary shell passed against explicit-close helper `7ea0c60`:
+  actual profile4 POST200/Home followed by profile2 POST200/Home, exactly one
+  rotation and no extra pairing. Private visual captures were inspected; no
+  pixel-parity or physical-device proof is implied.
+- 174 host tests, Core host/three ABI builds, Core/design integrity, normal APK
+  assembly and lint passed (existing baseline retained). Independent Standards
+  and Spec review found zero outstanding findings. Normal development-signed APK
+  SHA256 `44e2e436494f92003b973ef6f492f3b55801900718b3809f4fdf6efecd41056e`
+  has system-only trust and no fixture CA; QA artifacts are not deliverables.
+
+All dedicated emulators/backend fixtures are stopped. The separate gateway's
+old viewer lookup was404, idempotent DELETE204, reservations2/2/2 available,
+no FFmpeg child and no media-cache files before exact test-container removal.
+Private evidence remains outside Git; the original eight Android changes and
+shared HTTPS runtime are untouched. Detailed limits/reproduction are in
+Android's `qualification/FOREGROUND_ACCEPTANCE.md` and
+[backend PR6](https://github.com/viptv-org/backend/pull/6).
+
+Broader Android/native stress, ARM/physical, HDR/DRM, native opening-cancel and
+decoder-failure device stress, Tizen signing/hardware, integration/rollback and
+production rollout gates remain open. No broad checkbox, merge or deployment
+completion follows from this narrow qualification.
 
 ## Foundation checkpoint — 2026-09-29
 
