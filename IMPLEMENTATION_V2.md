@@ -4,15 +4,15 @@ This is an execution checklist, not a completion claim. User decisions are in
 [BACKEND_V2.md](BACKEND_V2.md) and [ADMIN_V2.md](ADMIN_V2.md).
 
 - [x] Approved decisions captured; production mutation excluded.
-- [ ] Versioned public contracts and migration fixtures executable.
+- [x] Versioned public contracts and migration fixtures executable (source/fixture acceptance).
 - [x] VOD 10k/100k baseline captured and bounded query implemented.
 - [x] Independent engine extraction and container build.
 - [ ] Gateway key scopes, jobs, viewer leases and safe media ingress.
 - [x] Backend HTTP gateway selection/affinity and encrypted secrets (development fixtures).
 - [x] Account-owned Xtream, default playlist and catalog paging (backend fixtures).
 - [x] Advanced configuration export and reviewed offline migration tool.
-- [ ] Local-only and embedded engine paths removed after cutover tests.
-- [ ] Maximum-quality feature removed; actual device limits retained.
+- [x] Local-only and embedded engine implementation paths removed after source cutover tests.
+- [x] Maximum-quality feature removed; actual device limits retained.
 - [ ] Admin website rebuilt; VOD matching stays available and bounded.
 - [ ] All client logic/contracts updated with unchanged viewing layouts.
 - [ ] Cross-repository integration, browser/native checks and packages.
@@ -27,10 +27,10 @@ unchecked deliberately.
 
 | Repository / reviewed revision | Implemented and checked | Still incomplete |
 |---|---|---|
-| Backend `b8bd04f` | Embedded engine/advanced workers and packaging removed; strict encrypted-only runtime reads, private source-header guards; 210 tests/strict Clippy, executable backup/export/retire/refusal/retry and real post-commit WAL-cleanup recovery; full image `205a70a` HTTP + sixteen trusted-browser groups and exact gateway212af real-media lifecycle | Coordinated rollback-image rehearsal and final populated browser/provider/native integration; production migration/deployment excluded |
+| Backend `27a0296` (docs `8eafe14`) | Retired engine/advanced runtime and packaging removed; strict encrypted reads/private headers; 213 tests/Clippy, executable migration/retirement and post-commit WAL-cleanup recovery; live/VOD encoders never emit over-bound tokens and preserve raw IDs; full image `5b5900c8` passed seven HTTP + sixteen trusted-browser groups and gateway212af real-media lifecycle | Coordinated rollback-image rehearsal and final populated browser/provider/native integration; production migration/deployment excluded |
 | Core `8ae9f81` (docs `a611d56`) | Retired application provider/add-on bridge and feature removed; standalone parser retained; 64 tests, generated native/WASM, 35 baseline/candidate parity cases; frozen v2 JSON/events byte-identical | Physical-device/native stress and remaining consumer integration evidence |
-| Android handoff `75bbacf` (docs `fede026`) | Raw guide/controller category paging and v2 leases; 158 local host tests, three ABIs, normal APK, hosted build `36691357270`; preference writer omits quality; earlier phone emulator 400-channel reverse paging/real H264 decode | Original UI checkout deliberately untouched; screen category callbacks/quality-row removal are a separate isolated slice in progress; final phone/TV re-emulation, physical/native stress/PiP |
-| Roku `d46fe66` | Raw channel/category replacement pages, bounded guide requests, mandatory gateway leases; maximum-quality row/wire preference/clamp removed; runtime/contracts/compiler/ZIP and hosted build `36674162488` | Real backend/gateway/SceneGraph device, TLS, foreground, 4K/tracks and remaining wire-limit audit |
+| Android handoff `14bc969` | Core8/raw guide/v2 leases; 166 host tests, three ABIs, normal signed system-trust-only APK; category screen callbacks and quality-row removal; phone/TV 400-category forward/reverse, actual201/200 focus, Search/Back, full All/Search return and long-drag one-request/anchor fixtures passed | Original UI checkout deliberately untouched; handoff must be reviewed/merged separately; actual backend/gateway native media, physical/native stress/PiP remain separate gates. Hosted `36691357270` qualified earlier75bb source, not this screen slice |
+| Roku `ace7ab1` (test/docs `75176bc`) | Raw bounded guide and mandatory gateway leases; quality feature removed; live cursor4096 and exact native Integer/LongInteger metadata, floating identity refusal; 32 runtime/6 contracts/compiler/local ZIPs. Hosted `36674162488` qualified earlierd46 source | Actual firmware JSON decoding, backend/gateway/SceneGraph device, TLS, foreground, 4K/tracks remain unqualified; typed >2^53 fixtures are not universal JSON precision proof |
 | TV-web `db9c5ab` (docs `aef29cf`) | Dormant local-only code removed and Core8 adopted; 234 retained unit tests/36 HTTPS cases; hosted bundle/webOS IPK `36690591107` checksum/static checks | Overall hosted run failed only at missing Samsung signing secrets; signed Tizen, real gateway/physical TV and installed media remain unqualified |
 | Admin web `93c9316` | ADM-002 owned management/lazy VOD, page identity guards and same-scope in-memory parent drafts; 88 unit tests; twelve mocked owner routes/both viewports/20-row DOM bound; actual backend trusted-HTTPS member/auth/recovery/parent-draft revocation/device approval+revoke fixture passed at both viewports | Populated real-provider/operator integration, migrated accounts with >200 provider choices, long-traversal metadata bounds and complete auth matrix |
 | Desktop `54854cf` (docs `faf43cf`) | Core8/TVdb9 pins, retired feature removed; native/frontend checks, Linux DEB/AppImage and Windows NSIS; hosted Windows/Linux run `36690568896` passed including installed Windows eight-second loader smoke | Loader smoke is non-hermetic and may attempt unauthenticated default-origin pairing; no account/media/hardware proof; portable installed/native playback still open |
@@ -57,6 +57,12 @@ The test runtime never auto-migrates a production database. Current artifact
 builds and development branches do not authorize production mutation or deploy
 the public website. The large unchecked end-to-end items above intentionally
 remain open; historical sections below are not the current source state.
+
+The source/fixture checkbox milestones do not close the broader goal. Universal
+format/input-sharing and ingress/hardware tests, populated operator/provider
+flows, installed/native stress and coordinated rollback still require their own
+evidence. Tizen signing needs privately configured certificate secrets. The
+Android owner's original checkout is not switched, reset or merged automatically.
 
 ## Foundation checkpoint — 2026-09-29
 
