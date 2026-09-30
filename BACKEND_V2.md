@@ -100,6 +100,37 @@ serving the prior snapshot; clients never synchronize whole playlists.
 
 ## Migration and acceptance
 
+### Guide cutover contract (implementation pending)
+
+Existing phone/desktop/TV guide geometry, time window, channel actions, details,
+700ms hold and Back/focus restoration stay unchanged. Entry uses the account
+default raw playlist. `All channels`, `My channels`, `Recent` and provider
+categories are the existing filters; remove US classification and exact counts.
+Search matches channel names only: placeholder `Search channels`, empty copy
+`No channels match your search.` No swap control or additional viewing UI is added.
+
+Opaque next/previous cursors carry the same catalog/filter/profile/generation
+binding. Remote page transitions keep the selected time slot and return to the
+prior page's channel; scroll clients retain a bounded moving data/DOM window,
+invisible spacers and the exact scroll anchor. Eviction must not trap backward
+navigation or require rebuilding a local playlist index. Fetch EPG only for
+visible rows plus bounded lookahead. A filter/profile change cancels old work;
+late pages/EPG cannot publish into another scope. Snapshot/default changes show
+the existing retry/error state, never mix rows or silently pick another playlist.
+
+Watch resolves the exact raw channel to its opaque source, then starts/renews/
+releases an ordinary v2 lease. Missing/composite channels remain unavailable;
+Roku/Vizio without an authorized gateway show the existing safe error surface.
+Guide paging does not change or stop an unrelated active playback. Partial EPG
+failure retains playable channels and the existing schedule-gap treatment.
+
+Acceptance: multiple forward/back page crossings, rapid filter/profile changes,
+scroll past retained-window limits and back with no position/focus jump; bounded
+row/EPG counts; default/snapshot invalidation; terminal/empty/parent/source/gateway
+errors; provider order and HTTP logos; live renewal/expiry/foreground/exit. Record
+each renderer and native/device evidence independently. No layout parity is
+inferred from contract imports or host tests.
+
 No automatic global-provider ownership assignment. An explicit legacy owner map
 is required if ownership is ambiguous; unmapped providers cannot become public.
 Preserve profile/account IDs, Continue Watching, favorites, history and exact
