@@ -44,8 +44,9 @@ The earlier populated admin scenarios confirmed two logic gaps: VOD retained
 data grew beyond its twenty-row DOM window, and the provider dropdown omitted
 owned connections beyond its first 200. The separately reviewed bounded-VOD
 slice below now fixes and qualifies these against synthetic data.
-Subtitle/progressive/unlisted gateway
-sharing, Android active-media foreground checks, physical/signing acceptance and
+The qualified Linux/SubRip sharing slice is recorded below; other subtitle,
+progressive and unlisted gateway sharing, Android active-media foreground checks,
+physical/signing acceptance and
 production cutover are not complete. App PiP is not implemented; its current
 background-stop contract is not a PiP claim. No new scope or production action
 was started to conceal these gaps. All owned QA resources are stopped; fixture
@@ -143,6 +144,38 @@ served admin asset was `index-Df4Sh2lc.js`. Backend's reproducible harness and
 `docs/BOUNDED_VOD_ACCEPTANCE.md` own the final detailed evidence. Existing shared
 local runtime and production data were untouched. The broader admin/cutover,
 provider/operator, gateway, native and deployment gates remain open.
+
+## Shared SubRip replay slice — 2026-09-30
+
+[Gateway issue 2](https://github.com/viptv-org/playback-gateway/issues/2) is closed
+for its qualified generic source/image scope. Published branch
+`fix/shared-subtitle-replay` at `92b8ed55b779ee0a34b97f3cb9d31359554bb50d`,
+[review PR 3](https://github.com/viptv-org/playback-gateway/pull/3), preserves
+source/private/public track identities and carries bounded active overlapping
+cues across original-segment eviction. Compatible caption-off and late
+caption-enabled outputs use one upstream. Actual WebVTT rendition index is zero.
+
+Exact runtime source `f056a0dd31d6443c45706ac35dc08406d28a710b`, image
+`5efbd97e78573879a696f4bd3c4c22165c3a65e500bf5695e1cb4881ca95eed8`, passed actual
+HTTP and verified HTTPS source/control/media tests: decoded caption intervals,
+sparse audio content, late activation, retained seek, independent release/60s
+expiry, cache overflow, process/upstream teardown and reservation reclamation.
+The same image passed real 2-MiB tmpfs ENOSPC/readiness/reclaim/persistent-key
+restart checks. Subsequent runtime source changes are mechanical formatting only;
+the report retains the exact tested image/source identities.
+
+Default suite: 104 passed, 36 explicit opt-in fixtures separate; strict Clippy
+passed. Independent Standards and Spec review: zero outstanding findings. Scoped
+formatting passes changed Rust files; five unchanged baseline formatting failures
+remain documented. Qualified eligibility is Linux/SubRip with tested H264/AAC;
+other text/bitmap codecs/platforms retain independent fallback. No universal
+format, native caption renderer, merge, deployment or public ingress claim.
+Detailed reproduction and limits:
+[SHARED_SUBTITLES.md](https://github.com/viptv-org/playback-gateway/blob/92b8ed55b779ee0a34b97f3cb9d31359554bb50d/docs/SHARED_SUBTITLES.md).
+
+Broader gateway/cutover gates and progressive issue 1 remain open. Android
+foreground work is independently under qualification against AND-041; its host
+checks and isolated fixture readiness alone are not actual-media completion.
 
 ## Foundation checkpoint — 2026-09-29
 
