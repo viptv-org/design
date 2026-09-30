@@ -8,9 +8,9 @@ This is an execution checklist, not a completion claim. User decisions are in
 - [x] VOD 10k/100k baseline captured and bounded query implemented.
 - [x] Independent engine extraction and container build.
 - [ ] Gateway key scopes, jobs, viewer leases and safe media ingress.
-- [ ] Backend HTTP gateway selection/affinity and encrypted secrets.
-- [ ] Account-owned Xtream, default playlist and catalog paging.
-- [ ] Advanced configuration export and reviewed migration tool.
+- [x] Backend HTTP gateway selection/affinity and encrypted secrets (development fixtures).
+- [x] Account-owned Xtream, default playlist and catalog paging (backend fixtures).
+- [x] Advanced configuration export and reviewed offline migration tool.
 - [ ] Local-only and embedded engine paths removed after cutover tests.
 - [ ] Maximum-quality feature removed; actual device limits retained.
 - [ ] Admin website rebuilt; VOD matching stays available and bounded.
@@ -27,14 +27,14 @@ unchecked deliberately.
 
 | Repository / reviewed revision | Implemented and checked | Still incomplete |
 |---|---|---|
-| Backend `71fe0f5` | Embedded engine/advanced workers and packaging removed; strict encrypted-only runtime reads, private source-header guards; 209 tests/strict Clippy, executable backup/export/retire/refusal/retry fixtures; full image `205a70a` HTTP acceptance and exact bounded-gateway real-media lifecycle | Coordinated post-commit cleanup/rollback-image rehearsal, final populated browser/provider/native integration; production migration/deployment excluded |
+| Backend `b8bd04f` | Embedded engine/advanced workers and packaging removed; strict encrypted-only runtime reads, private source-header guards; 210 tests/strict Clippy, executable backup/export/retire/refusal/retry and real post-commit WAL-cleanup recovery; full image `205a70a` HTTP + sixteen trusted-browser groups and exact gateway212af real-media lifecycle | Coordinated rollback-image rehearsal and final populated browser/provider/native integration; production migration/deployment excluded |
 | Core `8ae9f81` (docs `a611d56`) | Retired application provider/add-on bridge and feature removed; standalone parser retained; 64 tests, generated native/WASM, 35 baseline/candidate parity cases; frozen v2 JSON/events byte-identical | Physical-device/native stress and remaining consumer integration evidence |
 | Android handoff `75bbacf` (docs `fede026`) | Raw guide/controller category paging and v2 leases; 158 local host tests, three ABIs, normal APK, hosted build `36691357270`; preference writer omits quality; earlier phone emulator 400-channel reverse paging/real H264 decode | Original UI checkout deliberately untouched; screen category callbacks/quality-row removal are a separate isolated slice in progress; final phone/TV re-emulation, physical/native stress/PiP |
 | Roku `d46fe66` | Raw channel/category replacement pages, bounded guide requests, mandatory gateway leases; maximum-quality row/wire preference/clamp removed; runtime/contracts/compiler/ZIP and hosted build `36674162488` | Real backend/gateway/SceneGraph device, TLS, foreground, 4K/tracks and remaining wire-limit audit |
 | TV-web `db9c5ab` (docs `aef29cf`) | Dormant local-only code removed and Core8 adopted; 234 retained unit tests/36 HTTPS cases; hosted bundle/webOS IPK `36690591107` checksum/static checks | Overall hosted run failed only at missing Samsung signing secrets; signed Tizen, real gateway/physical TV and installed media remain unqualified |
-| Admin web `93c9316` | ADM-002 owned management/lazy VOD, page identity guards and same-scope in-memory parent drafts; 88 unit tests; twelve mocked owner routes/both viewports/20-row DOM bound; actual backend HTTPS member/auth/parent/device fixture in final qualification | Populated real-provider/operator integration, migrated accounts with >200 provider choices, long-traversal metadata bounds and complete auth matrix |
+| Admin web `93c9316` | ADM-002 owned management/lazy VOD, page identity guards and same-scope in-memory parent drafts; 88 unit tests; twelve mocked owner routes/both viewports/20-row DOM bound; actual backend trusted-HTTPS member/auth/recovery/parent-draft revocation/device approval+revoke fixture passed at both viewports | Populated real-provider/operator integration, migrated accounts with >200 provider choices, long-traversal metadata bounds and complete auth matrix |
 | Desktop `54854cf` (docs `faf43cf`) | Core8/TVdb9 pins, retired feature removed; native/frontend checks, Linux DEB/AppImage and Windows NSIS; hosted Windows/Linux run `36690568896` passed including installed Windows eight-second loader smoke | Loader smoke is non-hermetic and may attempt unauthenticated default-origin pairing; no account/media/hardware proof; portable installed/native playback still open |
-| Gateway `35ef7d4` | Independent ingest for compatible live outputs, truthful input quotas, bounded media tmpfs/replay configuration, parent-death/slow-reader shutdown hardening; 99 tests, actual nonroot/read-only/container and real ENOSPC/restart fixtures | Sustained high-bitrate 4K copy qualification is debugging an actual replay/output-cache failure; unsupported/progressive sharing, public ingress, hardware and stalled I/O cleanup remain separate gates |
+| Gateway `c4e692d` | Independent compatible live ingest, truthful quotas, bounded tmpfs/replay, crash/slow-reader hardening; 99 tests and actual ENOSPC/restart/envelope fixtures; FFmpeg9 private-playlist reload fixed; configured 4K/5fps/40Mbps copy retained >64MiB, output advanced, two viewers/one upstream and full release/reclaim | This does not qualify default budgets, arbitrary bitrate, motion/30fps/HDR/hardware; unsupported/progressive sharing, public ingress and stalled I/O cleanup remain separate gates |
 
 Android's isolated handoff branch is `refactor/android-backend-cutover`; concurrent
 Android UI work must not be overwritten or have its frozen v2 contract changed.
@@ -46,8 +46,10 @@ Gateway hard allocated-media storage bounds now have actual kernel ENOSPC and
 release/reclaim evidence in the supplied Compose envelope; native/custom layouts
 do not inherit that mount automatically. Compatible shared inputs, crash/slow
 readers and the rebuilt container have separate checked fixtures. This is not
-universal format, bitrate, filesystem/RSS or hardware qualification. The current
-sustained-copy fixture must succeed before closing the high-bitrate 4K gate.
+universal format, bitrate, filesystem/RSS or hardware qualification. Sustained
+copy now passes in its explicit operator-budget envelope; exact source/image,
+packet/allocation/progress facts and boundaries are recorded in the gateway's
+`docs/CBR4K_QUALIFICATION.md`, not an inferred universal 4K claim.
 
 Backend retirement now has backup-first/private export, encryption/ownership,
 incoming-FK and active-routing refusal checks plus genuine executable acceptance.
