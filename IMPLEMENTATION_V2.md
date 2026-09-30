@@ -20,6 +20,26 @@ This is an execution checklist, not a completion claim. User decisions are in
 
 ## Current coordinated source checkpoint — 2026-09-30
 
+Urgent handoff after the user's request to finish rather than extend qualification:
+backend `b78aab2` publishes populated real-image/browser evidence and a tightened
+current-data engine-free image rollback fixture. Both exact rollback images
+retain newer history, precise preferences, encrypted configuration and non-null
+resume metadata without restoring an older DB. Gateway `fb15c39` is published on
+main: MPEG2 and verified FFV1/FLAC AV share bounded private replay, with actual
+late-join/eviction/audio-index/timestamp/ENOSPC/crash/restart evidence (104 tests).
+Android's separate published native-stress branch `85adc70` adds 169 host tests
+and three actual x86_64 Android JNI/MainLooper cases; the original UI checkout
+and normal `14bc969` handoff APK remain unchanged.
+
+The populated admin scenarios confirmed **unfixed** logic gaps: VOD retained
+data grows beyond its twenty-row DOM window, and the provider dropdown omits
+owned connections beyond its first 200. Subtitle/progressive/unlisted gateway
+sharing, Android active-media foreground checks, physical/signing acceptance and
+production cutover are not complete. App PiP is not implemented; its current
+background-stop contract is not a PiP claim. No new scope or production action
+was started to conceal these gaps. All owned QA resources are stopped; fixture
+APKs must not be substituted for the signed system-trust-only normal APK.
+
 The following supersedes historical statements below that ordinary live callers
 or admin management still use the legacy contracts. These are development
 branches, not production rollout evidence. Unchecked end-to-end gates remain
