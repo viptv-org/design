@@ -18,6 +18,38 @@ This is an execution checklist, not a completion claim. User decisions are in
 - [ ] Cross-repository integration, browser/native checks and packages.
 - [ ] Reviewed rollback/cutover instructions ready (no production execution).
 
+## Current coordinated source checkpoint — 2026-09-30
+
+The following supersedes historical statements below that ordinary live callers
+or admin management still use the legacy contracts. These are development
+branches, not production rollout evidence. Unchecked end-to-end gates remain
+unchecked deliberately.
+
+| Repository / reviewed revision | Implemented and checked | Still incomplete |
+|---|---|---|
+| Backend `94c1193` | Bidirectional raw catalog pages, exact live source/history admission, safe v2 extractor failures, paged private gateway grants and scoped capacity hints; 289 tests and strict Clippy | Retired runtime removal is isolated work in progress; production migration/cutover and final integration |
+| Core `fba95c8` | Previous cursors and removal of quality preference clamps, preserving actual decoder limits; 64 tests plus generated native/WASM contracts | Removal of remaining archived legacy APIs and full consumer cleanup |
+| Android handoff `02b70ae` | Raw live pages and exact source/v2 leases; 147 host tests, three ABIs, APK; phone emulator synthetic 400-channel reverse paging and real H.264/AAC decode | User Android checkout deliberately untouched; TV/physical, category pagination beyond 200, final defensive changes re-emulation and native stress/PiP |
+| Roku `d09ed28` | Raw channel/category replacement pages, bounded guide requests, mandatory gateway v2 live/VOD leases; 32 runtime harnesses, seven static checks, compiler and ZIPs | Real backend/gateway/SceneGraph device, TLS, foreground, 4K/tracks |
+| TV-web `ecec486` | React/Solid live cursor migration, exact source selection, v2 leases, active local-only and quality controls removed; 262 unit and 34 local HTTPS browser cases | Real gateway/physical TVs, signing and full installed media qualification |
+| Admin web `6bdbd05` | ADM-002 source committed: owned connections/add-ons/gateways/grants and lazy VOD matching; 71 unit tests, integrity/build, twelve routes at 1440×900 and 390×844 with mocked APIs and at most 20 rendered VOD rows | Real backend integration, full auth/parent transition matrix, draft preservation across parent gates, migrated accounts with >200 provider choices, long-traversal metadata bounds |
+| Desktop `71d75cf` | Matching TV/core/native pins, retired build flag removed; Linux native tests, DEB and AppImage built | Local glibc 2.44 does not prove portability; Windows runner build, installed GUI/hardware media |
+
+Android's isolated handoff branch is `refactor/android-backend-cutover`; concurrent
+Android UI work must not be overwritten or have its frozen v2 contract changed.
+Other source checkpoints are published review branches, not a claim that every
+repository's main branch has been promoted. Private QA artifacts and credentials
+are not committed here.
+
+The gateway's independent replay ingest and truthful physical-input quota work
+are still under review. Real HTTP/HLS/HEVC, trusted TLS/nested TLS and small 4K
+software fixtures provide useful evidence, but unsupported sharing formats,
+sampled rather than hard replay-storage bounds, crash/slow-reader and rebuilt
+container qualification remain open. Backend cleanup likewise stays isolated
+until its backup-first retirement fixtures and complete suite pass. No production
+database, migration, deployment or public website changes are authorized by this
+checkpoint.
+
 ## Foundation checkpoint — 2026-09-29
 
 - `playback-gateway` exists locally with extracted engine, independent Rust
