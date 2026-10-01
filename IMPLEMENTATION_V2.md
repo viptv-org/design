@@ -40,9 +40,11 @@ Android's separate published native-stress branch `85adc70` adds 169 host tests
 and three actual x86_64 Android JNI/MainLooper cases; the original UI checkout
 and normal `14bc969` handoff APK remain unchanged.
 
-The populated admin scenarios confirmed **unfixed** logic gaps: VOD retained
-data grows beyond its twenty-row DOM window, and the provider dropdown omits
-owned connections beyond its first 200. Subtitle/progressive/unlisted gateway
+The earlier populated admin scenarios confirmed two logic gaps: VOD retained
+data grew beyond its twenty-row DOM window, and the provider dropdown omitted
+owned connections beyond its first 200. The separately reviewed bounded-VOD
+slice below now fixes and qualifies these against synthetic data.
+Subtitle/progressive/unlisted gateway
 sharing, Android active-media foreground checks, physical/signing acceptance and
 production cutover are not complete. App PiP is not implemented; its current
 background-stop contract is not a PiP claim. No new scope or production action
@@ -93,6 +95,54 @@ format/input-sharing and ingress/hardware tests, populated operator/provider
 flows, installed/native stress and coordinated rollback still require their own
 evidence. Tizen signing needs privately configured certificate secrets. The
 Android owner's original checkout is not switched, reset or merged automatically.
+
+## Bounded admin VOD slice — 2026-09-30
+
+Owning acceptance: [web issue 5](https://github.com/viptv-org/web/issues/5).
+Design-first contract is `1dc92f7b4a571df00f89cc3915aaf1165a42bf94`,
+ADM-002-VOD-WINDOW / VOD-WINDOW-01 through 04. Web source
+`048651e941b4aad15cea69294419600bfb8612af` adopts that exact snapshot; backend
+Rust source `8b257f91b6beb8d8aa06749099e697fb454c79c5` adds scoped reverse VOD
+cursors and transactional catalog revisions. Backend packaging `8eec3da` pins
+the same web commit. These are review branches, not merged or deployed versions.
+
+- Backend full Rust tests, strict all-target Clippy and formatting passed;
+  admin 97 tests and production build passed. Deployment configuration and nine
+  host-check tests passed. Independent Standards and Spec review found no
+  remaining code findings after geometry, refill and bounded-save fixes.
+- Actual shipped CLI/Vault sealed provider and addon configuration for a fresh
+  synthetic 100k-title catalog. Title columns and the SQLite database itself are
+  not encrypted by this evidence. Trusted HTTPS API traversed all 99,999 initial
+  unmatched titles forward and backward in 2,000 pages per direction, with no
+  omitted/duplicate identities; all 208 owned providers were available.
+- Chrome at 1440x900 and 390x844 traversed the entire unmatched catalog forward
+  and back while checking every incoming page identity. Desktop visited 99,999
+  titles; phone visited 99,998 after the desktop's selected-row save. Maximum
+  retained state was 150 rows / three pages / nine cursor slots, and DOM stayed
+  at 20 rows. Travelled extent is scalar, not a retained historical page map.
+- Phone Chrome trusted simulated touch events opened/dismissed a match dialog
+  and swiped the list by 439px. Native gesture settling was explicitly awaited
+  before the later exact modal return checks; these passed in the combined run.
+  This is input emulation, not a physical-device claim.
+- Real-backend browser checks passed provider-page retry, delayed/failed evicted
+  forward refill without a blank window or extent growth, keyboard scrolling,
+  Cancel/Escape/browser Back with exact scroll/opener focus, failed/retried save
+  and Edit match, stale-revision refresh, filter cancellation and account signout
+  during a pending read. Transport faults changed no response data. Unit tests
+  additionally cover pending-save account cancellation and the 30-second save
+  deadline/late completion; these are separate from browser evidence.
+- Private populated-list and dialog captures were inspected at both sizes:
+  desktop 540px list / 112px rows; phone 506.390625px list / 184px rows, 56px header,
+  16px gutters, readable wrapped labels and bottom-sheet controls. No horizontal
+  overflow. This is affected-state visual QA, not measured pixel parity or a
+  physical phone qualification.
+
+The tested binary SHA256 is
+`2f4899274ec3964c248aa42de81a9ae67215eb9167a6f2f620c37b8bfb8635a5`;
+served admin asset was `index-Df4Sh2lc.js`. Backend's reproducible harness and
+`docs/BOUNDED_VOD_ACCEPTANCE.md` own the final detailed evidence. Existing shared
+local runtime and production data were untouched. The broader admin/cutover,
+provider/operator, gateway, native and deployment gates remain open.
 
 ## Foundation checkpoint — 2026-09-29
 
