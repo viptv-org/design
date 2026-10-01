@@ -1,5 +1,15 @@
 # Design changes
 
+## 2026-09-30 — Android phone presentation and player track menus
+
+Specified AND-042 for design issue 6. Phone Home now opens on the rounded hero,
+the bottom navigation shows icons only, and cards carry minimal captions.
+Catalog shelves are headed by content type, phone Home shows live channels as
+logo tiles, and the bar is 6dp with lifted progress. Loading uses skeletons.
+Phone and TV player audio/subtitle menus follow PhPlayerSubs and TvPlayerSubs.
+Only AND-038's Home header remote entry changes; other TV geometry is
+unchanged. Emulator and device evidence remain separate.
+
 ## 2026-09-30 — Canvas source, reference provenance and repository status
 
 Recorded the VIPTV Redesign canvas as the visual source for the redesign beside
