@@ -1,5 +1,13 @@
 # Design changes
 
+## 2026-09-30 — Android silent foreground identity validation
+
+Specified AND-041 for Android issue 4: stable authenticated phone/TV presentation
+during bounded foreground validation, coalesced refresh, actionable recovery,
+explicit revocation and cancellation. Existing background-stop, exact-source
+absolute Resume, native playback policy, geometry and assets remain unchanged.
+Actual authenticated media and per-device/visual evidence remain required.
+
 ## 2026-09-30 — Bounded bidirectional admin VOD matching
 
 Specified ADM-002-VOD-WINDOW for web issue 5: three retained title pages,
