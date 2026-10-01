@@ -38,4 +38,9 @@ for path,value in leaves(tokens.get('color',{})):
 m=json.loads((root/'assets/FILES.json').read_text())
 actual={str(p.relative_to(root/'assets')):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(walk(root/'assets')) if p.is_file() and p.name!='FILES.json'}
 assert actual==m['files'], 'Asset inventory mismatch; update intentionally with provenance'
-print(f'Design validated: {len(required)} required docs, {len(actual)} asset files, {count} design tokens')
+ref=ds/'reference'
+rm=json.loads((ref/'FILES.json').read_text())
+assert rm.get('source'), 'Reference inventory needs a source/provenance note'
+ref_actual={str(p.relative_to(ref)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(walk(ref)) if p.is_file() and p.name!='FILES.json'}
+assert ref_actual==rm['files'], 'Design-system reference inventory mismatch; re-export from the canvas and update reference/FILES.json intentionally'
+print(f'Design validated: {len(required)} required docs, {len(actual)} asset files, {len(ref_actual)} canvas reference files, {count} design tokens')

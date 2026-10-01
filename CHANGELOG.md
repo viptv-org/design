@@ -1,5 +1,15 @@
 # Design changes
 
+## 2026-09-30 — Canvas source, reference provenance and repository status
+
+Recorded the VIPTV Redesign canvas as the visual source for the redesign beside
+its committed `viptv-design-system/` export. Added `reference/FILES.json`
+(SHA-256 and canvas-export source for all 453 reference files), verified by
+`scripts/validate.py`. Clarified that canvas renders are allowed design
+artifacts while app/device captures stay forbidden. Updated REPOSITORIES.md
+with current status, design-pin mechanism and specs for every repository,
+including core, playback-gateway, workspace and desktop. No behavior change.
+
 ## 2026-09-30 — Android silent foreground identity validation
 
 Specified AND-041 for Android issue 4: stable authenticated phone/TV presentation
