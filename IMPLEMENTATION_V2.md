@@ -14,11 +14,20 @@ This is an execution checklist, not a completion claim. User decisions are in
 - [x] Local-only and embedded engine implementation paths removed after source cutover tests.
 - [x] Maximum-quality feature removed; actual device limits retained.
 - [ ] Admin website rebuilt; VOD matching stays available and bounded.
-- [ ] All client logic/contracts updated with unchanged viewing layouts.
+- [ ] All client logic/contracts updated; UI changes follow the design-first scope.
 - [ ] Cross-repository integration, browser/native checks and packages.
 - [ ] Reviewed rollback/cutover instructions ready (no production execution).
 
 ## Current coordinated source checkpoint — 2026-09-30
+
+Latest owner scope update: UI changes are now allowed across affected clients,
+including Android, superseding the earlier backend/logic-only restriction.
+Use the [GitHub handoff map](https://github.com/viptv-org/workspace/issues/2)
+and design-first synchronization for affected screens/states. This is permission,
+not new implementation or parity evidence; merge/deployment approval is separate.
+The owner made no independent Android UI edits. All eight dirty files in the
+original checkout exactly match Android `02b70ae`, already included on the
+published cutover branch; the previous concurrent-UI-work assumption was incorrect.
 
 Urgent handoff after the user's request to finish rather than extend qualification:
 backend `b78aab2` publishes populated real-image/browser evidence and a tightened
@@ -56,8 +65,9 @@ unchecked deliberately.
 | Desktop `54854cf` (docs `faf43cf`) | Core8/TVdb9 pins, retired feature removed; native/frontend checks, Linux DEB/AppImage and Windows NSIS; hosted Windows/Linux run `36690568896` passed including installed Windows eight-second loader smoke | Loader smoke is non-hermetic and may attempt unauthenticated default-origin pairing; no account/media/hardware proof; portable installed/native playback still open |
 | Gateway `c4e692d` | Independent compatible live ingest, truthful quotas, bounded tmpfs/replay, crash/slow-reader hardening; 99 tests and actual ENOSPC/restart/envelope fixtures; FFmpeg9 private-playlist reload fixed; configured 4K/5fps/40Mbps copy retained >64MiB, output advanced, two viewers/one upstream and full release/reclaim | This does not qualify default budgets, arbitrary bitrate, motion/30fps/HDR/hardware; unsupported/progressive sharing, public ingress and stalled I/O cleanup remain separate gates |
 
-Android's isolated handoff branch is `refactor/android-backend-cutover`; concurrent
-Android UI work must not be overwritten or have its frozen v2 contract changed.
+Android's isolated handoff branch is `refactor/android-backend-cutover`.
+Preserve its reviewed work and frozen v2 contract while reconciling the older
+original checkout; UI implementation is permitted under the updated scope.
 Other source checkpoints are published review branches, not a claim that every
 repository's main branch has been promoted. Private QA artifacts and credentials
 are not committed here.

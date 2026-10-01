@@ -63,4 +63,6 @@ copy is `No unmatched titles` and filtered-empty copy is `No matching titles`.
 
 Acceptance: every account/operator route at 390x844 and 1440x900; keyboard/modal
 return; slow/error/empty data; secret redaction; protected-account transitions;
-VOD paging with 100k backend rows and bounded DOM; no viewing-client redesign.
+VOD paging with 100k backend rows and bounded DOM. This document scopes the
+account/admin app; viewing-client UI changes are permitted under the updated
+BE-002 scope and their owning design contracts.
