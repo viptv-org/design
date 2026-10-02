@@ -1,5 +1,12 @@
 # Design changes
 
+## 2026-10-02 — Website player Fit / Fill
+
+Specified WEB-PLAYER-FIT-001 for the responsive website player. Fit shows the
+whole video; Fill crops it to cover the viewport. The accessible toggle beside
+Fullscreen applies to HTML video and MediaBunny canvas without changing the
+playback session. Phone/desktop browser evidence and device checks are pending.
+
 ## 2026-10-02 — Android TV media rows reach the right edge
 
 Specified AND-TV-ROW-EDGE-001: horizontal media card rows, including Popular

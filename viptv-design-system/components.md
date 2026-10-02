@@ -168,6 +168,7 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 - **Timeline:** accent played fill, a lighter buffered segment, and a white knob. The time labels are `[12:48]` / `[52:10]`. Hovering (D) or seeking (T) shows a preview bubble above the bar.
 - **Up Next:** a card at the bottom-right (D/T) or above the controls (P) with a still, "NEXT EPISODE", the title, "Starts in [8]", a progress bar, and Play now / Cancel.
 - **Playback info:** key / value rows in monospace (decoder, transport, container, delivery, codecs, resolution).
+- **Responsive picture mode:** the 44 px Fit/Fill button is immediately before Fullscreen on phone and desktop. Fit (the default) contains the full picture; Fill covers the viewport with centered crop. Its state and transitions are in [WEB-PLAYER-FIT-001](../specs/behavior/responsive-player-fit-fill.md). Existing static player renders predate this control.
 - **Errors:** "This source could not be played" with Details (it expands to show HTTP status, request, error code and engine), then Retry / Choose another source / Back. "Playback could not be restored" appears on resume.
 - **Live:** no timeline or next. It shows the channel name, "Live TV" and the live dot, and audio / exit only on TV.
 
