@@ -254,8 +254,8 @@ normalization, artwork, source identity, progress and continuation rules.
 - Select layout from the native television UI mode, not screen width alone.
   Phones are not forced to landscape; TV remains landscape. Media3 keeps its
   native video surface and adapts controls to phone portrait/landscape and TV.
-- Phone text entry uses the system keyboard. TV supplies the design's remote
-  keyboard and also accepts a connected physical keyboard. Password/PIN input
+- Android phone and TV text entry use the device's native Android keyboard
+  and also accept a connected physical keyboard (AND-KEYBOARD-001). Password/PIN input
   is masked, transient, and cleared on submission/cancel.
 - TV activation fires on release; a 700ms hold fires once and suppresses tap.
   Touch long press and visible overflow actions expose the same menu. Back
@@ -397,12 +397,11 @@ are recorded separately in TESTING.md. Related: Android #3 and design #6.
 - Each new query resets all result offsets. Progressive arrivals preserve the
   focused catalog/item and do not request focus. Catalog identity includes
   addon, catalog ID and type, even when display names collide.
-- Left/Right moves through individual keyboard keys. Only Left at the first
-  column enters the sidebar. Right at any row's last key, remote Play/Fast
-  Forward, or the visible Results action enters the first result, scrolling it
-  into view before focus. With no results, stay on the keyboard. Left from a
-  shelf's first result restores the last keyboard key; subsequent cards move
-  left within their row. Physical text input remains supported.
+- Android TV uses the native keyboard and editable field under
+  AND-KEYBOARD-001, replacing the app-rendered key grid. Native Search/Done or
+  the visible Results action enters the first available result. Left from a
+  shelf's first card restores the search field; later cards move within the row.
+  Physical text input and the separate catalog shelves remain supported.
 
 ## Phone player
 
@@ -440,8 +439,8 @@ are recorded separately in TESTING.md. Related: Android #3 and design #6.
   the outgoing frame while preparing, and preserve Back/cancel recovery.
   Missing/unreleased successors never produce an invented card or a guessed episode.
 
-Acceptance: navigate left/right in every keyboard row; enter results from the
-first row; verify catalog collisions, late arrivals and query reset; compare
+Acceptance: use native Android input and enter results under AND-KEYBOARD-001;
+verify catalog collisions, late arrivals and query reset; compare
 portrait/landscape seek/time/buffer geometry; inspect a paused scrub and rotated
 player; show, pause, cancel and accept Up Next on both phone and TV; verify
 cancel/exit prevent delayed playback. Audit Home, profiles, details, sources,
