@@ -1,5 +1,13 @@
 # Design changes
 
+## 2026-10-02 — Android completed episode indicators
+
+Specified proposed AND-EPISODE-WATCHED-001 for Android TV and phone episode
+cards: a readable check and Watched badge beside the episode number uses the
+current profile's saved completion fact. Partial progress retains its bar,
+completed episodes omit it, and updates cannot leak across profiles or recycled
+cards. Rendering and device acceptance remain pending.
+
 ## 2026-10-02 — Website player Fit / Fill
 
 Specified WEB-PLAYER-FIT-001 for the responsive website player. Fit shows the
