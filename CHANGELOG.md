@@ -1,5 +1,15 @@
 # Design changes
 
+## 2026-10-02 — Proposed add-on torrent gateway sources
+
+Specified SRC-TORRENT-GATEWAY-001 for gateway issue 15: existing account-owned
+add-on discovery retains opaque source handles while opt-in authorized gateways
+prepare torrent/archive HLS for web, desktop and Android. The draft defines
+supported input normalization, file selection, capability/scope checks, private
+source metadata, safe producer copy and lease cancellation. Native peer delivery,
+progressive integration and qualification remain separate; review and adoption
+are pending.
+
 ## 2026-10-02 — Narrow phone watched-caption wrapping
 
 Clarified AND-EPISODE-WATCHED-001: the complete badge wraps below the episode
