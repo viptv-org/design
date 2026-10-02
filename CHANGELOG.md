@@ -1,5 +1,12 @@
 # Design changes
 
+## 2026-10-01 — Native Android TV keyboard
+
+Specified AND-KEYBOARD-001: Android TV uses its native device input method in
+Search and text-entry dialogs, preserving catalog shelves, masked parent PIN,
+Done/Cancel, keyboard-first Back and field/result return focus. Other TV
+platforms retain their keyboard UI; native acceptance remains pending.
+
 ## 2026-10-01 — Distinct source producers and truthful outcomes
 
 Specified SRC-PROVIDERS-001: source filters retain each observed configured

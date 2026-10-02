@@ -476,3 +476,70 @@ failure is safe/retryable; Close/Back/background during delayed resolution never
 overwrites clipboard and releases a returned lease; keyboard/remote access and
 focus return remain usable. Provider-header-dependent external playback and
 physical TV clipboard usability remain unqualified.
+
+# AND-KEYBOARD-001 — Native Android TV text entry
+
+Status: proposed, owner requested 2026-10-01. Source: the owner's request to
+remove the TV keyboard and use the native Android keyboard. This supersedes
+Android's custom Search keyboard and full-screen text-entry key/PIN grids,
+including the key-navigation acceptance in AND-037. It is an Android platform
+exception; Roku and TV-web retain their existing keyboard behavior.
+
+Intent: use the keyboard provided by the Android TV device, including its
+installed language, accessibility and connected physical-keyboard support. Do
+not replace or configure the device's input method or imitate its keys. Native
+keyboard geometry, animation and labels are device-owned and unmeasured here.
+
+## Search entry, results and return
+
+- Enter Search from the rail into an editable, single-line field labelled
+  `Search movies and series`. Request field focus and native input on entry.
+  Keep the current query and use the existing progressive catalog search; each
+  returned catalog retains its labelled shelf and stable identity. The field
+  accepts physical input and advertises the native Search action.
+- Keep the existing TV screen gutters/header. Below the header, use a search
+  field (960dp wide at the existing 1920-coordinate layout, 80dp text-field
+  height) and a visible `Results` action separated by 24dp. Result shelves
+  fill the available width below the search status with 36dp between shelves.
+  Respect native keyboard insets so a focused field/action remains visible;
+  result shelves scroll independently without losing query-owned positions.
+- Native Search (or Done where the device substitutes it), remote Play/Fast
+  Forward and the visible Results action dismiss native input, scroll the
+  first nonempty shelf into view and focus its first card. With no available
+  results, dismiss input and retain field focus; display the existing truthful
+  empty/loading status. Results may be disabled while there are no rows.
+- Left from the first card in any shelf returns focus to the field without
+  automatically reopening input. Later cards move within their shelf. Select
+  on the field reopens native input. Left at the field reaches the rail; Right
+  reaches Results. Late results never steal focus.
+- Back while native input is visible dismisses input and keeps Search/query.
+  The following Back uses the existing app navigation. Opening a result hides
+  input; returning from details restores Search without a delayed keyboard.
+  Key down/up/repeat use the native editable-field/IME behavior; a held key
+  must not repeatedly submit or trigger playback. No custom character grid
+  or `Jump to results` hint remains.
+
+## Text-entry dialogs
+
+- Profile names, server/address entry and parent PIN dialogs retain their
+  current title, instruction, input limits, error copy and Done/Unlock plus
+  Cancel actions. Replace the custom key/PIN grid with the common editable
+  field and device IME. TV dialogs remain full-screen, with the field and
+  actions above native keyboard insets and scrollable if needed.
+- Request field focus/native input when the dialog opens. Text uses normal
+  text input; parent PIN uses masked numeric-password input, digits only and
+  the existing 4–8 digit validation and transient clearing. Native Done and
+  the visible Done/Unlock action submit exactly once and dismiss input.
+- Back first closes native input, then cancels the dialog on the next Back.
+  Cancel clears transient input and restores focus to the invoking control.
+  Submission keeps existing validation/retry behavior. Closing a dialog or
+  leaving the route releases field focus/input; no stale keyboard appears on
+  Home. Never log or persist PIN/password contents.
+
+Acceptance: on a local Android TV emulator inspect the actual native IME,
+enter a non-secret title with remote selection and physical input, invoke
+Search, navigate separate catalog shelves, return to/reopen the field, and
+exercise first/second Back. Open profile-name entry and numeric PIN entry
+without submitting credentials; inspect masking/input type and cancel. Cover
+empty/delayed results, query replacement and dialog dismissal. Record native
+emulator evidence separately from physical TV compatibility.
