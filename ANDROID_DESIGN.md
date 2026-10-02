@@ -297,6 +297,19 @@ in AND-035; implementations record adoption and measured evidence separately.
   addons and IPTV providers. Missing provider IDs must never merge unrelated rows;
   shared Rust supplies stable group identity/display facts. All providers resets
   the filter, and arrivals add groups without stealing focus.
+- SRC-OVERFLOW-001 (proposed, design revision of this commit): On the Android
+  phone Choose a Source sheet and TV source panel, render every provider's source
+  description in the shared two-line fixed-height window defined in
+  `viptv-design-system/components.md`. Wrap long tokens. Overflow starts at its
+  first line and slowly scrolls downward only while the row has TV/keyboard focus
+  or pointer hover; blur, hover exit, replacement and filter changes reset it.
+  Reduced motion keeps the first two lines still; accessibility exposes the full
+  description and Source details remains reachable by its existing action.
+  Keep a spinner and `Finding sources` until the first row arrives, then a spinner
+  and `Still checking sources` while discovery actually remains pending. Partial
+  rows stay selectable. Completion or cancellation clears the status. An empty
+  final list retains the existing no-sources message. These presentation states
+  never take focus or change Back, hold/Info, exact-source play or return focus.
 - Both hero + actions reflect current My List membership (+ / check), including
   immediately after a toggle and across refreshed shelves/profile changes.
 - Phone Home starts at its system top inset without an extra top spacer. Global
@@ -312,6 +325,14 @@ provider group including blank provider IDs; immediate/cancelled/failed source
 starts; real original-URL MP4/MKV/HLS playback with source headers; nonzero resume,
 forward/back seeks and clock stability; exit/background audio silence; phone
 rotation; stateful membership; safe insets; TV scroll-away and full-hero restore.
+SRC-OVERFLOW-001 acceptance: with a one-line, two-line and long unbroken source
+description from different providers, all rows keep one height and show no more
+than two lines at once; focus a long TV row, watch it traverse to the last line,
+move away/back and confirm it restarts at the first line. Repeat for pointer hover,
+touch accessibility and reduced motion. Delay one provider until after another
+row arrives: the spinner changes from `Finding sources` to `Still checking sources`,
+the first row stays playable and focused, and the status clears only on finish or
+Back cancellation. Verify empty, filtered-empty, failure and return navigation.
 Production promotion requires tested immutable artifacts and verification of the
 running backend/transcoder plus served TV asset hashes; Git push is not a deploy.
 

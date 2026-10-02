@@ -1,5 +1,12 @@
 # Design changes
 
+## 2026-10-01 — Source picker descriptions and discovery status
+
+Specified SRC-OVERFLOW-001 for Android phone/TV and responsive React/SolidTV:
+every source description uses a two-line fixed window with focus/hover overflow
+motion and reduced-motion fallback. Discovery shows a visible spinner and status
+through partial results. Implementation and device evidence remain pending.
+
 ## 2026-09-30 — Android phone presentation and player track menus
 
 Specified AND-042 for design issue 6. Phone Home now opens on the rounded hero,

@@ -141,6 +141,18 @@ at `b7e36df` is the comparison for Home composition and queue content.
   label. Back cancels preparation. Search preserves separate addon/catalog rows
   with their source labels; remove result counts. Slow addons cannot hold up
   rows already available from other addons.
+- SRC-OVERFLOW-001 (proposed, design revision of this commit): In the responsive
+  React Choose a Source drawer and SolidTV source panel, apply the shared source
+  row's fixed two-line description window to every provider. Wrap long tokens;
+  slowly scroll only overflowing text from top to bottom while that row is
+  keyboard/remote focused or pointer hovered. Reset to the top on blur, hover
+  exit, replacement or filter change. Reduced motion holds the first two lines;
+  assistive technology and Source details expose the complete description. Keep
+  the accent spinner with `Finding sources` before any row and `Still checking
+  sources` after rows arrive while real discovery is pending. Progressive rows
+  remain selectable, and late arrivals never steal focus. Clear the indicator on
+  finish or cancellation. Preserve Back, hold/Info, source identity and return
+  focus behavior.
 
 Acceptance: inspect 1920×1080 and 1280×720 Home, detail, profiles, Discover,
 search, guide, preparation and live/VOD playback. Capture consecutive frames
@@ -150,6 +162,13 @@ horizontal movement through program windows, and verify live Up never focuses
 or seeks the timeline. Include missing logos, long episode titles, a delayed
 addon, cancellation and Back restoration. Record browser results separately
 from physical TV qualification; never commit screenshots.
+For SRC-OVERFLOW-001, inspect one-line, two-line and long unbroken descriptions
+from multiple providers at responsive and TV widths. Verify constant row height,
+first-to-last-line travel only for the active row, reset on exit/re-entry, static
+reduced-motion display, full accessible text, and a spinner that persists during
+partial results but clears on completion or Back. Exercise empty, filtered-empty,
+error, source selection and return focus; physical TV behavior remains unverified
+until a device run.
 
 # TV-041 — Bounded Home loading and player inactivity
 
