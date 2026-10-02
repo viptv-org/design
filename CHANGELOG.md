@@ -1,5 +1,12 @@
 # Design changes
 
+## 2026-10-02 — Narrow phone watched-caption wrapping
+
+Clarified AND-EPISODE-WATCHED-001: the complete badge wraps below the episode
+number when a narrow phone text column cannot fit both. Artwork and the
+44 dp options target retain their geometry; neither label is ellipsized.
+The 320 dp native fixture exposed the constraint before Android publication.
+
 ## 2026-10-02 — Android completed episode indicators
 
 Specified proposed AND-EPISODE-WATCHED-001 for Android TV and phone episode
