@@ -1,5 +1,34 @@
 # AND-035 — Native Android phone and TV design adoption
 
+## CW-SOURCE-BACK-001 — Continue Watching episode source return (2026-10-01)
+
+Status: proposed for Android phone and TV; source revision is the design commit
+that introduces this section. From a Continue Watching episode card on Home or
+the Continue Watching list, Choose source opens the manual picker for that exact
+episode and retains the originating card/list position and focus. Back from that
+picker cancels in-flight discovery and returns to the parent show's full title
+details, with the originating episode's season selected and episode card revealed.
+The details page exposes the other episodes for selection. If series metadata is
+still loading, show the existing detail loading state before revealing episodes;
+a failed load offers the existing retry and Back to the originating queue card.
+The picker Back never starts a source or resumes playback. Back from the show's
+details returns to the originating Home/Continue Watching card and restores its
+focus and scroll position. A source selected and played from this route retains
+the established exact-source playback return behavior; Source details closes to
+the same focused source row. An explicit episode selection from details starts
+that episode's ordinary manual source path. Profile/route replacement invalidates
+late metadata or discovery callbacks. Live sources and source pickers opened from
+other routes keep their existing returns. Phone uses system Back or the visible
+Back control; TV uses remote Back. Hold/Info still opens the existing queue menu.
+
+Acceptance CW-SOURCE-BACK-001: from a Home Continue Watching episode in season 2,
+open Choose source, wait for a partial result, then Back. Discovery stops and the
+parent show detail opens at season 2 with that episode visible; choose a different
+episode and verify its own manual sources. Repeat from the Continue Watching list
+and with slow/failed parent metadata. Back from details restores the same queue
+card and focus. Verify source selection, Source details and live/other-route Back
+remain unchanged. Phone, emulator and physical TV evidence are separate.
+
 ## AND-042 — phone presentation and player track menus (2026-09-30)
 
 Status: approved implementation scope for design issue 6. Emulator visual

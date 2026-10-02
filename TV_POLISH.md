@@ -47,6 +47,32 @@ titles, rapid focus changes, clock updates, live source/play/Back, slow/failing
 catalogues, and cancellation during profile or route changes. Use 1920 × 1080
 and scaled TV viewports. Record request counts and actual startup timing.
 
+## CW-SOURCE-BACK-001 — Continue Watching episode source return
+
+Status: proposed for responsive React and SolidTV; source revision is the design
+commit that introduces this section. A Continue Watching episode's Choose source
+action opens manual sources for that exact episode and remembers the originating
+Home or Continue Watching card, scroll and focus. Back or Esc from the picker
+cancels pending discovery and opens the parent show's full title details with the
+original season selected and episode card revealed. Details offers the other
+episodes; selecting one opens that episode's ordinary manual source picker. If
+parent metadata is pending, show the existing detail loading state; failure offers
+retry and Back to the saved queue card. Picker Back starts no source and does not
+resume playback. Back or Esc from details returns to the original queue card and
+focus. Late responses from an abandoned route/profile cannot reopen either view.
+Source details returns to its focused row, and successful source playback keeps
+its established return path. Live source and other source-picker routes retain
+their current Back destinations. Remote hold/Info, pointer context menu and
+visible overflow still offer the existing queue actions without new semantics.
+
+Acceptance CW-SOURCE-BACK-001: from a Home Continue Watching season 2 episode,
+choose sources, let one arrive, then Back; confirm the parent show details at
+season 2, choose a different episode and inspect its own sources. Back through
+details restores the original Home card/scroll/focus. Repeat from the Continue
+Watching list, with pending/failed parent metadata, and with Esc on React. Verify
+no source starts on cancellation and live/other-route Back remains unchanged.
+Record browser and physical TV results separately.
+
 # TV-038 — Vizio navigation aligned with Android TV
 
 Status: owner requested on 2026-09-26. Applies to the hosted TV DOM entry

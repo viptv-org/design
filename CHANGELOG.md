@@ -1,5 +1,11 @@
 # Design changes
 
+## 2026-10-01 — Continue Watching episode source return
+
+Specified CW-SOURCE-BACK-001: cancelling an episode's source picker from Continue
+Watching opens its parent show details and Back restores the originating card.
+Android and React/SolidTV implementation evidence remains pending.
+
 ## 2026-10-01 — Source picker descriptions and discovery status
 
 Specified SRC-OVERFLOW-001 for Android phone/TV and responsive React/SolidTV:
