@@ -1,5 +1,13 @@
 # Design changes
 
+## 2026-10-02 — Android TV episode-number jump
+
+Specified AND-EPISODE-JUMP-001: a compact chip beside the season badge opens
+native numeric input and jumps to an exact episode in the current season by
+scrolling and focusing its card. Invalid input stays editable; cancellation
+preserves the row. Playback and hero Play/Resume remain unchanged. Android TV
+implementation and device evidence are pending.
+
 ## 2026-10-01 — Native Android TV keyboard
 
 Specified AND-KEYBOARD-001: Android TV uses its native device input method in
