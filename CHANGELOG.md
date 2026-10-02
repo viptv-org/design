@@ -192,3 +192,10 @@ Added [LOCAL_MODE.md](LOCAL_MODE.md) proposing account-free operation of the sha
 ## 2026-09-21 — Local addon mode schema amendment
 
 Amended LOCAL_MODE.md LM-002: the registry stores `nextOrdinal` and each addon a stable `ordinal` (a monotonic install counter, never reused) so addon selection survives restarts and removals. No other behavior changed.
+## 2026-10-02 — AND-043 Title source summary
+
+Specify Android Title discovery lifetime, shared Core ranking, safe source summary
+copy and manual-picker adoption, with empty/failure/cancellation acceptance. The
+TvTitle positive-progress WATCHING marker now has explicit state semantics and
+geometry; completed episodes retain the existing Watched badge. Proposed scope
+for design#6; emulator and physical parity remain independently unverified.
