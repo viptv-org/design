@@ -21,11 +21,15 @@ loading, populated and restored states. Its heading, count, season badge,
 `Episode #` chip and other header/text controls retain their existing safe
 alignment. Do not expand a whole screen or its text column to implement this.
 
-At the 1920 px reference width, the first card's established left alignment
-stays at x=192. The row viewport reaches x=1920, with only the 4 px room
-needed for the final focused card's outside ring. The last card can settle
-with its card right edge at x=1916 and its ring at x=1920; it must not stop
-at x=1824 or leave a 96 px blank tail. Keep existing card dimensions,
+At the 1920 px reference width, the row viewport begins at the established
+content alignment of x=192 and reaches the right viewport edge at x=1920.
+Keep each row's existing small content/focus padding inside that viewport;
+the first card may begin after x=192, and Search may have additional small
+outer focus padding. The final card and its focus treatment must be fully
+visible within the viewport, without stopping at x=1824 or leaving a 96 px
+blank tail. The existing Android focus border may draw inside the card;
+do not assume an outside ring or force a particular final-card x coordinate.
+Keep existing card dimensions,
 including Home 320 × 180 and episode 360 × 200, the 36 px Home card gap,
 caption layout and 4 px focus ring. Apply the same proportional geometry
 when the TV reference is uniformly scaled to another viewport. Rows with
@@ -52,9 +56,10 @@ Android phone behavior remains governed by their own contracts.
 ## Acceptance
 
 1. At 1920 × 1080, traverse a Home **Popular movies** shelf of more than
-   twelve cards. The first card retains x=192 alignment; the last card and
-   4 px focus ring reach the right viewport edge without clipping or a
-   96 px empty tail. Left and repeat navigation restore one-card movement.
+   twelve cards. The row viewport begins at x=192 and retains its small
+   content/focus padding; the last card and focus treatment are fully visible
+   within the right edge without a 96 px empty tail. Left and repeat
+   navigation restore one-card movement.
 2. Repeat on another Home media shelf, Search and Discover media shelves,
    a library shelf and a Details episode row with more than eight episodes. Headers,
    text and non-media controls remain inside their safe bounds, and card
