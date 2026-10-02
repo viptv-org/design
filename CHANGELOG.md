@@ -1,5 +1,13 @@
 # Design changes
 
+## 2026-10-02 — Android TV media rows reach the right edge
+
+Specified AND-TV-ROW-EDGE-001: horizontal media card rows, including Popular
+movies and Details episodes, reach the native Android TV viewport's right edge
+with room for the focus ring. Header/text safe insets and card geometry remain;
+TV-web retains its 1824 px bound. Android implementation and device evidence
+are pending.
+
 ## 2026-10-02 — Android TV episode-number jump
 
 Specified AND-EPISODE-JUMP-001: a compact chip beside the season badge opens
