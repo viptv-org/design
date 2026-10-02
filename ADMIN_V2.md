@@ -31,9 +31,7 @@ activation while preserving their tested authentication state machines, URL code
 handoff, cookie/CSRF rules and session revocation. No new application login mode.
 Configuration forms never pre-fill stored secrets; replacement is explicit.
 
-## VOD matches
-
-### ADM-003 — Profile and account navigation
+## ADM-003 — Profile and account navigation
 
 Status: owner-requested dashboard refinement, specified before implementation
 on 2026-10-01. This applies to the account dashboard, not viewing-client Settings.
@@ -78,6 +76,8 @@ ADM-SCOPE-03 verifies account configuration and household PIN remain shared,
 imports clearly describe their mixed destinations, and member users never see
 operator entries; ADM-SCOPE-04 covers drawer selection/return focus, parent
 unlock, expiry and slow/error states. Browser evidence does not qualify hardware.
+
+## VOD matches
 
 Keep the feature. Present Provider, Type, Title, Year, Match status and an action.
 Search is debounced 250ms; provider/type filters cancel stale requests and reset
