@@ -121,7 +121,9 @@ the pinned source-picker contract. No TV layout or asset changes occur.
 
 Discovery retains partial usable rows and truthful configured producer names.
 Unsupported rows produce the existing safe `source_format_unsupported` producer
-outcome. Its revised complete copy is:
+outcome. Canonical proposed strings are in [copy](../../viptv-design-system/copy.md)
+and the producer rule in [components](../../viptv-design-system/components.md).
+Its revised complete copy is:
 
 > [provider] returned formats this app cannot play. Choose another source.
 
