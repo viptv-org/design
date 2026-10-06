@@ -33,7 +33,13 @@ Proposed additive source contract:
 account-owned add-on torrent/archive inputs delivered through existing gateway
 HLS leases on web, desktop and Android. Its proposed input, selection, privacy,
 copy and qualification rules extend this HTTP(S) baseline only after review and
-explicit immutable adoption. In-process native torrent delivery remains deferred.
+explicit immutable adoption. The owner-approved
+[SRC-TORRENT-NATIVE-001](specs/behavior/torrent-native-android.md) is the narrow
+Android/Android TV native exception: exact-index BitTorrent v1 VOD, separately
+negotiated private grants, public peer/DHT disclosure, bounded cancellation and
+app-private cache authority. It is approved for implementation on 2026-10-06,
+not implemented/qualified or baseline. Other native torrent paths and manual
+input remain deferred; capability stays off until its acceptance gates pass.
 
 `API_KEY` is a bootstrap administration credential. It provisions revocable
 integration keys with authorized namespaces, operation scopes and quotas.
@@ -84,9 +90,14 @@ loopback fixtures are explicit test exceptions. Media authorization
 must cover child playlists, segments, initialization data, subtitles and keys.
 
 VIPTV playback v2 retains a backend playback ID for progress and renewal. Its
-delivery discriminant is `direct` or `gateway`; clients never receive a gateway
-administrative key. The coordinated cutover rejects old media/catalog protocol
-clients with `client_update_required`; authentication need not be rewritten.
+baseline delivery discriminant is `direct` or `gateway`; clients never receive a
+gateway administrative key. SRC-TORRENT-NATIVE-001 adds `native_torrent` only for
+separately negotiated qualified Android requests, with no remote media URL. Its
+closed `GET /api/v2/playback-protocol` negotiation precedes optional native
+capability fields because existing request DTOs are closed. Unsupported servers/
+clients retain the existing HTTP/gateway wire shape. The coordinated cutover
+rejects old media/catalog protocol clients with `client_update_required`;
+authentication need not be rewritten.
 
 ## Xtream, defaults and bounded discovery
 

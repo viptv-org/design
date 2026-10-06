@@ -56,6 +56,22 @@ This is the required ordering for a selected source; it is not a promise that ev
 
 Never retry a different provider automatically after rungs 1–5 fail. Report the underlying class to the existing recovery UI: unsupported format/track, authorization/header failure, connection failure, seek failure, preparation timeout, or playback error. A direct/managed switch preserves absolute position, pause intent and title-local audio/subtitle choice. If replacement fails, restore the old playable session; if restoration fails, show Retry and Choose source with the saved position.
 
+## Android native torrent exception
+
+[SRC-TORRENT-NATIVE-001](specs/behavior/torrent-native-android.md) is owner-approved
+for implementation, not qualified or baseline. Exact-index v1 VOD may use a
+separately negotiated native transport grant and selected-file loopback byte
+capability while Media3 remains the decoder. Ordinary `can_play_direct` and a
+container suffix are not native torrent admission. Archive-free artifacts,
+independent grants, cache isolation, network policy and bounded cancellation
+must be qualified before advertisement; all other clients retain gateway HLS.
+This exception changes no source-picker/player copy, geometry, remote actions,
+Back/focus return, resume/history or media-time progress. After native admission,
+existing automatic direct-to-gateway recovery must not run: a native failure uses
+safe explicit Retry / Choose another source / Back, with gateway retry requiring
+fresh backend authorization for the same opaque source/exact file. Decoder,
+physical HDR/PiP and device capability claims still require independent evidence.
+
 ## Proposed capability test contract
 
 Each platform adapter must emit a bounded capability record before starting a source:

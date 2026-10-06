@@ -1,5 +1,17 @@
 # Design changes
 
+## 2026-10-06 — Approved Android native torrent contract
+
+Owner-approved SRC-TORRENT-NATIVE-001 for local Markdown ticket 01 closes
+negotiation, native request/grant JSON, exact-index v1 VOD, metadata bounds,
+public peer/DHT privacy, lease/revocation, independent grant capabilities,
+authorization-epoch cache limits, acquisition/quiescence and archive-free gates.
+BE-002, gateway exclusions and playback capability/recovery rules reference this
+narrow Android exception. Existing UI, source/resume/history and gateway HLS
+remain unchanged. Approval is for implementation only; immutable consumer
+adoption, engine/backend/core/Android implementation and qualification remain
+pending. No production activation or physical-device claim follows.
+
 ## 2026-10-02 — Proposed add-on torrent gateway sources
 
 Specified SRC-TORRENT-GATEWAY-001 for gateway issue 15: existing account-owned
