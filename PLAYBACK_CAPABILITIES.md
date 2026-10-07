@@ -64,7 +64,10 @@ separately negotiated native transport grant and selected-file loopback byte
 capability while Media3 remains the decoder. Ordinary `can_play_direct` and a
 container suffix are not native torrent admission. Archive-free artifacts,
 independent grants, cache isolation, network policy and bounded cancellation
-must be qualified before advertisement; all other clients retain gateway HLS.
+retain their independent qualification records. Supported Android runtimes
+advertise native torrent capability by default for every authorized account,
+without an enable setting, operator allowlist or qualification receipt;
+unsupported runtimes and other clients retain the gateway path.
 This exception changes no source-picker/player copy, geometry, remote actions,
 Back/focus return, resume/history or media-time progress. After native admission,
 existing automatic direct-to-gateway recovery must not run: a native failure uses
