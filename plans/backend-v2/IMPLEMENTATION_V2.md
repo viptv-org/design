@@ -8,7 +8,7 @@ This is an execution checklist, not a completion claim. User decisions are in
 The owner explicitly approved default native torrent playback for every
 authorized account on supported Android/Android TV runtimes, without a
 configurable enable setting, operator allowlist or qualification receipt.
-[SRC-TORRENT-NATIVE-001](specs/behavior/torrent-native-android.md) records that
+[SRC-TORRENT-NATIVE-001](../../specs/behavior/torrent-native-android.md) records that
 decision. Android runtime defaults and backend admission adoption are in
 progress; runtime/media evidence and actual development activation will be
 recorded by their owning repositories. No production deployment or universal

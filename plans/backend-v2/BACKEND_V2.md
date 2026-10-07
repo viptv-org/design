@@ -18,7 +18,7 @@ runtime remains baseline until the acceptance ledger records its replacement.
 - Owner scope update, 2026-09-30: UI changes are allowed across affected clients,
   including Android; the earlier backend/logic-only layout restriction is lifted.
   Update affected screens/states and acceptance in design first, then adopt an
-  immutable revision following DESIGN_SYNC.md. Existing product semantics remain
+  immutable revision following ../../docs/process/DESIGN_SYNC.md. Existing product semantics remain
   the baseline; this permission does not itself add deferred features.
 
 ## Playback contract
@@ -29,12 +29,12 @@ Input URLs and headers are secrets: no Debug/exception/log representation may
 contain them. Arbitrary command arguments and local file inputs are prohibited.
 
 Proposed additive source contract:
-[SRC-TORRENT-GATEWAY-001](specs/behavior/torrent-gateway-sources.md) specifies
+[SRC-TORRENT-GATEWAY-001](../../specs/behavior/torrent-gateway-sources.md) specifies
 account-owned add-on torrent/archive inputs delivered through existing gateway
 HLS leases on web, desktop and Android. Its proposed input, selection, privacy,
 copy and qualification rules extend this HTTP(S) baseline only after review and
 explicit immutable adoption. The owner-approved
-[SRC-TORRENT-NATIVE-001](specs/behavior/torrent-native-android.md) is the narrow
+[SRC-TORRENT-NATIVE-001](../../specs/behavior/torrent-native-android.md) is the narrow
 Android/Android TV native exception: exact-index BitTorrent v1 VOD, separately
 negotiated private grants, public peer/DHT disclosure, bounded cancellation and
 app-private cache authority. It is approved for implementation on 2026-10-06,
@@ -130,7 +130,7 @@ default raw playlist. `All channels`, `My channels`, `Recent` and provider
 categories are the existing filters; remove US classification and exact counts.
 Search matches channel names only: placeholder `Search channels`, empty copy
 `No channels match your search.` Playlist swap remains deferred; UI permission
-alone does not introduce that feature. Other screen changes follow DESIGN_SYNC.md.
+alone does not introduce that feature. Other screen changes follow ../../docs/process/DESIGN_SYNC.md.
 
 Opaque next/previous cursors carry the same catalog/filter/profile/generation
 binding. Remote page transitions keep the selected time slot and return to the

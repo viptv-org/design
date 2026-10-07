@@ -8,7 +8,7 @@ compatibility and resource authorization still apply. Implementation, deployment
 and qualification evidence must be recorded separately. This is the normative,
 closed v1 contract, not a
 list of proposed API names. Implementation requires review/commit of this
-amendment and immutable adoption under [DESIGN_SYNC](../../DESIGN_SYNC.md).
+amendment and immutable adoption under [DESIGN_SYNC](../../docs/process/DESIGN_SYNC.md).
 
 Approval provenance: local Markdown ticket 01, `01-native-delivery-contract.md`,
 and the owner-approved `.scratch/native-torrent/contract-proposal.md` in Android;
@@ -33,7 +33,7 @@ by an enabled account-owned add-on for the selected VOD title/exact episode.
 Media3 remains the decoder. No magnet entry, file chooser, source-entry form,
 new setting, UI copy, assets or layout are introduced. Other clients retain
 [SRC-TORRENT-GATEWAY-001](torrent-gateway-sources.md); ordinary HTTP delivery and
-[BE-002](../../BACKEND_V2.md) resource policy are unchanged.
+[BE-002](../../plans/backend-v2/BACKEND_V2.md) resource policy are unchanged.
 
 The [Roku behavior contract](roku-ux-contract.md), SRC-PROVIDERS-001 and player
 controls in [components](../../viptv-design-system/components.md), and existing

@@ -6,7 +6,7 @@ def walk(base):
     for directory, folders, names in os.walk(base):
         folders[:]=[x for x in folders if x not in {'.git','node_modules','__pycache__'}]
         for name in names: yield Path(directory)/name
-required=['DESIGN.md','CONTEXT.md','PLATFORM_PLAN.md','DEVELOPMENT.md','REPOSITORIES.md','SPEC.md','specs/behavior/roku-ux-contract.md','viptv-design-system/README.md','viptv-design-system/components.md','viptv-design-system/copy.md','viptv-design-system/decisions.md','viptv-design-system/tokens/tokens.json']
+required=['DESIGN.md','CONTEXT.md','plans/PLATFORM_PLAN.md','docs/process/DEVELOPMENT.md','docs/architecture/REPOSITORIES.md','SPEC.md','specs/behavior/roku-ux-contract.md','viptv-design-system/README.md','viptv-design-system/components.md','viptv-design-system/copy.md','viptv-design-system/decisions.md','viptv-design-system/tokens/tokens.json']
 for name in required: assert (root/name).is_file(), name
 for p in walk(root):
     if '.git' in p.parts: continue

@@ -1,6 +1,6 @@
 # Playback capabilities and fallback contract
 
-**Status:** proposed adapter plan. This document does not claim a working web, Tizen, Vizio, Desktop, or Android player. The only implementation baseline is Roku at `vynxc/viptv@7d6b413`; its UX contract is [specs/behavior/roku-ux-contract.md](specs/behavior/roku-ux-contract.md). The existing [PLATFORM_PLAN.md](PLATFORM_PLAN.md) is correctly framed as proposed and does not promise an existing web player.
+**Status:** proposed adapter plan. This document does not claim a working web, Tizen, Vizio, Desktop, or Android player. The only implementation baseline is Roku at `vynxc/viptv@7d6b413`; its UX contract is [specs/behavior/roku-ux-contract.md](../../specs/behavior/roku-ux-contract.md). The existing [../../plans/PLATFORM_PLAN.md](../../plans/PLATFORM_PLAN.md) is correctly framed as proposed and does not promise an existing web player.
 
 Current browser implementation work is governed by [BROWSER_PLAYBACK.md](BROWSER_PLAYBACK.md); older proposed-platform statements below are historical context, not current delivery status.
 
@@ -8,7 +8,7 @@ Current browser implementation work is governed by [BROWSER_PLAYBACK.md](BROWSER
 
 Transcoding is a last resort. A player adapter must first inspect the selected stream and actual device capability, then use the cheapest path that passes a playback probe. A container suffix alone is not evidence that transcoding is required. A capability probe must account for container/demux support, video codec plus profile/level, audio codec, subtitle representation, DRM, headers/cookies, adaptive protocol, seek/range behavior, hardware/resource budget, and the actual engine/browser/TV model.
 
-No probe may override product intent. Ordinary Play/Sources remains explicit source selection; exact-source Resume and controlled next episode retain their narrowly defined automatic paths; a failed path must preserve pause/position/track intent and expose retry/Choose source rather than silently selecting a different provider. See the [Roku UX contract](specs/behavior/roku-ux-contract.md).
+No probe may override product intent. Ordinary Play/Sources remains explicit source selection; exact-source Resume and controlled next episode retain their narrowly defined automatic paths; a failed path must preserve pause/position/track intent and expose retry/Choose source rather than silently selecting a different provider. See the [Roku UX contract](../../specs/behavior/roku-ux-contract.md).
 
 ## Verified capability facts
 
@@ -58,7 +58,7 @@ Never retry a different provider automatically after rungs 1–5 fail. Report th
 
 ## Android native torrent exception
 
-[SRC-TORRENT-NATIVE-001](specs/behavior/torrent-native-android.md) is owner-approved
+[SRC-TORRENT-NATIVE-001](../../specs/behavior/torrent-native-android.md) is owner-approved
 for implementation, not qualified or baseline. Exact-index v1 VOD may use a
 separately negotiated native transport grant and selected-file loopback byte
 capability while Media3 remains the decoder. Ordinary `can_play_direct` and a
