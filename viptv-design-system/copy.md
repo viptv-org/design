@@ -84,6 +84,7 @@ in [the native contract](../specs/behavior/torrent-native-android.md).
 | `native_playback_failed` | The selected source could not start on this device. Try another source or retry playback. |
 | `native_acquisition_timeout` | This device took too long to prepare the selected source. Try another source or retry playback. |
 | `native_metadata_timeout` | No torrent metadata arrived from peers before the startup deadline. Check DHT/network access or choose another source. |
+| `native_session_timeout` | The device timed out creating its torrent network session. Check network access and retry playback. |
 | `native_cache_preparation_timeout` | The device timed out preparing local torrent storage. Check free space and retry after the previous stream has stopped. |
 | `native_initialization_timeout` | Torrent metadata arrived, but the local torrent engine did not initialize in time. Retry playback or check device storage. |
 | `native_loopback_timeout` | The torrent initialized, but the local playback endpoint did not open in time. Retry playback. |
