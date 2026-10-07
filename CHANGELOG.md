@@ -1,5 +1,14 @@
 # Design changes
 
+## 2026-10-07 — Proposed episode annotations implementation plan
+
+Added EPISODE-ANNOTATIONS-001: native filler/recap badges and manual intro/outro
+skipping backed by replaceable metadata adapters, followed by separately gated
+general-media lookup, opt-in automation and optional media analysis. The plan
+defines repo ownership, proposed versioned reads, identity/applicability rules,
+budgets and acceptance. Normative geometry/canvas exports, provider permissions,
+implementation, immutable adoption and device evidence remain pending.
+
 ## 2026-10-06 — Approved Android native torrent contract
 
 Owner-approved SRC-TORRENT-NATIVE-001 for local Markdown ticket 01 closes
