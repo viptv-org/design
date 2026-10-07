@@ -1,5 +1,14 @@
 # Design changes
 
+## 2026-10-07 — Bounded native torrent piece cache
+
+The owner approved rolling pieces for large native Android video inputs. NT-10
+requires bounded retained bytes, large-offset/backward reads, exact-file authority,
+independent grants and joined retirement. The aggregate 2 GiB ceiling remains;
+large inputs reserve 256 MiB instead of full logical payload. Capacity failure
+copy describes observed cache admission rather than source size. Existing
+recovery actions and layout remain unchanged; Android decode evidence is separate.
+
 ## 2026-10-07 — Observed native playback failure explanations
 
 Amend SRC-TORRENT-NATIVE-001 with closed observed reason codes and exact safe
