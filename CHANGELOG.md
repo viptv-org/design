@@ -1,5 +1,15 @@
 # Design changes
 
+## 2026-10-07 — Observed native playback failure explanations
+
+Amend SRC-TORRENT-NATIVE-001 with closed observed reason codes and exact safe
+copy for acquisition/metadata deadlines, full-torrent cache budget, storage/cache,
+metadata/file mismatch, grant expiry, connectivity and codec support. NT-09
+requires native/actual-WASM copy agreement and safe asynchronous preservation.
+Unknown failures remain generic; deadlines never imply absent seeders. Existing
+recovery, focus, layout and source intent remain unchanged. Adapter/engine facts
+and device acceptance require their own evidence.
+
 ## 2026-10-07 — Organize plans and engineering documentation
 
 Grouped implementation plans under `plans/` and architecture, playback, platform,
