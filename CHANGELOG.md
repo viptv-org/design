@@ -1,5 +1,14 @@
 # Design changes
 
+## 2026-10-08 — Bounded Android TV hero rendering
+
+TV-042 proposes 280–350 ms catalog transitions, a 180 ms browsing dissolve,
+120 ms episode settling and 140–180 ms TV entrances. Resting decoration is
+paced at 15 fps, transitions at up to 60 fps. Ambient overdraw and redundant
+opaque-interior shader work are removed without reducing sharp art resolution;
+the edge palette, core pools, input actions and restored focus are retained.
+Physical TV frame-time acceptance remains pending.
+
 ## 2026-10-07 — Shader TV hero backdrop
 
 TV-042 defines the TV Home and Details backdrop rendered by shaders: an uncropped
