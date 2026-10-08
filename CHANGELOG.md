@@ -7,7 +7,8 @@ TV-042 defines the TV Home and Details backdrop rendered by shaders: an uncroppe
 blurred ambient fill, narrower text scrim and episode stills on Details. Core's
 `hero_edge_pool` owns the genre pools. Animations-off, GL failure and Sources use
 the static compositor. `assets/hero/` adds the shared GLSL ES 1.00 sources, now
-validated. Proposed; Android branch evidence only, TV-web port pending.
+validated. Proposed for Android TV only; shared TV-web and Roku keep their
+static backdrops. Android branch evidence only.
 
 ## 2026-10-07 — Actionable source startup diagnostics
 

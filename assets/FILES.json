@@ -1,7 +1,7 @@
 {
   "source_commit": "7d6b4131a44d87b58edcf12709af5851da387176",
   "files": {
-    "ASSET_MANIFEST.md": "35a08e404e623cc792e38b25f6ae7ebadc15280456d32b5a67e3bd7ab0edcf3a",
+    "ASSET_MANIFEST.md": "32714b1ad26c656065c2438b5f2d266ca37982a197e41fdafdb4ad58b8efecca",
     "fonts/README.md": "7102f4162f3d7e0d1e1b5429aa2ea9606e0ad23d3ec2a99b13af665d27b53a5b",
     "fonts/bricolage-grotesque-LICENSE.txt": "923f4ddf0fd39f9b7794ab0df7332f3d95dc43e8ad7ec2289d6d9e8491177f51",
     "fonts/bricolage_grotesque_700.ttf": "01e40bbb8f88549e8603fb5b5facb3aa87d7ab96bcfc6da1298bbabbb493273d",
@@ -11,7 +11,7 @@
     "fonts/onest_500.ttf": "e3c13b585f2b6795f1295599451956c9eeedf6c6aef97d5f3b5810c147a0a2f7",
     "fonts/onest_600.ttf": "7ba629cff2a62cabc3dcf3819fa34d98f60717ef1a1b21a99f72221b48f54d72",
     "fonts/onest_700.ttf": "2d222f09bdbccab17f514f403105b046037a4b6ff3681183593bec9abeadfb61",
-    "hero/README.md": "2d3c38b4dd29290a425b501b9f5f28f0d40c97fb0e4fd54892d57f9c9a1a67f8",
+    "hero/README.md": "c45a62e68ec7d76ee396b9690fad423c322ecf89d342fe89f623a71beef84e89",
     "hero/ambient_main.glsl": "95281bbb186aff75b8bef328460b8169a7374dca6779d682528241d487183218",
     "hero/edge_common.glsl": "1d756899100b1b76615bede43b158f9fa752c728ff3058c9e650540d74463a45",
     "hero/edge_main.glsl": "2794ffd2ec7ab2dc83410555128a4f25e6eb7f6f40f75a3d8c50b52ee049b541",
