@@ -1,5 +1,14 @@
 # Design changes
 
+## 2026-10-08 — Bounded hero artwork preloading
+
+TV-042 specifies two adjacent Home heroes or Details episode stills preloaded
+at the actual output decode size, with a shared foreground/in-flight request,
+one speculative load, three retained images and a 12 MiB reference budget.
+Foreground requests take priority; stale work and screen-owned references are
+cancelled/released. Artwork roles remain Core-owned and physical TV latency
+qualification remains pending.
+
 ## 2026-10-08 — Bounded Android TV hero rendering
 
 TV-042 proposes 280–350 ms catalog transitions, a 180 ms browsing dissolve,
