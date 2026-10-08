@@ -38,6 +38,14 @@ for path,value in leaves(tokens.get('color',{})):
 m=json.loads((root/'assets/FILES.json').read_text())
 actual={str(p.relative_to(root/'assets')):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(walk(root/'assets')) if p.is_file() and p.name!='FILES.json'}
 assert actual==m['files'], 'Asset inventory mismatch; update intentionally with provenance'
+hero=root/'assets/hero'
+hi=json.loads((hero/'index.json').read_text())
+assert set(hi)=={'transitions','edges'}, 'assets/hero/index.json holds only shader catalogs; edge pools are Core policy'
+for kind,baseline in (('transitions','fade'),('edges','linear')):
+    ids=[x['id'] for x in hi[kind]]
+    assert len(ids)==len(set(ids)) and baseline in ids, f'Hero {kind} catalog needs unique ids and {baseline}'
+    assert set(ids)=={p.stem for p in (hero/kind).glob('*.glsl')}, f'Hero {kind} catalog and files differ'
+    assert kind=='edges' or all(x['duration']>0 for x in hi[kind]), 'Hero transition durations must be positive'
 ref=ds/'reference'
 rm=json.loads((ref/'FILES.json').read_text())
 assert rm.get('source'), 'Reference inventory needs a source/provenance note'

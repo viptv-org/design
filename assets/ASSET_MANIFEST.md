@@ -50,4 +50,8 @@ git diff --no-index -- "$SOURCE_ROKU/data" "$DESIGN_REPO/assets/roku/roku/data"
 - `avatar-characters/` contains 48 curated Disney-related thumbnails. Rights remain with respective rights holders; provenance is in `character-avatars.json` and `avatar-characters/README.md`. Keep the stable 1-based category positions; append only.
 - `JELLYFIN-LICENSE.txt` and `JELLYFIN-NOTICE.txt` cover the GPLv2-derived Roku caption adaptation. `BSLIB-LICENSE.txt` is MIT for RokuCommunity BSLib 0.1.1. Keep notices and licenses with any copied/redistributed asset or client package where required.
 
+## TV hero shaders
+
+`hero/` holds the GLSL ES 1.00 sources of the [TV-042](../docs/platforms/TV_POLISH.md#tv-042--shader-hero-backdrop) backdrop, consumed by Android TV (OpenGL ES 2/3) and TV-web (WebGL 1). They are byte-identical copies of `viptv-org/android` `app/src/androidMain/assets/hero/` at `683904d63fc86eb0482bfc10892cb93dda2a374d`, except `index.json`, which keeps only the `transitions` and `edges` catalogs; genre edge pools are shared Core policy (`hero_edge_pool`). [hero/README.md](hero/README.md) defines program assembly, uniforms and the blur requirement. Clients copy these sources at build time and change them here first.
+
 No app should use this design repository as a runtime submodule. Consume a versioned asset release or copy only the required files at build time, keeping this repository as the provenance and visual-contract source of truth. Apps must not add screenshots to this tree.

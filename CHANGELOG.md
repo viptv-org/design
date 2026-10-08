@@ -1,5 +1,14 @@
 # Design changes
 
+## 2026-10-07 — Shader TV hero backdrop
+
+TV-042 defines the TV Home and Details backdrop rendered by shaders: an uncropped
+1280×720 16:9 art box with drift, catalog transitions, category edge fades over a
+blurred ambient fill, narrower text scrim and episode stills on Details. Core's
+`hero_edge_pool` owns the genre pools. Animations-off, GL failure and Sources use
+the static compositor. `assets/hero/` adds the shared GLSL ES 1.00 sources, now
+validated. Proposed; Android branch evidence only, TV-web port pending.
+
 ## 2026-10-07 — Actionable source startup diagnostics
 
 NT-09 requires the measured native preparation stage to survive its first
