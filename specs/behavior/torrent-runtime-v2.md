@@ -1,8 +1,9 @@
 # SRC-TORRENT-RUNTIME-002 — Shared streaming transport
 
-Status: owner-approved implementation plan, 2026-10-09; proposed behavior until
-the comparative qualification gate passes. Existing native v1 and gateway
-behavior remain the deployed baseline. This does not assert production adoption.
+Status: owner-approved implementation plan, 2026-10-09. Client integration is
+authorized with current measured performance accepted for this phase; performance
+improvements remain follow-up work. Existing native v1 and gateway behavior
+remain the deployed baseline until delivery is separately coordinated.
 
 ## Delivery and ownership
 
@@ -70,7 +71,7 @@ worker if joined settlement exceeds two seconds; recovery distrusts partial data
 
 ## Qualification gate
 
-Before any production-path replacement, compare current rqbit, upstream rqbit
+Comparative measurements cover current rqbit, upstream rqbit
 with broader discovery, the anacrolix candidate, and libtorrent/Nuvio/Stremio
 references with matched sources, demand, bandwidth, network and cold/warm state.
 Measure acquisition separately from decoding; record actual missing comparisons.
@@ -82,9 +83,15 @@ eviction and crash recovery; beginning/resume/head/tail/random seeks; stored RAR
 and RAR5/multipart boundaries; malformed/missing/compressed/encrypted archives;
 cancel at every stage; renewal/expiry/profile replacement; independent readers;
 all Android ABIs; Linux/Windows native decoders; gateway web/Roku output.
-Every controlled correctness test must pass with hard storage bounds. Matched
-measurements must show no reliability or material latency regression before
-promoting the candidate. Physical devices and deployment require separate evidence.
+Controlled correctness and hard storage bounds remain required. The owner has
+authorized client integration before latency parity with the reference clients.
+Record the measured startup gap and remaining comparisons for follow-up; this
+acceptance does not imply device or production qualification. Physical devices
+and deployment require separate evidence.
+
+The v2 negotiation route is `/api/v2/torrent-runtime-protocol`, returning the
+closed `{"version":2,"native_torrent_versions":[2]}` support object. The existing
+`/api/v2/playback-protocol` response remains unchanged for native v1 clients.
 
 References: [native v1](torrent-native-android.md),
 [gateway source baseline](torrent-gateway-sources.md),
