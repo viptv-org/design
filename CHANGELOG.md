@@ -1,5 +1,14 @@
 # Design changes
 
+## 2026-10-11 — Remove the v1 backend surface
+
+After the verified 2026-10-09 cutover, BE-002 drops the `client_update_required`
+stubs for retired media/setup/organizer namespaces and the unversioned
+`/api/addons` routes; both now answer as unknown routes. Add-on management is
+`/api/v2/addons` only. Paired viewing devices with a selected profile may manage
+the account's shared add-ons there, preserving the existing TV/Roku settings
+behavior; parent restrictions still apply. No screens or copy change.
+
 ## 2026-10-07 — Actionable source startup diagnostics
 
 NT-09 requires the measured native preparation stage to survive its first
