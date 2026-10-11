@@ -151,6 +151,17 @@ text and non-media content keep their safe inset. The
 [media-row contract](../specs/behavior/android-tv-media-rows.md) defines the
 geometry, focus restoration and acceptance cases.
 
+## TV My List poster cards (TV-MYLIST-POSTER-001)
+
+The 2026-10-11 owner request shows TV My List cards at 2:3. My List saves only
+a portrait poster per title, which the 16:9 TV still crops to about 37 % of its
+height; fetching backdrops instead would add a metadata lookup and still fall
+back to posters for many IPTV titles. The My List segment uses a 7-column grid
+of 200 × 300 posters and the Home My List shelf uses 160 × 240. Continue
+Watching and all other TV cards keep their landscape shape. The
+[poster contract](../specs/behavior/tv-my-list-posters.md) defines geometry,
+scrolling, focus, removal and acceptance for every TV renderer.
+
 ## Android TV episode-number jump (AND-EPISODE-JUMP-001)
 
 The proposed compact `Episode #` chip beside the season badge opens a native
