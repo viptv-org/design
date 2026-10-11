@@ -63,12 +63,14 @@ followed by one status line, and these buttons:
 |---|---|---|
 | Development build | `Updates are off for development builds.` | `Close` |
 | Not checked / up to date | `You're up to date.` (after a check) or none | `Check for updates` · `Close` |
-| Checking | `Checking for updates…` | `Close` |
+| Checking | `Checking for updates…` | `Check for updates` (no effect while checking) · `Close` |
 | Available | `VIPTV {new} is available.` | `Update now` · `Close` |
 | Check failed | `Couldn't check for updates. Check your connection and try again.` | `Check for updates` · `Close` |
 
-On TV the first button takes focus. Back closes the dialog and returns focus
-to the About VIPTV row.
+The first button keeps its position while the status changes, so TV focus
+stays on it (`Check for updates` becomes `Update now` when a release is
+found). On TV the first button takes focus when the dialog opens. Back closes
+the dialog and returns focus to the About VIPTV row.
 
 ## Update flow
 
