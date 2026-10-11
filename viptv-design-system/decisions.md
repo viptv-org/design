@@ -162,6 +162,20 @@ Watching and all other TV cards keep their landscape shape. The
 [poster contract](../specs/behavior/tv-my-list-posters.md) defines geometry,
 scrolling, focus, removal and acceptance for every TV renderer.
 
+## Phone 2:3 posters (PHONE-POSTER-001)
+
+Proposed with the same 2026-10-11 request. Every phone poster card (My List,
+Discover, Search and poster shelves) uses a 2:3 frame instead of 4:5, so the
+whole poster shows; 4:5 cut about 17 % of its height. The 3-column grid,
+radius 16, captions, ⋯ button and gaps are unchanged; at 390 px wide a card is
+111 × 167 (`size.tile.phone-poster`). The phone reference renders still draw
+4:5 and are superseded on this point until re-exported. Native Android phone
+already draws 2:3; TV-web's responsive phone layout adopts it.
+
+Acceptance: on a 390 px phone, My List, Discover and Search show three 2:3
+posters per row with the whole poster visible and unchanged captions, ⋯ and
+long-press menus; missing art fills the 2:3 frame.
+
 ## Android TV episode-number jump (AND-EPISODE-JUMP-001)
 
 The proposed compact `Episode #` chip beside the season badge opens a native

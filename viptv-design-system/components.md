@@ -96,7 +96,7 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 
 | Card | P | D | T |
 |---|---|---|---|
-| Poster | 3-column grid, 4:5, radius 16 | 172 × 258 (web 164 × 246), radius 14 | grid 360 × 202 still; My List: 2:3 poster 200 × 300, 7 columns (Home My List shelf 160 × 240), proposed |
+| Poster | 3-column grid, 2:3 (111 × 167 at 390 wide), radius 16, proposed | 172 × 258 (web 164 × 246), radius 14 | grid 360 × 202 still; My List: 2:3 poster 200 × 300, 7 columns (Home My List shelf 160 × 240), proposed |
 | Continue watching | 292 × 96 (thumb + text + play disc) | still 256 × 128 + caption | still 320 × 180 + caption |
 | Episode | row | 272 × 150 + number, title, 2-line synopsis | 360 × 200 |
 | Live | live-now card 200 wide | live tile 220 × 124 with a text monogram | guide blocks |
