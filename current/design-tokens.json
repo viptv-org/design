@@ -1,0 +1,69 @@
+{
+ "color": {
+  "bg": "#0B0B0C",
+  "surface1": "#161618",
+  "surface2": "#212124",
+  "surface3": "#2A2A2E",
+  "surface4": "#34343A",
+  "text": "#F4F2EE",
+  "textBody": "#DAD8D3",
+  "textSecondary": "#B6B4AF",
+  "textTertiary": "#8F8D89",
+  "onLight": "#111113",
+  "onAccent": "#15130F",
+  "accent": "#F5C542",
+  "danger": "#FF7A6E",
+  "live": "#E5484D",
+  "line": "rgba(255,255,255,0.07)",
+  "line2": "rgba(255,255,255,0.14)",
+  "selected": "rgba(255,255,255,0.16)",
+  "chip": "rgba(255,255,255,0.1)",
+  "skeleton1": "#17171A",
+  "skeleton2": "#1E1E21"
+ },
+ "accentOptions": [
+  "#F5C542",
+  "#FF8B5C",
+  "#62D9BC",
+  "#A3BCFF"
+ ],
+ "font": {
+  "ui": "Onest (400/500/600/700)",
+  "wordmark": "Bricolage Grotesque 800 — the VIPTV wordmark only",
+  "titles": "Title logos (images) instead of typed titles wherever art provides one"
+ },
+ "radius": {
+  "button": "12px (min(12, height/3))",
+  "card": "8–10px",
+  "sheet": "24px",
+  "chip": "pill",
+  "iconButton": "circle"
+ },
+ "button": {
+  "primary": "background #F4F2EE; color #111113",
+  "secondary(glass)": "background: rgba(255,255,255,0.12); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);",
+  "tvGlass": "background: rgba(255,255,255,0.16); backdrop-filter: blur(24px)"
+ },
+ "focus": {
+  "tvCard": "inner ring: box-shadow inset 0 0 0 4px #FFFFFF, inset 0 0 0 6px rgba(0,0,0,0.35) — nothing scales",
+  "tvButton": "focused = solid white fill, others translucent",
+  "keyboard(desktop/web)": "box-shadow: 0 0 0 2px #0B0B0C, 0 0 0 4px #F4F2EE;",
+  "hover(desktop/web)": "box-shadow: inset 0 0 0 2px #F4F2EE;"
+ },
+ "hero": {
+  "art": "framed 16:9 card, never wider than the source (~774px), never upscaled",
+  "ambient": "blurred copy behind: filter: blur(60px) saturate(1.3); opacity: 0.45; transform: scale(1.25);",
+  "wide": "≥ ~1800px of content: third column (Featured queue on Home, Details on title pages)"
+ },
+ "canvasSizes": {
+  "tv": "1920×1080",
+  "phone": "390×844 (landscape 844×390)",
+  "tablet": "1194×834",
+  "desktop": "1440×900 default; also 1280×800, 1024×700, 600×800, 2560×1080",
+  "web": "1440×900, 1920, 768, 390"
+ },
+ "breakpoints": {
+  "desktopNav": "collapsed icon rail ≥ 641px, menu button below — never an expanded sidebar",
+  "webGutter": "max(16px, 4% of width)"
+ }
+}

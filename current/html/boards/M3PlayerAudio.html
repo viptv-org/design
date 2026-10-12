@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>Player — audio and subtitles</title>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;src:url('../assets/fonts/bricolage-grotesque-latin-standard-normal.woff2') format('woff2');}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;src:url('../assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');}@font-face{font-family:'Onest';font-style:normal;font-weight:100 900;src:url('../assets/fonts/onest-latin-wght-normal.woff2') format('woff2');}</style>
+<style>
+body{margin:0;background:#0B0B0C;font-family:'Onest',system-ui,sans-serif;color:#F4F2EE;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0}
+input{font:inherit;color:inherit}
+
+@keyframes t3-fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes t3-fade{from{opacity:0}to{opacity:1}}
+@keyframes t3-shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+@keyframes t3-spin{to{transform:rotate(360deg)}}
+@keyframes t3-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+@keyframes t3-ind{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+@keyframes t3-fill{from{width:0}to{width:100%}}
+@keyframes t3-kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
+@keyframes t3-slidein{from{transform:translateX(100%)}to{transform:none}}
+.t3-skel{background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.13) 50%,rgba(255,255,255,.06) 100%);background-size:1200px 100%;animation:t3-shimmer 1.4s linear infinite}
+.t3-in{animation:t3-fadeup .45s cubic-bezier(.2,0,0,1) both}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.vx-row{display:flex;overflow:hidden}
+.vx-card img{transition:opacity .2s}
+.vx-hover .vx-art{box-shadow:0 0 0 2px rgba(255,255,255,.9)}
+.vx-focusring{outline:2px solid #F4F2EE;outline-offset:3px}
+@keyframes vx-up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes vx-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes vx-pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@keyframes vx-ripple{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(1.3)}}
+@keyframes vx-wave{0%,100%{opacity:.25}50%{opacity:1}}
+.vx-sheet{animation:vx-up .32s cubic-bezier(.2,0,0,1) both}
+.vx-pop{animation:vx-pop .18s cubic-bezier(.2,0,0,1) both;transform-origin:top}
+.vx-toast{animation:vx-in .25s cubic-bezier(.2,0,0,1) both}
+
+@keyframes m-drift{from{transform:rotate(-8deg) scale(1.15) translateY(0)}to{transform:rotate(-8deg) scale(1.15) translateY(-160px)}}
+@keyframes m-scan{from{transform:translateY(-100px)}to{transform:translateY(100px)}}
+
+@keyframes m3-ripple{0%{opacity:.0}15%{opacity:1}100%{opacity:0}}
+.m3-rip{animation:m3-ripple 1s ease-out infinite}
+
+@keyframes m3-side{from{transform:translateX(100%)}to{transform:none}}
+@keyframes m3-sidel{from{transform:translateX(-100%)}to{transform:none}}
+@keyframes m3-count{from{width:0}to{width:100%}}
+</style>
+</helmet>
+<div style="width: 844px; height: 390px; position: relative; overflow: hidden; background: #0B0B0C; color: #F4F2EE; font-family: 'Onest', system-ui, sans-serif;">
+<div style="position: absolute; inset: 0; background: #000; overflow: hidden;"><img src="../assets/img/6815a976d56905fc3c84f48fce77070a.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"><div role="dialog" aria-label="Audio and subtitles" class="vx-sheet" style="position: absolute; right: 0; top: 0; bottom: 0; width: 470px; z-index: 5; padding: 20px 56px 20px 20px; box-sizing: border-box; background: rgba(26,26,29,0.94); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); animation-name: m3-side; display: flex; flex-direction: column; gap: 10px;"><div style="display: flex; align-items: center;"><span style="font-size: 17px; font-weight: 700; color: #F4F2EE; ">Audio & subtitles</span><span style="margin-left: auto;"><button type="button" aria-label="Close" style="width: 34px; height: 34px; flex-shrink: 0; border: 0; border-radius: 17px; background: rgba(255,255,255,0.14); color: #F4F2EE; display: inline-flex; align-items: center; justify-content: center; padding: 0; "><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; display: block;"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button></span></div><div style="display: flex; gap: 10px;"><div style="flex: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 600; color: #B6B4AF; padding: 0 12px 6px;">Audio</span><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 700; background: rgba(255,255,255,0.1);"><span style="width: 18px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; display: block;"><path d="M20 6 9 17l-5-5"></path></svg></span>English · 5.1</a><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 500; "><span style="width: 18px;"></span>English · AD</a><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 500; "><span style="width: 18px;"></span>Spanish</a><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 500; "><span style="width: 18px;"></span>French</a><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 500; "><span style="width: 18px;"></span>German</a></div><div style="flex: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 600; color: #B6B4AF; padding: 0 12px 6px;">Subtitles</span><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 500; "><span style="width: 18px;"></span>Off</a><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 700; background: rgba(255,255,255,0.1);"><span style="width: 18px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; display: block;"><path d="M20 6 9 17l-5-5"></path></svg></span>English</a><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 500; "><span style="width: 18px;"></span>English (SDH)</a><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 500; "><span style="width: 18px;"></span>Spanish</a><a href="#" style="height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 8px; font-size: 14px; font-weight: 500; "><span style="width: 18px;"></span>Portuguese</a></div></div></div><span aria-hidden="true" style="position: absolute; left: 50%; bottom: 6px; width: 180px; height: 5px; margin-left: -90px; border-radius: 3px; background: rgba(255,255,255,0.55); z-index: 40;"></span><span aria-hidden="true" style="position: absolute; left: 11px; top: 50%; width: 36px; height: 124px; margin-top: -62px; border-radius: 18px; background: #000; z-index: 41;"></span></div>
+</div>
+</x-dc>
+
+</body>
+</html>

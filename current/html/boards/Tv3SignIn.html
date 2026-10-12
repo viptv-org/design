@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>Sign in — phone or browser code</title>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;src:url('../assets/fonts/bricolage-grotesque-latin-standard-normal.woff2') format('woff2');}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;src:url('../assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');}@font-face{font-family:'Onest';font-style:normal;font-weight:100 900;src:url('../assets/fonts/onest-latin-wght-normal.woff2') format('woff2');}</style>
+<style>
+body{margin:0;background:#0B0B0C;font-family:'Onest',system-ui,sans-serif;color:#F4F2EE;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0}
+input{font:inherit;color:inherit}
+
+.seg{position:relative;display:grid;grid-template-columns:repeat(3,168px);height:64px;padding:6px;box-sizing:border-box;border-radius:32px;background:#2A2A2E}
+.seg input{position:absolute;opacity:0;width:0;height:0;margin:0;pointer-events:none}
+.seg label{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#B6B4AF;cursor:pointer;transition:color .25s}
+.seg input:checked+label{color:#F4F2EE}
+.seg .thumb{position:absolute;left:6px;top:6px;width:168px;height:52px;border-radius:26px;background:#0B0B0C;box-shadow:0 4px 14px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.07);transition:transform .34s cubic-bezier(.2,.8,.2,1)}
+.seg input:nth-of-type(2):checked~.thumb{transform:translateX(168px)}
+.seg input:nth-of-type(3):checked~.thumb{transform:translateX(336px)}
+.opt{position:relative;display:flex;align-items:center;gap:22px;height:76px;padding:0 28px;border-radius:22px;font-size:28px;font-weight:600;color:#F4F2EE;cursor:pointer;transition:background .2s}
+.opt input{position:absolute;opacity:0;width:0;height:0;margin:0;pointer-events:none}
+.opt .dot{width:34px;height:34px;flex-shrink:0;border-radius:17px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;color:transparent}
+.opt .sub{margin-left:auto;font-size:22px;font-weight:500;color:#B6B4AF}
+.opt:has(input:checked){background:rgba(255,255,255,.12)}
+.opt input:checked~.dot{background:#F4F2EE;box-shadow:none;color:#111113}
+.opt.focus,.opt.focus:has(input:checked){background:#F4F2EE;color:#111113;box-shadow:0 0 0 4px #FFFFFF,0 24px 60px rgba(0,0,0,.65)}
+.opt.focus .sub{color:#4A4945}
+.opt.focus .dot{box-shadow:inset 0 0 0 2px rgba(17,17,19,.4)}
+.opt.focus input:checked~.dot{background:#111113;color:#F4F2EE}
+
+@keyframes t3-fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes t3-fade{from{opacity:0}to{opacity:1}}
+@keyframes t3-shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+@keyframes t3-spin{to{transform:rotate(360deg)}}
+@keyframes t3-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+@keyframes t3-ind{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+@keyframes t3-fill{from{width:0}to{width:100%}}
+@keyframes t3-kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
+@keyframes t3-slidein{from{transform:translateX(100%)}to{transform:none}}
+.t3-skel{background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.13) 50%,rgba(255,255,255,.06) 100%);background-size:1200px 100%;animation:t3-shimmer 1.4s linear infinite}
+.t3-in{animation:t3-fadeup .45s cubic-bezier(.2,0,0,1) both}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div style="width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #0B0B0C; color: #F4F2EE; font-family: 'Onest', system-ui, sans-serif;">
+<div style="position: absolute; left: 96px; top: 96px;"><h1 style="margin: 0; font-family: 'Onest', system-ui, sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; ">Sign in to VIPTV</h1></div><div style="position: absolute; left: 96px; top: 250px; width: 760px; display: flex; flex-direction: column; gap: 22px;"><p style="margin: 0; font-size: 30px; line-height: 1.45; color: #F4F2EE; font-weight: 700;">Scan with your phone</p><p style="margin: 0; font-size: 26px; line-height: 1.45; color: #B6B4AF; ">Point your camera at the code. You’ll finish on your phone and this TV signs in by itself.</p><div style="width: 340px; height: 340px; margin-top: 10px; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; justify-content: center;"><span role="img" aria-label="Scan to link your TV" style="width: 300px; height: 300px; flex-shrink: 0; border-radius: 37px; background: #FFFFFF; color: #111113; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; font-size: 24px; font-weight: 700;"><svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; display: block;"><rect width="5" height="5" x="3" y="3" rx="1"></rect><rect width="5" height="5" x="16" y="3" rx="1"></rect><rect width="5" height="5" x="3" y="16" rx="1"></rect><path d="M21 16h-3a2 2 0 0 0-2 2v3"></path><path d="M21 21v.01"></path><path d="M12 7v3a2 2 0 0 1-2 2H7"></path><path d="M3 12h.01"></path><path d="M12 3h.01"></path><path d="M12 16v.01"></path><path d="M16 12h1"></path><path d="M21 12v.01"></path><path d="M12 21v-1"></path></svg>[QR code]</span></div></div><span aria-hidden="true" style="position: absolute; left: 959px; top: 250px; width: 2px; height: 560px; background: rgba(255,255,255,0.12);"></span><span style="position: absolute; left: 930px; top: 500px; width: 60px; height: 60px; border-radius: 30px; background: #0B0B0C; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #B6B4AF;">or</span><div style="position: absolute; left: 1064px; top: 250px; width: 760px; display: flex; flex-direction: column; gap: 22px;"><p style="margin: 0; font-size: 30px; line-height: 1.45; color: #F4F2EE; font-weight: 700;">Use any browser</p><div style="display: flex; align-items: center; gap: 18px;"><span style="width: 44px; height: 44px; border-radius: 22px; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700;">1</span><p style="margin: 0; font-size: 26px; line-height: 1.45; color: #B6B4AF; ">Go to</p></div><p style="margin: 0; font-size: 44px; line-height: 1.45; color: #F4F2EE; font-weight: 700; margin: -6px 0 10px 62px;">viptv.syek.tech/device</p><div style="display: flex; align-items: center; gap: 18px;"><span style="width: 44px; height: 44px; border-radius: 22px; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700;">2</span><p style="margin: 0; font-size: 26px; line-height: 1.45; color: #B6B4AF; ">Enter this code</p></div><div style="margin-left: 62px; width: 640px; height: 120px; border-radius: 16px; background: rgba(255,255,255,0.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 72px; font-weight: 700; letter-spacing: 0.08em; font-variant-numeric: tabular-nums;">[AB12CD34EF]</div><div style="margin-left: 62px; display: flex; align-items: center; gap: 24px; font-size: 22px; color: #8F8D89;">Code expires in [14:52]<a href="#" style="height: 48px; padding: 0 18px; border-radius: 10px; background: rgba(255,255,255,0.16); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 600; color: #F4F2EE;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; display: block;"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>New code</a></div></div><div role="status" style="position: absolute; left: 96px; top: 900px; display: flex; align-items: center; gap: 14px; font-size: 24px; color: #B6B4AF;"><span aria-hidden="true" style="width: 12px; height: 12px; border-radius: 6px; background: #F5C542; animation: t3-pulse 1.6s ease-in-out infinite;"></span>Waiting for you to sign in…</div><div style="position: absolute; left: 0px; top: 880px; right: 96px; left: auto;"><a href="Tv3SignInEmail.dc.html" style="width: 420px; height: 72px; box-sizing: border-box; border-radius: 12px; background: #F4F2EE; color: #111113; box-shadow: 0 18px 50px rgba(0,0,0,0.45); display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-size: 26px; font-weight: 700; white-space: nowrap;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; display: block;"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" x2="15" y1="20" y2="20"></line><line x1="12" x2="12" y1="4" y2="20"></line></svg>Sign in with email instead</a></div>
+</div>
+</x-dc>
+
+</body>
+</html>
