@@ -15,14 +15,19 @@ runtime, 197-board sweep) plus the in-flight torrent port (see below).
 
 ## Repos & branches
 
-- **`/mnt/ALPH/code/viptv-org/app`** — branch `experiment/kmp-v2`, ~404 dirty
-  files (177 modified + 227 untracked) uncommitted. All KMP session work.
-  Remote: `https://github.com/viptv-org/app.git`
-- **`/mnt/ALPH/code/viptv-org/.worktrees/kmp-v2/backend`** — separate git repo
-  on branch `experiment/kmp-v2`, 180 dirty files uncommitted (unversioned API
-  test migration + search/per-catalog split + home carousel limits, all tests
-  green). Remote: `https://github.com/viptv-org/backend.git`
-- **`design`** and **`workspace`** repos — clean, on `main`, nothing to commit.
+- **`/mnt/ALPH/code/viptv-org/app`** — branch `experiment/kmp-v2`, fully
+  committed and pushed through `f108f78` ("Complete KMP all-platforms
+  session..." + native/core pointer update). Remote:
+  `https://github.com/viptv-org/app.git`
+- **`/mnt/ALPH/code/viptv-org/.worktrees/kmp-v2/backend`** — branch
+  `experiment/kmp-v2`, committed and pushed through `ea82f19` ("Migrate all
+  tests to unversioned API and split search rows per catalog"). Remote:
+  `https://github.com/viptv-org/backend.git`
+- **`/mnt/ALPH/code/viptv-org/app/native/core`** — own repo, was detached HEAD;
+  session commit pushed to `experiment/kmp-v2` (44c5ceb). Remote:
+  `https://github.com/viptv-org/core.git`
+- **`design`** — clean, on `main`; carries this handoff (pushed).
+  **`workspace`** — clean, nothing to commit.
 
 ## What's done (this session)
 
@@ -102,12 +107,11 @@ runtime, 197-board sweep) plus the in-flight torrent port (see below).
 
 ## What remains (next session)
 
-1. **Commit & push** `app` (~404 files) and the backend worktree (~180 files),
-   both on `experiment/kmp-v2`. (If this handoff says "uncommitted" but the
-   repos are clean, the commit already happened — trust git status.)
-2. **Desktop native-torrent port** — finish/verify the agent's landed work,
-   using the Android `TorrentRuntimeWorker` as reference. Web needs nothing
+1. **Desktop native-torrent port** — NOT started (the agent was cancelled in
+   its study phase; no torrent code landed, desktop compile verified clean).
+   Use the Android `TorrentRuntimeWorker` as reference. Web needs nothing
    (gateway handles it).
+2. (Commits/pushes are done — see "Repos & branches" for the final hashes.)
 3. **iOS runtime qualification** — needs a macOS host or xtool; blocked on
    hardware/toolchain, not code.
 4. **Windows/macOS desktop runtime runs** — artifacts exist; execution needs
