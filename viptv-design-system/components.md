@@ -1,6 +1,6 @@
 # Components
 
-Each section gives the rules first, then sizes per platform, then the states that are drawn on the component sheets (`reference/components/CmpPhone1-3`, `CmpDesk1-3`, `CmpTv1-3`). The sheets are the visual truth: when this file and a sheet disagree, the sheet wins.
+Each section gives the rules first, then sizes per platform, then the states that are drawn on the component sheets (`reference/components/CmpPhone1-3`, `CmpDesk1-3`, `CmpTv1-3`). The sheets come from the 2026-09-23 canvas export; the 2026-10-18 screen boards in `reference/screens/` are newer. When a board and a sheet disagree, the board wins; this file needs a follow-up pass against the new boards.
 
 Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 

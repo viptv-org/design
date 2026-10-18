@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>Motion spec (live)</title>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;src:url('../../../assets/fonts/bricolage-grotesque-latin-standard-normal.woff2') format('woff2');}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;src:url('../../../assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');}@font-face{font-family:'Onest';font-style:normal;font-weight:100 900;src:url('../../../assets/fonts/onest-latin-wght-normal.woff2') format('woff2');}</style>
+<style>
+body{margin:0;background:#0B0B0C;font-family:'Onest',system-ui,sans-serif;color:#F4F2EE;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0}
+input{font:inherit;color:inherit}
+
+.seg{position:relative;display:grid;grid-template-columns:repeat(3,168px);height:64px;padding:6px;box-sizing:border-box;border-radius:32px;background:#2A2A2E}
+.seg input{position:absolute;opacity:0;width:0;height:0;margin:0;pointer-events:none}
+.seg label{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#B6B4AF;cursor:pointer;transition:color .25s}
+.seg input:checked+label{color:#F4F2EE}
+.seg .thumb{position:absolute;left:6px;top:6px;width:168px;height:52px;border-radius:26px;background:#0B0B0C;box-shadow:0 4px 14px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.07);transition:transform .34s cubic-bezier(.2,.8,.2,1)}
+.seg input:nth-of-type(2):checked~.thumb{transform:translateX(168px)}
+.seg input:nth-of-type(3):checked~.thumb{transform:translateX(336px)}
+.opt{position:relative;display:flex;align-items:center;gap:22px;height:76px;padding:0 28px;border-radius:22px;font-size:28px;font-weight:600;color:#F4F2EE;cursor:pointer;transition:background .2s}
+.opt input{position:absolute;opacity:0;width:0;height:0;margin:0;pointer-events:none}
+.opt .dot{width:34px;height:34px;flex-shrink:0;border-radius:17px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;color:transparent}
+.opt .sub{margin-left:auto;font-size:22px;font-weight:500;color:#B6B4AF}
+.opt:has(input:checked){background:rgba(255,255,255,.12)}
+.opt input:checked~.dot{background:#F4F2EE;box-shadow:none;color:#111113}
+.opt.focus,.opt.focus:has(input:checked){background:#F4F2EE;color:#111113;box-shadow:0 0 0 4px #FFFFFF,0 24px 60px rgba(0,0,0,.65)}
+.opt.focus .sub{color:#4A4945}
+.opt.focus .dot{box-shadow:inset 0 0 0 2px rgba(17,17,19,.4)}
+.opt.focus input:checked~.dot{background:#111113;color:#F4F2EE}
+
+@keyframes t3-fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes t3-fade{from{opacity:0}to{opacity:1}}
+@keyframes t3-shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+@keyframes t3-spin{to{transform:rotate(360deg)}}
+@keyframes t3-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+@keyframes t3-ind{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+@keyframes t3-fill{from{width:0}to{width:100%}}
+@keyframes t3-kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
+@keyframes t3-slidein{from{transform:translateX(100%)}to{transform:none}}
+.t3-skel{background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.13) 50%,rgba(255,255,255,.06) 100%);background-size:1200px 100%;animation:t3-shimmer 1.4s linear infinite}
+.t3-in{animation:t3-fadeup .45s cubic-bezier(.2,0,0,1) both}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.m-ring{animation:m-ring 3.6s steps(1) infinite}
+@keyframes m-ring{0%{transform:none}33.3%{transform:translateX(102px)}66.6%{transform:translateX(204px)}}
+.m-xfade{animation:m-xfade 4s cubic-bezier(.2,0,0,1) infinite}
+@keyframes m-xfade{0%,40%{opacity:0}47.5%,90%{opacity:1}97.5%,100%{opacity:0}}
+.m-hero{animation:m-hero 4s cubic-bezier(.2,0,0,1) infinite}
+@keyframes m-hero{0%,30%{opacity:1;transform:none}41%,80%{opacity:0;transform:translateY(-20px)}92%,100%{opacity:1;transform:none}}
+.m-row{animation:m-row 4s cubic-bezier(.2,0,0,1) infinite}
+@keyframes m-row{0%,30%{transform:none}41%,80%{transform:translateY(-120px)}92%,100%{transform:none}}
+.m-panel{animation:m-panel 3s infinite}
+@keyframes m-panel{0%,10%{transform:translateX(100%);animation-timing-function:cubic-bezier(0,0,0,1)}20%,70%{transform:none;animation-timing-function:cubic-bezier(.3,0,1,1)}77%,100%{transform:translateX(100%)}}
+.m-ctl{animation:m-ctl 4s infinite}
+@keyframes m-ctl{0%,10%{opacity:0}15%,70%{opacity:1}77.5%,100%{opacity:0}}
+.m-shrink{animation:m-shrink 4s cubic-bezier(.2,0,0,1) infinite}
+@keyframes m-shrink{0%,15%{left:0;top:0;width:412px;height:232px;border-radius:0}35%,100%{left:20px;top:56px;width:210px;height:118px;border-radius:8px}}
+.m-btn{animation:m-btn 4s cubic-bezier(.2,0,0,1) infinite}
+@keyframes m-btn{0%,30%{opacity:0;transform:translateY(8px)}42%,100%{opacity:1;transform:none}}
+@keyframes pn-count{from{stroke-dashoffset:0}to{stroke-dashoffset:100.5}}
+.m-spin{animation:m-spin 3s steps(1) infinite}
+@keyframes m-spin{0%{opacity:0}16.7%{opacity:1}}
+</style>
+</helmet>
+<div style="width: 1920px; height: 1080px; position: relative; overflow: hidden; background: #0B0B0C; color: #F4F2EE; font-family: 'Onest', system-ui, sans-serif;">
+<div style="position: absolute; left: 96px; top: 72px; display: flex; flex-direction: column; gap: 8px;"><h1 style="margin: 0; font-family: 'Onest', system-ui, sans-serif; font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; ">Motion</h1><p style="margin: 0; font-size: 24px; line-height: 1.45; color: #B6B4AF; ">Easing: standard cubic-bezier(.2, 0, 0, 1) · enter (0, 0, 0, 1) · exit (.3, 0, 1, 1). All motion turns off when the TV asks for reduced motion.</p></div><div style="position: absolute; left: 96px; top: 190px; width: 412px; display: flex; flex-direction: column; gap: 14px;"><div style="position: relative; width: 412px; height: 232px; border-radius: 14px; background: #161618; overflow: hidden;"><img src="../../../assets/c5e059aaab8694dc24d6eac5443251d7.jpg" alt="" style="position: absolute; left: 52px; top: 46px; width: 104px; height: 140px; border-radius: 8px; object-fit: cover;"><img src="../../../assets/583431e4f79c9c282528008fe0dc55d1.jpg" alt="" style="position: absolute; left: 154px; top: 46px; width: 104px; height: 140px; border-radius: 8px; object-fit: cover;"><img src="../../../assets/b3223e2a084e414007a98927d4dacb2a.jpg" alt="" style="position: absolute; left: 256px; top: 46px; width: 104px; height: 140px; border-radius: 8px; object-fit: cover;"><span class="m-ring" style="position: absolute; left: 52px; top: 46px; width: 104px; height: 140px; border-radius: 8px; box-shadow: inset 0 0 0 3px #FFFFFF;"></span></div><span style="font-size: 26px; font-weight: 700;">Focus moves</span><span style="font-size: 20px; line-height: 1.45; color: #B6B4AF;">The white frame jumps to the next card and fades in over 120 ms. Nothing scales or slides, so focus is instant and readable from the couch.</span></div><div style="position: absolute; left: 532px; top: 190px; width: 412px; display: flex; flex-direction: column; gap: 14px;"><div style="position: relative; width: 412px; height: 232px; border-radius: 14px; background: #161618; overflow: hidden;"><img src="../../../assets/a5729872fdf6d97950dabed6371ef4d6.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"><img class="m-xfade" src="../../../assets/7432c1f4e06fad8e590ad3646164759b.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"></div><span style="font-size: 26px; font-weight: 700;">Billboard follows focus</span><span style="font-size: 20px; line-height: 1.45; color: #B6B4AF;">Waits 400 ms after focus settles (so fast scrolling doesn’t flicker), then crossfades the art and text over 300 ms.</span></div><div style="position: absolute; left: 968px; top: 190px; width: 412px; display: flex; flex-direction: column; gap: 14px;"><div style="position: relative; width: 412px; height: 232px; border-radius: 14px; background: #161618; overflow: hidden;"><div class="m-hero" style="position: absolute; left: 24px; top: 24px; width: 200px; height: 70px; border-radius: 6px; background: rgba(255,255,255,0.28);"></div><div class="m-row" style="position: absolute; left: 24px; top: 168px; width: 364px; display: flex; gap: 10px;"><span style="width: 112px; height: 60px; border-radius: 6px; background: rgba(255,255,255,0.4);"></span><span style="width: 112px; height: 60px; border-radius: 6px; background: rgba(255,255,255,0.4);"></span><span style="width: 112px; height: 60px; border-radius: 6px; background: rgba(255,255,255,0.4);"></span></div></div><span style="font-size: 26px; font-weight: 700;">Home → Continue Watching</span><span style="font-size: 20px; line-height: 1.45; color: #B6B4AF;">The hero lifts and fades while the row travels up 312 px. 450 ms, emphasized easing. The focus frame appears only once the row lands.</span></div><div style="position: absolute; left: 1404px; top: 190px; width: 412px; display: flex; flex-direction: column; gap: 14px;"><div style="position: relative; width: 412px; height: 232px; border-radius: 14px; background: #161618; overflow: hidden;"><span class="m-panel" style="position: absolute; left: 206px; top: 0px; width: 206px; height: 232px; background: #2A2A2E; box-shadow: -10px 0 30px rgba(0,0,0,0.5);"></span></div><span style="font-size: 26px; font-weight: 700;">Panels</span><span style="font-size: 20px; line-height: 1.45; color: #B6B4AF;">Sources and options slide in from the right in 300 ms (decelerate) and leave in 200 ms (accelerate). The screen behind dims, it doesn’t blur.</span></div><div style="position: absolute; left: 96px; top: 620px; width: 412px; display: flex; flex-direction: column; gap: 14px;"><div style="position: relative; width: 412px; height: 232px; border-radius: 14px; background: #161618; overflow: hidden;"><span class="t3-skel" style="position: absolute; left: 24px; top: 40px; width: 112px; height: 150px; border-radius: 8px;"></span><span class="t3-skel" style="position: absolute; left: 152px; top: 40px; width: 112px; height: 150px; border-radius: 8px;"></span><span class="t3-skel" style="position: absolute; left: 280px; top: 40px; width: 112px; height: 150px; border-radius: 8px;"></span></div><span style="font-size: 26px; font-weight: 700;">Loading</span><span style="font-size: 20px; line-height: 1.45; color: #B6B4AF;">Skeletons in the real shapes, with a 1.4 s shimmer. Content fades in over 200 ms as each piece arrives — no spinner pages.</span></div><div style="position: absolute; left: 532px; top: 620px; width: 412px; display: flex; flex-direction: column; gap: 14px;"><div style="position: relative; width: 412px; height: 232px; border-radius: 14px; background: #161618; overflow: hidden;"><img src="../../../assets/6815a976d56905fc3c84f48fce77070a.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"><div class="m-ctl" style="position: absolute; left: 20px; top: 196px; width: 372px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.4);"><span style="display: block; width: 30%; height: 100%; background: #F5C542;"></span></div></div><span style="font-size: 26px; font-weight: 700;">Player controls</span><span style="font-size: 20px; line-height: 1.45; color: #B6B4AF;">Appear in 200 ms on any key press, hide after 5 s with no input (300 ms). Skip intro and Next episode arrive on their own.</span></div><div style="position: absolute; left: 968px; top: 620px; width: 412px; display: flex; flex-direction: column; gap: 14px;"><div style="position: relative; width: 412px; height: 232px; border-radius: 14px; background: #161618; overflow: hidden;"><img src="../../../assets/0f11da6c4e11fb96ce3508e263ca7ed1.jpg" alt="" class="m-shrink" style="position: absolute; object-fit: cover; border-radius: 8px;"><span class="m-btn" style="position: absolute; left: 250px; top: 84px; width: 140px; height: 40px; border-radius: 8px; background: #F4F2EE; color: #111113; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; font-weight: 700;"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" style="flex-shrink: 0; display: block;"><path d="M7 4.5v15a1 1 0 0 0 1.52.85l12-7.5a1 1 0 0 0 0-1.7l-12-7.5A1 1 0 0 0 7 4.5z" fill="currentColor"></path></svg>Play next</span></div><span style="font-size: 26px; font-weight: 700;">Next episode</span><span style="font-size: 20px; line-height: 1.45; color: #B6B4AF;">Credits shrink to the corner and a Play next episode button takes focus. Nothing plays until you press OK.</span></div><div style="position: absolute; left: 1404px; top: 620px; width: 412px; display: flex; flex-direction: column; gap: 14px;"><div style="position: relative; width: 412px; height: 232px; border-radius: 14px; background: #161618; overflow: hidden;"><span class="m-spin" style="position: absolute; left: 170px; top: 80px;"><span role="progressbar" aria-label="Loading" style="display: block; width: 72px; height: 72px; border-radius: 50%; box-sizing: border-box; border: 5px solid rgba(255,255,255,0.18); border-top-color: #FFFFFF; animation: t3-spin .9s linear infinite;"></span></span></div><span style="font-size: 26px; font-weight: 700;">Buffering</span><span style="font-size: 20px; line-height: 1.45; color: #B6B4AF;">The spinner shows only if loading takes over 500 ms, so quick starts never flash a spinner. One turn every 0.9 s.</span></div>
+</div>
+</x-dc>
+
+</body>
+</html>

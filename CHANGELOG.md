@@ -1,5 +1,41 @@
 # Design changes
 
+## 2026-10-18 — Full canvas re-export: 197 current screens
+
+The owner supplied the current canvas export (chat artifact
+`ded73220-d76b-426c-8ea2-57d74c2d8473`). This replaces the reference screen set
+wholesale: 197 boards — tv 37, phone 53, tablet 11, desktop 40, web 30, simkl
+26 — including the previously missing season menu boards (`D3TitleSeason`,
+`M3SeasonSheet`), tablet and Simkl surface sets, offline fonts, the canvas token
+file (`reference/canvas-tokens.json`), per-platform research notes
+(`viptv-design-system/notes/`) and the TV focus/row-motion demo
+(`reference/extras/tv-focus-and-rows.html`). Screens were rendered with the
+export's `tools/screenshots.mjs` (Playwright, scale 1) and stored as WebP q85.
+Naming changed to the canvas prefixes: `M3*` phone, `T3*` tablet, `D3*`
+desktop, `W3*` web, `Tv3*` TV, `Sk*` Simkl; the previous export's short names
+(`Desk*`, `Web*`, `Ph*`, `Tv*`, `Main`, `Title`) are retired. The 9 component
+sheets remain from the 2026-09-23 export; where a sheet and a new board
+disagree, the new board wins. Notable canvas rules now visible in the boards:
+primary buttons are off-white (accent stays on progress, marks/logo and
+toggles); hero art is a framed 16:9 card with a blurred ambient fill; sign-in
+methods on every platform are browser, email code, password, another device,
+IPTV provider (Xtream/M3U) or no account; the desktop title bar hides search
+until a profile is chosen. `copy.md`, `components.md` and `decisions.md` still
+describe parts of the previous export and need follow-up passes against the
+new boards.
+
+## 2026-10-18 — Remove the IPTV provider sign-in method
+
+Sign-in never included an IPTV provider method in this specification (see copy.md
+Sign-in): VIPTV accounts sign in with a username and password, a browser/device
+flow, or use local mode. An implementation draft exposed "IPTV provider (Xtream
+Codes login or an M3U playlist)" as a sign-in option on TV, phone and desktop;
+it was removed to restore parity with the specified sign-in set. M3U and Xtream
+remain available as Live TV source integrations in Settings, not as sign-in.
+Additionally, password sign-in fields are labelled "Username" (matching the
+account system and WebSignIn reference); the field never required an email
+address.
+
 ## 2026-10-11 — Remove the v1 backend surface
 
 After the verified 2026-10-09 cutover, BE-002 drops the `client_update_required`

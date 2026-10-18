@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>Sign in — email code</title>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;src:url('../../../assets/fonts/bricolage-grotesque-latin-standard-normal.woff2') format('woff2');}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;src:url('../../../assets/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');}@font-face{font-family:'Onest';font-style:normal;font-weight:100 900;src:url('../../../assets/fonts/onest-latin-wght-normal.woff2') format('woff2');}</style>
+<style>
+body{margin:0;background:#0B0B0C;font-family:'Onest',system-ui,sans-serif;color:#F4F2EE;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0}
+input{font:inherit;color:inherit}
+
+@keyframes t3-fadeup{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes t3-fade{from{opacity:0}to{opacity:1}}
+@keyframes t3-shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+@keyframes t3-spin{to{transform:rotate(360deg)}}
+@keyframes t3-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+@keyframes t3-ind{0%{transform:translateX(-100%)}100%{transform:translateX(260%)}}
+@keyframes t3-fill{from{width:0}to{width:100%}}
+@keyframes t3-kenburns{from{transform:scale(1)}to{transform:scale(1.06)}}
+@keyframes t3-slidein{from{transform:translateX(100%)}to{transform:none}}
+.t3-skel{background:linear-gradient(90deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.13) 50%,rgba(255,255,255,.06) 100%);background-size:1200px 100%;animation:t3-shimmer 1.4s linear infinite}
+.t3-in{animation:t3-fadeup .45s cubic-bezier(.2,0,0,1) both}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.vx-row{display:flex;overflow:hidden}
+.vx-card img{transition:opacity .2s}
+.vx-hover .vx-art{box-shadow:0 0 0 2px rgba(255,255,255,.9)}
+.vx-focusring{outline:2px solid #F4F2EE;outline-offset:3px}
+@keyframes vx-up{from{transform:translateY(100%)}to{transform:none}}
+@keyframes vx-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes vx-pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@keyframes vx-ripple{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(1.3)}}
+@keyframes vx-wave{0%,100%{opacity:.25}50%{opacity:1}}
+.vx-sheet{animation:vx-up .32s cubic-bezier(.2,0,0,1) both}
+.vx-pop{animation:vx-pop .18s cubic-bezier(.2,0,0,1) both;transform-origin:top}
+.vx-toast{animation:vx-in .25s cubic-bezier(.2,0,0,1) both}
+
+@keyframes m-drift{from{transform:rotate(-8deg) scale(1.15) translateY(0)}to{transform:rotate(-8deg) scale(1.15) translateY(-160px)}}
+@keyframes m-scan{from{transform:translateY(-100px)}to{transform:translateY(100px)}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #0B0B0C; color: #F4F2EE; font-family: 'Onest', system-ui, sans-serif;">
+<div style="position: absolute; inset: 0; background: #0B0B0C; overflow: hidden;"><div style="position: absolute; inset: 0; overflow: hidden;"><header style="position: absolute; left: 0; right: 0; top: 0; padding-top: 54px; height: 102px; box-sizing: border-box; z-index: 15; "><div style="height: 48px; padding: 0 12px; display: flex; align-items: center; gap: 8px;"><a href="#" aria-label="Back" style="height: 44px; min-width: 44px; display: flex; align-items: center; gap: 2px; color: #F4F2EE; font-size: 16px; font-weight: 600;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; display: block;"><path d="m15 18-6-6 6-6"></path></svg></a><span style="margin-left: auto; display: flex; align-items: center; gap: 4px;"></span></div></header><div style="display: flex; flex-direction: column; gap: 18px; padding: 118px 16px 120px; "><h1 style="margin: 0; font-family: 'Onest', system-ui, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; ">Enter the code</h1><p style="margin: 0; font-size: 15px; line-height: 1.45; color: #B6B4AF;  ">We sent a 6-digit code to [name@email.com]. It expires in 15 minutes.</p><div style="display: flex; gap: 8px;"><span style="flex: 1; height: 64px; border-radius: 12px; background: rgba(255,255,255,0.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700;">4</span><span style="flex: 1; height: 64px; border-radius: 12px; background: rgba(255,255,255,0.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700;">8</span><span style="flex: 1; height: 64px; border-radius: 12px; background: rgba(255,255,255,0.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700;">1</span><span style="flex: 1; height: 64px; border-radius: 12px; background: rgba(255,255,255,0.06); box-shadow: inset 0 0 0 2px #F4F2EE; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700;"></span><span style="flex: 1; height: 64px; border-radius: 12px; background: rgba(255,255,255,0.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700;"></span><span style="flex: 1; height: 64px; border-radius: 12px; background: rgba(255,255,255,0.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700;"></span></div><div style="display: flex; justify-content: space-between; font-size: 14px; color: #B6B4AF;"><span>Didn’t get it?</span><a href="#" style="font-weight: 700; color: #F4F2EE;">Resend in 0:42</a></div></div><div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 270px; z-index: 18; background: #28282C; padding: 8px 8px 0; box-sizing: border-box; display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; align-content: start;"><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">1</span><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">2</span><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">3</span><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">4</span><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">5</span><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">6</span><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">7</span><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">8</span><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">9</span><span></span><span style="height: 50px; border-radius: 8px; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">0</span><span></span></div></div><div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 54px; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 40px; box-sizing: border-box; color: #F4F2EE;"><span style="font-size: 16px; font-weight: 700;">9:41</span><span style="display: flex; align-items: flex-end; gap: 6px;"><span style="display: flex; align-items: flex-end; gap: 2px;"><span style="width: 3px; height: 4px; border-radius: 1px; background: #F4F2EE;"></span><span style="width: 3px; height: 6px; border-radius: 1px; background: #F4F2EE;"></span><span style="width: 3px; height: 8px; border-radius: 1px; background: #F4F2EE;"></span><span style="width: 3px; height: 10px; border-radius: 1px; background: #F4F2EE;"></span></span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; display: block;"><path d="M12 20h.01"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><path d="M5 12.859a10 10 0 0 1 14 0"></path><path d="M8.5 16.429a5 5 0 0 1 7 0"></path></svg><span style="width: 24px; height: 12px; border-radius: 3px; box-shadow: inset 0 0 0 1px #F4F2EE; padding: 2px; box-sizing: border-box;"><span style="display: block; width: 70%; height: 100%; border-radius: 1px; background: #F4F2EE;"></span></span></span></div><span aria-hidden="true" style="position: absolute; left: 50%; top: 11px; width: 124px; height: 36px; margin-left: -62px; border-radius: 18px; background: #000; z-index: 31;"></span><span aria-hidden="true" style="position: absolute; left: 50%; bottom: 8px; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: rgba(255,255,255,0.75); z-index: 40;"></span></div>
+</div>
+</x-dc>
+
+</body>
+</html>
