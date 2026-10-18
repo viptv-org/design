@@ -5,6 +5,8 @@ This records the development import contract and its validation scope. It does
 not claim adoption by every platform. Existing ADM-002 assets/tokens/pins remain
 unchanged.
 The implementation is in the backend and account dashboard, not Android or /tv.
+The 2026-10-18 extension below moves the entry into the KMP web and phone
+clients; TV and desktop remain without import UI.
 
 ## Intent and entry
 
@@ -128,10 +130,50 @@ busy/error copy. Verify forward/back navigation, optional add-on skipping, exact
 selection preservation, changed add-on re-review, stale responses, expiry, unknown
 apply outcomes and a final confirmation with no earlier writes.
 
+## Owner-approved extension — KMP web and phone clients
+
+Requested and approved for development on 2026-10-18 on the KMP v2 branch. The
+account dashboard can no longer reach this flow there, so the same guided import
+is implemented natively in the KMP app for the browser build and Android phone.
+The flow, copy, stages, password handling, confirmation, expiry, error copy and
+Back behavior above are unchanged. Imported rows belong to the destination
+profile on the server, so every client (including TV and desktop) reads the
+result; only the place where import can be started differs.
+
+Entry: account settings gains "Import from Stremio" after "Devices" — in the
+browser account sidebar, the browser phone-width settings list and the Android
+phone settings list. It is absent on TV, desktop and local mode. At 390dp all
+rows, action groups, profile, add-on and title names wrap without horizontal
+scrolling.
+
+Sessions: browser builds keep the account session and the full add-on stage.
+This narrows the earlier "paired-device sessions cannot" rule: a signed-in
+device session may preview, review and apply My List and history into its own
+selected, unrestricted profile. Foreign, unselected, replaced and restricted
+profiles are still refused. Registering Stremio add-ons is account-wide
+configuration and stays account-session only: on a device session "Choose
+add-ons" is a read-only list (name and new/existing/unavailable status, no
+checkboxes or Select all/Clear all) with the pointer that add-ons can be added
+from VIPTV on the web, and "Next: Review items" reviews with no add-ons. Existing
+account add-ons may still assist metadata verification. A device request that
+selects add-ons is refused (`account_session_required`) without changing the
+draft or writing anything.
+
+History rules are unchanged: unmappable IDs stay "needs review", undated watched
+flags are shown as watched without inventing a date, and imported history is not
+pushed to Simkl. Imported rows appear in v3 Continue Watching and History and
+merge with app-written records for the same IMDb title; newest wins.
+
 ## Acceptance
 
 - Member can preview for the selected own unrestricted profile; no writes before
   explicit confirmation. Device, foreign, replaced or restricted scopes refuse.
+  Under the KMP extension a device session may import into its own selected
+  unrestricted profile but cannot register add-ons; unselected, foreign,
+  replaced and restricted scopes still refuse.
+- KMP: the entry is shown in the browser build and on Android phone, hidden on
+  TV, desktop and local mode; the device add-on stage is read-only. Imported
+  rows appear in v3 Continue Watching and History.
 - Preview includes profile name, truthful initial-version limitations and counts;
   the confirm checkbox is unchecked. Password is blank after submit.
 - Cancel, profile/account switch, sign-out and parent blocking discard presentation;

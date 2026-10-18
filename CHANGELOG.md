@@ -1,5 +1,14 @@
 # Design changes
 
+## 2026-10-18 — Stremio import in the KMP web and phone clients
+
+The owner approved moving IMP-001 into the KMP app for the browser build and
+Android phone, behind an "Import from Stremio" settings entry after Devices. TV,
+desktop and local mode have no import UI. Signed-in device sessions may import
+My List and history into their own selected, unrestricted profile; registering
+Stremio add-ons stays account-session only, so the phone shows a read-only
+add-on stage. Flow, copy and history rules are otherwise unchanged.
+
 ## 2026-10-11 — Remove the v1 backend surface
 
 After the verified 2026-10-09 cutover, BE-002 drops the `client_update_required`
