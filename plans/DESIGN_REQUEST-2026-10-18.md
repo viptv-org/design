@@ -1,151 +1,214 @@
-# VIPTV — design requests (what the canvas does not cover yet)
+# VIPTV — design requests + real data dictionary (2026-10-18, v2)
 
-For the design AI: these screens exist in the app but have **no board in the
-2026-10-18 canvas export**. Design them with the same tokens, type roles,
-focus rules and component vocabulary as the existing boards. Data shapes below
-are the real fields the app has — design only what the data can fill; mark
-anything you wish existed and we will tell you if it can be added.
-
----
-
-## 1. Settings → Source integrations (all platforms: TV, phone, tablet, desktop, web)
-
-**What it is.** Configure the built-in "VIPTV Sources" engine (a TMDB API key
-plus optional provider list) and the Live TV providers (Xtream Codes, M3U
-playlist). Per-profile credentials; values are write-only (never displayed
-after saving). Currently there is **no board for any of this** on any platform.
-
-**Screens needed**
-
-1. **Integrations list** (a settings section, not a dialog):
-   one row/card per installed integration.
-2. **Configure page** (full screen on TV, dialog/page elsewhere) for each
-   integration type.
-3. **Remove confirmation** (existing pattern: confirm dialog with the
-   consequence spelled out).
-
-**Data per row (list page)**
-
-```
-name            "VIPTV Sources" | "Xtream live TV" | "M3U live TV"
-state           one of: Ready | Needs configuration | Unavailable on this connection
-connection_id   null until configured
-```
-
-**VIPTV Sources configure form**
-
-```
-credential_fields[1]:
-  id        "tmdb_api_key"
-  label     "TMDB API key"
-  required  true
-  secret    true            (masked entry)
-provider_choices[]: up to ~20 direct-stream providers, ids like
-  "videasy", "vidlink", "vidfast", "cineby", ... (English-only set)
-  each: { id, label }
-maximum_providers  12        (leave empty = default selection)
-```
-
-**Xtream form** `server_url (required, url) · username (required) · password (required, secret)`
-**M3U form** `playlist_url (required, secret) · epg_url (optional, secret)`
-
-**States to draw:** unconfigured, configured ("Replace configuration"),
-saving (busy), validation error, unavailable (engine not present), remove
-confirm. On TV: full-screen page, TV keyboard entry, dpad-focusable provider
-rows, Save/Cancel as TV buttons; Back returns to the list. **No X buttons on
-TV** — Back is the close affordance. On phone: bottom-sheet or dialog;
-desktop/web: centered dialog. Provider rows are multi-select chips with a
-selected-count ("3 of 12").
-
-**Copy to respect:** credentials are never displayed after saving; "Values
-stay on this device"; configuration applies to the current profile.
+For the design AI. Two parts: **(A) the actual data the app can display** —
+generic, provider-agnostic field shapes; design every screen so these exact
+fields plug in perfectly — and **(B) the screens that have no board yet**, plus
+**(C) boards to delete**. Use the existing tokens, type roles, focus rules and
+component vocabulary.
 
 ---
 
-## 2. Movies / Series browse pages (update the existing boards)
+# A. The data dictionary (real fields, generic names)
 
-The existing `Tv3Movies`, `Tv3Browse`, `D3Browse`, `SkDiscover` boards are the
-starting point, but the real data shape has more than they show. Redraw with:
-
-**Header / provider switch.** Catalogs come from the selected browsing
-provider — a **Stremio add-on catalog** (e.g. Cinemeta "Popular", "IMDb Top")
-or **Simkl lists**. Data:
+## A1. Title card — used by home rows, browse grids, search, lists, recommendations
 
 ```
-catalog: { id, name ("Popular", "IMDb Top 250", "Trending"), type (movie|series|anime),
-           connection_name ("Cinemeta", "Simkl") }
-```
-
-Design the provider/catalog switcher (TV: a row of catalogs or a sheet;
-desktop/web: dropdown or sidebar; phone: sheet) and a small "Data from Simkl"
-attribution wherever a Simkl catalog is shown.
-
-**Facet filters.** Controls are a list of typed facets (server-driven, so the
-UI must handle any of these kinds):
-
-```
-control: { id, label, kind: Text | SingleChoice | MultiChoice | Toggle | Number | Date,
-           required, choices[] { value, label }, maximum_selections? }
-typical:  Genre (MultiChoice), Sort (SingleChoice: Popularity, Rating, Year, A-Z),
-          Decade/Year (SingleChoice or Number), Rating (SingleChoice: Any, 7+, 8+, 9+),
-          keywords (Text)
-```
-
-TV: filters open as a full-screen sheet/panel with dpad navigation
-(see `Tv3Browse`, `SkTvFilters` for the pattern); phone: bottom sheet
-(`SkMFilters`); desktop/web: a filter rail or popover. Show applied-filter
-chips above the grid.
-
-**Cards.** Same grid/row geometry as the canvas, with these real fields:
-
-```
-card: {
-  title
-  poster (2:3)  and/or landscape (16:9)
-  metadata: { year, runtime_minutes (movies), genres[], rating (IMDb 0-10),
-              certification ("TV-MA") }
-  progress         0..1 (Continue-watching style; only when watching)
-  badges[]         e.g. "Watched", "New episode", "Simkl"
-  kind             movie | series | anime
+Card {
+  title                 String          always present
+  subtitle              String?         one line under the title (e.g. "52m · Watched", "S1 E2")
+  description           String?         synopsis (long text, clamp to 2–3 lines in rows)
+  poster                URL?            2:3 portrait artwork
+  landscape             URL?            16:9 artwork
+  logo                  URL?            transparent title wordmark (display instead of text when present)
+  progress              0..1?           watch progress; null = not started. Only draw a bar when present
+  badges                String[]        short chips: e.g. "Watched", "New episode", "Returning", "Ended"
+  kind                  "movie" | "series" | "anime" | "live"
+  metadata {
+    year                Int?            e.g. 2026
+    runtime_minutes     Int?            movies: 104; episodes: 52 (display "1h 44m" / "52m")
+    genres              String[]        e.g. ["Biography","Crime","Drama"] (join with ", " or " · ")
+    rating              0..10?          external rating, 1 decimal (display "IMDb 7.7" style or ★ 7.7)
+    rating_votes        Int?
+    certification       String?         e.g. "TV-MA" (chip, bordered)
+    alternate_titles    String[]        (not for display in grids)
+  }
+  identity {
+    id                  provider-specific id
+    kind                same as kind
+    ids                 [{ namespace: "imdb"|"tmdb"|"kitsu", value }]   (deep-link quality; not displayed)
+    episode             { order: "aired", season: 1?, episode: 2 }      (present only on episode cards;
+                                                                        display "S1 E2")
+  }
 }
 ```
 
-**States to draw:** loading (skeleton grid), empty ("Nothing matches these
-filters"), error + retry, filter sheet open with selections, more pages
-loading as you scroll (no "Load more" button — the grid appends), and the
-**Simkl variant** of the grid (Simkl cards can also carry list context:
-"In Watchlist", "Completed", "Watching" — draw a badge treatment).
+Card grid/row geometry is already designed; **design only states that this data
+can fill**: art present / art missing (title-initials fallback), progress bar,
+0–3 badges, no metadata (year/genres can each be absent), logo vs text title.
 
-**Series-specific additions** (Movies page stays as the canvas has it):
-season/episode counts ("4 seasons · 38 episodes" from Simkl when available),
-airing status badge ("Returning", "Ended"), and "Up next · S4 E16" style
-labels for shows the viewer is watching. These come from Simkl progress;
-mark them Simkl-attributed.
+## A2. Catalog rows and browse pages
+
+```
+HomeRow {              // one horizontal shelf
+  id                   String
+  title                String          shelf heading, e.g. "Continue watching", "Popular"
+  state                "READY" | "PENDING" | "EMPTY" | "FAILED"
+  cards                Card[]          (PENDING = skeleton cards; FAILED shows message + retry)
+  message              String?         failure text for FAILED
+  next_cursor          String?         more cards append on scroll (never a "Load more" button)
+}
+
+Catalog {              // a browse source the user can switch between
+  id                   String
+  name                 String          e.g. "Popular", "Top rated", "Trending", "Watchlist"
+  type                 "movie" | "series" | "anime"
+  connection_name      String?         the provider display name (shown on the picker)
+}
+```
+
+## A3. Facet filters (server-driven; the UI must handle any mix of these)
+
+```
+Control {
+  id                   String
+  label                String          e.g. "Genre", "Sort by", "Decade", "Rating"
+  kind                 "Text" | "SingleChoice" | "MultiChoice" | "Toggle" | "Number" | "Date"
+  required             Bool
+  choices              [{ value, label }]      for choice kinds (e.g. Genre: 20 items)
+  maximum_selections   Int?            cap for MultiChoice (e.g. 3 of 20)
+  minimum / maximum    number bounds   for Number kind
+}
+// Typical set on movie/series pages: Genre (multi), Sort (single:
+// Popularity / Rating / Year / A–Z), Decade (single), Rating (single:
+// Any / 7+ / 8+ / 9+), Keywords (text). Show applied filters as chips.
+```
+
+## A4. Title detail page (series/movie) — existing boards cover layout; data for completeness
+
+```
+Detail {
+  item                 Card                    the title
+  episodes             Card[]                  episode cards (have episode coordinates, progress, runtime)
+  seasons              [{ season: 1?, episode_count: 10, offset }]
+  recommendations      Card[]                  "More like this"
+  next_cursor          String?                 episodes page on scroll
+}
+```
+
+## A5. Sources sheet rows (existing boards cover layout; the data)
+
+```
+SourceCandidate {
+  label                String          e.g. "VIPTV · 4K" or "LordStreams"
+  detail               String?         second line (release name / file info), clamp
+  quality_height       Int?            1080 → "1080p" (derive the quality chip)
+  audio_languages      String[]        e.g. ["en"] ("EN" chip)
+  presentation {
+    provider_name      String?         addon name for the right column
+    source_id          String?
+    delivery_format    "hls" | "progressive" | null
+    quality            String?         "4K", "1080p"
+    video_codec        String?         "h264", "hevc"
+    audio_codecs       String[]
+    size_bytes         Int?            8_912_896_512 → "8.9 GB"
+    size_label         String?
+  }
+}
+```
+
+## A6. Source integrations (settings)
+
+```
+Integration {          // one per row in the list
+  name                 "VIPTV Sources" | "Xtream live TV" | "M3U live TV"
+  state                "Ready" | "Needs configuration" | "Unavailable on this connection"
+  configured           Bool            (connection_id != null)
+}
+
+// The configure form is described by a schema the server/engine sends:
+Schema {
+  name                 String
+  credential_fields    [{ id, label, required, secret }]   // secret = masked entry
+  provider_choices     [{ id, label }]                      // multi-select, ordered
+  maximum_providers    Int                                     // e.g. 12; empty selection = default set
+}
+
+// Concrete forms the app has today:
+VIPTV Sources:  tmdb_api_key   (label "TMDB API key", required, secret)
+                + provider multi-select (up to 12 of ~20)
+Xtream:         server_url (required) · username (required) · password (required, secret)
+M3U:            playlist_url (required, secret) · epg_url (optional, secret)
+```
+
+Values are **write-only**: never displayed after saving. Per-profile.
+
+## A7. Profile & preferences (for settings parity)
+
+```
+Profile { name, locked (PIN), avatar_id }
+Preferences {
+  next_episode         Bool     "Next episode button"
+  skip_intros          Bool
+  source_selection     "best" | "ask"      ("Best match" / "Always ask")
+  max_quality_height   Int?                preferred quality
+  subtitles_enabled    Bool
+  preferred_audio_language / subtitle language  String?
+}
+```
 
 ---
 
-## 3. Smaller missing screens (optional, but the app renders them)
+# B. Screens that need boards (none exist yet)
 
-- **Recovery codes screen** — after account creation/recovery: code display,
-  copy/write-down step, "Done" (no board exists).
-- **Parental controls settings content** — the sidebar entry exists in boards,
-  the content pages (age rating picker, approved titles, parent PIN) do not.
-- **Sources sheet empty/error states** — `Tv3SourcesLoading` covers loading;
-  add: "N providers returned torrent links this TV cannot stream directly.
-  Add a debrid service (for example TorBox)…" and "VIPTV Sources could not
-  run. Check its TMDB key in Settings…" error states.
-- **TV add-on manual entry** — `Tv3SetAddons` shows the QR flow; the manual
-  URL entry dialog (address field + Install/Cancel) has no board.
-- **Display settings** (theme/accent/OLED) and **About** content pages.
+## B1. Settings → Source integrations (TV, phone, tablet, desktop, web)
+
+- **List section**: rows per `Integration` (name, state line, Configure/Replace,
+  Remove when configured). States: unconfigured, configured, saving, error,
+  unavailable, remove-confirm.
+- **Configure page**: full-screen on TV (TV keyboard for secret fields, dpad
+  provider rows, Save/Cancel as TV buttons, Back closes — **no X buttons on
+  TV**); dialog on desktop/web; sheet on phone. Provider rows = multi-select
+  chips with a "3 of 12" count. Save is busy-capable; validation errors inline.
+- **Remove confirmation**: existing confirm pattern, states what is deleted
+  (credentials + assignment from this profile).
+
+## B2. Movies / Series browse pages (update existing browse boards)
+
+Using A2/A3/A1 data only, redraw the browse page:
+- **Catalog switcher** (named catalogs + provider display name; the active
+  catalog is a heading).
+- **Facet filter surface**: TV = full-screen sheet; phone = bottom sheet;
+  desktop/web = rail/popover. Filter chips above the grid when applied.
+- **Grid states**: loading skeleton, empty ("Nothing matches these filters"),
+  error + retry, appending pages while scrolling.
+- **Card states** per A1: with/without art, progress, badges, certification.
+
+## B3. Smaller gaps (app renders these; no boards)
+
+- **Recovery codes screen** — code display + "write it down" step + Done.
+- **Parental controls settings content** — age rating picker, approved titles
+  list, parent PIN management.
+- **Sources sheet empty/error states** — "N providers returned torrent links
+  this device cannot stream directly. Add a debrid service (for example
+  TorBox)…", and "VIPTV Sources could not run. Check its TMDB key in
+  Settings…" style failures.
+- **TV add-on manual entry** — the address field + Install/Cancel dialog
+  (complements the QR flow already designed).
+- **Display settings** (accent/OLED) and **About** content pages.
 
 ---
 
-## Platform rules (from the canvas, restated for these boards)
+# C. Delete / edit in the current canvas
 
-- TV 1920×1080, safe area 96×54, focus = off-white inversion or 3px inner
-  ring, no scaling, no key hints, no X buttons (Back closes).
-- Phone 390×844, bottom sheets, 44px targets.
-- Desktop 1440×900, icon rail, dialogs 460, popovers for filters.
-- Web 1280×800 (and 1920 variant), tablet 2-column at 1024+.
-- Accent only for progress, marks/logo and toggles; primary buttons off-white.
-- Loading = skeletons, never "Loading…" pages; no "Load more" buttons.
+**Delete these boards entirely:**
+- `D3SignInIptv` (desktop), `M3SignInIptv` (phone), `Tv3SignInIptv` (TV),
+  `W3SignInIptv` (web)
+
+**Edit these boards — remove the "IPTV provider" sign-in option row:**
+- `D3SignIn`, `M3SignIn`, `T3SignIn`, `Tv3SignInChoose`, `W3SignIn`,
+  `W3SignInMobile`
+
+**Update the notes text:** rule 7 in START-HERE and the per-platform research
+notes lists sign-in methods including "IPTV provider (Xtream Codes / M3U)" —
+remove that clause. M3U/Xtream **stay** as Live TV source integrations in
+settings (B1 covers their design).
