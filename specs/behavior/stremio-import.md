@@ -134,30 +134,37 @@ apply outcomes and a final confirmation with no earlier writes.
 
 Requested and approved for development on 2026-10-18 on the KMP v2 branch. The
 account dashboard can no longer reach this flow there, so the same guided import
-is implemented natively in the KMP app for the browser build and Android phone.
-The flow, copy, stages, password handling, confirmation, expiry, error copy and
-Back behavior above are unchanged. Imported rows belong to the destination
-profile on the server, so every client (including TV and desktop) reads the
-result; only the place where import can be started differs.
+is implemented natively in the KMP app for the browser build and Android phone
+and tablet, feature for feature with the dashboard wizard. The flow, copy,
+stages, add-on choice, item review, password handling, confirmation, expiry,
+error copy and Back behavior above are unchanged and identical on every one of
+these clients. Imported rows and adopted add-ons belong to the destination
+profile/account on the server, so every client (including TV and desktop) reads
+the result; only the place where import can be started differs.
 
 Entry: account settings gains "Import from Stremio" after "Devices" — in the
-browser account sidebar, the browser phone-width settings list and the Android
-phone settings list. It is absent on TV, desktop and local mode. At 390dp all
-rows, action groups, profile, add-on and title names wrap without horizontal
-scrolling.
+browser account sidebar, the browser phone-width settings list, the Android
+phone settings list and the Android tablet settings sidebar. It is absent on TV,
+desktop and local mode. At 390dp all rows, action groups, profile, add-on and
+title names wrap without horizontal scrolling; wider layouts keep a readable
+content width.
 
-Sessions: browser builds keep the account session and the full add-on stage.
-This narrows the earlier "paired-device sessions cannot" rule: a signed-in
-device session may preview, review and apply My List and history into its own
-selected, unrestricted profile. Foreign, unselected, replaced and restricted
-profiles are still refused. Registering Stremio add-ons is account-wide
-configuration and stays account-session only: on a device session "Choose
-add-ons" is a read-only list (name and new/existing/unavailable status, no
-checkboxes or Select all/Clear all) with the pointer that add-ons can be added
-from VIPTV on the web, and "Next: Review items" reviews with no add-ons. Existing
-account add-ons may still assist metadata verification. A device request that
-selects add-ons is refused (`account_session_required`) without changing the
-draft or writing anything.
+Sessions: this replaces the earlier "paired-device sessions cannot" rule. A
+signed-in device session may preview, review and apply into its own selected,
+unrestricted profile exactly like an account session, including choosing
+Stremio add-ons that are registered account-wide at final confirmation. This
+matches devices' existing ability to manage the account's shared add-ons.
+Foreign, unselected, replaced and restricted profiles are still refused.
+
+Long steps: metadata verification of a large library or many add-ons can take
+tens of seconds (a real 283-item library produced 1,878 review rows in about
+25 s). Clients allow the server's verification budget instead of a generic short
+request timeout, and the busy status says this can take up to a minute. A
+timeout or unreadable gateway response before apply uses "took too long / could
+not reach" copy; during apply it uses the uncertain-outcome retry copy. An add-on
+that cannot be verified is marked on its row with a plain explanation so the user
+can uncheck it or continue without add-ons; the server reports it with a status
+that intermediaries pass through intact.
 
 History rules are unchanged: unmappable IDs stay "needs review", undated watched
 flags are shown as watched without inventing a date, and imported history is not
@@ -168,12 +175,14 @@ merge with app-written records for the same IMDb title; newest wins.
 
 - Member can preview for the selected own unrestricted profile; no writes before
   explicit confirmation. Device, foreign, replaced or restricted scopes refuse.
-  Under the KMP extension a device session may import into its own selected
-  unrestricted profile but cannot register add-ons; unselected, foreign,
-  replaced and restricted scopes still refuse.
-- KMP: the entry is shown in the browser build and on Android phone, hidden on
-  TV, desktop and local mode; the device add-on stage is read-only. Imported
-  rows appear in v3 Continue Watching and History.
+  Under the KMP extension a device session may import, including add-ons, into
+  its own selected unrestricted profile; unselected, foreign, replaced and
+  restricted scopes still refuse.
+- KMP: the entry is shown in the browser build and on Android phone and tablet,
+  hidden on TV, desktop and local mode, with the same add-on and item review on
+  each. A large real library verifies without client timeouts; a failed add-on
+  is identified on its row. Imported rows appear in v3 Continue Watching and
+  History.
 - Preview includes profile name, truthful initial-version limitations and counts;
   the confirm checkbox is unchecked. Password is blank after submit.
 - Cancel, profile/account switch, sign-out and parent blocking discard presentation;
