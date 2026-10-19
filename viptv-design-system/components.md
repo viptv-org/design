@@ -194,3 +194,26 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 - Phone **browsers** can't pair: they show the "Watch on TV" dialog pointing to the desktop app (`PhCastUnavailable`).
 
 **Screens:** PhTvSetup, PhTvSearch, PhTvNoAccess, PhTvManual, PhTvPin, PhTvDone, PhHomeRemote, PhRemote, PhRemoteSwipe, PhRemoteOffline, PhTvSettings, PhTvForget.
+
+## Implemented component contracts (2026-10-19)
+
+- **TV focus**: `TvFocusTreatment.kt` — `tvFocusOutline` (content), `tvFocusColumn`
+  clamping (settings pages), `tvCardFocusOutline` (inset card ring). The outline
+  must be applied *before* `graphicsLayer`/`clip`, otherwise it is clipped away.
+- **TV card**: one accessibility node per card; focus only restarts the ring,
+  play badge and caption colour; state labels/progress/cert come from `Card`
+  fields per the canvas dictionary §A1.
+- **TV shelf**: `1` card peeks on the leading edge and `2` on the trailing edge;
+  scrolling is driven from `LazyListState.layoutInfo`, never a shadow index.
+- **TV settings page**: sidebar 560 wide with the 72 px double-ring row, content
+  column at x=640, rows 1184×96 radius 14; Up/Down clamp inside the content
+  column, Left returns to the sidebar.
+- **TV browse**: catalog chip (radius 32, 64 tall) + Filters chip carrying the
+  active-facet count + applied-chip strip; grid is 7 across at 1920 with 232×348
+  cards, 16/36 spacing, 96 inset, and appends pages.
+- **Phone browse**: 3 cards across, cards fill their cell; the Catalog/Filters
+  bar only exists when the server supplied browsable controls.
+- **Desktop browse**: 6 columns at ≥1200 dp, 4 below; cards fill their cell
+  (`minmax(0,1fr)`), never a fixed width.
+- **Desktop window**: one painted surface under the rounded frame so a host
+  without a compositor cannot show an opaque black block.
