@@ -1,5 +1,20 @@
 # Design changes
 
+## 2026-10-19 — Second canvas re-export: browse, source integrations, missing screens
+
+The owner's design AI produced the requested boards (see
+`plans/DESIGN_REQUEST-2026-10-18.md`): 264 screens now (tv 56, phone 69, tablet
+18, desktop 55, web 40, simkl 26). New: browse page sets with catalog pickers,
+facet filters and loading/empty/error states (D3/M3/T3/W3Browse*, Tv3Movies*),
+source-integration settings and configure forms for VIPTV Sources, Xtream and
+M3U with all states (SetSources, SourcesViptu/M3u/Xtream/Remove/Empty/Torrent),
+parental controls, recovery codes, About/Display, TV add-on manual entry, and
+card/row state sheets. The IPTV provider sign-in boards were removed per owner
+decision (M3U and Xtream remain Live TV source integrations). The canvas data
+dictionary (`reference/canvas-data-dictionary.md`) documents the generic field
+shapes the boards draw from. Screens rendered with `tools/screenshots.mjs`
+(scale 1) and stored as WebP q85.
+
 ## 2026-10-18 — Full canvas re-export: 197 current screens
 
 The owner supplied the current canvas export (chat artifact

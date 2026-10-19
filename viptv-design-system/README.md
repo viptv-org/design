@@ -2,13 +2,16 @@
 
 The design language for VIPTV on phone, tablet, desktop (Tauri app), web, TV
 and Simkl surfaces. It is dark-only, with one accent colour and the thumb
-(phone) or the D-pad (TV) in mind. The 2026-10-18 full canvas re-export supplies
-197 reference screens (tv 37, phone 53, tablet 11, desktop 40, web 30, simkl
-26), the canvas token file and the per-platform research notes in `notes/`.
-The 9 component sheets are from the previous 2026-09-23 export and remain for
-component-level reference; where a sheet and a 2026-10-18 board disagree, the
-board wins. Android adaptation and interaction details are recorded in AND-038
-in `../docs/platforms/ANDROID_DESIGN.md`.
+(phone) or the D-pad (TV) in mind. The 2026-10-19 full canvas re-export supplies
+264 reference screens (tv 56, phone 69, tablet 18, desktop 55, web 40, simkl
+26) including the browse page sets, source-integration settings (VIPTV Sources,
+Xtream, M3U), parental controls, recovery codes and card/row state sheets, plus
+the canvas token file, the canvas data dictionary
+(`reference/canvas-data-dictionary.md`) and the per-platform research notes in
+`notes/`. The 9 component sheets are from the 2026-09-23 export and remain for
+component-level reference; where a sheet and a canvas board disagree, the board
+wins. Android adaptation and interaction details are recorded in AND-038 in
+`../docs/platforms/ANDROID_DESIGN.md`.
 
 ```
 viptv-design-system/
@@ -27,7 +30,8 @@ viptv-design-system/
 │   ├── screens/img/        ← every screen rendered at 1:1, by platform, WebP
 │   ├── screens/html/       ← every screen as standalone HTML (self-contained; fonts are local)
 │   ├── screens/index.json  ← name, title, platform, size of every screen
-│   ├── canvas-tokens.json  ← the canvas token file from the 2026-10-18 export (input; tokens/ stays authoritative)
+│   ├── canvas-tokens.json  ← the canvas token file from the canvas export (input; tokens/ stays authoritative)
+│   ├── canvas-data-dictionary.md ← the generic field shapes every board draws from
 │   ├── extras/             ← TV focus and row-motion demo (self-contained HTML)
 │   └── assets/             ← images and fonts the HTML screens use
 └── claude-code/            ← drop-in files so Claude Code builds UI with this system

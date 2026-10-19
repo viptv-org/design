@@ -162,15 +162,6 @@
     ]
   },
   {
-    "name": "Tv3SignInIptv",
-    "title": "Sign in — IPTV provider",
-    "platform": "tv",
-    "size": [
-      1920,
-      1080
-    ]
-  },
-  {
     "name": "Tv3SignedIn",
     "title": "Signed in — welcome back",
     "platform": "tv",
@@ -243,15 +234,6 @@
     ]
   },
   {
-    "name": "Tv3Movies",
-    "title": "Movies",
-    "platform": "tv",
-    "size": [
-      1920,
-      1080
-    ]
-  },
-  {
     "name": "Tv3Live",
     "title": "Live — guide",
     "platform": "tv",
@@ -263,6 +245,87 @@
   {
     "name": "Tv3MyList",
     "title": "My List",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3Movies",
+    "title": "Movies — catalog, filters, grid appending",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3MoviesCatalogs",
+    "title": "Movies — choose a catalog",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3MoviesFilters",
+    "title": "Movies — filters (multi-choice, up to 3)",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3MoviesFilterText",
+    "title": "Movies — filters (text)",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3MoviesLoading",
+    "title": "Movies — loading",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3MoviesEmpty",
+    "title": "Movies — nothing matches",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3MoviesError",
+    "title": "Movies — couldn’t load",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3CardStates",
+    "title": "Cards — every state (A1)",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3RowStates",
+    "title": "Home rows — READY, PENDING, EMPTY, FAILED (A2)",
     "platform": "tv",
     "size": [
       1920,
@@ -308,6 +371,24 @@
   {
     "name": "Tv3SourcesLoading",
     "title": "Choose a source — still finding",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SourcesEmpty",
+    "title": "Choose a source — none found",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SourcesTorrent",
+    "title": "Choose a source — torrent links only",
     "platform": "tv",
     "size": [
       1920,
@@ -405,8 +486,98 @@
     ]
   },
   {
+    "name": "Tv3AddonEntry",
+    "title": "Add-ons — add by address",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3AddonInstall",
+    "title": "Add-ons — install?",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SetDisplay",
+    "title": "Settings — Display",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SetParental",
+    "title": "Settings — Parental controls",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SetAbout",
+    "title": "Settings — About",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
     "name": "Tv3SignOut",
     "title": "Settings — sign out",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SetSources",
+    "title": "Settings — Source integrations",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SourcesViptv",
+    "title": "Source integrations — VIPTV Sources (keyboard + providers)",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SourcesXtream",
+    "title": "Source integrations — Xtream, saving",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SourcesM3u",
+    "title": "Source integrations — M3U, error",
+    "platform": "tv",
+    "size": [
+      1920,
+      1080
+    ]
+  },
+  {
+    "name": "Tv3SourcesRemove",
+    "title": "Source integrations — remove",
     "platform": "tv",
     "size": [
       1920,
@@ -461,15 +632,6 @@
   {
     "name": "M3SignInDevice",
     "title": "Sign in — approve from another device",
-    "platform": "phone",
-    "size": [
-      390,
-      844
-    ]
-  },
-  {
-    "name": "M3SignInIptv",
-    "title": "Sign in — IPTV provider",
     "platform": "phone",
     "size": [
       390,
@@ -666,6 +828,60 @@
     ]
   },
   {
+    "name": "M3Browse",
+    "title": "Movies — catalog, filters, grid appending",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3BrowseCatalogs",
+    "title": "Movies — choose a catalog",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3BrowseFilters",
+    "title": "Movies — filters (every control kind)",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3BrowseLoading",
+    "title": "Movies — loading",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3BrowseEmpty",
+    "title": "Movies — nothing matches",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3BrowseError",
+    "title": "Movies — couldn’t load",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
     "name": "M3Title",
     "title": "Series page",
     "platform": "phone",
@@ -713,6 +929,24 @@
   {
     "name": "M3SourcesLoading",
     "title": "Choose a source — still finding",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3SourcesEmpty",
+    "title": "Choose a source — none found",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3SourcesTorrent",
+    "title": "Choose a source — torrent links only",
     "platform": "phone",
     "size": [
       390,
@@ -855,6 +1089,15 @@
     ]
   },
   {
+    "name": "M3SetDisplay",
+    "title": "Display",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
     "name": "M3SetAddons",
     "title": "Settings — Add-ons",
     "platform": "phone",
@@ -873,6 +1116,33 @@
     ]
   },
   {
+    "name": "M3Parental",
+    "title": "Parental controls",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3Recovery",
+    "title": "Account — recovery codes",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3About",
+    "title": "About",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
     "name": "M3SignOut",
     "title": "Sign out",
     "platform": "phone",
@@ -884,6 +1154,51 @@
   {
     "name": "M3Offline",
     "title": "Offline",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3SetSources",
+    "title": "Source integrations",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3SourcesViptv",
+    "title": "Source integrations — VIPTV Sources",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3SourcesXtream",
+    "title": "Source integrations — Xtream, saving",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3SourcesM3u",
+    "title": "Source integrations — M3U, error",
+    "platform": "phone",
+    "size": [
+      390,
+      844
+    ]
+  },
+  {
+    "name": "M3SourcesRemove",
+    "title": "Source integrations — remove",
     "platform": "phone",
     "size": [
       390,
@@ -990,6 +1305,69 @@
     ]
   },
   {
+    "name": "T3Browse",
+    "title": "Movies — filters column, grid appending",
+    "platform": "tablet",
+    "size": [
+      1194,
+      834
+    ]
+  },
+  {
+    "name": "T3BrowseCatalogs",
+    "title": "Movies — choose a catalog",
+    "platform": "tablet",
+    "size": [
+      1194,
+      834
+    ]
+  },
+  {
+    "name": "T3SetSources",
+    "title": "Source integrations",
+    "platform": "tablet",
+    "size": [
+      1194,
+      834
+    ]
+  },
+  {
+    "name": "T3SourcesViptv",
+    "title": "Source integrations — VIPTV Sources (side sheet)",
+    "platform": "tablet",
+    "size": [
+      1194,
+      834
+    ]
+  },
+  {
+    "name": "T3SourcesXtream",
+    "title": "Source integrations — Xtream, saving",
+    "platform": "tablet",
+    "size": [
+      1194,
+      834
+    ]
+  },
+  {
+    "name": "T3SourcesM3u",
+    "title": "Source integrations — M3U, error",
+    "platform": "tablet",
+    "size": [
+      1194,
+      834
+    ]
+  },
+  {
+    "name": "T3SourcesRemove",
+    "title": "Source integrations — remove",
+    "platform": "tablet",
+    "size": [
+      1194,
+      834
+    ]
+  },
+  {
     "name": "D3HomeWin",
     "title": "Home — Windows, 1440 × 900",
     "platform": "desktop",
@@ -1089,6 +1467,24 @@
     ]
   },
   {
+    "name": "D3CardStates",
+    "title": "Cards — every state, desktop and web (A1)",
+    "platform": "desktop",
+    "size": [
+      1440,
+      810
+    ]
+  },
+  {
+    "name": "D3RowStates",
+    "title": "Home rows — states, desktop and web (A2)",
+    "platform": "desktop",
+    "size": [
+      1440,
+      810
+    ]
+  },
+  {
     "name": "D3Title",
     "title": "Series page",
     "platform": "desktop",
@@ -1134,8 +1530,17 @@
     ]
   },
   {
-    "name": "D3Search",
-    "title": "Search — Ctrl K",
+    "name": "D3SourcesEmpty",
+    "title": "Choose a source — none found",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3SourcesTorrent",
+    "title": "Choose a source — torrent links only",
     "platform": "desktop",
     "size": [
       1440,
@@ -1144,7 +1549,52 @@
   },
   {
     "name": "D3Browse",
-    "title": "Movies — keyboard focus on the first poster",
+    "title": "Movies — filter rail, catalog, grid appending",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3BrowseCatalogs",
+    "title": "Movies — choose a catalog",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3BrowseLoading",
+    "title": "Movies — loading",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3BrowseEmpty",
+    "title": "Movies — nothing matches (genre limit reached)",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3BrowseError",
+    "title": "Movies — couldn’t load",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3Search",
+    "title": "Search — Ctrl K",
     "platform": "desktop",
     "size": [
       1440,
@@ -1287,15 +1737,6 @@
     ]
   },
   {
-    "name": "D3SignInIptv",
-    "title": "Sign in — IPTV provider",
-    "platform": "desktop",
-    "size": [
-      1100,
-      720
-    ]
-  },
-  {
     "name": "D3Profiles",
     "title": "Who’s watching",
     "platform": "desktop",
@@ -1332,6 +1773,33 @@
     ]
   },
   {
+    "name": "D3Parental",
+    "title": "Settings — Parental controls",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3Recovery",
+    "title": "Settings — Account, recovery codes",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3SetAbout",
+    "title": "Settings — About",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
     "name": "D3Shortcuts",
     "title": "Keyboard shortcuts (Shift ?)",
     "platform": "desktop",
@@ -1343,6 +1811,51 @@
   {
     "name": "D3Remote",
     "title": "TV remote popover",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3SetSources",
+    "title": "Settings — Source integrations",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3SourcesViptv",
+    "title": "Source integrations — VIPTV Sources (dialog)",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3SourcesXtream",
+    "title": "Source integrations — Xtream, saving",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3SourcesM3u",
+    "title": "Source integrations — M3U, error",
+    "platform": "desktop",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "D3SourcesRemove",
+    "title": "Source integrations — remove",
     "platform": "desktop",
     "size": [
       1440,
@@ -1397,15 +1910,6 @@
   {
     "name": "W3SignInDevice",
     "title": "Sign in — approve from another device",
-    "platform": "web",
-    "size": [
-      1440,
-      900
-    ]
-  },
-  {
-    "name": "W3SignInIptv",
-    "title": "Sign in — IPTV provider",
     "platform": "web",
     "size": [
       1440,
@@ -1584,6 +2088,42 @@
     ]
   },
   {
+    "name": "W3Browse",
+    "title": "Movies — filter rail, grid appending",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "W3BrowseLoading",
+    "title": "Movies — loading",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "W3BrowseEmpty",
+    "title": "Movies — nothing matches",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "W3BrowseError",
+    "title": "Movies — couldn’t load",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
     "name": "W3Player",
     "title": "Player",
     "platform": "web",
@@ -1611,8 +2151,71 @@
     ]
   },
   {
+    "name": "W3Recovery",
+    "title": "Account — recovery codes",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "W3Parental",
+    "title": "Account — Parental controls",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
     "name": "W3NotFound",
     "title": "Not found",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "W3SetSources",
+    "title": "Account — Source integrations",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "W3SourcesViptv",
+    "title": "Source integrations — VIPTV Sources (dialog)",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "W3SourcesXtream",
+    "title": "Source integrations — Xtream, saving",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "W3SourcesM3u",
+    "title": "Source integrations — M3U, error",
+    "platform": "web",
+    "size": [
+      1440,
+      900
+    ]
+  },
+  {
+    "name": "W3SourcesRemove",
+    "title": "Source integrations — remove",
     "platform": "web",
     "size": [
       1440,
