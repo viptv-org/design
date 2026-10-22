@@ -237,7 +237,13 @@ Playback preferences (profile scoped):
 - **Preferred audio:** `Original language` (renamed from `Original`) or a
   language. Applies to every title type.
 - **HDR and Dolby Vision:** No preference (default) / Prefer / Avoid.
-- **Maximum quality:** unchanged; Auto now means the device's maximum.
+- **Preferred quality:** Auto / 4K / 1080p / 720p. **Auto** (formerly "Best
+  available") means the device's own resolution: the client reports its
+  display height snapped to 2160/1440/1080/720/480 with every ranking request,
+  and the cap is the lower of the profile choice and the device. The row shows
+  `Auto (this device: 1080p)` when the height is known. A source closest to the
+  device therefore ranks first and higher resolutions sort into the over-cap
+  class.
 
 No release-type setting: the order above is fixed.
 
