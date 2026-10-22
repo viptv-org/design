@@ -1,5 +1,17 @@
 # Design changes
 
+## 2026-10-22 — Proposed: Best match autoplay, ranking and fallback
+
+[SRC-BEST-MATCH-001](specs/behavior/source-best-match.md) replaces "wait for
+every provider, then play the top row" with an early-start countdown that any
+list navigation cancels. Ranking now covers device decode support, one
+preferred-audio setting with dub/dual-audio evidence tiers, release type (WEB
+and BluRay first, camera releases never autoplayed), an off-by-default
+HDR/Dolby Vision preference, torrent health and per-series binge groups. A
+failed Best match start tries the next source, at most three attempts.
+`PLAYBACK_CAPABILITIES.md` names this as the one exception to explicit source
+selection. Canvas boards are still needed.
+
 ## 2026-10-19 — Second canvas re-export: browse, source integrations, missing screens
 
 The owner's design AI produced the requested boards (see
