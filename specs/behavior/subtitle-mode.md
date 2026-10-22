@@ -59,6 +59,23 @@ Server-managed (converted) output and older clients only know on/off; for them
 `Foreign audio only` behaves as **on** until they adopt this rule. This favours
 readable foreign titles over hiding subtitles on native-language ones.
 
+## KMP settings (owner decision 2026-10-22)
+
+The KMP app adopts this mode on the shared engine preferences used by
+`/api/profiles/:id/preferences`. The middle option's visible label names the
+preferred audio language: `When audio isn't [language]`, with English when the
+preference is **Original language** or empty (value `foreign`, behaviour
+unchanged). The row lives on **Subtitles & audio** as **Subtitles**; the TV
+Playback page no longer shows **Start with subtitles**.
+
+TV **Subtitles & audio** is one vertical list, moved with Up/Down, in this
+order: Audio language, Subtitles, Subtitle language, Subtitle size, Subtitle
+background, Subtitle colour. Each row shows its value and opens the standard
+one-choice dialog; Left goes to the sidebar; initial focus is the first row.
+The live subtitle preview is a non-focusable panel beside the list. This
+replaces the canvas board's horizontal choice rows for D-pad use; the canvas
+needs the matching board.
+
 ## Storage
 
 The profile stores `subtitle_mode` (`always` | `foreign` | `never`) with

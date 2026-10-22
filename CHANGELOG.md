@@ -1,5 +1,12 @@
 # Design changes
 
+## 2026-10-22 — KMP subtitle mode and vertical TV Subtitles & audio
+
+PLAY-SUBTITLE-MODE-001 is adopted by the KMP app: **Subtitles** offers Always /
+`When audio isn't [language]` / Never on Subtitles & audio, and TV Playback drops
+**Start with subtitles**. TV Subtitles & audio becomes one vertical Up/Down list
+with the preview beside it (owner decision; canvas board pending).
+
 ## 2026-10-22 — Proposed: Best match autoplay, ranking and fallback
 
 [SRC-BEST-MATCH-001](specs/behavior/source-best-match.md) replaces "wait for
