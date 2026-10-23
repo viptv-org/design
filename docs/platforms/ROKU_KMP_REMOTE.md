@@ -285,12 +285,10 @@ change only the complete local form draft. Apply emits one current library query
 Back discards the draft. The server-returned query owns accepted values and null
 optional fields are omitted from subsequent HTTP query parameters.
 
-Clear requests the existing Library endpoint with source/type/pagination only.
-The form keeps its old draft until the server returns a normalized query and
-control labels; that response becomes the reset draft without applying it to the
-main view. While pending, Clear reads `Loading…`, fields and Apply are disabled,
-and Back cancels ownership. Failure retains the draft and shows an inline22px
-error at[1144,936]; Clear retries. No default sort/show values are invented locally.
+Clear copies the complete server-projected `default_query` into the draft,
+including source/type/limits and optional omission. It performs no request and
+does not apply the draft. Apply submits it; Back discards it. Missing defaults
+are an incompatible-contract error, never a client-defined reset policy.
 Entrance300ms uses KMP cubic(0,0,0,1); exit200ms uses cubic(.3,0,1,1), sampled
 for native interpolation. Motion sampling is not frame-rate qualification.
 
@@ -347,3 +345,23 @@ While loading, old-day rows/artwork are hidden and the existing status area read
 `Loading releases…`. Late results cannot clear a newer request's ownership or
 populate its rows. Preserve supplied entry order and paging cursor; pagination
 from an outdated cursor is not replayed after authentication refresh.
+
+## Current producer navigation and playback directives
+
+Bootstrap's ordered navigation entries own destination availability and labels.
+Render supported IDs in returned order using the existing KMP dimensions; map
+Profile to the avatar popup and Search to its icon. Omit unknown IDs. Refreshes
+preserve focused destination identity when available, otherwise clamp focus to
+the surviving list. No fixed destination inventory is exposed before bootstrap.
+
+Playback buttons and commands require explicit server action flags. Missing or
+false flags remain unavailable even when media metadata suggests eligibility.
+Source/track replacement sends the opaque current lease and observed position;
+the server resolves the delivery clock. Failed or cancelled preparation preserves
+the current decoder/lease. Back cancels pending source/track admission and late
+responses cannot start it. Timeout uses the same inline recovery as rejection.
+
+Acceptance: consume the shared producer fixtures with contradictory VOD/track
+metadata, non-default Library query values and restricted navigation. Verify
+ordering, unavailable-action omission, retained focus and replacement cancellation.
+These handler checks do not qualify visual parity, physical decoding or timing.
