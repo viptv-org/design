@@ -591,3 +591,13 @@ first returned card; do not infer a replacement title or hunt through unrequeste
 pages. Query/route/profile changes clear pending restoration. Cached unchanged
 windows may still restore their known index. Deep-window relocation and physical
 focus ownership during a pending refetch remain separate qualification items.
+
+## Live group request ownership
+
+Changing a Live group retires that view's channel-page and guide requests,
+including queued authentication retries, before submitting the new group.
+Hide old channels/preview while the existing status area reads Loading channels…;
+keep group navigation available. Each reply/failure must match the current Live
+view generation and group query before changing UI. An outdated next/previous
+page cursor cannot replay after another page changes the retained window. Live
+source/playback intent has separate ownership and is not a synthetic guide job.
