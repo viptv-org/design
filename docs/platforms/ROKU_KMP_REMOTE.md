@@ -297,3 +297,8 @@ footer actions24px/weight400,heading32px/weight400,field captions22px/weight500.
 Native label baselines compensate by -3px for field captions,16px inset for
 field-value text,17px inset for footer/menu text. These are renderer offsets to
 match captured ink bounds, not changes to the reference control geometry.
+
+The fixed-origin Roku package omits Use another server in the password panel,
+as pairing/startup already do. Its Delete action remains reachable and inline
+error text follows it. The public package retains server selection. This is a
+package capability, not an unavailable-feature dialog or a local connection mode.
