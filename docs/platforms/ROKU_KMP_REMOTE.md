@@ -427,3 +427,10 @@ keyboard or drawer is open. Once unblocked, retire prior Library work before
 starting the current window refresh. Do not apply server updates to a form draft.
 A route/profile/query change clears the pending invalidation because its new
 request already targets current state. Unchanged revision polls issue no refresh.
+
+## Empty Home focus safety
+
+When Home has no hero and no cards, focus the server-projected navigation even
+if empty shelf headings exist. No invisible or empty action list receives focus.
+Select on a retired/empty action list is a no-op. This preserves access to Movies,
+Library and profile Settings while sources are unconfigured or still loading.
