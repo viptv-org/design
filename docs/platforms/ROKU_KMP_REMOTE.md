@@ -291,3 +291,9 @@ presentation, so Roku must not invent `last_watched`/`all` defaults to imitate
 KMP's local reset code. Exact pre-Apply default labels remain a producer dependency.
 Entrance300ms uses KMP cubic(0,0,0,1); exit200ms uses cubic(.3,0,1,1), sampled
 for native interpolation. Motion sampling is not frame-rate qualification.
+
+Resolved KMP typography confirms menu items24px/weight500; field values and
+footer actions24px/weight400,heading32px/weight400,field captions22px/weight500.
+Native label baselines compensate by -3px for field captions,16px inset for
+field-value text,17px inset for footer/menu text. These are renderer offsets to
+match captured ink bounds, not changes to the reference control geometry.
