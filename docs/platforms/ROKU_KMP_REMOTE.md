@@ -601,3 +601,13 @@ keep group navigation available. Each reply/failure must match the current Live
 view generation and group query before changing UI. An outdated next/previous
 page cursor cannot replay after another page changes the retained window. Live
 source/playback intent has separate ownership and is not a synthetic guide job.
+
+## Live guide failure recovery
+
+A failed current Live data request pauses automatic guide/page reads until explicit
+Retry; cached channel/program previews remain navigable. Authentication replay
+also owns its request slot. Background guide failures must not replace a source
+or settings drawer's status. Defer their message until Live content regains focus.
+Successful retry clears the old failure message without hiding another current
+failure. New groups retire this state. Retry never resubmits a request whose
+renderer/profile/source scope has already retired.
