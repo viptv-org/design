@@ -381,3 +381,21 @@ ellipsizes before the tag with12px separation. A one-line technical description
 uses28px height with6px title gap, producing108px total row height. A missing
 format vertically centers the quality label. Multiple description lines remain
 a separate qualification gap; do not parse provider prose into local metadata.
+
+## Pending preference saves
+
+Keep confirmed settings visible while a preference PUT is outstanding. Additional
+preference activation shows `Saving…` in the existing drawer footer or page
+status area and submits no second snapshot. This busy state includes requests
+waiting for authentication refresh or Parent PIN, plus the authoritative read
+after a revision conflict. It does not block Back or section navigation.
+
+A save response updates the confirmed preference model. It may close its own
+preference drawer and refresh its invoking settings section only when the same
+route generation still owns it. It must not reopen Settings after Back or close
+an unrelated drawer. Failures retain confirmed values and allow explicit retry;
+no optimistic values or deferred client-side preference policy is introduced.
+
+Acceptance: repeated choice/toggle input produces one PUT; authentication and
+parent-authorized retries retain the same intent; leaving Settings before success
+does not navigate back or disturb current focus.
