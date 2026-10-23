@@ -434,3 +434,11 @@ When Home has no hero and no cards, focus the server-projected navigation even
 if empty shelf headings exist. No invisible or empty action list receives focus.
 Select on a retired/empty action list is a no-op. This preserves access to Movies,
 Library and profile Settings while sources are unconfigured or still loading.
+
+## Native custom focus targets
+
+Custom keyboard, Library header/sheet, filter page and password editor must
+explicitly opt into native focus at every Group that receives `setFocus(true)`.
+Decorative groups remain non-focusable. This is platform focus plumbing, not a
+change to the KMP focus order. Verify physical remote entry, movement, activation
+and return focus; simulator acceptance of setFocus is insufficient evidence.
