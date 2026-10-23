@@ -492,3 +492,14 @@ generic row shape/color. The28px Best match tag is centered in the34px title lin
 its box begins23px below the row top (20px padding plus3px centering), with text
 at27px. Existing row width/height and source ordering remain unchanged. Validate
 corner geometry and tag position separately from still-unresolved text metrics.
+
+## Resolved source-badge typography
+
+The current KMP production source row reports Best match at18px/700,20px line
+height and **zero** letter spacing. Its measured advance is98.60339px, with99px
+text layout and119px padded badge. The two t characters resolve to Onest's
+`t2.alt` contextual glyph (422 units rather than366 at1000 units/em). Bake that
+substitution into a uniquely named static face used only for this fixed label;
+keep the literal text unchanged and add no artificial letter spacing. Glyphs,
+metrics and licensing otherwise remain the pinned Onest source. The add-on text
+is20px/400 with zero spacing and remains a separate native metrics comparison.
