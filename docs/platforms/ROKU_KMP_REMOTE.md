@@ -629,3 +629,12 @@ the renderer viewport on that programme. If it is no longer returned, clear the
 manual selection and use the producer's current programme/window. Never infer
 current programme from the local clock or rewrite the server's current marker.
 Manual selection belongs to retained row state and is cleared by a new group.
+
+## Live page metadata and unavailable transitions
+
+A retained channel window preserves page order but takes group/connection/reason
+metadata from the latest accepted response. Tail cursor/completion remain the
+tail page's server values. A non-Available page retires old list/guide request
+ownership and replaces the cached window with that response; do not merge old
+channels into an unavailable state. Empty responses hide the old preview/rows
+and leave group navigation usable without stealing focus from an open overlay.
