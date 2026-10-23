@@ -568,3 +568,15 @@ message, never a credential copy. Bind the restored intent to the current route
 and catalog generation before replay. Profile/origin retirement still clears all
 return snapshots. Back does not silently retry a failed page or hide an incomplete
 server result.
+
+## Mutation-safe return routes
+
+Accepted mutations and changed server revisions retire cached return-view data,
+not the navigation path itself. Preserve route and query intent so Back can refetch
+the current Library, Browse or Home result. Clear cached cards, Home snapshots,
+Library page/cursor/failed-refresh state and stale controls. Progress/event writes
+also invalidate these return models; do not rely on the next revision poll to
+remove obsolete completion/membership. Profile/origin changes still erase the
+entire stack. Refetch uses current credentials and server ordering, with no local
+membership/progress edits. Browse return keeps its query filters but restarts
+pagination and refreshes advertised controls.
