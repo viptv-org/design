@@ -10,6 +10,11 @@ reference archive hash in `docs/KMP_REFERENCE.json`. Those source bytes define
 the reference: later edits by another agent do not silently change this target.
 Existing KMP source is read-only during this adoption.
 
+`assets/roku/roku/images/design/remote-entry.jpg` is the byte-identical KMP
+`composeApp/src/commonMain/composeResources/files/entry/feature.jpg`, verified
+against that reference ledger before import. The `remote-*.png` scrims/masks
+come from `make_kmp_assets.py`, which records their KMP component provenance.
+
 ## Presentation and input
 
 Use the KMP 1920×1080 TV coordinate system, Onest and Bricolage fonts, 96px side
