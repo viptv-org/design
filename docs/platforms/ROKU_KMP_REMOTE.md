@@ -442,3 +442,13 @@ explicitly opt into native focus at every Group that receives `setFocus(true)`.
 Decorative groups remain non-focusable. This is platform focus plumbing, not a
 change to the KMP focus order. Verify physical remote entry, movement, activation
 and return focus; simulator acceptance of setFocus is insufficient evidence.
+
+## Decoder completion reporting
+
+Only the decoder's explicit finished event triggers completion reporting; do not
+infer it from duration/position thresholds. Handle it once per playback attempt.
+Send the observed stop/progress with ended=true and request continuation only
+when the server action permits it. Once finished, periodic progress cannot send
+ended=false for that attempt. Repeated decoder notifications do not duplicate
+completion or next-episode requests. This does not define an automatic-next
+policy or qualify gateway end-of-stream/lease reclamation.
