@@ -147,3 +147,12 @@ this popup instead of a960px source-style drawer. Keep Switch profile and
 Settings in KMP order. Append History as the required supported Roku route
 (the KMP navigation popup currently has no entry to its History screen).
 Back restores the avatar focus. Entry/exit use a120ms opacity transition.
+
+## Platform launch artwork
+
+Retire the old white-V launcher and splash artwork from the Roku package.
+`make_remote_branding.py` uses the pinned Bricolage glyphs, current yellow mark,
+-.04em wordmark tracking and KMP background. The1280x720 platform splash scales
+TvSplash's88px mark/104px wordmark/22px gap and y492 center from1920x1080.
+The runtime startup state uses the same brand, at y440 in its104px box, and a
+240x4 progress track at[840,600] with96px indicator moving over1.2seconds.

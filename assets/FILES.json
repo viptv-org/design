@@ -675,6 +675,7 @@
     "roku/roku/images/design/remote-browse-x.png": "ad8ddec97557e9cf67c9f3599cfa85e46623b8430d9bfc142951a9c7a45e9daa",
     "roku/roku/images/design/remote-browse-y.png": "46fa94677f41330e04937986a2c7abd5ec34554284c504f9bb3dc8ee46081a09",
     "roku/roku/images/design/remote-calendar-preview.png": "765e3717ea133bf99a3bc157b5dca9e0a48383058c1272cd533987936f2fb04c",
+    "roku/roku/images/design/remote-channel-poster-hd.jpg": "750e6681be79440aa13c44adb98beb2dc7f7767842e05bc33775fb017c9f668c",
     "roku/roku/images/design/remote-detail-x.png": "5e3c274e5c8256d130d080533b803dd859e1bc4c4f0af43a09755356d2060d35",
     "roku/roku/images/design/remote-detail-y.png": "b9440681084cf53509219ebc78d69951cb2dba983c336d14db257c182ec01c07",
     "roku/roku/images/design/remote-entry-feature-focus.png": "778306c1d8ddd9f547644e64521fcd136a1ab426d095c9a68d08277a3b928329",
@@ -746,6 +747,7 @@
     "roku/roku/images/design/remote-series-x.png": "4bb727afd67782e14b2bdfe8761480ddeb9eb3764b26f1bb76240083d799d459",
     "roku/roku/images/design/remote-settings-row.png": "567650bf3c7278780a06dd4b46314d0de0e050769cc871223e5e983f6e249606",
     "roku/roku/images/design/remote-settings-switch.png": "9b98c57523d2cb485e407006641a46c8a3a5456f8a0dfa4c74246e03754e973e",
+    "roku/roku/images/design/remote-splash-hd.jpg": "5f01b58ada0ad8377af1c68aba4cd9e5159c14c9da5d6a2dfbcc0abc15916615",
     "roku/roku/images/design/remote-welcome-scrim.png": "1c7ad9637d3461713b01930b43e68227918c1fc70ab83a7bfdc0f4aa21378cc2",
     "roku/roku/images/design/remote-white.png": "0cc4acc2e9abb600ff3fa032daa5e68cd6a0be87ec7c9de61dbf366fc87de0fc",
     "roku/roku/images/design/remote-wide-corners.png": "2f09c6fa7810821256c2bbea1c9b7686f333397f0605ce39a8a5308e7aa4f44d",
@@ -1040,6 +1042,7 @@
     "roku/roku/tools/make_entry_posters.py": "99287c828d9cc6cca5bffe0298e924aa97b49b92f81c7fd77bf35f683ebbb6f1",
     "roku/roku/tools/make_kmp_assets.py": "8d33203f5da64a8e49e5860169e48ccaf3d0d531e82a0a0969f8bf5b5e3b70cb",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
+    "roku/roku/tools/make_remote_branding.py": "9b682a3cb6d14edc7b0b6e419e891b403bc98da7579921447afbd605b66f59b7",
     "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350"
   }
 }
