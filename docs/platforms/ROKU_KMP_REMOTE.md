@@ -119,3 +119,21 @@ origin (poster top888). Episode cards are448px wide with252px landscape art,
 24px gaps,12px corners and3px focus outline. Captions24/29 semibold, subtitles
 20/26, descriptions20/28 up to2lines. Use the server's episode identity and
 progress; never infer completion, episode order or a next episode locally.
+
+## History and calendar reconstruction
+
+History retains top navigation, a40/48 heading at[96,228],24/32 explanation,
+and a260x64 Clear history action at[1564,236]. Rows start at y340 and are
+1728x148,corner16,gap12, with232x124 landscape thumbnails at12px inset/radius10.
+Text starts268px from the row origin: title28/34 semibold and subtitle22/28.
+The right edge can display the server progress fraction as a percentage. Only
+`completed_at_millis` marks completion. Preserve server order; do not deduplicate,
+reorder, or manufacture day groups. Day headers require server presentation.
+The empty state says `Nothing watched yet` / `Titles you play show up here.`
+and offers `Browse Home`; clear remains unavailable with no entries.
+
+Calendar's content rows are1100x132 at[96,250],gap18. Its preview uses landscape
+art at[1240,250],584x329, then title32 at y598 and description24/32 at y656.
+Use supplied landscape art, with the supplied poster as the KMP missing-landscape
+fallback; never replace this preview with a300x450 portrait. Airing labels,
+personal progress narrative and Watch target must come from the producer.
