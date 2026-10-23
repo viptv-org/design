@@ -340,3 +340,10 @@ renderer generation. Preserve server episode order, identity and cursor. Closing
 the drawer or replacing/stopping playback cancels its outstanding metadata work.
 Late replies cannot replace another season or reopen a closed drawer. This does
 not qualify the separate real-media decoder/recovery paths.
+
+Calendar date/week/type changes retire queued and running requests and pending
+authentication retries for the previous range before submitting the latest one.
+While loading, old-day rows/artwork are hidden and the existing status area reads
+`Loading releases…`. Late results cannot clear a newer request's ownership or
+populate its rows. Preserve supplied entry order and paging cursor; pagination
+from an outdated cursor is not replayed after authentication refresh.
