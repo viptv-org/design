@@ -90,3 +90,17 @@ Choice; Back from Choice returns to Welcome. No email placeholder dialog.
 Capture these three states at 1080p and scaled720p, compare native TCL renders,
 and report differences before claiming parity. Source: recorded KMP entry files
 and private `kmp-entry-reference-20261023` captures; not screenshot assets.
+
+## Settings row reconstruction
+
+`TvSettingsRow` fixes rows at96px, corner14, background#191919 and focused
+#F4F2EE, with28px horizontal padding. Labels are26/32 semibold; optional
+server-provided descriptions are20/26 medium, separated by4px. Choice values
+are24/30 medium at the right with an8px gap before a24px chevron. Boolean
+controls use a68x38 pill and30px thumb with4px inset, accent on and#494949 off.
+Use only choices supplied by the current preference contract. Selecting a boolean
+row sends the other supplied boolean choice; focus does not mutate state and
+accepted server responses own the displayed value. Non-boolean rows open their
+server-supplied choices. Do not synthesize skip-intro, frame-rate or other absent
+controls. Row pitch108px; content starts[640,220],width1184. Heading40/48 at
+[640,93] with -.8 tracking; profile explanation24/30 at[640,152].
