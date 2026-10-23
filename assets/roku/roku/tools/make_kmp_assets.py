@@ -59,3 +59,14 @@ shapes.rounded('remote-startup-indicator.png',96,4,2)
 
 for name,w,h,r in [('remote-library-group',572,64,32),('remote-library-type',140,52,26),('remote-library-type-wide',168,52,26),('remote-library-filter',164,64,32)]:
     shapes.rounded(name+'.png',w,h,r)
+
+# Fixed five-pixel badge corners and 1.5-pixel border, stretchable center.
+def metadata_badge(x,y):
+    if x in (0,13) or y in (0,13):
+        mark = (y == 0 and 6 <= x <= 7) or (x == 0 and 6 <= y <= 7)
+        return (0,0,0,255 if mark else 0)
+    alpha = shapes.round_alpha(x-1,y-1,12,12,5)-shapes.round_alpha(x-2.5,y-2.5,9,9,3.5)
+    return (255,255,255,round(255*shapes.clamp(alpha)))
+shapes.png('remote-metadata-badge.9.png',14,14,metadata_badge)
+for name,w,h,r in [('remote-library-type',140,52,26),('remote-library-type-wide',168,52,26),('remote-library-filter',164,64,32)]:
+    shapes.rounded(name+'-focus.png',w+8,h+8,r+4,4)

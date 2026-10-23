@@ -169,3 +169,18 @@ Onest text. Accepted query type owns the selected #0B0B0C fill; focus uses
 Type activation resets the server offset, retires the prior request and waits
 for the accepted response. Up returns to navigation, Down enters the grid;
 return from detail restores query and focus. Empty results keep controls usable.
+
+## Server-projected metadata and resume
+
+Consume `Card.view.metadata_parts` for detail and `hero_metadata_parts` for
+Home; show `hero_badges` in supplied order. Do not sort, alias or deduplicate.
+Metadata uses24px medium Onest,32px line box,12px gaps on each side of the dot.
+Badges follow after28px,30px tall,18px bold text with .36px tracking,8px horizontal inset,
+5px corners,1.5px white55% outline and12px gaps. Tile state comes from
+`view.tile_badge`, never from raw capability tokens. Source rows consume
+`source.view.title/body/quality_label/format_label/addon_label/provider_label`.
+Resume button consumes viewing-action `remaining_label` and `progress` exactly;
+remaining text26px bold follows the action label with54px gap. Progress is4px
+high,28px horizontal inset,12px from the button bottom. No resume threshold or
+remaining-time calculation belongs in the renderer. Library focus outlines are
+4px outside the pill bounds, following KMP `tvFocusOutline`.
