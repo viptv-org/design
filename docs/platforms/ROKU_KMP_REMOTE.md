@@ -474,3 +474,13 @@ restarting or stopping the current candidate. Only a failure of the current
 candidate can recover the still-authorized previous lease. Admission heartbeat
 failure cancels preparation without stopping already-active playback. Release
 retires queued/running recovery heartbeats and authentication retries as well.
+
+## Direct Live viewing intent
+
+Live channel activation is an explicit Watch intent. Consume the channel-sources
+response's action Card, label, resume and source_selection unchanged. Rank its
+opaque streams through the shared source-ranking route. Only Watch plus the
+server's best preference can start the returned best_match_id; opening the source
+picker explicitly still requires selection. Direct Live results have no discovery
+job and must not cause stream-job poll/delete requests. Channel switches and Back
+retire request ownership, so late responses cannot replace a newer channel.
