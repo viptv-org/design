@@ -504,3 +504,21 @@ capture. Tint it with the existing inverse row foreground and retain10px/4px
 padding, yielding119x28. Dynamic source/add-on text stays native and requires
 separate metrics qualification. Do not generalize this fixed-label treatment
 into rasterized arbitrary provider strings.
+
+## Library reverse traversal
+
+Retain the accepted server offset for each visited Library page, separately from
+the three-page card window. Near the first retained row, refetch the preceding
+visited offset with the accepted query; prepend its returned cards and evict the
+last page if necessary. Never calculate offsets from title count or reorder cards.
+Restore focus by canonical identity. Keep the tail page's next cursor so forward
+navigation works again after backtracking. Up reaches the header only when the
+retained window starts at the first page; otherwise it requests the prior page.
+
+Return snapshots preserve cursor history/window position. Hydration and revision
+refresh preserve preceding offsets while replacing the retained window. New
+queries/profile/route ownership retire them. Cursor history is bounded to10001
+scalar offsets (the current producer's maximum offset10000 with minimum limit1);
+card payload remains bounded to three pages. Failures retain visible cards and
+use existing explicit retry. Hardware scrolling latency/memory remain separate
+qualification gates.
