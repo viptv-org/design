@@ -137,3 +137,13 @@ art at[1240,250],584x329, then title32 at y598 and description24/32 at y656.
 Use supplied landscape art, with the supplied poster as the KMP missing-landscape
 fallback; never replace this preview with a300x450 portrait. Airing labels,
 personal progress narrative and Watch target must come from the producer.
+
+## Profile menu
+
+The current KMP `DropdownMenu` capture is a compact popup anchored at[1768,94],
+117px wide,8px vertical padding and48px rows. Its text is14px medium with12px
+horizontal inset; surface#161618,4px corners, no full-screen scrim. Roku uses
+this popup instead of a960px source-style drawer. Keep Switch profile and
+Settings in KMP order. Append History as the required supported Roku route
+(the KMP navigation popup currently has no entry to its History screen).
+Back restores the avatar focus. Entry/exit use a120ms opacity transition.
