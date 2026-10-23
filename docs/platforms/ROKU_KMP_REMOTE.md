@@ -224,3 +224,24 @@ nominal line-box origin) to align that ink. Reopening the form resets the
 keyboard to lowercase `q`, while field/action round trips retain the current
 key. Keyboard-to-field/action transfer explicitly focuses the target Group;
 focusing only the enclosing form leaves the previous child focused on the TCL.
+
+## Browse filter page
+
+`TvFiltersPage` replaces the catalog screen with#0B0B0C,96px top/side and54px
+bottom padding. Heading52/60 bold,tracking-1.04,then catalog label24/32 and28px
+gap. Left facet column640px wide;64px gap to the choice column at x800.
+Facet rows80px high,12px gaps,14px corners,26px horizontal padding;26px bold
+labels,22px selected value right aligned (max300px),18px Required indicator.
+Unfocused active facet fill white16%,other facets white4%; focus light fill/dark
+ink and4px outer ring. Choices preserve producer order in three-column rows,
+14px horizontal/vertical gaps,minimum200px width,64px height,32px radius,
+24px semibold labels and24px horizontal padding. Checked choices include a22px
+check with12px gap. Only producer maximum_selections limits drafts. Single choice
+replaces; multichoice toggles; no quality/provider policy is allowed.
+
+Bottom actions at y954: Show results340x72,Clear all220x72,Cancel220x72,
+16px gaps. Back/Cancel discard the entire draft and restore the trigger focus.
+Show results retires old request ownership and submits the whole draft once.
+Clear all clears the draft and selected catalog; it does not issue a request.
+The current Library filter is a separate800px right sheet, not this full page.
+Toggle choices must be supplied by the server; do not manufacture On/Off values.

@@ -96,3 +96,18 @@ for name,w,h,r in [('remote-entry-key',104,76,10),('remote-entry-space',332,76,1
     shapes.rounded(name+'-focus.png',w+8,h+8,r+4,4)
 shapes.rounded('remote-password-field-active.png',1130,84,14,2)
 shapes.rounded('remote-password-field-idle.png',1130,84,14,1)
+
+# Resizable fixed-radius filter surfaces; markers preserve corners at any width.
+def filter_nine(name,radius,border=0):
+    size=radius*2
+    def pixel(x,y):
+        if x in (0,size+1) or y in (0,size+1):
+            mark=(y==0 and radius<=x<=radius+1) or (x==0 and radius<=y<=radius+1)
+            return (0,0,0,255 if mark else 0)
+        a=shapes.round_alpha(x-1,y-1,size,size,radius)
+        if border: a-=shapes.round_alpha(x-1-border,y-1-border,size-2*border,size-2*border,radius-border)
+        return (255,255,255,round(255*shapes.clamp(a)))
+    shapes.png(name,size+2,size+2,pixel)
+for name,r in [('facet',14),('choice',32),('action',12)]:
+    filter_nine('remote-filter-'+name+'.9.png',r)
+    filter_nine('remote-filter-'+name+'-focus.9.png',r+4,4)
