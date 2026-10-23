@@ -533,3 +533,11 @@ instead of silently resubmitting the failed reverse request. Retry submits the
 exact failed query/context once and returns focus to visible cards when accepted
 by the dispatcher. If the request queue is full, retain retry ownership. Ordinary
 focus movement must not trigger a network retry loop.
+
+## Native catalog boundary focus
+
+Catalog grids explicitly use floatingFocus vertically: Up/Down at the real edge
+must reach parent navigation/retry handling, never wrap through a divider to the
+opposite end. RemoteActionBar is an explicit native focus target, including Retry,
+source filters and player actions. Verify these behaviors on the physical device;
+simulator default focus/wrapping behavior is not sufficient.
