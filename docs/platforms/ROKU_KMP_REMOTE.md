@@ -365,3 +365,19 @@ Acceptance: consume the shared producer fixtures with contradictory VOD/track
 metadata, non-default Library query values and restricted navigation. Verify
 ordering, unavailable-action omission, retained focus and replacement cancellation.
 These handler checks do not qualify visual parity, physical decoding or timing.
+
+## Source best-match presentation
+
+TvSourceRow's title line contains a trailing Best match tag only for the exact
+server `best_match_id`, independent of display filtering. Never badge the first
+visible row by position. The tag uses18px bold Onest,20px line height,10px
+horizontal/4px vertical padding and5px corners. It uses row foreground as its
+fill and the inverse foreground as text. It disappears on node reuse or when
+the server omits the named ID. Preserve the supplied source order.
+
+The add-on label measures its text up to170px, with28px right inset and20px gap
+from the title/body column. Best match sits at that column's right edge; title
+ellipsizes before the tag with12px separation. A one-line technical description
+uses28px height with6px title gap, producing108px total row height. A missing
+format vertically centers the quality label. Multiple description lines remain
+a separate qualification gap; do not parse provider prose into local metadata.
