@@ -252,10 +252,16 @@ again. Entering a capped group focuses its first enabled choice; never leave the
 remote focused on a disabled item.
 
 Text/number/date controls with no choices use `TvFacetText`: value field at
-[800,312],819.2x84,14px corners,28px inset,30px text; the inline entry keyboard
-starts at[800,412],width1024,76px key height and10px gaps. Its four ten-key rows
+[800,313],819.2x84,14px corners,28px inset,30px text; the inline entry keyboard
+starts at[800,413],width1024,76px key height and10px gaps. Its four ten-key rows
 use equal widths; the final suffix key uses the remaining row width. Drafts are
 bounded to64 characters, matching the KMP input control. A200x64 Clear action
 appears16px below the keyboard when nonempty. Text input remains on the filter
 page; Back cancels the page, Left returns to facets, and Down reaches Clear or
 the page actions. Submitting text never issues an independent catalog request.
+
+The matched KMP text-filter capture places the value field at y313 and the
+keyboard at y413. Its1024px row allocates94px to the first four keys and93px
+to the remaining six (10px gaps), preserving Compose's whole-pixel remainder
+distribution. Activating a text facet requests its initial `q` key, while Up
+from the first keyboard row focuses the value field.
