@@ -546,3 +546,14 @@ Content replacement can emit native focus at index0 before jumpToItem restores
 identity. Suppress paging during restoration until its target notification arrives,
 and discard stale focus notifications. The restoration event itself is not a
 new user navigation intent. This prevents forward/reverse page oscillation.
+
+## Library error/reason placement
+
+TvLibraryScreen places its24px status text at[96,236], above the retained grid.
+The measured one-line layout is31px tall (baseline23.68px) and errors use
+#FF7A6E; server reasons use secondary text. Reserve31px for one line,62px for two
+bounded lines, then start the grid below it. With no message, grid remains y236.
+Never draw this status over poster artwork at y940. Keep the supported native
+Retry action at its existing footer position and focus path; its opaque button
+remains a Roku transport-recovery affordance, not a KMP placeholder action.
+Successful refresh and route reset clear error color and restore normal geometry.
