@@ -416,3 +416,14 @@ profile or filter changes retire refresh ownership and partial replacement data.
 Back from details restores the page window and any outstanding refresh deadline.
 Acceptance: delayed hydration, two-page refresh, absent directives, failure/retry,
 filter cancellation, no duplicate cards and focus preservation.
+
+## Cross-client revision invalidation
+
+A changed profile revision invalidates return-view snapshots and requests a fresh
+bootstrap for server navigation, membership, preferences and management facts.
+A visible Library schedules replacement of its retained page window even when
+no hydration timer was supplied. Defer this replacement while its filter sheet,
+keyboard or drawer is open. Once unblocked, retire prior Library work before
+starting the current window refresh. Do not apply server updates to a form draft.
+A route/profile/query change clears the pending invalidation because its new
+request already targets current state. Unchanged revision polls issue no refresh.
