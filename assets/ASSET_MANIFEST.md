@@ -53,3 +53,5 @@ git diff --no-index -- "$SOURCE_ROKU/data" "$DESIGN_REPO/assets/roku/roku/data"
 No app should use this design repository as a runtime submodule. Consume a versioned asset release or copy only the required files at build time, keeping this repository as the provenance and visual-contract source of truth. Apps must not add screenshots to this tree.
 
 KMP entry adoption: `remote-entry-poster-0..17.jpg` are byte-identical to the recorded KMP `files/entry/tv-poster-*.jpg`. `make_kmp_assets.py` generates the welcome elliptical scrim and entry corner/focus masks from TvWelcome/TvSignInChoice geometry. `entry-*` Lucide PNG/SVG controls use the same pinned 0.468.0 icons and 18.3.1 React exporter.
+
+`make_entry_posters.py` derives the 18 RGBA `remote-entry-tile-*.png` at236x354/radius10 from the unchanged KMP JPEGs. Roku uses native Poster nodes for the moving wall, avoiding per-tile live masks.
