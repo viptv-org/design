@@ -541,3 +541,8 @@ must reach parent navigation/retry handling, never wrap through a divider to the
 opposite end. RemoteActionBar is an explicit native focus target, including Retry,
 source filters and player actions. Verify these behaviors on the physical device;
 simulator default focus/wrapping behavior is not sufficient.
+
+Content replacement can emit native focus at index0 before jumpToItem restores
+identity. Suppress paging during restoration until its target notification arrives,
+and discard stale focus notifications. The restoration event itself is not a
+new user navigation intent. This prevents forward/reverse page oscillation.
