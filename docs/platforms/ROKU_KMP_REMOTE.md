@@ -325,3 +325,18 @@ server profile ID. Identity/origin changes retire old requests and release cache
 views, artwork, guide pages, pending parent actions and form drafts. Current
 rotating credentials remain preserved; backend account/profile/history records
 are not migrated or rewritten by this renderer behavior.
+
+## Player episode-list failure and ownership
+
+An episode-list HTTP failure is a drawer error, not a decoder failure. Preserve
+the active Video content and playback lease. Keep already-loaded episode rows
+when a later page fails, and append an actionable Retry row using the existing
+800x144 episode-row geometry. Loading/error/empty copy uses the existing drawer
+footer at[1024,940],800x88,22px text. Retry clears the error only when explicitly
+activated; focus changes must not cause automatic retry loops.
+
+Each first-page/season request retires older episode requests and starts a new
+renderer generation. Preserve server episode order, identity and cursor. Closing
+the drawer or replacing/stopping playback cancels its outstanding metadata work.
+Late replies cannot replace another season or reopen a closed drawer. This does
+not qualify the separate real-media decoder/recovery paths.
