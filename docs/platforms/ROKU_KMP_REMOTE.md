@@ -619,3 +619,13 @@ moves that channel to the newest slot instead of adding duplicates. Eviction can
 remove only a distinct older channel and clears its attached row data; it must
 not delete a freshly replaced guide because an old duplicate reached the front.
 This cache bookkeeping never reorders channels/programs or selects a source.
+
+## Live programme selection during refresh
+
+Initial guide selection follows the producer's current_program_id/window. After
+an explicit Left/Right browse, retain that programme ID across guide refresh and
+retained channel-page replacement, even if server programme order changes. Keep
+the renderer viewport on that programme. If it is no longer returned, clear the
+manual selection and use the producer's current programme/window. Never infer
+current programme from the local clock or rewrite the server's current marker.
+Manual selection belongs to retained row state and is cleared by a new group.
