@@ -313,3 +313,15 @@ Subsequent Up/Down wrap. Focused rows align to the viewport top while scroll ran
 allows, then clamp at the end. The native menu follows this rather than scrolling
 to the current value automatically. This was verified with129 producer-ordered
 choices and an accepted value at the end of the list.
+
+## Bootstrap ownership and refresh
+
+A server identity with no selected profile displays the supplied profile selector;
+a locally remembered profile must never trigger selection. A selected server
+profile owns all subsequent scoped requests. Refreshing the same origin/account/
+profile preserves the current route, focus and transient form drafts. Home and
+profile-list refreshes wait until overlaid forms close; profile focus restores by
+server profile ID. Identity/origin changes retire old requests and release cached
+views, artwork, guide pages, pending parent actions and form drafts. Current
+rotating credentials remain preserved; backend account/profile/history records
+are not migrated or rewritten by this renderer behavior.
