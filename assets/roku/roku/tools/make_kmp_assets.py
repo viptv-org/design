@@ -31,3 +31,10 @@ for name,w,h,radius in [('remote-poster',255,383,10),('remote-wide',422,238,10),
     shapes.rounded(name+'-corners.png',w,h,radius,inverse=True)
     shapes.rounded(name+'-mask.png',w,h,radius)
     shapes.rounded(name+'-focus.png',w,h,radius,4)
+
+# TvWelcome ellipse: 60% of screen width by 70% of screen height.
+from math import sqrt
+shapes.png('remote-welcome-scrim.png',960,540,lambda x,y:(11,11,12,round(255*ramp(sqrt(((x-480)/576)**2+((y-270)/378)**2),[(0,.92),(.55,.75),(1,.45)]))))
+for name,w,h,radius in [('remote-entry-option',900,100,16),('remote-entry-feature',704,396,18),('remote-entry-poster',236,354,10),('remote-entry-signin',360,72,12)]:
+    shapes.rounded(name+'-mask.png',w,h,radius)
+    shapes.rounded(name+'-focus.png',w+8,h+8,radius+4,4)

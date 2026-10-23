@@ -59,3 +59,34 @@ and p95 focus response below 100ms are targets, not unmeasured claims.
 
 Functional, visual and physical-device acceptance are separate. App captures
 stay private; durable evidence contains measurements and source references.
+
+## Entry reconstruction corrections (2026-10-23)
+
+Private captures of TvWelcome, TvSignInChoice and TvPairingSignIn exposed omitted
+entry states in the initial Roku adoption. Entry starts at TvWelcome: the same
+40 poster placements (-60 + column*252, -100 + row*372; 236x354; radius10), alpha
+.32, with a 500px horizontal drift over 60 seconds reversing, and the same
+elliptical scrim (.92/.75/.45 alpha at 0/.55/1). Center the 80px brand mark and
+92px wordmark in the y336 band. Tagline at y474, 34/42 typography. A single
+360x72 Sign in action is centered at [780,584]; omit the unsupported local action.
+
+Sign in opens Choice. Heading [96,96], 56/64; options [96,250], 900x100, gap16,
+radius16, 32px horizontal padding, 32px icons and 26px icon/text gap. Titles
+30/36 bold; subtitles22/30 medium. Keep phone, browser and password in that order;
+omit unsupported email/local options. Feature art [1120,250],704x396,radius18,
+alpha.6, with the 64px brand mark/72px wordmark at the bottom-left32px inset.
+Explanation [1120,668],704 wide,26/38. Lists retain fixed geometry under focus;
+never use the native wrapping-list default for these choices.
+
+Pairing retains the KMP heading and columns: left [96,250],760 wide with
+30/43.5 heading,26/37.7 instruction and 340px white QR surface at y424. Right
+[1064,250],760 wide with numbered44px instructions, address at x1126, code
+surface [1126,534],640x120 and refresh/expiry row at y676. Divider x959,y250,
+2x560 with60px 'or' circle. Waiting state at[96,900]. Omit unsupported email
+switch. QR image remains server supplied; transport must support its current
+origin and TLS requirements. Back cancels pairing ownership and returns to
+Choice; Back from Choice returns to Welcome. No email placeholder dialog.
+
+Capture these three states at 1080p and scaled720p, compare native TCL renders,
+and report differences before claiming parity. Source: recorded KMP entry files
+and private `kmp-entry-reference-20261023` captures; not screenshot assets.

@@ -51,3 +51,5 @@ git diff --no-index -- "$SOURCE_ROKU/data" "$DESIGN_REPO/assets/roku/roku/data"
 - `JELLYFIN-LICENSE.txt` and `JELLYFIN-NOTICE.txt` cover the GPLv2-derived Roku caption adaptation. `BSLIB-LICENSE.txt` is MIT for RokuCommunity BSLib 0.1.1. Keep notices and licenses with any copied/redistributed asset or client package where required.
 
 No app should use this design repository as a runtime submodule. Consume a versioned asset release or copy only the required files at build time, keeping this repository as the provenance and visual-contract source of truth. Apps must not add screenshots to this tree.
+
+KMP entry adoption: `remote-entry-poster-0..17.jpg` are byte-identical to the recorded KMP `files/entry/tv-poster-*.jpg`. `make_kmp_assets.py` generates the welcome elliptical scrim and entry corner/focus masks from TvWelcome/TvSignInChoice geometry. `entry-*` Lucide PNG/SVG controls use the same pinned 0.468.0 icons and 18.3.1 React exporter.
