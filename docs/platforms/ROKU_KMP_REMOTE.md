@@ -580,3 +580,14 @@ remove obsolete completion/membership. Profile/origin changes still erase the
 entire stack. Refetch uses current credentials and server ordering, with no local
 membership/progress edits. Browse return keeps its query filters but restarts
 pagination and refreshes advertised controls.
+
+## Refetched catalog selection identity
+
+Return snapshots retain the selected card's exact canonical identity key,
+including metadata origin. After invalidation/refetch, match that key in the
+server-returned cards rather than applying an obsolete numeric index. Do not
+reorder results or equate same IDs from different origins. If absent, select the
+first returned card; do not infer a replacement title or hunt through unrequested
+pages. Query/route/profile changes clear pending restoration. Cached unchanged
+windows may still restore their known index. Deep-window relocation and physical
+focus ownership during a pending refetch remain separate qualification items.
