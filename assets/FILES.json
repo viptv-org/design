@@ -1109,6 +1109,8 @@
     "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350",
     "roku/roku/tools/make_source_badge.py": "c84b273976ffe536719c47ed490aa3bfa739a931a27d7efd53525e075f367ea0",
     "roku/roku/images/design/remote-source-best.9.png": "202000d3adb35b984dff9eaec114c31a0932a221db15db1907346942155df63b",
-    "roku/roku/images/design/remote-source-row.9.png": "9e2a4b079f1905ae5532c27988af655dab99ef6b78363cc8ab3049690dfe5b8f"
+    "roku/roku/images/design/remote-source-row.9.png": "9e2a4b079f1905ae5532c27988af655dab99ef6b78363cc8ab3049690dfe5b8f",
+    "roku/roku/tools/make_source_text.py": "905efc3a4e702b2ef4bd30511693c15de8306ebc98274e3e7c0e839b190aaac9",
+    "roku/roku/images/design/remote-source-best-text.png": "79d6e204a75a6a891d55f140df643c81513a2c54f69effd15983865e6ff328f1"
   }
 }

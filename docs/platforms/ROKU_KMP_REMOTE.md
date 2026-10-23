@@ -492,3 +492,15 @@ generic row shape/color. The28px Best match tag is centered in the34px title lin
 its box begins23px below the row top (20px padding plus3px centering), with text
 at27px. Existing row width/height and source ordering remain unchanged. Validate
 corner geometry and tag position separately from still-unresolved text metrics.
+
+## Fixed source badge glyph asset
+
+KMP's Best match text resolves to18px/700, zero tracking,99x20 layout and
+15.985px baseline. Its shaped advance is98.60339px; native Roku's font API and
+SceneGraph both report95px even after loading. Render this fixed English label
+from the pinned OFL Onest with contextual shaping into a99x20 transparent glyph
+asset, baseline rounded to16px. This is generated font artwork, not an app
+capture. Tint it with the existing inverse row foreground and retain10px/4px
+padding, yielding119x28. Dynamic source/add-on text stays native and requires
+separate metrics qualification. Do not generalize this fixed-label treatment
+into rasterized arbitrary provider strings.
