@@ -285,10 +285,12 @@ change only the complete local form draft. Apply emits one current library query
 Back discards the draft. The server-returned query owns accepted values and null
 optional fields are omitted from subsequent HTTP query parameters.
 
-Clear removes the displayed filter parameters, preserving source/type; the
-server selects defaults on Apply. The current producer does not expose reset
-presentation, so Roku must not invent `last_watched`/`all` defaults to imitate
-KMP's local reset code. Exact pre-Apply default labels remain a producer dependency.
+Clear requests the existing Library endpoint with source/type/pagination only.
+The form keeps its old draft until the server returns a normalized query and
+control labels; that response becomes the reset draft without applying it to the
+main view. While pending, Clear reads `Loading…`, fields and Apply are disabled,
+and Back cancels ownership. Failure retains the draft and shows an inline22px
+error at[1144,936]; Clear retries. No default sort/show values are invented locally.
 Entrance300ms uses KMP cubic(0,0,0,1); exit200ms uses cubic(.3,0,1,1), sampled
 for native interpolation. Motion sampling is not frame-rate qualification.
 
@@ -302,3 +304,12 @@ The fixed-origin Roku package omits Use another server in the password panel,
 as pairing/startup already do. Its Delete action remains reachable and inline
 error text follows it. The public package retains server selection. This is a
 package capability, not an unavailable-feature dialog or a local connection mode.
+
+
+Direct KMP keyboard capture confirms that a choice menu opens without a focused
+item, retains the current-value check, and does not act on Enter until navigation
+enters the menu. Down first focuses the first item; Up first focuses the last.
+Subsequent Up/Down wrap. Focused rows align to the viewport top while scroll range
+allows, then clamp at the end. The native menu follows this rather than scrolling
+to the current value automatically. This was verified with129 producer-ordered
+choices and an accepted value at the end of the list.
