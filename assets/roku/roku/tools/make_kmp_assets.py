@@ -111,3 +111,5 @@ def filter_nine(name,radius,border=0):
 for name,r in [('facet',14),('choice',32),('action',12)]:
     filter_nine('remote-filter-'+name+'.9.png',r)
     filter_nine('remote-filter-'+name+'-focus.9.png',r+4,4)
+filter_nine('remote-entry-fluid.9.png',10)
+filter_nine('remote-entry-fluid-focus.9.png',14,4)

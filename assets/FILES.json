@@ -680,6 +680,8 @@
     "roku/roku/images/design/remote-detail-y.png": "b9440681084cf53509219ebc78d69951cb2dba983c336d14db257c182ec01c07",
     "roku/roku/images/design/remote-entry-feature-focus.png": "778306c1d8ddd9f547644e64521fcd136a1ab426d095c9a68d08277a3b928329",
     "roku/roku/images/design/remote-entry-feature-mask.png": "65d9df027f53c21bffed95098a5da2a83054fa742fec9d94d868debb5dae5230",
+    "roku/roku/images/design/remote-entry-fluid-focus.9.png": "865961f4fdf70553a6d5e36f80868f093b067db9c2d13b31148e540c59a9326a",
+    "roku/roku/images/design/remote-entry-fluid.9.png": "fb3061c11309b83410e8b7c12fb207596df19c9e497bb937accf72952aa166e5",
     "roku/roku/images/design/remote-entry-key-focus.png": "35e6ca0d6fd210d345ebf24d3589b21fdc21261b88c6b8f4d92260245243fd3e",
     "roku/roku/images/design/remote-entry-key.png": "684bcf3b4874bef106d7335cde3337f81a7091209950539eff3b698a64a00b0a",
     "roku/roku/images/design/remote-entry-option-focus.png": "f04e736bde48d475b088cfe6d82468501f177177a33def2c0e892f4ed44b0a9d",
@@ -1094,7 +1096,7 @@
     "roku/roku/tools/make_brand_assets.cjs": "380c4f66c644d07feee784efa8f95678201b135e9bc1b5a8782968fb159f3a49",
     "roku/roku/tools/make_design_assets.py": "fd8256cc0090493734c687f3c6700e441711cc64b339bc3f70b37c95534d91ad",
     "roku/roku/tools/make_entry_posters.py": "99287c828d9cc6cca5bffe0298e924aa97b49b92f81c7fd77bf35f683ebbb6f1",
-    "roku/roku/tools/make_kmp_assets.py": "af4082c09920db4195ce866a956b8f4a3b99e6f6929635b801bba45b67b7863e",
+    "roku/roku/tools/make_kmp_assets.py": "3c4737310a001c3bb3f670c6422559a7bc63c2fe14ce28f48383932546e505c7",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
     "roku/roku/tools/make_remote_branding.py": "9b682a3cb6d14edc7b0b6e419e891b403bc98da7579921447afbd605b66f59b7",
     "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350"
