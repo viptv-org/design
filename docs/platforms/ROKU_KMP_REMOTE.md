@@ -638,3 +638,12 @@ tail page's server values. A non-Available page retires old list/guide request
 ownership and replaces the cached window with that response; do not merge old
 channels into an unavailable state. Empty responses hide the old preview/rows
 and leave group navigation usable without stealing focus from an open overlay.
+
+## Live list focus restoration
+
+When a retained channel window is replaced, establish the target channel index
+before assigning content. Ignore transient focus notifications until that target
+is acknowledged, and ignore stale focus notifications afterward. Guide/page reads
+and hero preview wait for restoration; the existing focus-settle timer then
+loads visible content. This prevents an intermediate index0 from requesting a
+previous page or previewing the wrong channel. New routes/groups retire the guard.
