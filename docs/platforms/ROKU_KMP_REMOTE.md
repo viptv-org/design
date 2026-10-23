@@ -522,3 +522,14 @@ scalar offsets (the current producer's maximum offset10000 with minimum limit1);
 card payload remains bounded to three pages. Failures retain visible cards and
 use existing explicit retry. Hardware scrolling latency/memory remain separate
 qualification gates.
+
+## Library page-error retry focus
+
+A failed current Library request pauses automatic page lookahead, reverse fetch
+and hydration until explicit Retry. Preserve visible cards and selected identity.
+At a grid boundary, Down reaches the visible Retry action; Up from Retry restores
+grid focus. At the first retained row of a noninitial window, Up can reach Retry
+instead of silently resubmitting the failed reverse request. Retry submits the
+exact failed query/context once and returns focus to visible cards when accepted
+by the dispatcher. If the request queue is full, retain retry ownership. Ordinary
+focus movement must not trigger a network retry loop.
