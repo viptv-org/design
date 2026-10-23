@@ -1107,7 +1107,8 @@
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
     "roku/roku/tools/make_remote_branding.py": "9b682a3cb6d14edc7b0b6e419e891b403bc98da7579921447afbd605b66f59b7",
     "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350",
-    "roku/roku/tools/make_source_badge.py": "69dcc2b9d1e6835040def0caa685ffceac63953a4add47dbfc6004fae48e0522",
-    "roku/roku/images/design/remote-source-best.9.png": "202000d3adb35b984dff9eaec114c31a0932a221db15db1907346942155df63b"
+    "roku/roku/tools/make_source_badge.py": "c84b273976ffe536719c47ed490aa3bfa739a931a27d7efd53525e075f367ea0",
+    "roku/roku/images/design/remote-source-best.9.png": "202000d3adb35b984dff9eaec114c31a0932a221db15db1907346942155df63b",
+    "roku/roku/images/design/remote-source-row.9.png": "9e2a4b079f1905ae5532c27988af655dab99ef6b78363cc8ab3049690dfe5b8f"
   }
 }

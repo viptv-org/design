@@ -484,3 +484,11 @@ server's best preference can start the returned best_match_id; opening the sourc
 picker explicitly still requires selection. Direct Live results have no discovery
 job and must not cause stream-job poll/delete requests. Channel switches and Back
 retire request ownership, so late responses cannot replace a newer channel.
+
+## Source row corner and tag alignment
+
+Use TvSourceRow's14px corner radius and unfocused #222222 fill, rather than the
+generic row shape/color. The28px Best match tag is centered in the34px title line:
+its box begins23px below the row top (20px padding plus3px centering), with text
+at27px. Existing row width/height and source ordering remain unchanged. Validate
+corner geometry and tag position separately from still-unresolved text metrics.
