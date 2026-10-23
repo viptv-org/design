@@ -265,3 +265,29 @@ keyboard at y413. Its1024px row allocates94px to the first four keys and93px
 to the remaining six (10px gaps), preserving Compose's whole-pixel remainder
 distribution. Activating a text facet requests its initial `q` key, while Up
 from the first keyboard row focuses the value field.
+
+## Library filter sheet
+
+Use KMP's `LibraryFilterSheet`, not the full-screen browse editor. Panel origin
+[1120,0],size800x1080,fill#161618; black55% scrim covers the screen. Insets24px.
+Heading `Filters`32px regular at[1144,24]. Fields exclude the source/type controls
+already in the Library header. In the matched reference, the first label starts
+at y85 and its752x64 button at y117; following fields advance116px. Labels22px
+medium,values24px regular,left inset18px,24px down-chevron at right inset18px.
+Buttons have12px corners,#39393A fill; focus uses#F4F2EE/dark ink and4px outer
+white ring. Bottom Clear/Apply buttons are370x64 at[1144,992]/[1526,992].
+
+Choice menus anchor below the active button,minimum260px andmaximum600px width,
+maximum480px height,8px vertical padding,64px rows. Menu text24px begins48px
+from its left edge; the current server/draft selection has a24px check at12px.
+Back closes the menu before closing the sheet, preserving field focus. Choices
+change only the complete local form draft. Apply emits one current library query;
+Back discards the draft. The server-returned query owns accepted values and null
+optional fields are omitted from subsequent HTTP query parameters.
+
+Clear removes the displayed filter parameters, preserving source/type; the
+server selects defaults on Apply. The current producer does not expose reset
+presentation, so Roku must not invent `last_watched`/`all` defaults to imitate
+KMP's local reset code. Exact pre-Apply default labels remain a producer dependency.
+Entrance300ms uses KMP cubic(0,0,0,1); exit200ms uses cubic(.3,0,1,1), sampled
+for native interpolation. Motion sampling is not frame-rate qualification.
