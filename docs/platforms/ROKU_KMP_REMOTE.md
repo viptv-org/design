@@ -217,3 +217,10 @@ both drafts and returns to choice. Errors preserve username, clear password,
 and leave the form usable; retry requires a new password submission. Server
 address edits preserve form drafts until accepted; acceptance clears credentials
 and reopens the form against the new origin. Never synthesize authentication.
+
+Native password verification: KMP heading ink begins at[99,149]. Roku's native
+Label baseline requires the tracked heading group at y137.8 (3px above the
+nominal line-box origin) to align that ink. Reopening the form resets the
+keyboard to lowercase `q`, while field/action round trips retain the current
+key. Keyboard-to-field/action transfer explicitly focuses the target Group;
+focusing only the enclosing form leaves the previous child focused on the TCL.
