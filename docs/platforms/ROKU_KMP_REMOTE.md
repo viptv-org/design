@@ -399,3 +399,20 @@ no optimistic values or deferred client-side preference policy is introduced.
 Acceptance: repeated choice/toggle input produces one PUT; authentication and
 parent-authorized retries retain the same intent; leaving Settings before success
 does not navigate back or disturb current focus.
+
+## Library metadata hydration refresh
+
+Display the server's Library `reason` in the existing status region. A positive
+`refresh_after_millis` schedules a refresh, quantized up to the next polling
+second. Do not invent retry intervals when the directive is absent. Defer while
+filters or another overlay are open. Preserve the visible list while re-reading
+the retained page window, using accepted queries and server cursors only.
+
+Retain at most three server pages (100 titles per page maximum in the current
+contract). Assemble the replacement window offscreen, then swap it atomically
+and restore focus by canonical identity. Refresh does not append duplicates.
+Failures leave the visible window intact and expose explicit retry. Route,
+profile or filter changes retire refresh ownership and partial replacement data.
+Back from details restores the page window and any outstanding refresh deadline.
+Acceptance: delayed hydration, two-page refresh, absent directives, failure/retry,
+filter cancellation, no duplicate cards and focus preservation.
