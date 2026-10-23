@@ -104,3 +104,18 @@ accepted server responses own the displayed value. Non-boolean rows open their
 server-supplied choices. Do not synthesize skip-intro, frame-rate or other absent
 controls. Row pitch108px; content starts[640,220],width1184. Heading40/48 at
 [640,93] with -.8 tracking; profile explanation24/30 at[640,152].
+
+## Detail reconstruction corrections
+
+TvDetailHero exposes Play/Resume, saved-title and (only for a server resume
+intent) Restart. Do not add a separate Sources circle to that row. Movie actions
+start[96,668]; series actions[96,648]. Logos fit their existing bounding box but
+align to its left, using decoded bitmap dimensions rather than centering a
+letterboxed Poster. Missing/failed art keeps the server title readable.
+
+TvRecommendationShelf uses232x348 poster art,16px gaps,12px corners,3px focus
+outline and no labels. Heading is `More Like This` at the existing y836 shelf
+origin (poster top888). Episode cards are448px wide with252px landscape art,
+24px gaps,12px corners and3px focus outline. Captions24/29 semibold, subtitles
+20/26, descriptions20/28 up to2lines. Use the server's episode identity and
+progress; never infer completion, episode order or a next episode locally.

@@ -45,3 +45,6 @@ shapes.rounded('remote-pair-qr.png',340,340,20)
 shapes.rounded('remote-pair-code.png',640,120,16)
 shapes.rounded('remote-settings-row.png',1184,96,14)
 shapes.rounded('remote-settings-switch.png',68,38,19)
+for name,w,h in [('remote-recommendation',232,348),('remote-episode',448,252)]:
+    shapes.rounded(name+'-mask.png',w,h,12)
+    shapes.rounded(name+'-focus.png',w,h,12,3)
