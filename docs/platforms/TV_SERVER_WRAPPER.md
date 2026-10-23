@@ -35,3 +35,18 @@ success, empty/error, cancellation and return focus; test profile isolation and
 late responses. Record browser, real media and physical TV results separately.
 No app captures belong in this repository. Server changes must remain additive
 and compatible with the concurrent Roku implementation.
+
+## My List query controls
+
+Keep the Tv3MyList header geometry: server-returned type choices in the left
+segmented control and the server sort label/current value in the right pill.
+The shared Library API may advertise additional filters absent from the board.
+Expose those through a Filters entry in the Sort menu, using the existing TV
+choice panel, rather than adding another header pill. If the server advertises
+filters without sort, the same right pill is labelled Filters. Omit controls
+that the server does not advertise. Values, ordering and reset defaults come
+from the Library snapshot; the board's Last watched value is fixture content,
+not a client default. Filter edits are a draft: Clear previews `default_query`,
+Apply reads the server result, and Back discards the draft. Failed Apply keeps
+the confirmed list and the draft available for retry. This is TV-web's access
+path for the existing shared query contract, not a change to Roku's KMP layout.
