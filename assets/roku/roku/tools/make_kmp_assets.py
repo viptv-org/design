@@ -90,3 +90,9 @@ def watched_badge(x,y):
     a=ink+alpha*(1-ink)
     return (*(round((c*ink+base*alpha*(1-ink))/a) if a else 0 for c,base in zip((244,242,238),(11,11,12))),round(255*a))
 shapes.png('remote-watched-badge.png',34,34,watched_badge)
+
+for name,w,h,r in [('remote-entry-key',104,76,10),('remote-entry-space',332,76,10),('remote-entry-suffix',218,76,10),('remote-password-action',534,72,12),('remote-password-field',1130,84,14)]:
+    shapes.rounded(name+'.png',w,h,r)
+    shapes.rounded(name+'-focus.png',w+8,h+8,r+4,4)
+shapes.rounded('remote-password-field-active.png',1130,84,14,2)
+shapes.rounded('remote-password-field-idle.png',1130,84,14,1)

@@ -191,3 +191,29 @@ role renders the supplied label at[10,10],18px bold,22px line height,10x4px
 padding,6px corners,light fill/dark ink. Other supplied tile labels use dark80%
 fill and light ink. Compact captions and progress consume `view` fields without
 raw metadata fallbacks. Episode subtitles remain the supplied episode subtitle.
+
+## Password entry reconstruction
+
+`TvPasswordPanel` has a24/34.8 eyebrow at[96,96] and52/60 bold heading
+`Sign in with your password` at[96,140.8],tracking-1.04. Form origin[96,230],
+width1130. Username and Password each have24/30 labels,10px gap,84px-high
+fields with14px corners,28px horizontal inset,34/41 text. Active field has2px
+light border; inactive1px white14% border; fill white8%. Fields are separated
+by16px; keyboard begins at y540 after46px gap. Four ten-key rows are104x76
+with10px gaps. Final row: Shift104,Symbols104,Space332,.com218,@gmail.com332,
+10px gaps. Keys have10px corners,white9% fill (suffix18%),28px semibold text.
+Focus uses the existing4px outer white outline. Initial focus is `q`.
+
+Actions occupy[1290,270],width534,height72,gap16: Sign in, Show/Hide password,
+then the explanatory text and Delete character / Use another server. Omit
+Forgot password because the current server does not offer that authentication
+flow. Retain its discoverable phone/browser alternatives on the choice screen.
+The explanation keeps KMP copy. Password is masked initially; Show/Hide is a
+transient renderer choice. Username max320, password max512, no persistence.
+Selecting either field changes the editing target. Keyboard Up enters the
+Password field; Up again enters Username. Right from the keyboard reaches the
+actions; Left returns to the retained key. Back cancels login ownership, clears
+both drafts and returns to choice. Errors preserve username, clear password,
+and leave the form usable; retry requires a new password submission. Server
+address edits preserve form drafts until accepted; acceptance clears credentials
+and reopens the form against the new origin. Never synthesize authentication.
