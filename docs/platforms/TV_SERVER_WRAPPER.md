@@ -50,3 +50,19 @@ not a client default. Filter edits are a draft: Clear previews `default_query`,
 Apply reads the server result, and Back discards the draft. Failed Apply keeps
 the confirmed list and the draft available for retry. This is TV-web's access
 path for the existing shared query contract, not a change to Roku's KMP layout.
+
+## Search inputs and returned content
+
+Use Tv3Search's 520×72 input at (96,140), the two wide Space/Delete keys followed
+by six columns of alphanumeric keys at (96,236), and 212×318 result posters
+starting at (700,196), with 16px horizontal gaps. The credentials/name editor
+keeps its separate punctuation/case keyboard. Query changes retire the previous
+request and its selectable results immediately; typing and navigation remain
+available while a response is pending. Search errors offer retry without
+disabling the keyboard. Preserve the server's result order.
+
+Channel search uses the existing scoped Live query when advertised. Do not
+construct query suggestions from title strings or invent channel numbers or
+current-program captions absent from the response. Those reference elements
+remain omitted until their server projections exist. This does not remove the
+supported channel-search feature or its reference geometry.
