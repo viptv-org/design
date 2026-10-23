@@ -22,9 +22,11 @@ for name, size, vertical, stops in [
     ('remote-detail-y.png', 1080, True, [(0,0),(600/1080,0),(888/1080,.95),(1,1)]),
     ('remote-browse-x.png', 1920, False, [(0,1),(760/1920,1),(1320/1920,0),(1,0)]),
     ('remote-browse-y.png', 620, True, [(0,0),(380/620,0),(1,1)]),
+    ('remote-player-y.png', 1080, True, [(0,.72),(280/1080,0),(640/1080,0),(1,.82)]),
 ]:
+    color = (0,0,0) if name == 'remote-player-y.png' else (11,11,12)
     shapes.png(name, 1 if vertical else size, size if vertical else 1,
-               lambda x,y: (11,11,12,round(255*ramp((y if vertical else x)/(size-1),stops))))
+               lambda x,y: (*color,round(255*ramp((y if vertical else x)/(size-1),stops))))
 for name,w,h in [('remote-poster',255,383),('remote-wide',422,238)]:
     shapes.rounded(name+'-corners.png',w,h,10,inverse=True)
     shapes.rounded(name+'-mask.png',w,h,10)
