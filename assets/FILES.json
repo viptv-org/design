@@ -748,6 +748,8 @@
     "roku/roku/images/design/remote-settings-row.png": "567650bf3c7278780a06dd4b46314d0de0e050769cc871223e5e983f6e249606",
     "roku/roku/images/design/remote-settings-switch.png": "9b98c57523d2cb485e407006641a46c8a3a5456f8a0dfa4c74246e03754e973e",
     "roku/roku/images/design/remote-splash-hd.jpg": "5f01b58ada0ad8377af1c68aba4cd9e5159c14c9da5d6a2dfbcc0abc15916615",
+    "roku/roku/images/design/remote-startup-indicator.png": "dc5c4ee0bd3da4ee99cbdbf3297b439ab7878b63ebb8e1249fac839db0904b96",
+    "roku/roku/images/design/remote-startup-track.png": "774f40717b12af0a35d3a8e426b708f81317e98b07501fae124eb3db45d4b19e",
     "roku/roku/images/design/remote-welcome-scrim.png": "1c7ad9637d3461713b01930b43e68227918c1fc70ab83a7bfdc0f4aa21378cc2",
     "roku/roku/images/design/remote-white.png": "0cc4acc2e9abb600ff3fa032daa5e68cd6a0be87ec7c9de61dbf366fc87de0fc",
     "roku/roku/images/design/remote-wide-corners.png": "2f09c6fa7810821256c2bbea1c9b7686f333397f0605ce39a8a5308e7aa4f44d",
@@ -1040,7 +1042,7 @@
     "roku/roku/tools/make_brand_assets.cjs": "380c4f66c644d07feee784efa8f95678201b135e9bc1b5a8782968fb159f3a49",
     "roku/roku/tools/make_design_assets.py": "fd8256cc0090493734c687f3c6700e441711cc64b339bc3f70b37c95534d91ad",
     "roku/roku/tools/make_entry_posters.py": "99287c828d9cc6cca5bffe0298e924aa97b49b92f81c7fd77bf35f683ebbb6f1",
-    "roku/roku/tools/make_kmp_assets.py": "8d33203f5da64a8e49e5860169e48ccaf3d0d531e82a0a0969f8bf5b5e3b70cb",
+    "roku/roku/tools/make_kmp_assets.py": "51064adc5106785bf2b99565bd0f66ee3822ae6eb437e6d4c02380f8ed957682",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
     "roku/roku/tools/make_remote_branding.py": "9b682a3cb6d14edc7b0b6e419e891b403bc98da7579921447afbd605b66f59b7",
     "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350"
