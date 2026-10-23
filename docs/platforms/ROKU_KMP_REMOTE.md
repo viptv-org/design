@@ -452,3 +452,14 @@ when the server action permits it. Once finished, periodic progress cannot send
 ended=false for that attempt. Repeated decoder notifications do not duplicate
 completion or next-episode requests. This does not define an automatic-next
 policy or qualify gateway end-of-stream/lease reclamation.
+
+## Playback action revocation
+
+Track, seek and source-change permissions are independent producer flags. A track
+replacement requires tracks, not an additional change_source grant. Record the
+active lease and required action with pending replacement intent. If heartbeat
+withdraws that action, cancel its admission while preserving current playback
+and show the existing inline failure feedback. A late response is cleaned up by
+retired request ownership and cannot start the cancelled replacement. Revoked
+next-episode permission also retires outstanding continuation replies; do not
+cache a late next target for possible later re-enablement.
