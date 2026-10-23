@@ -611,3 +611,11 @@ or settings drawer's status. Defer their message until Live content regains focu
 Successful retry clears the old failure message without hiding another current
 failure. New groups retire this state. Retry never resubmits a request whose
 renderer/profile/source scope has already retired.
+
+## Guide cache refresh slots
+
+The12-guide cache has one order entry per canonical channel ID. Replacing a guide
+moves that channel to the newest slot instead of adding duplicates. Eviction can
+remove only a distinct older channel and clears its attached row data; it must
+not delete a freshly replaced guide because an old duplicate reached the front.
+This cache bookkeeping never reorders channels/programs or selects a source.
