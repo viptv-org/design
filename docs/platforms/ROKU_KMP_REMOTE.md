@@ -557,3 +557,14 @@ Never draw this status over poster artwork at y940. Keep the supported native
 Retry action at its existing footer position and focus path; its opaque button
 remains a Roku transport-recovery affordance, not a KMP placeholder action.
 Successful refresh and route reset clear error color and restore normal geometry.
+
+## Library return-state ownership
+
+Returning from details restores the retained Library page's controls/defaults,
+server reason and status-row geometry, without resurrecting Browse controls.
+Preserve pending revision invalidation. A failed page remains a visible explicit
+Retry state after return; store only its method/path/body/query/tag/context and
+message, never a credential copy. Bind the restored intent to the current route
+and catalog generation before replay. Profile/origin retirement still clears all
+return snapshots. Back does not silently retry a failed page or hide an incomplete
+server result.
