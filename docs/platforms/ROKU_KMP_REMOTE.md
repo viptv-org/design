@@ -184,3 +184,10 @@ remaining text26px bold follows the action label with54px gap. Progress is4px
 high,28px horizontal inset,12px from the button bottom. No resume threshold or
 remaining-time calculation belongs in the renderer. Library focus outlines are
 4px outside the pill bounds, following KMP `tvFocusOutline`.
+
+Tile `view.tile_badge.role=watched` renders the KMP34px circle/check at10px
+inset from the upper-right; never infer watched from progress. A `new_episodes`
+role renders the supplied label at[10,10],18px bold,22px line height,10x4px
+padding,6px corners,light fill/dark ink. Other supplied tile labels use dark80%
+fill and light ink. Compact captions and progress consume `view` fields without
+raw metadata fallbacks. Episode subtitles remain the supplied episode subtitle.

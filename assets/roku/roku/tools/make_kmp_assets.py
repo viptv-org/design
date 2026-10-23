@@ -70,3 +70,23 @@ def metadata_badge(x,y):
 shapes.png('remote-metadata-badge.9.png',14,14,metadata_badge)
 for name,w,h,r in [('remote-library-type',140,52,26),('remote-library-type-wide',168,52,26),('remote-library-filter',164,64,32)]:
     shapes.rounded(name+'-focus.png',w+8,h+8,r+4,4)
+
+# TvCatalogCard label: six-pixel fixed corners and flexible center.
+def tile_badge(x,y):
+    if x in (0,17) or y in (0,17):
+        mark = (y == 0 and 8 <= x <= 9) or (x == 0 and 8 <= y <= 9)
+        return (0,0,0,255 if mark else 0)
+    return (255,255,255,round(255*shapes.round_alpha(x-1,y-1,16,16,6)))
+shapes.png('remote-tile-badge.9.png',18,18,tile_badge)
+def watched_badge(x,y):
+    alpha=shapes.round_alpha(x,y,34,34,17)*.78
+    points=[(7+20*20/24,7+6*20/24),(7+9*20/24,7+17*20/24),(7+4*20/24,7+12*20/24)]
+    ink=0
+    for (ax,ay),(bx,by) in zip(points,points[1:]):
+        dx,dy=bx-ax,by-ay
+        t=shapes.clamp(((x+.5-ax)*dx+(y+.5-ay)*dy)/(dx*dx+dy*dy))
+        distance=((x+.5-ax-t*dx)**2+(y+.5-ay-t*dy)**2)**.5
+        ink=max(ink,shapes.clamp(.5+1.25-distance))
+    a=ink+alpha*(1-ink)
+    return (*(round((c*ink+base*alpha*(1-ink))/a) if a else 0 for c,base in zip((244,242,238),(11,11,12))),round(255*a))
+shapes.png('remote-watched-badge.png',34,34,watched_badge)
