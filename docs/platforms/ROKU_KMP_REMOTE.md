@@ -463,3 +463,14 @@ and show the existing inline failure feedback. A late response is cleaned up by
 retired request ownership and cannot start the cancelled replacement. Revoked
 next-episode permission also retires outstanding continuation replies; do not
 cache a late next target for possible later re-enablement.
+
+## Single-decoder recovery ownership
+
+While a previous lease is retained for first-frame recovery, another source/track/
+seek admission waits with `Playback is still starting…`; it cannot overwrite the
+retained lease. The current decoder and previous recovery lease have independent
+authority. A revoked, invalid or expired recovery lease is released without
+restarting or stopping the current candidate. Only a failure of the current
+candidate can recover the still-authorized previous lease. Admission heartbeat
+failure cancels preparation without stopping already-active playback. Release
+retires queued/running recovery heartbeats and authentication retries as well.
