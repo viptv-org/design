@@ -156,3 +156,16 @@ Retire the old white-V launcher and splash artwork from the Roku package.
 TvSplash's88px mark/104px wordmark/22px gap and y492 center from1920x1080.
 The runtime startup state uses the same brand, at y440 in its104px box, and a
 240x4 progress track at[840,600] with96px indicator moving over1.2seconds.
+
+## Remote library header
+
+Use the current remote `LibraryHeader`, not the local preview controls. Header
+origin[96,140],width1728,height64. Preserve the server type-control choice order
+and labels. Type group has6px inset,32px outer radius,#212124 background; each
+choice is140x52 when more than3 choices, otherwise168x52,26px radius,24px regular
+Onest text. Accepted query type owns the selected #0B0B0C fill; focus uses
+#F4F2EE and dark text. Filters stays at the far right,64px high,32px radius,
+24px icon,12px gap,24px horizontal padding. Hide list picker for one source.
+Type activation resets the server offset, retires the prior request and waits
+for the accepted response. Up returns to navigation, Down enters the grid;
+return from detail restores query and focus. Empty results keep controls usable.

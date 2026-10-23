@@ -56,3 +56,6 @@ shapes.rounded('remote-profile-menu.png',117,160,4)
 shapes.png('remote-white.png',1,1,lambda x,y:(255,255,255,255))
 shapes.rounded('remote-startup-track.png',240,4,2)
 shapes.rounded('remote-startup-indicator.png',96,4,2)
+
+for name,w,h,r in [('remote-library-group',572,64,32),('remote-library-type',140,52,26),('remote-library-type-wide',168,52,26),('remote-library-filter',164,64,32)]:
+    shapes.rounded(name+'.png',w,h,r)
