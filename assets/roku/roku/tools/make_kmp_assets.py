@@ -38,3 +38,8 @@ shapes.png('remote-welcome-scrim.png',960,540,lambda x,y:(11,11,12,round(255*ram
 for name,w,h,radius in [('remote-entry-option',900,100,16),('remote-entry-feature',704,396,18),('remote-entry-poster',236,354,10),('remote-entry-signin',360,72,12)]:
     shapes.rounded(name+'-mask.png',w,h,radius)
     shapes.rounded(name+'-focus.png',w+8,h+8,radius+4,4)
+shapes.rounded('remote-brand-mark.png',200,200,56)
+shapes.rounded('remote-pair-step.png',44,44,22,2)
+shapes.rounded('remote-pair-or.png',60,60,30,2)
+shapes.rounded('remote-pair-qr.png',340,340,20)
+shapes.rounded('remote-pair-code.png',640,120,16)
