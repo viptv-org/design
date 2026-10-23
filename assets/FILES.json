@@ -680,9 +680,14 @@
     "roku/roku/images/design/remote-home-y.png": "d8806e6a0afb16aacee240a0830aad765a582236df01f07a3e788df1c7a5e832",
     "roku/roku/images/design/remote-player-y.png": "6b2616d7cd5857a4b8a6705f23af47a502e456e9950332a9bc9ba0237c69ec43",
     "roku/roku/images/design/remote-poster-corners.png": "85a27002aab3a7440797c55deec712c496e3fad9d91d9c9fc0dfdaca696dc9e1",
+    "roku/roku/images/design/remote-poster-focus.png": "2571fdb140275f49ad3fbb00af5f8b023abb1b3f45e573cf7f1abdff2865e043",
     "roku/roku/images/design/remote-poster-mask.png": "44f400776e090981fc38b2c049bd87da8291aa93477e5000bd4ff0784957b3f5",
+    "roku/roku/images/design/remote-profile-corners.png": "bfecccb0ded4c99b562a99ca9f4eeffd5f252e35a1585713ab941077afd686fa",
+    "roku/roku/images/design/remote-profile-focus.png": "07ca69401572264c2cbbf03571e0956088802bd230ddbad120003d552fd6bdf1",
+    "roku/roku/images/design/remote-profile-mask.png": "5c22ef118552a04c85d5e8c774a9fbc494acd6ce2e623226f8486b26d0ce5879",
     "roku/roku/images/design/remote-series-x.png": "4bb727afd67782e14b2bdfe8761480ddeb9eb3764b26f1bb76240083d799d459",
     "roku/roku/images/design/remote-wide-corners.png": "2f09c6fa7810821256c2bbea1c9b7686f333397f0605ce39a8a5308e7aa4f44d",
+    "roku/roku/images/design/remote-wide-focus.png": "00718cbdf2c8985d4cc15e853b7764d418e7a56c9fe147653f14b851f0f05680",
     "roku/roku/images/design/remote-wide-mask.png": "48e18600ca5eb2079e6dd57a2516a1c1d4d784679238f8761a97b169db449b56",
     "roku/roku/images/design/row.9.png": "1318396673201afe2fdb5627046c602367a8555700829ff7b7e4cd845baf0c57",
     "roku/roku/images/design/spinner.png": "87c2fa02c296f351e7bab21f656101c9cb2c9c888fb18908265e89e23ae89e4d",
@@ -904,7 +909,7 @@
     "roku/roku/tools/make_avatar_catalog.mjs": "edfaea90ee9ede4350e14b28b91bda8c00182ee1c3c658aaa9e7ed9972b8ca49",
     "roku/roku/tools/make_brand_assets.cjs": "380c4f66c644d07feee784efa8f95678201b135e9bc1b5a8782968fb159f3a49",
     "roku/roku/tools/make_design_assets.py": "fd8256cc0090493734c687f3c6700e441711cc64b339bc3f70b37c95534d91ad",
-    "roku/roku/tools/make_kmp_assets.py": "d7590e377dc9d17918642fd99a8689db06f159a8afbdbf337fcf7a7f3660f89e",
+    "roku/roku/tools/make_kmp_assets.py": "15a06476b372dd78b205084deb0a042b55f7d6f95e8dcd2d6d88f2a2d2624004",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
     "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350"
   }
