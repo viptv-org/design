@@ -673,3 +673,13 @@ replay and parent authorization. Do not repeatedly rebuild rows merely to poll.
 A background guide parent-required response becomes explicit Retry rather than
 opening a PIN over another operation; retry may request parent authorization.
 Cancelling that authorization restores a paused retry state, not an automatic loop.
+
+## Guide programme tile reuse
+
+Retain at most32 programme tile groups per rendered guide row. Project only visible
+programme index/title/geometry into a bounded display model. Clock-only response
+changes do not rebuild identical tiles; reuse existing groups when text or geometry
+changes and hide unused groups. Empty status uses one dedicated label. Clear all
+text/model references when itemContent is retired. Cells narrower than their text
+padding hide the label instead of assigning a negative width. Selection/color
+updates remain independent from programme-layout changes.
