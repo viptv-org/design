@@ -896,3 +896,22 @@ KMP's density1 HD reference retains328/560px modal widths. Roku's approved FHD-o
 manifest uses documented automatic2/3 scaling; that discrepancy remains an explicit
 HD modal comparison gate. Native1080 geometry and input-method adaptation require
 separate captures. Do not claim whole-screen parity from modal-region measurements.
+
+## History authority correction (2026-10-24)
+
+History entry subtitles come directly from the current producer's Card.subtitle.
+Never replace that subtitle from completed_at_millis or invent “In progress”. The
+producer owns resume/watched classification. Do not format a numeric progress
+fraction into a new watched-status label. The current observed history array has
+no shared progress-label/day-heading projection: omit those labels pending an
+agreed additive producer contract rather than derive them on Roku. Landscape art
+uses the producer's landscape role; missing art keeps the neutral existing image
+surface, with no client choice of another artwork role. Keep exact entry ordering
+and canonical identities. Offset/limit request bookkeeping remains transport for
+the current endpoint; bounded bidirectional pagination and explicit continuation
+are separate producer dependencies. Acceptance: a completed timestamp cannot
+overwrite an intentionally different server subtitle; missing subtitle/progress
+presentation stays absent; reversed IDs retain response order; no poster-role
+fallback. The row shell and art geometry stay unchanged; without a percentage label, the
+text column extends to the16px right inset. Day headings and
+percentage text remain explicit missing parity until server presentation exists.
