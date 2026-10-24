@@ -1002,3 +1002,11 @@ unchanged and consumes release events. The Scene alone handles Back, authorized
 transport and opening controls. Acceptance: after controls hide, Options/OK/Down/OK
 still enters the app track drawer and selects the intended server-projected track;
 Back exits playback and cleanup runs. No platform caption panel or dead input state.
+
+
+Qualification clarification: the early Options-based sequence failed with both
+raw and custom input targets; it does not establish the raw Group as the cause of
+that Options result. The accepted custom component makes press/repeat event
+payload forwarding explicit. Native Up→controls→track selection and dedicated
+seek confirmation passed. The TV's Options path remains a separate unverified
+platform/input gate, rather than a claimed fix or a replacement of Up navigation.
