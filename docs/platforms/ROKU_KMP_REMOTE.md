@@ -815,3 +815,12 @@ locked/unlocked/unconfigured states expose only supported elements; server-denie
 policy/approval actions have no Roku entry points or dormant controllers; device
 profile mutation/selection permissions follow server capabilities and challenges.
 This is a producer-permission correction, not a full visual-parity claim.
+
+Settings read-only parental status occupies the right content area at[640,220],
+width1184,24px secondary text, rather than the generic left-origin footer hidden
+under the sidebar. Locked state keeps the Unlock row there and no status overlap.
+Settings failures use the right footer at[640,940], width1184 or870 beside Retry.
+Entering/rebuilding a section restores sidebar selection/focus to its matching
+server-supported section, including empty/read-only states. Acceptance: unlocked
+and unconfigured status readable on native capture; empty Parental section keeps
+focus on Parental rather than Account; failure text and Retry do not overlap rows.
