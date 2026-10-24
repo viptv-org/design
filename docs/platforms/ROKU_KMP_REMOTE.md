@@ -941,3 +941,12 @@ reverse fixture5→2→0 then0→2→5, non-overlapping short first page, past-e
 unchanged UINT32 cursor text, >10000 boundary, many forward/reverse pages with
 constant two-page storage, same-cursor changed-limit stale reply, pending/cancel/
 retry, profile/query changes, snapshot replacement and restored focus on device.
+
+Short-page focus restoration is not a new navigation intent. Paging prefetch must
+follow actual movement toward its boundary, so a reverse prepend that restores an
+item inside the short window cannot immediately request the opposite forward
+page. Initial lookahead may read forward once; applying a page resets that intent
+until subsequent input moves focus. This also prevents oscillation when both edge
+lookahead regions overlap in a short directory. Guide reads still refresh after
+focus restoration. Acceptance includes restoration at index zero and middle,
+up/down/left/right movement, and no repeated page requests while focus is idle.
