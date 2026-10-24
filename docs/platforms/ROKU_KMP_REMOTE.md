@@ -683,3 +683,13 @@ changes and hide unused groups. Empty status uses one dedicated label. Clear all
 text/model references when itemContent is retired. Cells narrower than their text
 padding hide the label instead of assigning a negative width. Selection/color
 updates remain independent from programme-layout changes.
+
+## Backdrop decode bounds
+
+Set backdrop loadWidth/loadHeight from its actual displayed reference box before
+assigning the URI: Live preview640x360, compact Home browsing1160x620, and full
+Home/detail1920x1080. Keep the same URI, crop mode and display geometry. Restore
+full decode bounds when leaving a compact view. Native aspect-preserving decode
+may slightly exceed one requested dimension; measure the active bitmap and its
+specific texture allocation rather than attributing shared graphics totals to
+this image.
