@@ -55,3 +55,7 @@ No app should use this design repository as a runtime submodule. Consume a versi
 KMP entry adoption: `remote-entry-poster-0..17.jpg` are byte-identical to the recorded KMP `files/entry/tv-poster-*.jpg`. `make_kmp_assets.py` generates the welcome elliptical scrim and entry corner/focus masks from TvWelcome/TvSignInChoice geometry. `entry-*` Lucide PNG/SVG controls use the same pinned 0.468.0 icons and 18.3.1 React exporter.
 
 `make_entry_posters.py` derives the 18 RGBA `remote-entry-tile-*.png` at236x354/radius10 from the unchanged KMP JPEGs. Roku uses native Poster nodes for the moving wall, avoiding per-tile live masks.
+
+Search channel geometry: `roku/roku/tools/make_search_channel_assets.py` generates
+356x200 radius10 mask/3px focus/linear gradient and60x28 radius6 LIVE pill from
+KMP `TvSearchChannel.kt`. These are original procedural UI assets, not captures.

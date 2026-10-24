@@ -1,7 +1,7 @@
 {
   "source_commit": "7d6b4131a44d87b58edcf12709af5851da387176",
   "files": {
-    "ASSET_MANIFEST.md": "8420f9b37840f8d08d5b68e1656e3e9c8c99f4a15d7ee4ca8dd7ad39437f5247",
+    "ASSET_MANIFEST.md": "0e41bac386ccccc5ab2cdf5fb82c51f05d389204a116210c88c1c760cf527920",
     "fonts/README.md": "7102f4162f3d7e0d1e1b5429aa2ea9606e0ad23d3ec2a99b13af665d27b53a5b",
     "fonts/bricolage-grotesque-LICENSE.txt": "923f4ddf0fd39f9b7794ab0df7332f3d95dc43e8ad7ec2289d6d9e8491177f51",
     "fonts/bricolage_grotesque_700.ttf": "01e40bbb8f88549e8603fb5b5facb3aa87d7ab96bcfc6da1298bbabbb493273d",
@@ -773,9 +773,16 @@
     "roku/roku/images/design/remote-profile-menu.png": "e1e003f2b0e3341900b023a1f5dbb733bf5f116647189cd82e0bc27ed34236c2",
     "roku/roku/images/design/remote-recommendation-focus.png": "7e0c6c2600055bfeab58abe402738a6237ecc05d3ea8a0c14bdd75fe0a1cbcb8",
     "roku/roku/images/design/remote-recommendation-mask.png": "43320fb0ac1374991dedf80c8b88878edb9a87759e22c89c7f6350a4b29d4645",
+    "roku/roku/images/design/remote-search-channel-focus.png": "ac99d14dc24adc21832b70c42883d1c68bae1902a62962012405ee5d4823eb77",
+    "roku/roku/images/design/remote-search-channel-ground.png": "f07f0c16b90e668147d485381202d56faaf926b776dcc6d02d1b9ba4de3028c2",
+    "roku/roku/images/design/remote-search-channel-live.png": "8e1120bfa3988f93d297924a6283ee94d2b9f1e3d7b35110a4eb5392e3c67e6d",
+    "roku/roku/images/design/remote-search-channel-mask.png": "6844686a984bef14130f8b9423b02b35df7c23ef29efe1e2da28abcbc1f3d31e",
     "roku/roku/images/design/remote-series-x.png": "4bb727afd67782e14b2bdfe8761480ddeb9eb3764b26f1bb76240083d799d459",
     "roku/roku/images/design/remote-settings-row.png": "567650bf3c7278780a06dd4b46314d0de0e050769cc871223e5e983f6e249606",
     "roku/roku/images/design/remote-settings-switch.png": "9b98c57523d2cb485e407006641a46c8a3a5456f8a0dfa4c74246e03754e973e",
+    "roku/roku/images/design/remote-source-best-text.png": "79d6e204a75a6a891d55f140df643c81513a2c54f69effd15983865e6ff328f1",
+    "roku/roku/images/design/remote-source-best.9.png": "202000d3adb35b984dff9eaec114c31a0932a221db15db1907346942155df63b",
+    "roku/roku/images/design/remote-source-row.9.png": "9e2a4b079f1905ae5532c27988af655dab99ef6b78363cc8ab3049690dfe5b8f",
     "roku/roku/images/design/remote-splash-hd.jpg": "5f01b58ada0ad8377af1c68aba4cd9e5159c14c9da5d6a2dfbcc0abc15916615",
     "roku/roku/images/design/remote-startup-indicator.png": "dc5c4ee0bd3da4ee99cbdbf3297b439ab7878b63ebb8e1249fac839db0904b96",
     "roku/roku/images/design/remote-startup-track.png": "774f40717b12af0a35d3a8e426b708f81317e98b07501fae124eb3db45d4b19e",
@@ -1106,11 +1113,9 @@
     "roku/roku/tools/make_kmp_assets.py": "7c58dee7b10ec8786fe536bd686bd6a6e7b5ddfdf28a9b79295b7d21d7c3139e",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
     "roku/roku/tools/make_remote_branding.py": "9b682a3cb6d14edc7b0b6e419e891b403bc98da7579921447afbd605b66f59b7",
-    "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350",
+    "roku/roku/tools/make_search_channel_assets.py": "68c4bf306dd6d1f01ba2ca9701bc544f38929e9177de3a1a0e0931224fdc23bb",
     "roku/roku/tools/make_source_badge.py": "c84b273976ffe536719c47ed490aa3bfa739a931a27d7efd53525e075f367ea0",
-    "roku/roku/images/design/remote-source-best.9.png": "202000d3adb35b984dff9eaec114c31a0932a221db15db1907346942155df63b",
-    "roku/roku/images/design/remote-source-row.9.png": "9e2a4b079f1905ae5532c27988af655dab99ef6b78363cc8ab3049690dfe5b8f",
     "roku/roku/tools/make_source_text.py": "905efc3a4e702b2ef4bd30511693c15de8306ebc98274e3e7c0e839b190aaac9",
-    "roku/roku/images/design/remote-source-best-text.png": "79d6e204a75a6a891d55f140df643c81513a2c54f69effd15983865e6ff328f1"
+    "roku/roku/tools/make_theme_assets.py": "ded36ba5dd050ff1e2ae8100d7eee3fe70fe2e0d45521a8279fecf1a4c1fe350"
   }
 }
