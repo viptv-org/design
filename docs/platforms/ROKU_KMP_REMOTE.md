@@ -734,3 +734,9 @@ Acceptance: Live-only, media-only, mixed and absent capabilities; stale response
 and auth replays after edit; ordered channel pagination both directions; changed
 snapshot; channel activation uses server identity. Native focus/render geometry
 must be qualified separately before parity is claimed.
+
+Channel artwork uses dedicated356x200 radius10 masks,3px focus border and the
+KMP linear gradient#1D2230→#121318. Logo fits140x140 centered; absent logo shows
+the entire server title in Bricolage800 size56. The LIVE pill is red#E5484D,
+height28/radius6 at12,12. Native letter-spacing/ink and matched capture remain
+measurement gates. Reusing a scaled movie-card mask is not the final design.
