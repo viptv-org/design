@@ -915,3 +915,29 @@ presentation stays absent; reversed IDs retain response order; no poster-role
 fallback. The row shell and art geometry stay unchanged; without a percentage label, the
 text column extends to the16px right inset. Day headings and
 percentage text remain explicit missing parity until server presentation exists.
+
+## Bounded server-directed Live/channel Search paging (2026-10-24)
+
+Adopt backend1a361e4/core65add90 shared `paging` projection. Retain at most two
+payload pages and their returned `origin`, `limit`, `page_size`, `previous` and
+`next` descriptors; no cursor-history arrays or accumulated page counters. Forward
+prefetch sends the last retained page's `next`, reverse prefetch / Left at channel
+Search's first retained item sends the first page's `previous`. Send cursor,limit,
+page_size unchanged with current profile/query/group scope. Do not calculate a
+cursor, infer previous-page size or use `next_cursor` as an alternate API. A short
+reverse page near origin zero must restore the server's larger navigation budget
+when moving forward again. Null descriptors stop that direction. Missing/malformed
+paging is an update-required contract error, not a client-generated fallback.
+
+Prepend/append preserves server row order and the selected canonical channel ID.
+Keep the existing pending-focus guard until identity restoration settles; rapid
+repeat cannot issue a duplicate or reverse oscillation. Only a request matching
+the exact currently advertised descriptor (including limit/page_size) and route,
+query, profile and snapshot generation can apply or replay after auth. Snapshot
+mismatch clears the old window/dependent requests and reloads the initial page.
+Errors retain usable content with explicit Retry; pending auth/parent grants own
+the same request slot. No geometry/type/motion change. Acceptance: current shared
+reverse fixture5→2→0 then0→2→5, non-overlapping short first page, past-end return,
+unchanged UINT32 cursor text, >10000 boundary, many forward/reverse pages with
+constant two-page storage, same-cursor changed-limit stale reply, pending/cancel/
+retry, profile/query changes, snapshot replacement and restored focus on device.
