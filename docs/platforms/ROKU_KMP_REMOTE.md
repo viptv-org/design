@@ -1063,3 +1063,12 @@ focus; return restores its opacity; no Home discover request. Compare all six
 reference states on Roku separately. Metadata formatter differences, poster blur,
 logo trim, row loading/error shells and native motion remain explicitly open
 until measured and supported by their owning contracts.
+
+The shared TvCatalogCard artwork uses12px corners and a3px light focus stroke
+inside its unchanged bounds (both poster and landscape), rather than the earlier
+Roku10px/4px extraction. Home rows expose the partially visible trailing tile to
+the right screen edge; the96px safe area anchors the first tile, not a right-edge
+clip. The native custom title component occupies40px followed by a12px gap.
+Collapse hidden message geometry because native Group bounds otherwise include
+its old rectangle and push artwork/captions down. These are renderer corrections
+to the existing KMP shell, not server ordering or catalog decisions.
