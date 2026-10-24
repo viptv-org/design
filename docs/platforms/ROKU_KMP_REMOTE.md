@@ -647,3 +647,12 @@ is acknowledged, and ignore stale focus notifications afterward. Guide/page read
 and hero preview wait for restoration; the existing focus-settle timer then
 loads visible content. This prevents an intermediate index0 from requesting a
 previous page or previewing the wrong channel. New routes/groups retire the guard.
+
+## Native guide timestamp precision
+
+Do not store absolute epoch seconds in a SceneGraph float field. The TCL probe
+rounded1800001800 seconds down by8seconds. Keep producer epoch milliseconds in
+an associative viewport record, preserving double/integer wire precision. Compute
+programme offsets relative to that millisecond origin before converting to the
+small pixel coordinates. Manual30-minute viewport alignment also uses millisecond
+double arithmetic. Initial/current programme and window decisions stay server-owned.
