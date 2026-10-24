@@ -661,3 +661,15 @@ The manual aligned viewport must be materialized as LongInteger before transfer
 to the SceneGraph associative field. The native r3 probe confirms exact integer
 1800003600000ms; a prior floating result was not sufficient evidence even when a
 mixed-type subtraction printed zero. Pixel projection remains relative and small.
+
+## Visible guide transport freshness
+
+While Live is visible and idle, refresh the focused/nearby guide working set at
+most once per30seconds, bounded to10 rows (four before focus through five after).
+This is a transport/cache cadence, not a local current-programme calculation.
+Keep cached rows visible and consume the returned current marker/window. Pause
+for overlays, playback, focus restoration, failed-request Retry, authentication
+replay and parent authorization. Do not repeatedly rebuild rows merely to poll.
+A background guide parent-required response becomes explicit Retry rather than
+opening a PIN over another operation; retry may request parent authorization.
+Cancelling that authorization restores a paused retry state, not an automatic loop.
