@@ -98,3 +98,28 @@ normal/reduced motion, countdown and cancelled refresh, and a profile set with
 all management capabilities unavailable. Browser geometry permits up to one
 physical pixel of DOM/canvas rounding at 1920×1080; record larger differences
 rather than widening that tolerance. These are web-TV states, not Roku redesigns.
+
+## Home billboard motion
+
+Use Tv3Home's nine-second featured indicator and fourteen-second ease-out
+artwork zoom from 100% to 106%, centered on the displayed image. The image uses
+cover sizing at center/30%; the fixed left, bottom and navigation masks do not
+zoom. Round secondary controls retain the reference 24px backdrop blur and
+30px glyphs; the primary filled Play glyph is 24px. Foreground controls and copy
+remain above asynchronously loaded artwork.
+
+The client advances only through the server's featured order. Remote activity
+restarts the nine-second presentation cycle; rows, menus, pending/error states
+and hidden-page lifecycle pause it. Returning to an active billboard starts a
+fresh cycle. A new featured identity restarts the artwork effect, even if its
+image URL is shared; unrelated metadata changes do not reload artwork. Reduced
+motion keeps artwork at 100%, disables automatic cycling and shows a static
+indicator. Auto-cycling must never request viewing intent, sources or playback.
+
+Retire the image animation clock after fourteen seconds and cancel obsolete
+image loads/timers on navigation or profile retirement. Use bounded renderer
+state for animation; do not accumulate a shader-cache entry per frame. Verify
+visible zoom, the nine-second boundary, interaction/menu/visibility pause,
+reduced motion, foreground layering and sustained frame timing. These controls
+are presentation of server data and do not decide resume, playback or episode
+continuation policy.
