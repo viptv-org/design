@@ -656,3 +656,8 @@ an associative viewport record, preserving double/integer wire precision. Comput
 programme offsets relative to that millisecond origin before converting to the
 small pixel coordinates. Manual30-minute viewport alignment also uses millisecond
 double arithmetic. Initial/current programme and window decisions stay server-owned.
+
+The manual aligned viewport must be materialized as LongInteger before transfer
+to the SceneGraph associative field. The native r3 probe confirms exact integer
+1800003600000ms; a prior floating result was not sufficient evidence even when a
+mixed-type subtraction printed zero. Pixel projection remains relative and small.
