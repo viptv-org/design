@@ -853,3 +853,8 @@ parent-PIN prompt or replay that old selection. A successful selection may alrea
 have changed the server session identity; it still retires client profile views
 and requests bootstrap, which alone determines the active profile. Do not locally
 undo an accepted switch or infer active identity from the submitted target.
+
+A retired selection with an indeterminate transport/5xx/malformed-success reply
+also requests bootstrap to reconcile actual session identity, without replaying
+the old selection or opening its PIN prompt. An error reply is not proof that
+an already-issued mutation did not commit.
