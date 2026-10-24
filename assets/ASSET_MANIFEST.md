@@ -59,3 +59,8 @@ KMP entry adoption: `remote-entry-poster-0..17.jpg` are byte-identical to the re
 Search channel geometry: `roku/roku/tools/make_search_channel_assets.py` generates
 356x200 radius10 mask/3px focus/linear gradient and60x28 radius6 LIVE pill from
 KMP `TvSearchChannel.kt`. These are original procedural UI assets, not captures.
+
+KMP form dialog assets are procedural nine-patches from
+`roku/roku/tools/make_form_dialog_assets.py`: radius28 panel, radius4 one/two-pixel
+field outlines and20px focus capsule. Geometry is measured from current KMP source;
+no app/device capture is embedded in these assets.

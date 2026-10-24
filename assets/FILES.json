@@ -1,7 +1,7 @@
 {
   "source_commit": "7d6b4131a44d87b58edcf12709af5851da387176",
   "files": {
-    "ASSET_MANIFEST.md": "0e41bac386ccccc5ab2cdf5fb82c51f05d389204a116210c88c1c760cf527920",
+    "ASSET_MANIFEST.md": "72522cfc3ec0a6f5eb133b2d1e8756d232147171244c3fd9b4e3f4ebfe7afc89",
     "fonts/README.md": "7102f4162f3d7e0d1e1b5429aa2ea9606e0ad23d3ec2a99b13af665d27b53a5b",
     "fonts/bricolage-grotesque-LICENSE.txt": "923f4ddf0fd39f9b7794ab0df7332f3d95dc43e8ad7ec2289d6d9e8491177f51",
     "fonts/bricolage_grotesque_700.ttf": "01e40bbb8f88549e8603fb5b5facb3aa87d7ab96bcfc6da1298bbabbb493273d",
@@ -739,6 +739,10 @@
     "roku/roku/images/design/remote-filter-choice.9.png": "acb0b9a55806d4ad7047ba1d05372c9c059e7523e35aaeb85184a90b2fca52dd",
     "roku/roku/images/design/remote-filter-facet-focus.9.png": "d514e910360919709f688795cee5457a76bb6d1bab1feb22a9084ae252da1be2",
     "roku/roku/images/design/remote-filter-facet.9.png": "19439ccbd2670cb44f91ebc234450b4051277b903768663725f38a816a00ae6f",
+    "roku/roku/images/design/remote-form-button.9.png": "0c49918a9f5972b7629f304e604ef75ae7df1c258a33073a1cb0d2e473ca6cf8",
+    "roku/roku/images/design/remote-form-dialog.9.png": "2679fa2e9a7b068c75966b831ead0a4343e6f18a23b4c3d61fe8384353855152",
+    "roku/roku/images/design/remote-form-outline-focus.9.png": "0b2083fc045e9c7c27772c29917a007e847e08fffab59b983083f1b26fc2656e",
+    "roku/roku/images/design/remote-form-outline.9.png": "76b1f59a1c2851716724f429a3c40f2fd8b8fd9fa0cc7872a4e89e597a9a6832",
     "roku/roku/images/design/remote-history-art.png": "34ee42267c3f202b0073fd6ef7f7f8eef664c95a2ec01e5f8eb6322dd0b5825a",
     "roku/roku/images/design/remote-history-focus.png": "ec15a2b3083cf38f78f22d957844ecdddfec07701a4983f2ba6b449d0b4a23b9",
     "roku/roku/images/design/remote-history-row.png": "3929a4cb2c1de71f095628c488220127f5d09d2ea8d0f3e1f1b7f6eb781340d3",
@@ -1110,6 +1114,7 @@
     "roku/roku/tools/make_brand_assets.cjs": "380c4f66c644d07feee784efa8f95678201b135e9bc1b5a8782968fb159f3a49",
     "roku/roku/tools/make_design_assets.py": "fd8256cc0090493734c687f3c6700e441711cc64b339bc3f70b37c95534d91ad",
     "roku/roku/tools/make_entry_posters.py": "99287c828d9cc6cca5bffe0298e924aa97b49b92f81c7fd77bf35f683ebbb6f1",
+    "roku/roku/tools/make_form_dialog_assets.py": "ca231750195bf0c6d48240ea772f0dde89262754a9ea6d53aee3082bbc8900be",
     "roku/roku/tools/make_kmp_assets.py": "7c58dee7b10ec8786fe536bd686bd6a6e7b5ddfdf28a9b79295b7d21d7c3139e",
     "roku/roku/tools/make_player_icons.py": "439007acd03aa3eb57d66299c650f8b204e662154ccfeba67d35e7c6006e5ea7",
     "roku/roku/tools/make_remote_branding.py": "9b682a3cb6d14edc7b0b6e419e891b403bc98da7579921447afbd605b66f59b7",

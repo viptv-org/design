@@ -865,3 +865,33 @@ origin/opaque refresh-token generation, not a profile epoch; a valid rotation fo
 the same credential owner must survive a profile change. Changed credentials cannot
 adopt an old refresh reply. Forgetting credentials retires unissued refresh work;
 a late successful retired rotation is logged out with its returned token.
+
+## Measured KMP modal forms (2026-10-24)
+
+Private ImageComposeScene captures of current KMP source record28 modal states at
+1920x1080/1280x720, including focused field/buttons, entered PIN, busy and failure.
+At1080, Name/Add profile panel[796,424,328,232]; parent unlock[680,424,560,232];
+PIN failure[680,407,560,266]. Panel fill#212124,radius28; black scrim60%.
+Insets24. Title24/32 Onest400. Field semantic box local[24,72,width-48,64],
+actual outline localy80,height56,radius4; outline1px#5C5B5A or focused2px#F4F2EE.
+Field value14/20,weight400,tracking.2; floating label12/16. Cancel/Save/Add/Unlock
+14/20,weight500,tracking.1. Buttons localy164,height40; gap8,right24; Cancel70 wide,
+Save/Add58,Unlock70. Focus capsule#363638. PIN failure adds14px gap plus20px line,
+shifting the centered panel up17px and buttons down17px. Name errors use its
+16px text-column gap; error presentation extends the shell without losing drafts.
+
+Replace the full-page form with that modal. Activating its field opens the platform
+text-entry step; Done returns the draft to the modal, Save/Unlock sends intent.
+Back from text entry returns the previous modal draft; modal Cancel retires the
+form. Trap focus among field/Cancel/confirm, restoring the opener after dismissal.
+Only pending transport disables submit; do not copy KMP's local name/PIN eligibility
+predicates. Server validation/capabilities remain authoritative, so empty/unchanged
+submit styling cannot claim parity until producer-driven form eligibility exists.
+Busy PIN blocks modal Cancel/Back as KMP does; route/system retirement still scopes
+late replies. Busy Name keeps cancellation available. Secret values clear on submit;
+a transient masked-count may retain the visual dots while waiting, without a secret.
+
+KMP's density1 HD reference retains328/560px modal widths. Roku's approved FHD-only
+manifest uses documented automatic2/3 scaling; that discrepancy remains an explicit
+HD modal comparison gate. Native1080 geometry and input-method adaptation require
+separate captures. Do not claim whole-screen parity from modal-region measurements.
