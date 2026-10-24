@@ -847,3 +847,9 @@ route/target change; invalid PIN retry; cancelled and accepted authorization; av
 and delete acknowledgements. Transient versions are renderer ownership only and
 are never serialized as product-policy fields. Full dialog visual parity remains
 an independent native comparison gate.
+
+A profile-selection failure arriving after its route has retired cannot open a
+parent-PIN prompt or replay that old selection. A successful selection may already
+have changed the server session identity; it still retires client profile views
+and requests bootstrap, which alone determines the active profile. Do not locally
+undo an accepted switch or infer active identity from the submitted target.
