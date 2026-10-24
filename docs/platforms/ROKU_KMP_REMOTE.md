@@ -740,3 +740,19 @@ KMP linear gradient#1D2230→#121318. Logo fits140x140 centered; absent logo sho
 the entire server title in Bricolage800 size56. The LIVE pill is red#E5484D,
 height28/radius6 at12,12. Native letter-spacing/ink and matched capture remain
 measurement gates. Reusing a scaled movie-card mask is not the final design.
+
+## Search provider messages and stable focus
+
+Preserve every server group in order, including empty/failed groups. Display its
+message verbatim below the40px heading in secondary22px text,26px line height,
+20px gaps. An empty group without a server message displays “No matches.”.
+Do not create selectable placeholder cards. A partial response with complete=false
+retains successful cards and offers Retry for the same search; a completed retry
+clears only its own failure. Focus restoration uses group ID and canonical Card
+identity, never the prior numeric item index. If the selected card disappears,
+choose the first actual result; when all groups are empty, return to the keyboard
+(or explicit Retry). Keep native pending focus guards synchronized with that target.
+Acceptance: reorder/remove focused cards, late media response while channel focused,
+all-empty response, failed group plus successful group, partial retry and query edit.
+Native rendering must prove that empty headings/messages are visible before this
+state can be called qualified.
