@@ -781,3 +781,19 @@ valid result target, falling back to the first actual result only if it vanished
 Acceptance: delayed reverse page plus repeated Left stays in results; after load,
 previous channels remain reachable; true beginning returns to keyboard; Right back
 restores the selected result; authentication waits do not enqueue duplicate reads.
+
+## Catalog focused-card viewport
+
+KMP's catalog card occupies348px artwork plus76px caption space. The native
+floating-focus grid can place a second row below the1080px viewport, clipping
+its caption. Preserve the seven-column grid, native floating focus and server
+ordering. Use the platform's actual focused-item scene bounds to apply only the
+vertical correction needed to keep the full424px card within the catalog viewport.
+Clip the grid at its original content origin so correction cannot paint over
+filters/navigation. Restore the original origin when focus returns to the top row.
+Re-evaluate after native focus/content layout settles and after viewport geometry
+changes. Ignore missing focus, overlays, noncatalog routes and stale restoration.
+Acceptance: second-row full caption visible; prior row clips at content top without
+overlapping filters; first row returns to original origin; deep-page restoration,
+Library status-height changes, empty results and Back retain valid layout. Motion
+and720p require separate native evidence; static bounds alone do not prove parity.
