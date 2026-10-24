@@ -977,3 +977,11 @@ server duration bounds. A denied seek consumes those transport keys without a
 native seek. Acceptance: pause/resume may reveal the action row, then Fwd+OK must
 still send the exact observed-position draft to the server; no track drawer opens
 as a side effect of confirmation intended for seek.
+
+On native Roku, use a dedicated empty focusable Group in the Scene as the player's
+input target. It has no visual elements or local product state; keys bubble to the
+Scene controller. Merely requesting focus on the Scene did not move focus away
+from the player action row during the TCL seek check, so confirmation activated
+Audio & subtitles instead of submitting the seek. Hidden controls, an empty action
+row and a seek draft focus this Group. Verify its native hasFocus and the actual
+admission after Fwd/OK; simulator Scene focus alone is insufficient evidence.
