@@ -66,3 +66,35 @@ construct query suggestions from title strings or invent channel numbers or
 current-program captions absent from the response. Those reference elements
 remain omitted until their server projections exist. This does not remove the
 supported channel-search feature or its reference geometry.
+
+## Device entry and profile selection
+
+Follow Tv3Splash, Tv3Welcome, Tv3SignIn and Tv3Profiles geometry and motion.
+Welcome has the supported Sign in action only. Keep its poster wall opacity
+and radial vignette separate; inherited opacity must be applied once, including
+rounded artwork. Splash remains indeterminate. Reduced motion freezes the wall,
+indicator and pairing pulse, and shows the final profile entrance positions.
+
+Pairing opens in the board's passive waiting state. Any directional press focuses
+New code; OK also activates it directly. Its URI, QR, code and expiry come from
+the server. Display the expiry as a decreasing duration from a monotonic clock.
+New code immediately clears the abandoned code and QR while the request is
+pending. Back cancels the request and polling and returns to Welcome's Sign in;
+a late reply must not reopen pairing. Failure offers retry; expiry never implies
+successful authentication. Keep the QR at 300×300 inside the 340×340 white tile.
+The longer server URI may wrap to two lines, moving the following step/code down.
+
+Profiles use full 200×200 artwork clipped to the 28px radius. The selected tile
+has an inset 4px white focus ring; locked labels use the inline lock. Keep the
+450ms entrance and 60ms per-tile stagger. Add and Manage appear only when the
+server advertises their corresponding capabilities. Down reaches Manage only
+when present, Up returns to the selected profile, and horizontal movement stays
+inside the returned profiles/Add sequence. Existing hold/menu access also obeys
+the server's management capabilities. Empty and failed states retain the shared
+retry and Back handling; no local profile is invented.
+
+Acceptance includes matched private captures, rounded-opacity pixel checks,
+normal/reduced motion, countdown and cancelled refresh, and a profile set with
+all management capabilities unavailable. Browser geometry permits up to one
+physical pixel of DOM/canvas rounding at 1920×1080; record larger differences
+rather than widening that tolerance. These are web-TV states, not Roku redesigns.
