@@ -756,3 +756,15 @@ Acceptance: reorder/remove focused cards, late media response while channel focu
 all-empty response, failed group plus successful group, partial retry and query edit.
 Native rendering must prove that empty headings/messages are visible before this
 state can be called qualified.
+
+## Search channel page ownership
+
+Channel paging owns a generation separate from the search text/media request.
+On producer snapshot mismatch, cancel/retire channel workers, queued requests and
+authentication replays before reloading offset zero. A late old page must not
+repopulate the new window even when the text and cursor happen to match. Accept
+next/previous replies only for the current retained window's exact server cursor;
+an initial response is current only while the channel window is empty. Successful
+media results and their pending request survive this channel-only reset.
+Acceptance: stale next page, stale initial response, auth replay across snapshot
+replacement, previous-cursor mismatch and media success during channel reload.
