@@ -985,3 +985,11 @@ from the player action row during the TCL seek check, so confirmation activated
 Audio & subtitles instead of submitting the seek. Hidden controls, an empty action
 row and a seek draft focus this Group. Verify its native hasFocus and the actual
 admission after Fwd/OK; simulator Scene focus alone is insufficient evidence.
+
+Raise player drawers above the video before opening/focusing their controls.
+Detaching and reattaching a drawer after rOpenDrawer has focused its list can
+retire native focus and leave the underlying player button active. Apply the
+ordering to source, audio/subtitle and episode drawers. Acceptance: Options→Audio
+& subtitles→Down→OK selects the second server track, sends its opaque input index
+and preserves the server-authorized position; Back restores the opener. Loading,
+empty, error/retry and late episode/source responses retain the same focus scope.
