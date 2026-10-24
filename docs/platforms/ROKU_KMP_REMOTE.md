@@ -824,3 +824,26 @@ Entering/rebuilding a section restores sidebar selection/focus to its matching
 server-supported section, including empty/read-only states. Acceptance: unlocked
 and unconfigured status readable on native capture; empty Parental section keeps
 focus on Parental rather than Account; failure text and Retry do not overlap rows.
+
+## Profile mutation drafts and parent authorization
+
+Profile create/rename retains the full transient name until server acceptance or
+explicit form cancellation. Submit freezes editing, shows “Saving…” in secondary
+text and sends one intent. A rejected save restores the same editable draft and
+server error. Validation of names remains server-owned. Back retires the editor,
+removes unissued queued work and restores its opener; accepted in-flight work
+still invalidates profile/return caches but cannot reopen or navigate an old editor.
+Avatar/delete mutations also capture their profile-editor version and route.
+
+Parent-required responses preserve the original name while showing PIN entry.
+PIN submission shows “Unlocking…”, clears the secret draft, and keeps Back available.
+Invalid PIN permits another entry with the server error. Cancelling authorization
+returns to the unsaved name draft; late grants cannot replay a cancelled intent.
+Accepted authorization resumes only the original current intent. Accepted profile
+changes clear the draft/overlays and refresh the server profile list. Busy input
+consumes edits/duplicate submits while retaining Back/cancel. Acceptance: nonempty
+rejected name; duplicate submit; Back before/after dispatch; late success/failure;
+route/target change; invalid PIN retry; cancelled and accepted authorization; avatar
+and delete acknowledgements. Transient versions are renderer ownership only and
+are never serialized as product-policy fields. Full dialog visual parity remains
+an independent native comparison gate.
