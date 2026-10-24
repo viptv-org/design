@@ -706,3 +706,10 @@ empty snapshot IDs are incompatible server responses, not legacy fallback input.
 Acceptance: equal-ID pages preserve server order; changed-ID forward and backward
 pages never splice; old guide replies are stale; reload failure/retry retains the
 current query and no old channels. This does not claim native qualification.
+
+When decode bounds change for an unchanged backdrop URI, explicitly invalidate
+the previous Poster load before requesting the new size. Native Roku otherwise
+retains the small decoded bitmap when expanding to full screen. Acceptance:
+Live-to-full-to-compact transitions using identical image bytes must report new
+bitmap dimensions, not only changed loadWidth/loadHeight. Visual transition
+smoothness remains a separate hardware observation.
