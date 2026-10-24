@@ -836,8 +836,8 @@ still invalidates profile/return caches but cannot reopen or navigate an old edi
 Avatar/delete mutations also capture their profile-editor version and route.
 
 Parent-required responses preserve the original name while showing PIN entry.
-PIN submission shows “Unlocking…”, clears the secret draft, and keeps Back available.
-Invalid PIN permits another entry with the server error. Cancelling authorization
+PIN submission shows “Unlocking…” and keeps the PIN only in the masked transient form.
+Invalid PIN permits editing/retry with the server error. Cancelling authorization
 returns to the unsaved name draft; late grants cannot replay a cancelled intent.
 Accepted authorization resumes only the original current intent. Accepted profile
 changes clear the draft/overlays and refresh the server profile list. Busy input
@@ -888,8 +888,9 @@ Only pending transport disables submit; do not copy KMP's local name/PIN eligibi
 predicates. Server validation/capabilities remain authoritative, so empty/unchanged
 submit styling cannot claim parity until producer-driven form eligibility exists.
 Busy PIN blocks modal Cancel/Back as KMP does; route/system retirement still scopes
-late replies. Busy Name keeps cancellation available. Secret values clear on submit;
-a transient masked-count may retain the visual dots while waiting, without a secret.
+late replies. Busy Name keeps cancellation available. PIN text stays only in the
+masked transient dialog until cancellation/success, as in the KMP form; completed
+request payloads are scrubbed and no form text enters credential storage.
 
 KMP's density1 HD reference retains328/560px modal widths. Roku's approved FHD-only
 manifest uses documented automatic2/3 scaling; that discrepancy remains an explicit
