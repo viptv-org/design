@@ -798,23 +798,20 @@ overlapping filters; first row returns to original origin; deep-page restoration
 Library status-height changes, empty results and Back retain valid layout. Motion
 and720p require separate native evidence; static bounds alone do not prove parity.
 
-## Parent search and edited-profile request scope
+## Current Roku parental-control scope
 
-Consume only current /api/parent/search rows[].items[] results. Use each supported
-entry's Card title and canonical identity/metadata origin for approval; do not read
-retired flat name/type/id fields or infer an identity from a provider title. Keep
-server row/item ordering and omit entries whose approval_supported is false.
-Validate this current response shape in Task; obsolete flat responses require a
-server update. Empty current results keep the existing empty drawer/Back flow.
+Current backend device sessions cannot use household-manager policy/approval APIs,
+even after parent-PIN unlock. Roku must omit kids-policy/age/approval editors and
+their search/mutation paths rather than presenting account-only actions that403.
+These remain supported in the account browser, outside this device client.
 
-Each parental policy/search/approval read and mutation captures the edited server
-profile ID and a parental-editor generation, independent of the active viewer
-profile. Selecting another target or leaving the route retires old reads/auth
-replays and rejects stale callbacks. Accepted mutations remain bound to their
-original path; a late acknowledgement invalidates dependent cached views without
-populating the new target's controls. New controls wait for their own current
-policy response. Acceptance: grouped supported/unsupported search results; Card
-identity differs from decoy flat fields; target switch with policy/approval/search
-in flight; late accepted mutation; rejected mutation and auth cancellation; Back
-cannot revive an old target response. Existing layout is retained for this data
-correction; complete KMP parental-screen visual qualification remains open.
+Retain server-authorized profile create/rename/avatar/delete and profile selection,
+including parent-required challenges. Parental settings show Unlock only when the
+server reports a configured PIN without an active grant. A successful grant shows
+“Parent PIN unlocked”; without a configured PIN, retain the account setup address.
+No per-profile PIN editor or local age-choice policy is created. Back/cancel and
+invalid-PIN states retain credentials and current viewer identity. Acceptance:
+locked/unlocked/unconfigured states expose only supported elements; server-denied
+policy/approval actions have no Roku entry points or dormant controllers; device
+profile mutation/selection permissions follow server capabilities and challenges.
+This is a producer-permission correction, not a full visual-parity claim.
