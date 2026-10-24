@@ -693,3 +693,16 @@ full decode bounds when leaving a compact view. Native aspect-preserving decode
 may slightly exceed one requested dimension; measure the active bitmap and its
 specific texture allocation rather than attributing shared graphics totals to
 this image.
+
+## Live directory snapshot replacement
+
+Consume the current shared `snapshot_id` as opaque server authority. Append or
+prepend only pages with exactly the retained snapshot ID. On mismatch, retire
+channel/guide work, discard the entire old window/cursors and request offset zero
+for the unchanged query. Hide stale rows/hero/groups and focus top navigation while
+showing existing “Loading channels…” copy. A failed reload exposes normal Retry;
+Back remains available and cannot resurrect the incompatible window. Missing or
+empty snapshot IDs are incompatible server responses, not legacy fallback input.
+Acceptance: equal-ID pages preserve server order; changed-ID forward and backward
+pages never splice; old guide replies are stale; reload failure/retry retains the
+current query and no old channels. This does not claim native qualification.
