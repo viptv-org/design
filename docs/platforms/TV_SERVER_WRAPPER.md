@@ -149,3 +149,34 @@ labels/order and minute-based subtitles replace the reference's illustrative
 data in matched fixtures. Release-age “New” badges remain omitted when the
 producer has not projected them. Home-to-rows transition choreography remains
 a distinct acceptance state; a static Browse capture does not qualify it.
+
+## Bounded Live and channel Search traversal (proposed adoption)
+
+TV Live and the channel row in Tv3Search retain at most two producer payload
+pages and their `paging` descriptors. Geometry, copy and input mappings stay
+unchanged. Forward/reverse requests copy the server cursor, row limit and
+navigation page size; the UI never calculates a catalog cursor or retains a
+history of evicted pages. Crossing a retained window preserves the channel
+identity and visible focus position. Reverse traversal remains available through
+the producer's previous descriptor, including short pages near the beginning.
+
+D-pad movement within retained data stays immediate. At a pending page boundary,
+focus stays on the current channel; the next deliberate movement is applied when
+the page arrives if its origin focus, query, route and scope are still current.
+Opposite movement cancels that pending focus intent. Prefetch follows actual
+movement direction, so short reverse pages cannot create a request oscillation.
+Back, profile/sign-out, query/category changes and source actions retire obsolete
+outcomes. Playback returns to the same retained channel identity.
+
+A changed snapshot retires pages and guides and reloads the first server page.
+A failed request shows the existing retry state, preserving confirmed usable
+rows when they remain in the same snapshot. Missing/invalid paging metadata is
+an incompatible current server, never an excuse for cursor arithmetic or an
+unbounded fallback. Revision refresh requests the focused retained page; if its
+snapshot remains compatible, focus survives even far beyond the first page.
+
+Acceptance: traverse forward/reverse beyond two pages; retain at most two pages
+and constant descriptor count; verify exact request descriptors, short reverse
+slices, delayed/rejected/retired replies, changed snapshot, profile isolation,
+return from playback, and the existing guide/render/frame budgets. These are
+browser requirements; physical-TV qualification remains separate.
