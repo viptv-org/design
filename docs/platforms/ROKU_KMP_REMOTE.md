@@ -713,3 +713,24 @@ retains the small decoded bitmap when expanding to full screen. Acceptance:
 Live-to-full-to-compact transitions using identical image bytes must report new
 bitmap dimensions, not only changed loadWidth/loadHeight. Visual transition
 smoothness remains a separate hardware observation.
+
+## Search capabilities and channel results
+
+Use bootstrap Search entry's explicit media_search/channel_search booleans;
+missing flags grant no capability. Keep current shared grouped /api/search media
+results in producer order for KMP parity, and request channel results separately
+from profile /live/channels?search= using the same draft. Do not issue a media
+request for a Live-only profile. Query changes cancel/retire both requests,
+authentication replays and queued work, clearing old results during debounce.
+Channels follow the server media groups under “Channels”; selecting one uses
+its server Card and connection ID through the normal Live source action.
+Use the KMP356x200 image box,356-wide item,20px gap and title/subtitle below.
+No invented programme captions or search suggestions. Channel pagination retains
+two pages plus opaque cursor history; compare snapshot IDs and reload offset zero
+on mismatch. Focus remains on the same channel identity across window updates.
+Server failures retain independent successful result sets and expose Retry;
+blank query clears both result sets. Back returns through the existing navigation.
+Acceptance: Live-only, media-only, mixed and absent capabilities; stale responses
+and auth replays after edit; ordered channel pagination both directions; changed
+snapshot; channel activation uses server identity. Native focus/render geometry
+must be qualified separately before parity is claimed.
