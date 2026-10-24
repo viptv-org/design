@@ -950,3 +950,21 @@ until subsequent input moves focus. This also prevents oscillation when both edg
 lookahead regions overlap in a short directory. Guide reads still refresh after
 focus restoration. Acceptance includes restoration at index zero and middle,
 up/down/left/right movement, and no repeated page requests while focus is idle.
+
+## Native player input ownership (2026-10-24)
+
+The Scene owns remote input while player controls are hidden, and when the server
+provides no supported action buttons. The native Video node remains non-focusable:
+`enableUI=false` hides most built-in UI but does not remove all native key handling
+or the system Options caption panel. Every pause/seek/source/track intent must go
+through the current server action gate before native operations or an admission.
+Do not expose system caption selection or native trickplay that bypasses the
+server's track/seek/replacement decisions. Showing supported action buttons focuses
+them; hiding controls returns focus to the Scene. Back, hold/repeat, cancellation,
+drawers and seek drafts retain the existing controller behavior and geometry.
+Acceptance: hidden-controls Play pauses only when allowed; Fwd/Select creates the
+server seek admission and consumes its returned position; denied actions do not
+move/pause video; Options opens supported app controls rather than a system track
+panel; successful/failed source/track replacement retains single-decoder recovery.
+This corrects input routing observed on TCL, not the separate media-output duration
+problem discovered by the qualification fixture.
