@@ -858,3 +858,10 @@ A retired selection with an indeterminate transport/5xx/malformed-success reply
 also requests bootstrap to reconcile actual session identity, without replaying
 the old selection or opening its PIN prompt. An error reply is not proof that
 an already-issued mutation did not commit.
+
+Identity replacement retires old bootstrap workers/queued reads and their pending
+slot before requesting a fresh bootstrap. Token refresh belongs to the exact
+origin/opaque refresh-token generation, not a profile epoch; a valid rotation for
+the same credential owner must survive a profile change. Changed credentials cannot
+adopt an old refresh reply. Forgetting credentials retires unissued refresh work;
+a late successful retired rotation is logged out with its returned token.
