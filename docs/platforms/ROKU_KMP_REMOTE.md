@@ -968,3 +968,12 @@ move/pause video; Options opens supported app controls rather than a system trac
 panel; successful/failed source/track replacement retains single-decoder recovery.
 This corrects input routing observed on TCL, not the separate media-output duration
 problem discovered by the qualification fixture.
+
+Dedicated Fast-forward/Rewind keys enter the server-authorized seek draft even
+when the action row is visible and focused. Left/Right alone retain horizontal
+button navigation in that state. Confirm sends the seek admission; Back cancels
+the draft. Each dedicated press/repeat uses the existing10-second seek step and
+server duration bounds. A denied seek consumes those transport keys without a
+native seek. Acceptance: pause/resume may reveal the action row, then Fwd+OK must
+still send the exact observed-position draft to the server; no track drawer opens
+as a side effect of confirmation intended for seek.
