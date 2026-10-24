@@ -768,3 +768,16 @@ an initial response is current only while the channel window is empty. Successfu
 media results and their pending request survive this channel-only reset.
 Acceptance: stale next page, stale initial response, auth replay across snapshot
 replacement, previous-cursor mismatch and media success during channel reload.
+
+## Search reverse-page boundary
+
+Left at the start of a retained channel window with an earlier server page must
+retain result focus while requesting/waiting for that page, rather than jumping
+to the keyboard. Leave Left-to-keyboard unchanged at the real beginning or when
+an explicit failed-page Retry is awaiting action. Start reverse lookahead within
+three items of the retained edge. Do not duplicate reads awaiting auth replay or
+parent authorization. Returning from keyboard to results preserves the current
+valid result target, falling back to the first actual result only if it vanished.
+Acceptance: delayed reverse page plus repeated Left stays in results; after load,
+previous channels remain reachable; true beginning returns to keyboard; Right back
+restores the selected result; authentication waits do not enqueue duplicate reads.
