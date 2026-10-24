@@ -993,3 +993,12 @@ ordering to source, audio/subtitle and episode drawers. Acceptance: Options→Au
 & subtitles→Down→OK selects the second server track, sends its opaque input index
 and preserves the server-authorized position; Back restores the opener. Loading,
 empty, error/retry and late episode/source responses retain the same focus scope.
+
+Implement that empty input target as a custom Group component with an explicit
+press event forwarded to the Scene controller. A raw Group reported native focus
+but did not reliably deliver later transport/Options keys after controls hid.
+The component has no visual children or decisions: it forwards every press/repeat
+unchanged and consumes release events. The Scene alone handles Back, authorized
+transport and opening controls. Acceptance: after controls hide, Options/OK/Down/OK
+still enters the app track drawer and selects the intended server-projected track;
+Back exits playback and cleanup runs. No platform caption panel or dead input state.
