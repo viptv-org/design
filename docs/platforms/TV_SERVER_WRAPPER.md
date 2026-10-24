@@ -123,3 +123,29 @@ visible zoom, the nine-second boundary, interaction/menu/visibility pause,
 reduced motion, foreground layering and sustained frame timing. These controls
 are presentation of server data and do not decide resume, playback or episode
 continuation policy.
+
+## Focused-title Browse presentation
+
+Use Tv3Browse's preview artwork at (760,0), 1160×620, with cover positioning at
+60%/25%, its 560px left fade and bottom fade from y380 to y621. The title/logo
+starts at (96,96), with the logo constrained to 420px width and 144px height;
+metadata begins at y240, the three-line description at y290 and the optional
+status row at y420. Continue Watching starts at y512 with 384×216 tiles at y564;
+the next row starts at y896. Captions use the reference 24px/20px hierarchy,
+inset focus ring, clipped four-pixel progress and focused play treatment.
+
+The Home producer owns `view.preview.background`, caption, progress and action.
+Keep episode artwork on the tile and consume the separate preview background.
+Do not derive Resume/Next from percentages, timestamps or subtitle text. Only a
+server-projected Play action gets the play affordance and activates viewing;
+Details remains available through the existing context menu. Play still makes
+a fresh server viewing-action/source request; the preview is never a playback
+grant. Back from source selection restores the originating row/card focus.
+
+Preserve the 400ms focus-settling delay and cancel superseded artwork. Late
+backgrounds must remain behind rows and captions. Empty/absent preview facts
+omit the hint rather than creating a local default. Current producer capability
+labels/order and minute-based subtitles replace the reference's illustrative
+data in matched fixtures. Release-age “New” badges remain omitted when the
+producer has not projected them. Home-to-rows transition choreography remains
+a distinct acceptance state; a static Browse capture does not qualify it.
