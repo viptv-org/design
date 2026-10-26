@@ -7,7 +7,7 @@ device evidence.
 Source revisions: design `fd43d6beed0c4800f77d4c770d9d8375311193b6`; app
 `48bcefa97d451f862dad9c5b94bad3764b18f8f4`; backend
 `ea311c3b9ce94b4f07de9823850ba7d7e9f4aed7`; the 2026-10-26 amendment also cites
-app `f268625`. Prior art and citations:
+app `f2686258cdee763820fad9e4e6fe626dc4631def`. Prior art and citations:
 [workspace research note](https://github.com/viptv-org/workspace/blob/main/docs/research/source-autoplay.md).
 Owner decisions recorded 2026-10-22: any list navigation cancels autoplay; early
 start with a visible countdown; one audio preference for every title type (no
@@ -22,7 +22,7 @@ our preference ranking system as a batch named something" (see
 A profile whose source selection is **Best match** presses Play and gets the
 source it would most likely have chosen itself: playable on this device, in the
 audio it asked for, from a good release, without waiting for the slowest
-provider. **Always ask** is unchanged: nothing starts on its own. In both
+provider. On **Always ask** nothing starts on its own. In both
 modes ranking orders the list, groups it under **Best matches** and **All
 sources**, and marks the first Best matches row **Best match** (see
 [Source groups](#source-groups-best-matches-and-all-sources)).
@@ -42,10 +42,11 @@ sources**, and marks the first Best matches row **Best match** (see
 - A failed start shows the error screen; there is no automatic next attempt.
 - The picker lists rows in provider arrival order while discovery runs, then
   replaces the whole list with the ranked order once every provider finishes
-  (app `f268625`, `ControllerCatalog.kt:227-236`). There are no groups, and the
-  live picker never sets the Best match tag (`SourcesScreen.kt:33`; only the
-  preview fixture shows it). Initial TV focus re-anchors to the top row when the head changes unless the viewer
-  already moved (`TvSourcesScreen.kt:71`).
+  (app `f268625`, `ControllerCatalog.kt:227-236`). There are no groups, and
+  the live picker never sets the Best match tag (`SourcesScreen.kt:33`; only
+  the preview fixture and a UI test set it). Initial TV focus re-anchors to
+  the top row when the head changes unless the viewer already moved
+  (`TvSourcesScreen.kt:71`).
 
 ## Entry and exit
 
@@ -192,7 +193,13 @@ jumping under the viewer at the moment they are likely to act. Owner request
 ### Membership
 
 Group membership is computed over every row of this discovery, before the
-provider and quality filters:
+provider and quality filters. The shared ranking (backend and its `core` copy)
+supplies it with the ranked rows: the Best match recommendation
+(`best_match_id`) and the ids of the Best matches rows. Clients render what it
+supplies and never infer membership or the marker from visible position
+(consistent with [SRC-TORRENT-NATIVE-001](torrent-native-android.md) and the
+[Roku KMP remote notes](../../docs/platforms/ROKU_KMP_REMOTE.md#source-best-match-presentation)).
+The wire shape belongs to the implementation.
 
 1. **Best matches:** the top-ranked rows that pass every
    [hard filter](#hard-filters-autoplay-and-grouping), at most **5**, in
@@ -208,6 +215,10 @@ depend on the filter: with a filter that hides the first Best matches row, no
 visible row carries the marker. Fewer than five rows passing the hard filters
 gives a shorter Best matches group; none gives an empty one.
 
+After an exhausted Best match fallback, rows marked `Didn’t start` keep their
+ranked positions and groups so the viewer sees what was tried; the marker does
+not move.
+
 ### Headers
 
 - A header labels each group: `Best matches` above the first group, `All
@@ -216,19 +227,22 @@ gives a shorter Best matches group; none gives an empty one.
   Best matches has no visible row (empty, or every member filtered out) both
   headers hide and the list looks like a single ranked list. When All sources
   has no visible row only the Best matches header shows.
-- Headers are part of the scrolling list, not sticky. They use the group label
-  style of the desktop settings Section nav (uppercase, secondary text) in the
-  list's text column. Header height, spacing and the TV/phone geometry are
-  unknown: **needs a board** on every surface (open items). Until then the
-  header must not change source row height (SRC-OVERFLOW-001).
+- Headers are part of the scrolling list, not sticky. They are uppercase group
+  labels like the desktop settings Section nav, in the list's text column.
+  Type size, colour, height, spacing and the TV/phone geometry are unknown:
+  **needs a board** on every surface (open items). Headers never change source
+  row height (SRC-OVERFLOW-001).
 - Headers are not focusable on TV or by keyboard and are not activatable by
   touch or pointer. Up/Down moves directly from the last visible Best matches
   row to the first visible All sources row and back. When focus moves to the
   first visible row of a group, the list scrolls so that group's header is
   visible too; at the top of the list the Best matches header is visible.
+  Held Up/Down repeats exactly as in the list today, one row per repeat,
+  skipping headers; a re-rank during a held press keeps focus on the same
+  source (Progressive ranking, step 4) and the next repeat moves from there.
 - Accessibility: each header is exposed as a heading (Android semantics
-  `heading()`, web `role="heading"` level 3 or an `h3`), so screen reader
-  heading navigation lands on it. Header changes are not announced on their
+  `heading()`, web heading role), so screen reader heading navigation lands on
+  it. Header changes are not announced on their
   own; the existing polite discovery status announcements are unchanged.
 
 ### Progressive ranking
@@ -247,31 +261,35 @@ gives a shorter Best matches group; none gives an empty one.
    the first position, the marker and the initial focus. This is initial focus
    placement, so it does not cancel a countdown. If the picker opened with a
    selected row (the source currently playing or last chosen), initial focus
-   goes to that row instead, as today.
+   goes to that row instead, as today, and stays on it while better rows
+   arrive.
 4. **After the viewer navigates (TV, desktop/web keyboard):** focus stays on
    the same source, identified by its stable row identity, never by index,
    while rows are inserted or moved around it and even when it changes group.
    The list scrolls so the focused row keeps its on-screen position where the
    list length allows; otherwise the minimal scroll keeps it fully visible.
 5. **After the viewer scrolls (phone, tablet, pointer):** the scroll anchor is
-   kept: the first fully visible row keeps its on-screen position while rows
-   are inserted or moved above or below it. If the anchor row itself moves,
-   the list keeps the row that replaced it at that position, so the visible
-   rows do not jump. A touch in progress (drag or fling) is never interrupted.
-6. **Selected row:** a row with Source details open, a row being pressed, and
-   the selected row from step 3 keep their identity across re-ranking.
+   kept: the first fully visible row (the anchor) keeps its on-screen position
+   while rows are inserted or moved above or below it, including when the
+   anchor itself moves in rank. A touch in progress (drag or fling) is never
+   interrupted.
+6. **Selected row:** a row with Source details open and the selected row from
+   step 3 keep their identity across re-ranking.
    Activating a row (OK, tap, click, Enter) always acts on the source under the
    press at that moment.
 7. Row moves may use the platform's standard list item placement animation;
    with reduced motion they are instant. Moves never change row height.
 8. The provider ceiling, filters, discovery status and empty states are
    unchanged. When the ranking request itself fails, rows stay in the order
-   already shown, without headers, and late arrivals append in arrival order.
+   already shown, without headers or marker, late arrivals append in arrival
+   order, and no Best match countdown starts for this discovery (the picker
+   behaves as on Always ask).
 
 ### What changes for Best match autoplay
 
-Nothing. The countdown, eligibility, hard deadline and fallback rules above are
-unchanged, and the autoplay target is the first Best matches row:
+The countdown, eligibility, hard deadline and fallback rules above are
+unchanged. The autoplay target is the first Best matches row, with one
+pre-existing exception in the early-start window:
 
 - At the hard deadline or when every provider finishes, Countdown rule 4 picks
   the best row surviving hard filters, which is by definition the first Best
@@ -384,7 +402,8 @@ No release-type setting: the order above is fixed.
 | Fallback notice | 2 s |
 | Attempts | 3 per session |
 
-Changing a value needs a behaviour review.
+The Best matches group size (at most 5 rows) is fixed the same way. Changing a
+value needs a behaviour review.
 
 ## Acceptance scenarios
 
@@ -434,7 +453,7 @@ Changing a value needs a behaviour review.
     filter restores both headers and the marker on the same row as before.
 17. Progressive ranking, TV, viewer has not navigated: provider A returns three
     rows at 1 s and they appear ranked under `Best matches` with focus on the
-    first. Provider B returns a better row at 4 s: it appears first, takes the
+    first. Provider B returns a better row at 2 s: it appears first, takes the
     marker and the focus, and in Best match mode the countdown retargets
     (scenario 2) rather than cancelling. At no point are rows shown in arrival
     order, and nothing reorders when the last provider finishes.

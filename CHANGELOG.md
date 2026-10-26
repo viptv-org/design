@@ -8,7 +8,8 @@ matches** group with the top five rows that pass the hard filters, then **All
 sources** in ranking order. Rows are ranked and grouped as providers answer
 instead of being shown in arrival order and reordered at the end; re-ranking
 keeps TV focus on the same source and the phone scroll anchor in place once the
-viewer has navigated. Headers are non-focusable headings (copy in `copy.md`).
+viewer has navigated. The shared ranking supplies membership and the marker;
+headers are non-focusable headings (copy in `copy.md`).
 Best match autoplay is unchanged. Owner request 2026-10-26
 ([design#20](https://github.com/viptv-org/design/issues/20)); header boards
 are still needed.
