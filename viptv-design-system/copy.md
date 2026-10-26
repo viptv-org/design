@@ -14,6 +14,8 @@ These are the exact strings used on the screens. Text in `[brackets]` is a place
 
 Responsive player picture mode (WEB-PLAYER-FIT-001): visible toggle **"Fit"** / **"Fill"**; accessible actions **"Fill video"** / **"Fit video"**.
 
+Source groups (proposed, SRC-BEST-MATCH-001): source list group headers **"Best matches"** and **"All sources"**, displayed uppercase as group labels and announced as headings. The row marker stays **"Best match"**.
+
 ## Empty states
 
 | Where | Copy |
