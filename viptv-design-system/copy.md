@@ -14,6 +14,12 @@ These are the exact strings used on the screens. Text in `[brackets]` is a place
 
 Responsive player picture mode (WEB-PLAYER-FIT-001): visible toggle **"Fit"** / **"Fill"**; accessible actions **"Fill video"** / **"Fit video"**.
 
+Next-episode end panel (PLAY-NEXT-AUTOPLAY-001):
+- TV: eyebrow **"Next episode"**; primary **"Next episode in [N]"** while counting, otherwise **"Play next episode"**; secondary **"Keep watching credits"**; caption **"[Series] · Credits"**.
+- TV footnote: **"Starts automatically. Press any button to cancel."** while counting; **"Nothing plays on its own."** with the setting off or after a cancel.
+- Phone, desktop and web: eyebrow **"Up next"**; primary **"Next episode in [N]"** while counting, otherwise **"Next episode"**; secondary **"Watch credits"**. No footnote.
+- Settings › Playback: **"Autoplay next episode"**, described as **"Plays the next episode after a 10-second countdown. Applies to this device."** The phone group heading is **"Next episode"**. The `Next episode button` row reads **"Shows during the credits"**, without "Nothing ever plays on its own".
+
 Source groups (proposed, SRC-BEST-MATCH-001): source list group headers **"Best matches"** and **"All sources"**, displayed uppercase as group labels and announced as headings. The row marker stays **"Best match"**.
 
 ## Empty states
