@@ -44,7 +44,7 @@ git diff --no-index -- "$SOURCE_ROKU/data" "$DESIGN_REPO/assets/roku/roku/data"
 
 ## Provenance and reuse rules
 
-- `viptv-mark.png`, `viptv-wordmark.png`, `splash-hd.jpg`, and `channel-poster-hd.jpg` are VIPTV branding assets. The checked-in wordmark is the master; [branding instructions](../docs/branding.md) explain reproducible regeneration. Preserve the visual mark and monochrome identity across clients.
+- `viptv-mark.png`, `viptv-wordmark.png`, `splash-hd.jpg`, and `channel-poster-hd.jpg` are the Roku VIPTV branding assets. The checked-in wordmark is their master; [branding instructions](../docs/branding.md) explain reproducible regeneration. Preserve the visual mark and monochrome identity across clients. The app icon and TV banner have their own master, [below](#app-icon-and-tv-banner-master).
 - `assets/roku/package.json` pins Node 22-compatible Sharp 0.34.3 and DiceBear 10.6.0. The design copies of `make_brand_assets.cjs`, `make_avatar_catalog.mjs`, and `fetch_character_avatars.py` use that local package layout and only update design-owned Roku assets; their baseline source paths/hashes remain in the table above. `make_theme_assets.py` regenerates neutral nine-patches, masks, hero gradients, spinner, progress pill and rail/player icons. `generate_player_assets.py` is an earlier player-asset generator retained for provenance. Modify a generator and regenerate assets together; do not hand-edit a derived raster without documenting why.
 - `avatar-catalog/` contains 576 DiceBear 10.6.0 images (12 styles × 48 deterministic choices), CC0. `avatar-catalog/README.md` includes the generation package versions, seed contract and DiceBear/CC0 links. Show at most 18 at once and never reorder persisted choices.
 - `avatar-characters/` contains 48 curated Disney-related thumbnails. Rights remain with respective rights holders; provenance is in `character-avatars.json` and `avatar-characters/README.md`. Keep the stable 1-based category positions; append only.
@@ -64,3 +64,59 @@ KMP form dialog assets are procedural nine-patches from
 `roku/roku/tools/make_form_dialog_assets.py`: radius28 panel, radius4 one/two-pixel
 field outlines and20px focus capsule. Geometry is measured from current KMP source;
 no app/device capture is embedded in these assets.
+
+## App icon and TV banner master
+
+`brand/app-icon/` is the square app-icon and TV-banner master for Android,
+Android TV and Fire TV. Roku keeps its own branding (above) until it adopts
+this master. The owner chose a
+simple black and white V on 2026-10-27
+([design#21](https://github.com/viptv-org/design/issues/21)), replacing the
+amber V the KMP app shipped. `brand/tools/make_app_icon.py` generates every file;
+don't edit them by hand.
+
+| File | SHA-256 | Contents |
+| --- | --- | --- |
+| `brand/app-icon/app-icon-square.svg` | `0f196eccdca8924a6e17c76c92e1289f8a81b0cabae062bb6445cb2b9d754ad0` | 72 × 72 full-bleed square: white V on black. Launchers and stores apply their own mask |
+| `brand/app-icon/app-icon-square-1024.png` | `1959e32ae74e1527356ccc2bd8e1761e0ba0ea371fb5b90ab44a8b028d3c1adb` | The same square at 1024 × 1024 px |
+| `brand/app-icon/app-icon-foreground.svg` | `6391219e3772ca94d52ec7149b09aae6447f0d6d946db23da5d4bca524fd986f` | Adaptive-icon foreground: 108-unit canvas, white V sized for the 72-unit visible area, transparent ground. The background layer is solid `#000000` |
+| `brand/app-icon/app-icon-monochrome.svg` | `39815d3f0b54d5454d91ba314a0eda4c95e34b3f84dd4c4d2084be9311ef4c91` | Monochrome (themed icon) layer: the same V as a single-colour silhouette; the launcher tints it |
+| `brand/app-icon/tv-banner-320x180.png` | `1f6ebc6f1fd49e93f4e13832c4189ef8c61e1cc93597cb142a54056620718c27` | 320 × 180 px (xhdpi) TV banner: white "VIPTV" on black |
+
+Geometry and colour:
+
+- The V is the "V" glyph outline (eight straight points, no curves) from
+  `fonts/remote_bricolage_800.ttf`, Bricolage Grotesque ExtraBold from
+  @fontsource/bricolage-grotesque 5.3.0 (see `fonts/README.md`, SIL OFL). Its V
+  is identical to the KMP app's `bricolage.ttf`. It is set at 0.625 × the mark
+  size and centred on its ink box, the KMP `BrandMark` ratio.
+- Colours: `#000000` (`color.bg-oled`) and `#FFFFFF` (`color.fill.white`). No
+  accent.
+- Square: the mark is the whole square (72 units; 1024 px).
+- Legacy (pre-API-26) launcher PNGs: keep the app's existing shapes, a rounded
+  square (corner radius 0.28 × mark) and a disc, each inset 2/48, now filled
+  `#000000` and holding the white V at 0.625 × the inset mark.
+- Adaptive icon: 108-unit canvas, mark = the 72-unit visible area, centred at
+  (54, 54). The foreground path is identical to the one the app's
+  `tools/make_launcher_assets.py` already writes; only its colours change.
+- Banner: "VIPTV" in `#FFFFFF` (replacing the app's `#F4F2EE`) on `#000000`,
+  centred on its ink box, at −0.04 em tracking. The text size is the
+  `make_remote_branding.py` channel-poster wordmark (72 px at 210 px high)
+  scaled to 180 px high. The lockup's square mark is dropped: the wordmark's
+  own V is the icon's V, white on black, so the banner needs no inverted
+  mark.
+
+Regenerate and verify with Python 3.13.5, Pillow 13.0.0 and fontTools 4.67.0
+(the same pins as the app's launcher generator; other Pillow versions may change
+PNG bytes):
+
+```sh
+python3 -m venv /tmp/viptv-icons
+/tmp/viptv-icons/bin/pip install pillow==13.0.0 fonttools==4.67.0
+/tmp/viptv-icons/bin/python assets/brand/tools/make_app_icon.py
+/tmp/viptv-icons/bin/python assets/brand/tools/make_app_icon.py --check
+```
+
+`--check` regenerates into a temporary directory and fails if any committed file
+differs. The Roku `viptv-mark.png`, splash and channel posters are unchanged by
+this master.
