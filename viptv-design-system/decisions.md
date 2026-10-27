@@ -27,7 +27,7 @@ their pinned episode presentation until they explicitly adopt this addition.
 
 ## Settled with the product owner
 
-1. **Up Next:** a card with a countdown ("Starts in [8]") plus Play now / Cancel. It does not take over the whole screen.
+1. **Up Next:** at the end of a series episode, a panel over the last frame whose primary action counts down 10 s ("Next episode in [N]", with a ring that empties) and then plays the next episode. Any viewer action cancels it, and Settings › Playback › **Autoplay next episode** (on by default, per device) turns it off. It does not take over the whole screen. Owner decision 2026-10-27, replacing the earlier "Starts in [8]" card with Play now / Cancel; see [PLAY-NEXT-AUTOPLAY-001](../specs/behavior/next-episode-autoplay.md).
 2. **TV subtitles and audio:** one scrolling list in the right panel. The list opens focused on the current track.
 3. **TV pairing code expiry:** a persistent expired state (the code struck through, "This code expired.", Try again focused, QR dimmed), plus a web page where the code is typed ("Link your TV").
 4. **Protected profiles:** a lock badge only. The PIN is asked for when the profile is opened.
@@ -54,7 +54,7 @@ their pinned episode presentation until they explicitly adopt this addition.
 
 ## Open items (values to confirm in the app)
 
-- `[Bracketed]` values are placeholders: times, counts, file names, track names, IP addresses, the device URL, the Up Next countdown.
+- `[Bracketed]` values are placeholders: times, counts, file names, track names, IP addresses, the device URL. The Up Next countdown is settled at 10 s ([PLAY-NEXT-AUTOPLAY-001](../specs/behavior/next-episode-autoplay.md)); `[N]` there is the live number.
 - Whether the parent PIN length is fixed or 4–8 digits (drawn with 6 boxes, error copy says 4–8).
 - The phone PIN helper copy ("Enter the parent PIN to continue.") replaces the TV-only "Use your remote or a connected keyboard." on phone and desktop.
 
@@ -184,6 +184,24 @@ on when the audio that plays is not the preferred audio language; the shared
 core rule decides once the player knows its tracks and again after an audio
 switch, until the viewer picks subtitles. See the
 [subtitle mode contract](../specs/behavior/subtitle-mode.md).
+
+## Next-episode autoplay (PLAY-NEXT-AUTOPLAY-001)
+
+The 2026-10-27 owner decision ([app#65](https://github.com/viptv-org/app/issues/65))
+gives the end-of-episode panel a 10-second countdown on its primary action.
+At 0 the next episode plays through the same path as the button. Any key,
+pointer press, seek, Back or the secondary action cancels it for that end.
+Finales, movies and live channels never count down. With reduced motion only
+the number counts, with no ring. Settings › Playback gains **Autoplay next
+episode**, on by default. It is stored per device because the profile
+preference API has no field for it.
+
+"Nothing plays on its own" is now the TV footnote only when the setting is off
+or after a cancel. The boards that promise nothing autoplays (`Tv3PlayerNext`,
+`Tv3Motion` Play next and the Playback settings boards) are superseded until
+the canvas re-exports them; the
+[next-episode autoplay contract](../specs/behavior/next-episode-autoplay.md#superseded)
+lists them.
 
 ## Android TV episode-number jump (AND-EPISODE-JUMP-001)
 

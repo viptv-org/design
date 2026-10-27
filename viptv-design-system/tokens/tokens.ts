@@ -1219,7 +1219,7 @@ export const tokens = {
   "motion.toast-notice": "5000ms",
   "motion.toast-error": "4000ms",
   "motion.player-notice": "4000ms",
-  "motion.up-next-countdown": "[8] s",
+  "motion.up-next-countdown": "10000ms",
   "motion.spinner": "800ms",
   "motion.shimmer": "1400ms",
   "motion.pressed-scale-row": 0.99,

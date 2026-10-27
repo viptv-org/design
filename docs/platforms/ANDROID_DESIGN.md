@@ -481,6 +481,12 @@ are recorded separately in TESTING.md. Related: Android #3 and design #6.
 
 ## Up Next
 
+Superseded for the KMP app on 2026-10-27 by
+[PLAY-NEXT-AUTOPLAY-001](../../specs/behavior/next-episode-autoplay.md):
+the 10-second countdown starts when the media ends, on the end panel's
+primary action, and the **Autoplay next episode** setting can turn it off.
+The rules below record the old Android client.
+
 - Eligible final-ten-second series playback resolves one server-authorized next
   episode, then displays a 10-second countdown card. It does not immediately
   replace playback. The card contains landscape art, NEXT EPISODE, episode

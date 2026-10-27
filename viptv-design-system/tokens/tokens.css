@@ -426,6 +426,7 @@
   --viptv-motion-toast-notice: 5000ms;
   --viptv-motion-toast-error: 4000ms;
   --viptv-motion-player-notice: 4000ms;
+  --viptv-motion-up-next-countdown: 10000ms;
   --viptv-motion-spinner: 800ms;
   --viptv-motion-shimmer: 1400ms;
   --viptv-motion-pressed-scale-row: 0.99;

@@ -1,5 +1,29 @@
 # Design changes
 
+## 2026-10-27 — Proposed: Next-episode autoplay countdown and its setting
+
+[PLAY-NEXT-AUTOPLAY-001](specs/behavior/next-episode-autoplay.md) records
+what the KMP app shipped in app#48 and app#77. When a series episode ends, the
+next-episode panel opens over the last frame. Its primary action counts down
+10 seconds ("Next episode in 9", with a ring that empties; reduced motion keeps
+only the number) and then plays the next episode. Any viewer action cancels it
+for that end: the secondary action, Back/Escape, a seek, or any key or pointer
+press. Finales, movies and live channels never count down. Settings › Playback
+gains **Autoplay next episode**, on by default and stored per device because
+the profile preference API has no field for it. The TV footnote reads "Starts
+automatically. Press any button to cancel." while counting and "Nothing plays
+on its own." otherwise.
+
+This resolves the conflict between the Roku contract, AND-037 and
+`decisions.md` #1 (a countdown) and the TV, phone and desktop boards ("Nothing
+plays on its own"). The Roku baseline stays frozen and AND-037 is marked
+superseded. Decision #1, the Up Next component, copy, the `up-next-countdown`
+token (now 10000ms) and the research notes are amended. "Nothing ever plays on its
+own" is retired from the `Next episode button` setting description. Owner
+decision 2026-10-27 ([app#65](https://github.com/viptv-org/app/issues/65),
+[design#26](https://github.com/viptv-org/design/issues/26)). Canvas boards for
+the countdown and the setting row are still needed.
+
 ## 2026-10-27 — Black and white V app icon and TV banner master
 
 `assets/brand/app-icon/` is the square app-icon and TV-banner master for
