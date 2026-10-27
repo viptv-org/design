@@ -2,10 +2,10 @@
 
 ## 2026-10-27 — Black and white V app icon and TV banner master
 
-`assets/brand/app-icon/` is the square app-icon and TV-banner master for every
-client: a white Bricolage Grotesque ExtraBold V on black, an adaptive-icon
-foreground and monochrome layer, and a 320×180 banner (the channel-poster
-lockup in black and white). `assets/brand/tools/make_app_icon.py` generates it
+`assets/brand/app-icon/` is the square app-icon and TV-banner master for
+Android, Android TV and Fire TV: a white Bricolage Grotesque ExtraBold V on
+black, an adaptive-icon foreground and monochrome layer, and a 320×180 banner
+(the white "VIPTV" wordmark on black). Roku branding is unchanged. `assets/brand/tools/make_app_icon.py` generates it
 reproducibly; provenance is in
 [the asset manifest](assets/ASSET_MANIFEST.md#app-icon-and-tv-banner-master).
 It replaces the amber V the KMP app shipped. Owner decision 2026-10-27

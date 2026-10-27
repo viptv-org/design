@@ -1,13 +1,13 @@
 {
   "source_commit": "7d6b4131a44d87b58edcf12709af5851da387176",
   "files": {
-    "ASSET_MANIFEST.md": "2133ec6cd85af8cae46a2d60cc0b967d996b017c16b04fe2ad1184be7b51a76d",
+    "ASSET_MANIFEST.md": "c1f675daa23e4d98b0d50fa9dc3b12e67e8b8f70a60c3253d1c7caec9c9b3f7d",
     "brand/app-icon/app-icon-foreground.svg": "6391219e3772ca94d52ec7149b09aae6447f0d6d946db23da5d4bca524fd986f",
     "brand/app-icon/app-icon-monochrome.svg": "39815d3f0b54d5454d91ba314a0eda4c95e34b3f84dd4c4d2084be9311ef4c91",
     "brand/app-icon/app-icon-square-1024.png": "1959e32ae74e1527356ccc2bd8e1761e0ba0ea371fb5b90ab44a8b028d3c1adb",
     "brand/app-icon/app-icon-square.svg": "0f196eccdca8924a6e17c76c92e1289f8a81b0cabae062bb6445cb2b9d754ad0",
-    "brand/app-icon/tv-banner-320x180.png": "944ded49e045660227784038302b50890c586d7ad842971b946e9ef18cf7caad",
-    "brand/tools/make_app_icon.py": "db4486cba40d624af8642796b0a790e906dee08d1c03a87f54a5b16d757ef747",
+    "brand/app-icon/tv-banner-320x180.png": "1f6ebc6f1fd49e93f4e13832c4189ef8c61e1cc93597cb142a54056620718c27",
+    "brand/tools/make_app_icon.py": "ebf3ded462fdd513bc74449ff5c2c646380d9dc594efce660965acc6d2512422",
     "fonts/README.md": "7102f4162f3d7e0d1e1b5429aa2ea9606e0ad23d3ec2a99b13af665d27b53a5b",
     "fonts/bricolage-grotesque-LICENSE.txt": "923f4ddf0fd39f9b7794ab0df7332f3d95dc43e8ad7ec2289d6d9e8491177f51",
     "fonts/bricolage_grotesque_700.ttf": "01e40bbb8f88549e8603fb5b5facb3aa87d7ab96bcfc6da1298bbabbb493273d",

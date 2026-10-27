@@ -13,8 +13,8 @@ Outputs, in assets/brand/app-icon/:
                             the 72-unit visible area, transparent ground
   app-icon-monochrome.svg   the same V as a single-colour silhouette for
                             themed (monochrome) icons
-  tv-banner-320x180.png     xhdpi TV banner: the remote channel-poster lockup
-                            in black and white, scaled to 180 px high
+  tv-banner-320x180.png     xhdpi TV banner: the "VIPTV" wordmark in white on
+                            black, so its V is the icon's V
 
 Requires Pillow and fontTools (pinned so the PNG bytes reproduce):
   python3 -m venv /tmp/viptv-icons
@@ -33,11 +33,11 @@ from PIL import Image, ImageDraw, ImageFont
 ASSETS = Path(__file__).resolve().parents[2]
 FONT = ASSETS / "fonts/remote_bricolage_800.ttf"
 OUT = ASSETS / "brand/app-icon"
+OUT_NAME = OUT.relative_to(ASSETS.parent).as_posix()
 
 BLACK = "#000000"   # tokens color.bg-oled
 WHITE = "#FFFFFF"   # tokens color.fill.white
 GLYPH_RATIO = 0.625  # V font size / mark size
-CORNER = 0.28        # banner mark corner radius / mark size
 OVERSAMPLE = 8
 
 # Adaptive icons are a 108-unit canvas; launchers mask the centre 72 units.
@@ -112,23 +112,20 @@ def square_png(px):
 
 
 def banner():
-    """320x180 xhdpi TV banner: make_remote_branding.py's 336x210 channel-poster
-    lockup (mark 60, text 72, gap 18) scaled to 180 px high, recoloured: a white
-    rounded-square mark holding a black V, then a white wordmark, on black."""
+    """320x180 xhdpi TV banner: the white "VIPTV" wordmark centred on black.
+
+    The text size and -0.04 em tracking are make_remote_branding.py's
+    channel-poster wordmark (72 px at 210 px high) scaled to 180 px high; the
+    lockup's mark is dropped because the wordmark's own V is the icon's V."""
     width, height = 320, 180
-    scale = height / 210 * OVERSAMPLE
-    mark, text_size, gap = 60 * scale, 72 * scale, 18 * scale
+    text_size = 72 * height / 210 * OVERSAMPLE
     image = Image.new("RGB", (width * OVERSAMPLE, height * OVERSAMPLE), BLACK)
     draw = ImageDraw.Draw(image)
     font = ImageFont.truetype(str(FONT), round(text_size))
     tracking = -text_size * 0.04
     word = sum(font.getlength(c) for c in WORDMARK) + tracking * (len(WORDMARK) - 1)
-    x = (image.width - mark - gap - word) / 2
+    x = (image.width - word) / 2
     cy = image.height / 2
-    draw.rounded_rectangle((x, cy - mark / 2, x + mark, cy + mark / 2), radius=mark * CORNER, fill=WHITE)
-    for polygon in place_v(mark, x + mark / 2, cy):
-        draw.polygon(polygon, fill=BLACK)
-    x += mark + gap
     _, top, _, bottom = font.getbbox(WORDMARK)
     y = cy - (top + bottom) / 2
     for char in WORDMARK:
@@ -148,7 +145,10 @@ def generate(out):
 
 
 def main():
-    if sys.argv[1:] == ["--check"]:
+    args = sys.argv[1:]
+    if args not in ([], ["--check"]):
+        raise SystemExit("usage: make_app_icon.py [--check]")
+    if args:
         with tempfile.TemporaryDirectory() as tmp:
             names = generate(Path(tmp))
             stale = [
@@ -156,11 +156,11 @@ def main():
                 if not (OUT / n).is_file() or (Path(tmp) / n).read_bytes() != (OUT / n).read_bytes()
             ]
         if stale:
-            raise SystemExit(f"regenerate assets/brand/app-icon: {', '.join(stale)} differ")
-        print(f"assets/brand/app-icon up to date ({len(names)} files)")
+            raise SystemExit(f"regenerate {OUT_NAME}: {', '.join(stale)} differ")
+        print(f"{OUT_NAME} up to date ({len(names)} files)")
         return
     for name in generate(OUT):
-        print(f"assets/brand/app-icon/{name}")
+        print(f"{OUT_NAME}/{name}")
 
 
 if __name__ == "__main__":
