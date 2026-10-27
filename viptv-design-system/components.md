@@ -60,7 +60,7 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 - **Progress:** P/D 4 px (3 px on small tiles), T 6 px. The track is white at 0.22 and the fill is accent.
 - **Live dot:** 8 px, or 12 px on TV.
 - **Carousel dots:** the active dot is an 18 × 6 pill, the others are 6 × 6.
-- **Spinner:** 12 (P/D) or 18 (T). The track is `#45454B` and the arc is accent.
+- **Spinner:** 12 (P/D) or 18 (T). The track is `#45454B` and the arc is accent. The one exception is the pull-to-refresh indicator (§9, REFRESH-PULL-001).
 - **Buffering ring:** 48, centred over the video.
 - **Key hints:** D uses `kbd` keycaps. T uses a legend: bottom-right, keycaps with a 2 px 0.28 outline and radius 10, for example "OK Select · BACK Close".
 - **Status words (TV player):** PLAYING / PAUSED / BUFFERING / LOADING, 20/700 with +0.1em tracking.

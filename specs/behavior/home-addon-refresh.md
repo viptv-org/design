@@ -46,6 +46,11 @@ existing meanings. Leaving Home cancels the watcher; returning restores Home
 focus and immediately checks configuration. Background refresh must not cancel
 an unrelated active detail, source picker, playback or profile interaction.
 
+A phone or tablet pull ([REFRESH-PULL-001](pull-to-refresh.md)) is the only
+refresh the viewer starts. It rebuilds without a revision check and shows the
+pull indicator, and otherwise follows the presentation and recovery rules
+above.
+
 ## Acceptance
 
 - HAF-01: Import a new eligible catalog add-on while Home remains open. Its
@@ -64,10 +69,6 @@ an unrelated active detail, source picker, playback or profile interaction.
   revision change. Commit selected new add-ons: revision becomes observable.
 - HAF-08: Catalog-only, stream-only, empty and required-filter add-ons follow
   existing shared policy. No provider alias or source choice is added by adapters.
-
-A deliberate phone or tablet pull ([REFRESH-PULL-001](pull-to-refresh.md)) is
-the one refresh that skips the revision check and shows an indicator. It
-follows the presentation and recovery rules above.
 
 Browser/controller tests establish effects and focus behavior. Physical TV,
 codec, HDR and playback qualification are outside this change's claims.

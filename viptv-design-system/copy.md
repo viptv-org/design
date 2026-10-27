@@ -24,7 +24,7 @@ Source groups (proposed, SRC-BEST-MATCH-001): source list group headers **"Best 
 
 Source picker status (proposed, [SRC-DRAWER-001](../specs/behavior/source-drawer.md#no-best-match-hint)): no layout shows a hint about how Play picks a source. **"Play always starts the best match. Change … in Settings › Playback."** is retired on phone, tablet, desktop/web and TV. The TV status line under the list reads **"Checking add-ons · [N] sources so far"** while add-ons answer and **"Opening stream…"** (or the current opening stage) while a stream opens. It is hidden otherwise.
 
-Pull-to-refresh (proposed, [REFRESH-PULL-001](../specs/behavior/pull-to-refresh.md#copy)): no copy. The indicator has no label, and no toast or error reports the result.
+Pull-to-refresh (proposed, [REFRESH-PULL-001](../specs/behavior/pull-to-refresh.md#copy)): no copy. The indicator has no label, and no toast or error reports the result. An expired session shows the existing **"Session expired. Sign in again."** on sign-in.
 
 ## Empty states
 
