@@ -156,6 +156,7 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 - **Empty state:** a 52 round icon, a title and one line of help, sometimes with one action (for example "Browse Discover").
 - **Loading more:** a spinner + "Loading more titles…" / "Loading more channels… [120] of [860]" at the end of a list. There are never Load more buttons.
 - **Skeletons:** these have the real layout's shapes (featured card, posters, continue cards, list rows) and appear on P and D. TV has no skeletons: it shows a "Starting VIPTV…" cover at launch, then real content.
+- **Pull-to-refresh (proposed, REFRESH-PULL-001):** phone and tablet layouts only, on Home, My List, History and Details. Pulling down at the very top of the page past the threshold shows the Material 3 indicator (a 40 disc in `color.surface.2` with a `color.text.secondary` spinner, top centre) over the shown content and reloads the page at once. There is no cover, skeleton or text, and a failure keeps the shown data with no error. D and T have no gesture. Gesture, reload scope, failure, return and acceptance are in [pull-to-refresh.md](../specs/behavior/pull-to-refresh.md).
 
 ---
 

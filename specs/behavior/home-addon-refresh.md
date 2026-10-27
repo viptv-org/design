@@ -65,5 +65,9 @@ an unrelated active detail, source picker, playback or profile interaction.
 - HAF-08: Catalog-only, stream-only, empty and required-filter add-ons follow
   existing shared policy. No provider alias or source choice is added by adapters.
 
+A deliberate phone or tablet pull ([REFRESH-PULL-001](pull-to-refresh.md)) is
+the one refresh that skips the revision check and shows an indicator. It
+follows the presentation and recovery rules above.
+
 Browser/controller tests establish effects and focus behavior. Physical TV,
 codec, HDR and playback qualification are outside this change's claims.
