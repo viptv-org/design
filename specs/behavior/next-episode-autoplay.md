@@ -1,11 +1,14 @@
 # PLAY-NEXT-AUTOPLAY-001 — Next-episode end panel and autoplay countdown
 
-Status: **implemented in the KMP app** (phone, desktop, web and TV), owner
-decision 2026-10-27 ([app#65](https://github.com/viptv-org/app/issues/65)).
+Status: **proposed**, owner decision 2026-10-27
+([app#65](https://github.com/viptv-org/app/issues/65)). The KMP app (phone,
+desktop, web and TV) already implements it; it becomes baseline once device
+evidence is recorded.
 Source revisions: the end panel is app `c4d6696`
 ([app#48](https://github.com/viptv-org/app/pull/48)), and the countdown and
 setting are app `f3bd256` ([app#77](https://github.com/viptv-org/app/pull/77)).
-The behaviour below is what shipped. The evidence is desktop UI tests that
+The owner decided after implementation, so this contract records what
+shipped rather than leading it. The evidence is desktop UI tests that
 drive the countdown with a test clock. No device evidence is recorded yet.
 Roku and other clients follow through their own pins.
 
@@ -38,8 +41,10 @@ The panel opens when the player reports that the media has **ended**
 (Media3 `STATE_ENDED`, mpv `eof-reached`, `<video>` `ended`). All of the
 following must hold:
 
-- the title is a series episode on demand, not live;
-- a next episode is known (the server's continuation, never guessed);
+- the media is on demand, not live;
+- a next episode is known (the server's continuation, never guessed). Only
+  series episodes have one. Phone, desktop and web also check that the title
+  is a series episode; TV relies on the next episode alone;
 - playback has not failed and, on TV, is not the undecodable state;
 - the viewer has not dismissed the panel for this end.
 
@@ -63,7 +68,9 @@ keeps it after `ended`. No app background is drawn behind the panel.
 
 - Scrim: a horizontal gradient over the frame, black at 35 % (left edge),
   55 % (45 % across) and 82 % (right edge).
-- Caption `[Series] · Credits` at (96, 616), 22/32, secondary text.
+- Caption `[Title] · Credits` at (96, 616), 22/32, secondary text. The title
+  is the series name once its details have loaded, otherwise the episode
+  title.
 - Panel column at (1040, 120), 784 wide, 18 gap:
   - eyebrow `Next episode`, 24/35 semibold, secondary;
   - heading `[N]. [Episode title]`, 52/59.8 bold, −1.04 tracking;
@@ -73,7 +80,7 @@ keeps it after `ended`. No app background is drawn behind the panel.
     - primary action, 72 high, 28 side padding: the play glyph and the label
       (26/37.7 bold);
     - glass action `Keep watching credits`, 340×72;
-  - footnote at 6 px top padding, 22/32, `#8F8D89` (see [Copy](#copy)).
+  - footnote at 6 px top padding, 22/32, `color.text.tertiary` (see [Copy](#copy)).
 - Arrival: the caption and column fade in and rise 16 px over 450 ms after a
   350 ms delay, standard easing `cubic-bezier(.2, 0, 0, 1)`. With reduced
   motion they appear in place.
@@ -81,10 +88,14 @@ keeps it after `ended`. No app background is drawn behind the panel.
 
 ### Phone, desktop and web
 
-Desktop and web use the phone panel. This is provisional: the `D3PlayerNext`
-card (`Play next episode` / `Back to the series`) is not built.
+Desktop and web use the phone panel. This is a provisional platform exception:
+the `D3PlayerNext` card (`Play next episode` / `Back to the series`) is not
+built yet. The same actions stay available, and the desktop parity test is
+`NextEpisodeEndPanelUiTest`. Measurements are in dp (phone) and px (desktop
+and web window).
 
-- Scrim: black at 35 % over the frame, inside the system and cutout insets.
+- Scrim: black at 35 % over the whole frame. The content sits inside the system
+  and cutout insets.
 - Content sits at the bottom, with 26 vertical padding. Side padding is 56 when
   the window is at least 800 wide and 24 otherwise. Below 640 wide the
   information stacks above the actions with 16 gap. At 640 and wider they sit
@@ -99,13 +110,18 @@ card (`Play next episode` / `Back to the series`) is not built.
 - Initial focus: `Watch credits`. Escape on desktop and web dismisses the
   panel instead of closing the player.
 
+Dismissing the panel shows the player controls again. On phone, focus returns
+to the Next episode control. On TV the panel closes with the controls hidden,
+and the next key reveals them.
+
 ## Countdown
 
 The countdown runs when the panel opens and all of these hold:
 
 - **Autoplay next episode** is on for this device;
 - the media is still ended;
-- the title is a series episode, not a movie, live channel or `tv` card.
+- the title is a series episode: not a movie, and not a live channel (card
+  kind `channel` or `tv`).
 
 Each opened panel gets one countdown:
 
@@ -117,18 +133,22 @@ Each opened panel gets one countdown:
    arc starts at 12 o'clock with round caps. The glyph shrinks while the ring
    shows. On TV the ring is 40 with a 3 stroke and the glyph shrinks from 24
    to 18. On phone the ring is 26 with a 2.5 stroke and the glyph shrinks from
-   18 to 12. The ring is not drawn at all when no countdown is running, so the
-   panel keeps its layout.
+   18 to 12. With the setting off the ring is never drawn, so the panel keeps
+   its earlier layout. When a countdown stops, the ring goes and the glyph
+   returns to full size.
 4. **Reduced motion:** the number still counts down, but no ring is drawn and
-   the glyph keeps its full size. The TV panel also skips its fade-up. The
-   TV Display setting **Reduce motion** decides: On and Off apply as chosen,
-   and Follow TV uses the platform setting. Phone and web follow the platform
-   setting (Android animator scale 0, iOS Reduce Motion, browser
-   `prefers-reduced-motion`). The desktop app has no portable query, so it
-   always counts as motion allowed.
-5. At 0 the next episode plays through the same path as the primary action.
-   It plays only if the panel is still open. A tick that lands in the same
-   frame that closed the panel plays nothing.
+   the glyph keeps its full size. The TV panel also skips its fade-up. Every
+   platform reads the device's Display **Reduce motion** record when the
+   player opens: On and Off apply as chosen, and Follow TV (the default, and
+   the only value off TV, where the setting has no row) uses the platform
+   setting: Android animator scale 0, iOS Reduce Motion, browser
+   `prefers-reduced-motion`. The desktop app has no portable query, so it
+   counts as motion allowed.
+5. At 0 the next episode plays through the same path as the primary action:
+   the player closes and the next episode starts through the normal source
+   flow. That flow owns its loading and failure states, and Back from it
+   follows its own rules. It plays only if the panel is still open. A tick
+   that lands in the same frame that closed the panel plays nothing.
 6. Activating the primary action during the countdown plays at once.
 
 Once cancelled or expired, a countdown never runs again for that panel. The
@@ -141,8 +161,9 @@ Any viewer action cancels the countdown for this end:
 
 - `Watch credits` / `Keep watching credits`, which also dismiss the panel;
 - Back, and Escape on desktop and web, which dismiss the panel;
-- any key press, including D-pad moves and the TV's play/pause key, which the
-  player handles itself but still counts;
+- any key going down, including D-pad moves and the TV's play/pause key, which
+  the player handles itself but still counts. The first key-down cancels, so
+  repeat and hold add nothing;
 - any pointer or touch press over the panel;
 - seeking away from the end (the media is no longer ended).
 
@@ -181,8 +202,8 @@ opens a new panel, with a new countdown if the setting is on.
 
 The `Next episode button` row's description is `Shows during the credits`.
 Its old suffix, "Nothing ever plays on its own" (Tv3SetPlayback,
-D3SetPlayback; the phone board's "During the credits — nothing plays on its
-own"), is retired.
+D3SetPlayback; the phone and tablet boards' "During the credits — nothing
+plays on its own"), is retired.
 
 ## Copy
 
@@ -221,7 +242,12 @@ reduced motion the visible number is the only progress.
     until you press OK";
   - the `Next episode button` descriptions on `Tv3SetPlayback`,
     `M3SetPlayback` and `D3SetPlayback`;
+  - the same description on the tablet `T3Settings` board;
+  - `M3PlayerNext` and `D3PlayerNext`, which have no countdown state;
   - every Playback board, which lacks the autoplay row.
+
+  The `size.player.up-next-*` tokens describe the retired card and do not size
+  the end panel.
 - **AND-037 Up Next** (old Android client): the countdown starts at the end of
   the media, not in the final ten seconds. It sits on the end panel's primary
   action, not a separate `Starts in` card with Play now / Cancel. It cannot
@@ -230,7 +256,8 @@ reduced motion the visible number is the only progress.
   countdown is 10 s, not the placeholder `[8]`.
 - **Roku baseline:** the [Roku contract](roku-ux-contract.md#next-episode-behavior)
   still records the frozen Roku `7d6b413` behaviour (auto-start in the last
-  ten seconds). Roku adopts this contract only through its own pin.
+  ten seconds). Roku, including the ROK-REMOTE-001 rebuild, adopts this
+  contract only through its own pin.
 
 ## Acceptance
 

@@ -27,7 +27,7 @@ their pinned episode presentation until they explicitly adopt this addition.
 
 ## Settled with the product owner
 
-1. **Up Next:** at the end of a series episode, a panel over the last frame whose primary action counts down 10 s ("Next episode in [9]", with a ring that empties) and then plays the next episode. Any viewer action cancels it, and Settings › Playback › **Autoplay next episode** (on by default, per device) turns it off. It does not take over the whole screen. Owner decision 2026-10-27, replacing the earlier "Starts in [8]" card with Play now / Cancel; see [PLAY-NEXT-AUTOPLAY-001](../specs/behavior/next-episode-autoplay.md).
+1. **Up Next:** at the end of a series episode, a panel over the last frame whose primary action counts down 10 s ("Next episode in [N]", with a ring that empties) and then plays the next episode. Any viewer action cancels it, and Settings › Playback › **Autoplay next episode** (on by default, per device) turns it off. It does not take over the whole screen. Owner decision 2026-10-27, replacing the earlier "Starts in [8]" card with Play now / Cancel; see [PLAY-NEXT-AUTOPLAY-001](../specs/behavior/next-episode-autoplay.md).
 2. **TV subtitles and audio:** one scrolling list in the right panel. The list opens focused on the current track.
 3. **TV pairing code expiry:** a persistent expired state (the code struck through, "This code expired.", Try again focused, QR dimmed), plus a web page where the code is typed ("Link your TV").
 4. **Protected profiles:** a lock badge only. The PIN is asked for when the profile is opened.
@@ -197,10 +197,11 @@ episode**, on by default. It is stored per device because the profile
 preference API has no field for it.
 
 "Nothing plays on its own" is now the TV footnote only when the setting is off
-or after a cancel. The boards that promise nothing autoplays are superseded
-until the canvas re-exports them: `Tv3PlayerNext`, `Tv3Motion` Play next, and
-the `Next episode button` description on `Tv3SetPlayback`, `M3SetPlayback` and
-`D3SetPlayback`. See the [next-episode autoplay contract](../specs/behavior/next-episode-autoplay.md).
+or after a cancel. The boards that promise nothing autoplays (`Tv3PlayerNext`,
+`Tv3Motion` Play next and the Playback settings boards) are superseded until
+the canvas re-exports them; the
+[next-episode autoplay contract](../specs/behavior/next-episode-autoplay.md#superseded)
+lists them.
 
 ## Android TV episode-number jump (AND-EPISODE-JUMP-001)
 

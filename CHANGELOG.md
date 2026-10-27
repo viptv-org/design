@@ -1,6 +1,6 @@
 # Design changes
 
-## 2026-10-27 — Next-episode autoplay countdown and its setting
+## 2026-10-27 — Proposed: Next-episode autoplay countdown and its setting
 
 [PLAY-NEXT-AUTOPLAY-001](specs/behavior/next-episode-autoplay.md) records
 what the KMP app shipped in app#48 and app#77. When a series episode ends, the
@@ -18,7 +18,7 @@ This resolves the conflict between the Roku contract, AND-037 and
 `decisions.md` #1 (a countdown) and the TV, phone and desktop boards ("Nothing
 plays on its own"). The Roku baseline stays frozen and AND-037 is marked
 superseded. Decision #1, the Up Next component, copy, the `up-next-countdown`
-token (now 10 s) and the research notes are amended. "Nothing ever plays on its
+token (now 10000ms) and the research notes are amended. "Nothing ever plays on its
 own" is retired from the `Next episode button` setting description. Owner
 decision 2026-10-27 ([app#65](https://github.com/viptv-org/app/issues/65),
 [design#26](https://github.com/viptv-org/design/issues/26)). Canvas boards for
