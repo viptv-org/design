@@ -1,5 +1,30 @@
 # Design changes
 
+## 2026-10-27 — Proposed: Phone and tablet pull-to-refresh
+
+[REFRESH-PULL-001](specs/behavior/pull-to-refresh.md) records what the KMP
+app shipped in app#35 (`b55f942`), with the My List rule from app#74
+(`3aa4a3e`). On phone and tablet layouts, pulling down at the very top of
+Home, My List, History or Details shows the Material 3 indicator and reloads
+the page at once. On My List the very top means the collapsing header is
+fully expanded. A pull released before the threshold does nothing. The pull
+skips the revision check and rebuilds Home even when nothing changed. It
+otherwise follows HOME-ADDON-001's quiet rules: no cover, no scroll reset, and
+a failure keeps the shown data with no error. An expired session goes to
+sign-in as usual. TV, the desktop app and the browser have no gesture. The source
+picker, Browse, Calendar, Live, Search and Settings have none either, because
+their loaders empty the page first. There is no copy.
+
+The indicator is the Material default: a `color.text.secondary` arc on a
+`color.surface.2` disc. That makes it the one non-accent spinner, an exception
+recorded against the Spinner rule (`components.md` §3) and the README accent
+principle. `components.md` §3 and §9, `copy.md`, the README, HOME-ADDON-001
+and phone research note 8 ("skeletons not spinners", which covers first loads
+only) gain pointers. No board is superseded. Owner request 2026-10-26
+([app#1](https://github.com/viptv-org/app/issues/1),
+[design#23](https://github.com/viptv-org/design/issues/23)). There is no
+device evidence yet, and no canvas board shows the indicator.
+
 ## 2026-10-27 — Proposed: Wider desktop/web source drawer and no best-match hint
 
 [SRC-DRAWER-001](specs/behavior/source-drawer.md) records what the KMP app

@@ -60,7 +60,7 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 - **Progress:** P/D 4 px (3 px on small tiles), T 6 px. The track is white at 0.22 and the fill is accent.
 - **Live dot:** 8 px, or 12 px on TV.
 - **Carousel dots:** the active dot is an 18 × 6 pill, the others are 6 × 6.
-- **Spinner:** 12 (P/D) or 18 (T). The track is `#45454B` and the arc is accent.
+- **Spinner:** 12 (P/D) or 18 (T). The track is `#45454B` and the arc is accent. The one exception is the pull-to-refresh indicator (§9, REFRESH-PULL-001).
 - **Buffering ring:** 48, centred over the video.
 - **Key hints:** D uses `kbd` keycaps. T uses a legend: bottom-right, keycaps with a 2 px 0.28 outline and radius 10, for example "OK Select · BACK Close".
 - **Status words (TV player):** PLAYING / PAUSED / BUFFERING / LOADING, 20/700 with +0.1em tracking.
@@ -156,6 +156,7 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 - **Empty state:** a 52 round icon, a title and one line of help, sometimes with one action (for example "Browse Discover").
 - **Loading more:** a spinner + "Loading more titles…" / "Loading more channels… [120] of [860]" at the end of a list. There are never Load more buttons.
 - **Skeletons:** these have the real layout's shapes (featured card, posters, continue cards, list rows) and appear on P and D. TV has no skeletons: it shows a "Starting VIPTV…" cover at launch, then real content.
+- **Pull-to-refresh (proposed, REFRESH-PULL-001):** phone and tablet layouts only, on Home, My List, History and Details. Pulling down at the very top of the page past the threshold shows the Material 3 indicator (a 40 disc in `color.surface.2` with a `color.text.secondary` spinner, top centre) over the shown content and reloads the page at once. There is no cover, skeleton or text, and a failure keeps the shown data with no error. D and T have no gesture. Gesture, reload scope, failure, return and acceptance are in [pull-to-refresh.md](../specs/behavior/pull-to-refresh.md).
 
 ---
 
