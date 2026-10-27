@@ -1,22 +1,25 @@
 # Design changes
 
-## 2026-10-27 — Wider desktop/web source drawer and no best-match hint
+## 2026-10-27 — Proposed: Wider desktop/web source drawer and no best-match hint
 
-The desktop and web source drawer is now min(720, 55 % of the window) wide,
-never narrower than 460 (full width only in a window narrower than that). At
-1440 it is 720. Other desktop drawers, the tablet drawer, the phone sheet and
-the TV panel are unchanged. On web, the drawer opened from a title's Details
-dialog now stacks over that dialog behind its 0.55 scrim. Closing the drawer
-(Escape, ×, scrim click) returns to the dialog unchanged. The footer hint
-"Play always starts the best match. Change … in Settings › Playback." is
-removed on every layout. TV keeps its status line only while add-ons answer
-("Checking add-ons · N sources so far") or a stream opens ("Opening stream…").
-`components.md` §8 and `copy.md` are amended. The `D3Sources`,
-`D3SourcesEmpty`, `D3SourcesTorrent`, `M3Sources` and `Tv3Sources` boards are
-listed as superseded until the canvas re-exports them. Owner decision
-2026-10-27, shipped in [app#86](https://github.com/viptv-org/app/pull/86)
-(`f80aa91`) ([design#24](https://github.com/viptv-org/design/issues/24)). A
-board for the drawer over the web Details dialog is still needed.
+[SRC-DRAWER-001](specs/behavior/source-drawer.md) records what the KMP app
+shipped in app#86 (`f80aa91`). The desktop and web source drawer is now
+min(720, 55 % of the window) wide, never narrower than 460; at 1440 it is 720.
+Other desktop drawers, the tablet drawer, the phone sheet and the TV panel are
+unchanged. On web, the drawer opened from a title's Details dialog now stacks
+over that dialog behind its 0.55 scrim. Focus starts on its ×, and Escape, the
+× or a scrim click close only the drawer and return to the unchanged dialog.
+The hint "Play always starts the best match. Change … in Settings › Playback."
+is removed on every layout. TV keeps its status line only while add-ons
+answer ("Checking add-ons · N sources so far") or a stream opens ("Opening
+stream…"). `components.md` §8, `copy.md` and the README overview are amended.
+The `D3Sources`, `D3SourcesEmpty`, `D3SourcesTorrent`, `CmpDesk3`, `M3Sources`,
+`Tv3Sources` and `Tv3SourcesLoading` boards are listed as superseded until the
+canvas re-exports them. Owner decision 2026-10-27
+([app#60](https://github.com/viptv-org/app/issues/60),
+[design#24](https://github.com/viptv-org/design/issues/24)). No device
+evidence yet, and a board for the drawer over the web Details dialog is still
+needed.
 
 ## 2026-10-27 — Proposed: Next-episode autoplay countdown and its setting
 
