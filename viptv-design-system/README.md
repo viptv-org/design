@@ -53,7 +53,7 @@ viptv-design-system/
 |---|---|---|---|
 | Frame | 390 × 844 | 1440 × 900 (web 1280 × 800, ultra-wide 2560 × 1080) | 1920 × 1080, safe area 96 × 54 |
 | Navigation | Floating 64 px glass nav, 28 px above the edge, with a separate search button | 40 px custom title bar (back, forward, search, window controls) + 84 px rail | 144 px icon rail that expands to a 520 px labelled menu |
-| Overlays | Bottom sheets over a 0.62 scrim, actions stacked full width | Centred 460 dialog, right 460 drawer, anchored popovers | Right 820 panel over a 0.6 scrim; full-screen text entry |
+| Overlays | Bottom sheets over a 0.62 scrim, actions stacked full width | Centred 460 dialog, right 460 drawer (the source drawer is min(720, 55 % of the window), never under 460), anchored popovers | Right 820 panel over a 0.6 scrim; full-screen text entry |
 | Focus | None. The pressed state replaces hover | `:focus-visible` = 2 px off-white ring with a 2 px ground gap | Off-white fill or white ring, without scaling |
 | Buttons | 54 tall (58 on detail) | 48 tall | 72 tall (52 small) |
 | Minimum text | 11 px (eyebrows), 12 px captions | 11 px (rail labels, eyebrows) | 18 px |

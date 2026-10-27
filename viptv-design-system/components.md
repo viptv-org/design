@@ -132,12 +132,21 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 
 | | P | D | T |
 |---|---|---|---|
-| Container | Bottom sheet, auto height, radius 28 top, grabber | Centred dialog 460 (radius 18, padding 24); right drawer 460; anchored popover | Right panel 820, padding 64 / 96 / 120 / 64 |
+| Container | Bottom sheet, auto height, radius 28 top, grabber | Centred dialog 460 (radius 18, padding 24); right drawer 460 (the source drawer is wider, see below); anchored popover | Right panel 820, padding 64 / 96 / 120 / 64 |
 | Scrim | 0.62 black | 0.55, body row only (title bar and rail stay bright) | 0.6 |
 | Actions | Stacked full width, 54 tall | Stacked 48 tall | Rows 80 tall |
 | Close | Grabber, or tap the scrim | × disc top-right, Esc | BACK |
 
 - A destructive action uses danger text on surface-3. Cancel stays neutral and gets default focus on D and T.
+- **Source drawer (D):** on desktop and web the source drawer is min(720, 55 % of the window) wide and never narrower than 460. A window narrower than 460 gets a full-width drawer. At 1440 it is 720; below about 836 it is 460. It gives source titles, badges and the file/description line more room. Other D drawers stay 460, and the tablet source drawer is unchanged (460). On web, the source drawer opened from the title's Details dialog opens **over** that dialog. Its 0.55 scrim dims the dialog and takes its clicks. The dialog keeps its season, scroll position and episode list, and it does not refetch. Focus starts on the drawer's × and Tab stays inside the drawer. Escape (acting on key up), the ×, or a click on the scrim closes only the drawer and returns to the dialog unchanged. A drawer opened from Home or Live (for example a Continue Watching tap) opens over that page as before. The scrim never takes keyboard focus on any layout. Owner decision 2026-10-27, shipped in [app#86](https://github.com/viptv-org/app/pull/86) (`f80aa91`, `sourceDrawerWidth` in `SourcesScreen.kt`, `BrowserSourceDrawer.kt`). A board for the drawer over the web Details dialog is still needed.
+- **No best-match hint in the source picker:** no layout shows a footer or status hint about how Play picks a source ("Play always starts the best match. Change … in Settings › Playback." is retired on phone, tablet, desktop/web and TV). On TV the status line under the list shows only while add-ons answer (**Checking add-ons · [N] sources so far**) or a stream opens (**Opening stream…**, or the current opening stage). An idle TV picker has no status line, and the list takes its space. Owner decision 2026-10-27, shipped in app#86 (`SourcesScreen.kt`, `TvSourcesScreen.kt`).
+- **Superseded source boards:** these canvas exports stay as exported until the canvas re-exports them:
+  - `D3Sources`, `D3SourcesEmpty` and `D3SourcesTorrent` draw the source drawer 460 wide;
+  - `D3Sources` also shows the footer "Play always starts the best match. Change it in Settings › Playback.";
+  - `M3Sources` shows "Play always starts the best match. Change this in Settings › Playback." under the list;
+  - `Tv3Sources` shows the idle line "Play always starts the best match. Change how it's chosen in Settings › Playback.".
+
+  `Tv3SourcesLoading` is not superseded by this change: TV keeps its loading status line.
 - A **popover** belongs to one control (a menu for a card, the catalog, the genre, the provider or the engine) and has no scrim.
 - **TV full-screen text panel:** long text (More info, Source details) scrolls inside an opaque surface-1 box with a scroll bar and the legend "▲▼ Scroll".
 - The **title menu** (⋯ / right-click / long-press / TV hold OK) holds: Resume previous episode, Choose source, Mark watched, Watch from the beginning, Remove from Continue Watching, Add to My List, Cancel.
