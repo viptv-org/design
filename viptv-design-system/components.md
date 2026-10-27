@@ -132,12 +132,13 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 
 | | P | D | T |
 |---|---|---|---|
-| Container | Bottom sheet, auto height, radius 28 top, grabber | Centred dialog 460 (radius 18, padding 24); right drawer 460; anchored popover | Right panel 820, padding 64 / 96 / 120 / 64 |
+| Container | Bottom sheet, auto height, radius 28 top, grabber | Centred dialog 460 (radius 18, padding 24); right drawer 460 (source drawer: min(720, 55 % of the window), never under 460, SRC-DRAWER-001); anchored popover | Right panel 820, padding 64 / 96 / 120 / 64 |
 | Scrim | 0.62 black | 0.55, body row only (title bar and rail stay bright) | 0.6 |
 | Actions | Stacked full width, 54 tall | Stacked 48 tall | Rows 80 tall |
 | Close | Grabber, or tap the scrim | × disc top-right, Esc | BACK |
 
 - A destructive action uses danger text on surface-3. Cancel stays neutral and gets default focus on D and T.
+- **Source drawer (proposed, SRC-DRAWER-001):** on desktop and web the source drawer is min(720, 55 % of the window) wide, never under 460 (a window under 640 gets the phone sheet). Other D drawers and the tablet source drawer stay 460. On web, a drawer opened from the Details dialog opens over it behind the 0.55 scrim, and closing it returns to the unchanged dialog. No layout shows a hint about how Play picks a source; TV keeps its status line only while add-ons answer or a stream opens. Geometry, focus, Escape, scrim, return paths, acceptance and the superseded `D3Sources`, `D3SourcesEmpty`, `D3SourcesTorrent`, `CmpDesk3`, `M3Sources`, `Tv3Sources` and `Tv3SourcesLoading` boards are in [source-drawer.md](../specs/behavior/source-drawer.md).
 - A **popover** belongs to one control (a menu for a card, the catalog, the genre, the provider or the engine) and has no scrim.
 - **TV full-screen text panel:** long text (More info, Source details) scrolls inside an opaque surface-1 box with a scroll bar and the legend "▲▼ Scroll".
 - The **title menu** (⋯ / right-click / long-press / TV hold OK) holds: Resume previous episode, Choose source, Mark watched, Watch from the beginning, Remove from Continue Watching, Add to My List, Cancel.
