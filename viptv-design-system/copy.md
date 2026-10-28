@@ -26,6 +26,8 @@ Source picker status (proposed, [SRC-DRAWER-001](../specs/behavior/source-drawer
 
 Pull-to-refresh (proposed, [REFRESH-PULL-001](../specs/behavior/pull-to-refresh.md#copy)): no copy. The indicator has no label, and no toast or error reports the result. An expired session shows the existing **"Session expired. Sign in again."** on sign-in.
 
+Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads **"[Title]: [value]"** — "Genre: Any", "Genre: Comedy", "Sort: Popular", "Type: All", "Quality: All", "Source: All sources", "Catalog: Popular" — and an unset required chip reads **"[Title]: Required"**. The row ends with **"Clear"** (an × icon and the word) while any filter is set. A list's search field is **"Search [title]"** ("Search genre", "Search catalogs", "Search lists", "Search sources") and a text filter's field is **"Enter [title]"**; pointer layouts add **"Press Enter to apply"**. Rows read **"Current"** on a single choice's pick, **"· unavailable"** on an option that cannot be picked, and the clearing row is **"Any"**, or the control's own **"All"** / **"All sources"**. An empty search says **"No matches for [text]"**. The sheet's accessible close label is "Close".
+
 ## Empty states
 
 | Where | Copy |

@@ -1,5 +1,35 @@
 # Design changes
 
+## 2026-10-28 — The dropdown chip and its list are the one filter pattern
+
+[FILTER-CHIP-001](viptv-design-system/components.md#2-chips-and-segmented-controls)
+records the rule the owner set on 2026-10-27 and the implementation in
+app#117 (PR [app#130](https://github.com/viptv-org/app/pull/130), open while
+this entry lands). Browse / Discover / Movies / Series / Anime, My List and
+the source picker filter through one horizontal, scrolling row of dropdown
+chips at the top of the page: the catalog or list chip first, a group divider,
+one chip per facet, and a "Clear" chip at the end while anything is set. Each
+chip opens the shared choice list — the anchored popover on desktop, web and
+tablet, the bottom sheet on a phone — which adds a search field past 8 rows,
+ticks checkboxes and respects the provider's cap for a multiple choice, and
+applies a text filter on Enter or Done. A chip is filled while its value
+differs from the page default. Picking applies at once: no "Filters" toggle,
+no second panel and no Apply or "Show results" button. A set of 2–3 options,
+an on/off filter and a text filter are all that same chip.
+
+This retires the phone "Filters" toggle and applied-chip strip, the My List
+filter sheet and segmented type chips, the source picker's chip rows, the
+`W3Browse` filter rail, and the app#57 / app#59 segments-or-dropdown threshold.
+**TV is out of scope for that PR:** it keeps the Catalog + Filters chips and
+the "Show results" surface until [app#121](https://github.com/viptv-org/app/issues/121).
+`components.md` §2 gains the rules, §5 the list content and §8 the containers;
+`copy.md` gains the chip and list strings; the implemented component contracts
+record `FilterBar.kt` / `SearchableSelect.kt` and the `FilterPatternScanTest`
+that keeps the retired surfaces gone. No board is re-exported yet, and the
+canvas frames that draw the retired filter forms need one.
+
+Refs [app#117](https://github.com/viptv-org/app/issues/117), [design#30](https://github.com/viptv-org/design/issues/30).
+
 ## 2026-10-27 — Proposed: Phone and tablet pull-to-refresh
 
 [REFRESH-PULL-001](specs/behavior/pull-to-refresh.md) records what the KMP

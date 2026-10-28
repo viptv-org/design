@@ -39,14 +39,30 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 
 ## 2. Chips and segmented controls
 
-- **Filter chip:** unselected = transparent with a 0.10 border and secondary text. Selected = surface-3 with a 0.22 border and primary text. P 44 tall, D 40 tall (36 inside the source drawer), T 56 tall.
-- **Dropdown chip:** "Genre: Any ⌄". Once a value is set it reads "Genre: [Comedy]" in primary text.
-- **Required chip:** carries a small "Required" tag. An empty required filter shows the empty state "Choose the required filters to browse this catalog."
-- **Catalog chip (D):** always reads "Addon · Catalog", for example "Cinemeta · Popular".
-- **Quality chips:** "All 12 · 4K · 1080p 5 · 720p 4". The count is in tertiary text.
-- **Segmented control:** a surface-1 track with 4 px padding. The selected segment is an off-white fill with `on-light` text. P 44 (full width), D 40.
-- **Group divider:** a 1 px × 20 vertical hairline between chip groups (type chips | sort chips).
-- **TV:** selected but not focused = 0.16 fill. Focused = off-white fill with dark text.
+**The single filter pattern (FILTER-CHIP-001).** The dropdown chip and the choice list it opens (§5) are the one way a page filters, on every platform and on every page that filters: Browse / Discover / Movies / Series / Anime, My List and the source picker. Status: implemented on phone, tablet, desktop and web in app#117 ([app#130](https://github.com/viptv-org/app/pull/130)); **TV is out of scope for that PR:** it keeps the Catalog + Filters chips, the applied-chip strip and the "Show results" full-page surface until [app#121](https://github.com/viptv-org/app/issues/121) moves it onto the same chips.
+
+- **One bar, one row.** The top of the page holds one horizontal, scrolling row of dropdown chips, one per filter ("Genre: Any ⌄", "Sort: Popular ⌄"), 8 px apart. The catalog chip (or My List's list chip) comes first, then a group divider when facets follow, then one chip per facet. A **Clear** chip ends the row while any filter is set. On a browse or list page the row pins above the grid and scrolls sideways; a wheel over it scrolls the row, not the page.
+- **A chip opens its list** (§5): the anchored popover on D and tablet, the bottom sheet on P (§8), the right panel on T. A list with more than 8 rows, "Any" included, adds a search field at its top; that field takes focus on pointer layouts only, so a phone sheet never raises the keyboard by itself. A multiple choice uses checkboxes, stays open and respects the provider's cap (`maximum_selections`); at the cap the unticked rows are disabled. A single choice ticks, reads "Current" and closes.
+- **Picking applies immediately.** There is no "Filters" toggle, no second filter panel and no Apply or "Show results" button.
+- **Every shape is the same chip.** A set of 2–3 options is the chip, never segments. An on/off filter is a chip that toggles, with a check while on. A text, number or date filter is a chip whose list holds one field and applies on Enter, or Done on a soft keyboard; a set value leaves an "Any" row that clears it.
+- **Filled means changed.** A chip is filled (surface-3 with a 0.22 border and primary text) while its value differs from the page default, and unfilled (transparent, 0.10 border, secondary text) while it is at the default. A catalog or list chip always has a value, so it is never filled.
+- **Clear resets the filters, not the page.** Browse keeps the chosen catalog and drops every facet; My List keeps its list and returns to the default query; the source picker clears Quality and Source.
+- **Applying reloads from the first item.** A failed reload keeps the bar, the chosen values and the rows already shown beside the page's error line. An empty result keeps the bar and offers the page's clear action ("Clear all filters" on Browse).
+- **Return keeps the filters.** Coming back from a title or playback returns to the page with the same values, so the bar still shows them.
+- **Closing returns to the chip** that opened the list. On P the ×, the scrim and Back close only the sheet; on D, Escape or a click outside close only the popover.
+
+This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelect`: more than 5 options, or labels over 30 characters), the applied-chip strip and the phone "Filters" toggle, the canvas dictionary §A3 table's segmented-control and removable-applied-chip rows, and the `W3Browse` board's filter rail with its facet segments, toggles and segmented type chips. The reference files still document those retired forms until the canvas is re-exported; TV's filter surface (app#121) is the last one still drawn that way.
+
+**Chip geometry and states**
+- **Filter chip:** unset = transparent with a 0.10 border and secondary text. Set = surface-3 with a 0.22 border and primary text. P 44 tall, D and tablet 40, T 56.
+- **Clear chip:** an action, not a filter: no border, an × and the word in secondary text, in the row's own chip geometry.
+- **Dropdown chip:** "Genre: Any ⌄". "Genre: " stays secondary; the value is secondary while it is the default or "Any" and primary once it is set. Pill radius, 14 sp (P) / 13 sp (D) semibold text, a 14 chevron, at most 280 wide with an over-long value ellipsized.
+- **Required chip:** an unset required chip reads "Genre: Required" in its value slot and offers no "Any" row; app#130 draws no separate "Required" tag. An empty required filter shows the empty state "Choose the required filters to browse this catalog."
+- **Catalog chip:** always reads "Catalog: [name]", for example "Catalog: Popular". A row carries its add-on name on the right when that differs from the catalog name, which tells apart two add-ons' "Popular".
+- **Quality and source chips (source picker):** "Quality: All ⌄" and "Source: All sources ⌄". Each row carries its source count in tertiary text on the right ("1080p 5"), and the clearing row carries the total ("All 12").
+- **Segmented control:** a surface-1 track with 4 px padding. The selected segment is an off-white fill with `on-light` text. P 44 (full width), D 40. It never filters: it only switches modes inside one control, such as the phone remote's Buttons / Swipe (§11).
+- **Group divider:** a 1 px × 20 vertical hairline with 4 px either side, between the catalog or list chip and the facets.
+- **TV:** selected but not focused = 0.16 fill. Focused = off-white fill with dark text. TV filters keep their own surface, catalog and Filters chips until app#121.
 
 ---
 
@@ -83,7 +99,7 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 
 ## 5. Selection and settings rows
 
-- **Choice list:** the current value shows a check and "Current". Unavailable options read "· unavailable" in tertiary text and cannot be selected. On TV, focus opens on the current option.
+- **Choice list:** the list a filter chip opens (§2). The current value shows a check and "Current". Unavailable options read "· unavailable" in tertiary text and cannot be selected. A multiple choice ticks checkboxes and disables the unticked rows once the cap is reached. More than 8 rows adds a search field that filters as you type ("Search genre") and reports "No matches for [text]" when nothing matches. On TV, where the filters still open their own panels until app#121, focus opens on the current option.
 - **Radio rows:** used for settings choices such as Subtitle size (Small / System default / Large).
 - **Settings group:** a surface-1 card with rows split by hairlines. Each row is icon + title (+ note) + value + chevron. Values never wrap. Rows that hold a toggle have no chevron.
 - **Destructive row:** danger text, for example "Sign out" or "Remove addon".
@@ -139,7 +155,8 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 
 - A destructive action uses danger text on surface-3. Cancel stays neutral and gets default focus on D and T.
 - **Source drawer (proposed, SRC-DRAWER-001):** on desktop and web the source drawer is min(720, 55 % of the window) wide, never under 460 (a window under 640 gets the phone sheet). Other D drawers and the tablet source drawer stay 460. On web, a drawer opened from the Details dialog opens over it behind the 0.55 scrim, and closing it returns to the unchanged dialog. No layout shows a hint about how Play picks a source; TV keeps its status line only while add-ons answer or a stream opens. Geometry, focus, Escape, scrim, return paths, acceptance and the superseded `D3Sources`, `D3SourcesEmpty`, `D3SourcesTorrent`, `CmpDesk3`, `M3Sources`, `Tv3Sources` and `Tv3SourcesLoading` boards are in [source-drawer.md](../specs/behavior/source-drawer.md).
-- A **popover** belongs to one control (a menu for a card, the catalog, the genre, the provider or the engine) and has no scrim.
+- A **popover** belongs to one control (a menu for a card, a filter chip's list, the catalog, the genre, the provider or the engine) and has no scrim.
+- **Filter chip list (FILTER-CHIP-001):** the same list in the containers above: the anchored popover on D and tablet, a bottom sheet on P holding up to 80 % of the screen with 48 tall rows, the chip title as a heading and a × close, and the right panel on T. On P nothing raises the keyboard until the viewer types; the ×, the scrim and Back close only the sheet.
 - **TV full-screen text panel:** long text (More info, Source details) scrolls inside an opaque surface-1 box with a scroll bar and the legend "▲▼ Scroll".
 - The **title menu** (⋯ / right-click / long-press / TV hold OK) holds: Resume previous episode, Choose source, Mark watched, Watch from the beginning, Remove from Continue Watching, Add to My List, Cancel.
 
@@ -212,10 +229,19 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
   column at x=640, rows 1184×96 radius 14; Up/Down clamp inside the content
   column, Left returns to the sidebar.
 - **TV browse**: catalog chip (radius 32, 64 tall) + Filters chip carrying the
-  active-facet count + applied-chip strip; grid is 7 across at 1920 with 232×348
-  cards, 16/36 spacing, 96 inset, and appends pages.
-- **Phone browse**: 3 cards across, cards fill their cell; the Catalog/Filters
-  bar only exists when the server supplied browsable controls.
+  active-facet count + applied-chip strip (TV only until app#121); grid is 7
+  across at 1920 with 232×348 cards, 16/36 spacing, 96 inset, and appends pages.
+- **Filter bar**: `FilterBar.kt` draws the one scrolling chip row (8 dp gaps, the
+  group divider, a trailing "Clear" action chip) and picks the list container —
+  the bottom sheet on a phone-width touch layout, the popover everywhere else.
+  `SearchableSelect.kt` is the chip and its list, and `QueryControlFilter` maps a
+  provider control to a single, multiple, toggle or text chip.
+  `BrowseFilterBar.kt`, `LibraryFilterBar.kt` / `LibraryControls.kt` and
+  `SourceFilters.kt` build it for Browse, My List and the source picker, and
+  `FilterPatternScanTest` keeps the retired filter surfaces from coming back. TV
+  keeps `TvBrowseChrome` and the `Tv*` My List files until app#121.
+- **Phone browse**: 3 cards across, cards fill their cell; the single filter bar
+  only exists when the server supplied browsable controls.
 - **Desktop browse**: 6 columns at ≥1200 dp, 4 below; cards fill their cell
   (`minmax(0,1fr)`), never a fixed width.
 - **Desktop window**: one painted surface under the rounded frame so a host
