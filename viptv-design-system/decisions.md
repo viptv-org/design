@@ -185,6 +185,23 @@ VIPTV. Nothing checks, prompts or installs in the player. There is one channel
 and no backend version contract; the prompt asks people to update their server
 too. See the [app updates contract](../specs/behavior/app-updates.md).
 
+## Updating screen while Android installs (AND-APP-UPDATE-001)
+
+Recorded 2026-10-28 with the 2026-10-28 request
+([design#32](https://github.com/viptv-org/design/issues/32)) to write down what
+app#139 shipped (PR [app#145](https://github.com/viptv-org/app/pull/145),
+`81cf5ae`). Choosing **Install** no longer leaves the previous page on screen:
+one opaque full-screen cover owns the app until Android replaces the process,
+shows the write progress as a bar with a percent, stays behind Android's own
+confirmation, carries the install-permission step instead of the prompt's
+dialog, and tells the viewer whether VIPTV reopens itself. Where the app can
+reopen itself it does, and confirms **Updated to [version]** for six seconds.
+“Proposed” stays: there is no canvas board (app `docs/DESIGN_GAPS.md` GAP-065),
+the geometry in
+[app-updates.md](../specs/behavior/app-updates.md#updating-screen) is the
+implementation's, and Back on the permission step is still the page's Back
+rather than Later ([app#146](https://github.com/viptv-org/app/issues/146)).
+
 ## Subtitle mode (PLAY-SUBTITLE-MODE-001)
 
 The 2026-10-11 owner request replaces the Subtitles on/off preference with

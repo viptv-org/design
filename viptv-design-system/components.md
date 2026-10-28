@@ -158,6 +158,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - A **popover** belongs to one control (a menu for a card, a filter chip's list, the catalog, the genre, the provider or the engine) and has no scrim.
 - **Filter chip list (FILTER-CHIP-001):** the same list in the containers above: the anchored popover on D and tablet, a bottom sheet on P holding up to 80 % of the screen with 48 tall rows, the chip title as a heading and a × close, and the right panel on T. On P nothing raises the keyboard until the viewer types; the ×, the scrim and Back close only the sheet.
 - **TV full-screen text panel:** long text (More info, Source details) scrolls inside an opaque surface-1 box with a scroll bar and the legend "▲▼ Scroll".
+- **Updating screen (proposed, AND-APP-UPDATE-001):** a full-screen opaque cover, not an overlay on a page, while Android writes, confirms and installs an update. It covers the update prompt too. One centred column: V mark, title, what is happening, a progress bar with a percent, the restart line and, on the permission step only, a primary action and **Later**. Phone: 32 inset, column max 420, 16 gaps. TV: 120 × scale side inset, 120 × scale mark, 320 × 80 primary. Copy, states, focus, Back, failure, timing and acceptance are in [app-updates.md](../specs/behavior/app-updates.md#updating-screen); no board exists yet (app `docs/DESIGN_GAPS.md` GAP-065).
 - The **title menu** (⋯ / right-click / long-press / TV hold OK) holds: Resume previous episode, Choose source, Mark watched, Watch from the beginning, Remove from Continue Watching, Add to My List, Cancel.
 
 ---
@@ -174,6 +175,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Loading more:** a spinner + "Loading more titles…" / "Loading more channels… [120] of [860]" at the end of a list. There are never Load more buttons.
 - **Skeletons:** these have the real layout's shapes (featured card, posters, continue cards, list rows) and appear on P and D. TV has no skeletons: it shows a "Starting VIPTV…" cover at launch, then real content.
 - **Pull-to-refresh (proposed, REFRESH-PULL-001):** phone and tablet layouts only, on Home, My List, History and Details. Pulling down at the very top of the page past the threshold shows the Material 3 indicator (a 40 disc in `color.surface.2` with a `color.text.secondary` spinner, top centre) over the shown content and reloads the page at once. There is no cover, skeleton or text, and a failure keeps the shown data with no error. D and T have no gesture. Gesture, reload scope, failure, return and acceptance are in [pull-to-refresh.md](../specs/behavior/pull-to-refresh.md).
+- **Updated to [version] (proposed, AND-APP-UPDATE-001):** after Android installs an update and reopens the app, a semibold bar at the bottom centre (radius 12, `color.surface.2`, 20 × 12 padding, 16 from the edges) for six seconds. It has no action and never blocks the page. TV currently draws the phone's density sizes instead of scaling them, so the board has to set the TV size; the copy and timing are in [app-updates.md](../specs/behavior/app-updates.md#updating-screen).
 
 ---
 
