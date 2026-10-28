@@ -1,26 +1,40 @@
-# AND-APP-UPDATE-001 — Android in-app updates from GitHub Releases
+# AND-APP-UPDATE-001 — Android in-app updates
 
-Status: **proposed**, owner requested 2026-10-11. Android (phones, Android TV,
-Fire TV) adopts it first. Release packaging, versioning and `update.json` are
-owned by the Android repository (`VERSIONING.md`). Other clients are out of
-scope; Roku, TV-web and desktop keep their own delivery.
+Status: **proposed**, owner requested 2026-10-11. Android (phones, tablets,
+Android TV, Fire TV) adopts it first. Release packaging, versioning and the
+`update.json` feed are owned by the Android repository (`VERSIONING.md`). Other
+clients are out of scope; Roku, TV-web and desktop keep their own delivery.
 
 ## Intent
 
-Sideloaded Android installs learn about a newer beta release and install it
-from inside the app, without a store, a computer or ADB. There is one channel:
-the latest GitHub release. The backend is not versioned; release notes ask
-people to update their server to its latest version.
+Sideloaded Android installs learn about a newer build from the VIPTV server they
+are signed in to and install it from inside the app, without a store, a computer
+or ADB. There is one source: the connected server's feed at
+`<server origin>/updates/android/update.json` (app#64). The server application's
+own version is not part of that check; release notes still ask people to update
+their server to its latest version.
 
 ## Availability
 
-- Only release builds (built from a version tag) check for updates.
-  Development builds show the version only and never offer an update.
-- An update is **available** when the latest release has a higher version code
-  than the installed app and supports the device's Android version. A release
-  that needs a newer Android version is never offered.
-- The app downloads only the release's own APK and installs it only when its
-  size and checksum match the release's `update.json`.
+- Only a build a server publishes can be offered. With no signed-in server (local
+  mode) there is no feed and no update state at all; a build packaged for QA
+  torrent testing has updates switched off.
+- An update is **available** when the feed's `version_code` is higher than the
+  installed app's and the build supports the device's Android version. A build
+  that needs a newer Android version is never offered, and the app never offers
+  the same or a lower `version_code`.
+- The app installs only the APK the feed names, and only when its `size` and
+  `sha256` match the feed. Its `url` must be `https`; plain `http` is accepted
+  only on `127.0.0.1` or `localhost`, for a local test feed.
+- A server that publishes nothing answers 404 (its web app answers unknown paths
+  with HTML): About says **`This server doesn't publish app updates.`** and
+  nothing else happens. A feed that is malformed, names a non-`https` address or
+  carries a bad `sha256`/`size` shows
+  **`The server's update information is invalid.`** instead.
+- GitHub Releases is the planned future source, not today's (owner decision
+  2026-10-27). The feed format and the build's `-Pviptv.updateFeed` override
+  already allow it; it stays blocked on moving the signing key out of the dev
+  host, the private torrent-runtime build and the repository's visibility.
 
 ## When the app checks
 
@@ -42,7 +56,7 @@ show the dialog:
 - Buttons **`Update now`** (focused first on TV) · **`Later`**
 
 `Later` and Back close it and remember that version: the launch prompt does not
-appear again for it. A newer release prompts again. Settings always shows an
+appear again for it. A newer build prompts again. Settings always shows an
 available version.
 
 ## Settings
@@ -68,9 +82,9 @@ followed by one status line, and these buttons:
 | Check failed | `Couldn't check for updates. Check your connection and try again.` | `Check for updates` · `Close` |
 
 The first button keeps its position while the status changes, so TV focus
-stays on it (`Check for updates` becomes `Update now` when a release is
-found). On TV the first button takes focus when the dialog opens. Back closes
-the dialog and returns focus to the About VIPTV row.
+stays on it (`Check for updates` becomes `Update now` when the feed names a
+newer build). On TV the first button takes focus when the dialog opens. Back
+closes the dialog and returns focus to the About VIPTV row.
 
 ## Update flow
 
@@ -281,16 +295,17 @@ it: they do not install themselves.
 
 1. **AND-APP-UPDATE-01:** a development build shows `Version 0.1.0` and
    `Updates are off for development builds.`, and never prompts.
-2. **AND-APP-UPDATE-02:** a release build older than the latest release shows
-   the launch prompt once after sign-in; `Later` suppresses it for that version
-   across restarts; Settings still shows `· Update available`.
+2. **AND-APP-UPDATE-02:** a release build whose server feed names a higher
+   `version_code` shows the launch prompt once after sign-in; `Later` suppresses
+   it for that version across restarts; Settings still shows
+   `· Update available`.
 3. **AND-APP-UPDATE-03:** `Update now` without install permission shows
    `Allow updates` on the Updating screen; granting it in system settings and
    returning continues the install by itself; the updated app opens signed in.
 4. **AND-APP-UPDATE-04:** the launch prompt never appears and no check runs
    while the player is open; it appears after leaving the player if due.
-5. **AND-APP-UPDATE-05:** `Check for updates` on the latest release shows
-   `You're up to date.`; with no network it shows the check-failed line.
+5. **AND-APP-UPDATE-05:** `Check for updates` when the feed names no newer build
+   shows `You're up to date.`; with no network it shows the check-failed line.
 6. **AND-APP-UPDATE-06:** a damaged download shows the checksum message and
    nothing is installed; cancelling the download leaves no file behind.
 7. **AND-APP-UPDATE-07:** every dialog is reachable and dismissable with a TV
@@ -323,3 +338,10 @@ it: they do not install themselves.
     the app opens on its start screen, still signed in with settings and
     progress kept, and `Updated to {version}` sits at the bottom for six seconds
     and then goes away on its own.
+14. **AND-APP-UPDATE-14:** a server that publishes no
+    `/updates/android/update.json` (404, or the web app's HTML for unknown
+    paths) shows `This server doesn't publish app updates.` in About and offers
+    nothing; a malformed feed, one naming a plain-`http` address off loopback or
+    one whose `sha256`/`size` is wrong shows
+    `The server's update information is invalid.` and installs nothing; in local
+    mode there is no update state at all.

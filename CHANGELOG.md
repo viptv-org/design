@@ -19,10 +19,14 @@ confirmation bar, and `decisions.md` the entry.
 
 No canvas board shows the screen (app `docs/DESIGN_GAPS.md` GAP-064 and
 GAP-065), so the recorded geometry is the implementation's, unmeasured against
-a board, and the section says so. The spec's permission step keeps its earlier
-wording honest by moving the copy to the screen, and Back on the permission
-step is still the page's Back rather than Later
-([app#146](https://github.com/viptv-org/app/issues/146)). Refs
+a board, and the section says so. The contract is retitled **Android in-app
+updates** and its source corrected to what the app actually reads — the
+signed-in server's `<server origin>/updates/android/update.json` feed (app#64) —
+with GitHub Releases named as the planned future source (owner decision
+2026-10-27) and acceptance for a missing, malformed and rejected feed. The
+spec's permission step keeps its earlier wording honest by moving the copy to
+the screen, and Back on the permission step is still the page's Back rather
+than Later ([app#146](https://github.com/viptv-org/app/issues/146)). Refs
 [app#139](https://github.com/viptv-org/app/issues/139),
 [design#32](https://github.com/viptv-org/design/issues/32).
 
