@@ -97,11 +97,12 @@ the dialog and returns focus to the About VIPTV row.
 3. **Install.** The **Updating screen** covers the app while the APK goes into
    Android's installer session, and stays up behind Android's confirmation and
    the replacement of the process ([below](#updating-screen)). Where the
-   platform can reopen VIPTV it does so at once, still signed in with settings
-   and progress kept, and confirms `Updated to {version}`; where it cannot, the
-   screen says to open the app again.
-4. **Failure.** Dialog **`Couldn't update VIPTV`** with one description and
-   buttons **`Try again`** · **`Close`**:
+   platform can reopen VIPTV it does so at once on a fresh task, still signed
+   in with settings and progress kept, and confirms `Updated to {version}`;
+   where it cannot, the screen says to open the app again.
+4. **Failure.** **`Couldn't update VIPTV`** with one description and
+   **`Try again`**, plus the dialog's own dismiss action (`Close` in the About
+   dialog, `Later` on the update prompt):
    - network or server error: `Check your connection and try again.`
    - checksum or size mismatch: `The download was incomplete or damaged. Try again.`
    - the viewer cancelled the system confirmation: no dialog; the Updating
@@ -140,7 +141,9 @@ far the write got and what happens next.
   screen.
 - **Exit into the update:** Android installs and replaces the process. Where
   the platform can reopen the app it does so at once (`MY_PACKAGE_REPLACED`) on
-  the new build, which confirms **`Updated to {version}`**.
+  the new build, clearing the old task so the app opens on its start screen
+  rather than a stale page, and the new build confirms **`Updated to
+  {version}`**.
 - **Exit back to the app:** an install Android rejects, a cancel in Android's
   confirmation, or **`Later`** on the permission step. The first goes back to
   the prompt's failure form; the other two go back to the page the viewer was
@@ -166,7 +169,8 @@ far the write got and what happens next.
 - Neither the writing nor the confirming state offers an action: the system
   installer owns the decision at that point.
 - The layout has no other text: no step counter, no download speed, no
-  remaining time, no cancel action.
+  remaining time, no cancel action. There is no empty or disabled state: the
+  screen is either writing, confirming, or asking for the permission.
 
 ### Progress
 
@@ -185,7 +189,8 @@ that finished before the prompt appeared.
 
 ### Layout
 
-Provisional implementation values, to be replaced by the board:
+Provisional implementation values in dp, text sizes in sp, to be replaced by
+the board:
 
 | | Phone and tablet | TV |
 |---|---|---|
@@ -194,14 +199,16 @@ Provisional implementation values, to be replaced by the board:
 | V mark | 56 | 120 × scale |
 | Title | `headlineSmall`, `color.text.primary`, centred | 56 × scale bold, 68 × scale line height, centred |
 | Body | `bodyLarge`, `color.text.secondary`, centred | 28 × scale, 40 × scale line height, centred |
-| Percent | 13 above the bar, `color.text.primary` | 24 × scale above the bar |
+| Percent | 13 sp, 8 above the bar, `color.text.body` | 24 × scale above the bar |
 | Bar | column width × 6, `color.accent.default` on `color.surface.2`, rounded | 760 × scale wide, 8 × scale tall |
 | Line under the bar | `bodySmall`, `color.text.tertiary`, centred | 24 × scale, 34 × scale line height, centred |
 | Actions (permission step) | **`Later`** (`color.text.secondary`) then the primary (`color.accent.default`, semibold), 8 apart, centred, no container | 48 × scale below the line: primary 320 × 80 × scale, **`Later`** 200 × 80 × scale, 16 × scale apart |
 
-The token names above are the design-system ones the implementation draws from
-(`color.bg`, surface, text and accent roles); the raised surfaces (`Palette.raised`
-= `color.surface.2`) and the type ramp still need to be confirmed on the board.
+The colours above are the design-system roles the implementation draws from
+(`color.bg`, the surface, text and accent roles; the raised surfaces are
+`Palette.raised` = `color.surface.2`). The Material type styles it names
+(`headlineSmall`, `bodyLarge`, `bodySmall`, `bodyMedium`) and the dp gaps still
+need mapping onto the design-system type ramp and spacing on the board.
 
 **After the update:** **`Updated to {version}`** is a bar at the bottom centre
 (16 from the edges, radius 12, `color.surface.2`, 20 × 12 padding, semibold
@@ -234,9 +241,8 @@ TV size.
 | Android rejects the install (`Failed` after an install attempt) | The screen goes away; the prompt returns with **`Couldn't update VIPTV`**, `Android didn't install the update.`, **`Try again`** · **`Later`**. **`Try again`** starts a fresh session and shows the Updating screen again. |
 | The verified file changed on disk before the write | The screen goes away; the prompt returns with **`Couldn't update VIPTV`**, `The download was damaged. VIPTV will try again later.`, **`Try again`** · **`Later`**. |
 | The viewer cancels Android's confirmation | The screen goes away, the page returns and no prompt is shown for that version this session. |
-| The viewer backs out to the app (Home) during the confirmation | The screen stays until the process is replaced; a return to the app whose session never committed offers Install again. |
+| The viewer leaves the app (Home) during the confirmation | Nothing is drawn on return: the app comes back with the update ready and the prompt's **`Install`** again, and a new press starts a fresh session, because Android never gave that session an answer. |
 | The viewer chooses **`Later`** on the permission step | The screen goes away and that version is not offered again this session. |
-| The app is replaced while the screen is up | The screen stays until Android replaces the process; there is no intermediate state to draw. |
 
 ### Timing
 
@@ -253,9 +259,10 @@ TV size.
 - The bar is one progress indicator with platform progress semantics (the
   implementation exposes a `ProgressBarRangeInfo`) and the percent is a text
   label above it, so assistive technology reads the value in words.
-- The permission-step actions are ordinary buttons in reading order **`Later`**
-  then **`Open settings`** / **`Try again`**; touch targets follow the button
-  rules. The TV actions keep the standard focus treatment.
+- The permission-step actions are ordinary buttons: on phone and tablet in
+  reading order **`Later`** then the primary action, on TV the primary action
+  first and focused. Touch targets follow the button rules and the TV actions
+  keep the standard focus treatment.
 - Unknown: whether the screen appearing or the percent changing is announced as
   a live region, and whether a reduced-motion variant of the indeterminate bar
   exists. No board, no measurement and no screen-reader run exist yet.
@@ -309,6 +316,6 @@ it: they do not install themselves.
     returns the page the viewer was on, installs nothing and shows no prompt for
     that version until the app restarts.
 13. **AND-APP-UPDATE-13:** when Android installs the update and reopens VIPTV,
-    the app is signed in with the previous page and settings kept, and
-    `Updated to {version}` sits at the bottom for six seconds and then goes away
-    on its own.
+    the app opens on its start screen, still signed in with settings and
+    progress kept, and `Updated to {version}` sits at the bottom for six seconds
+    and then goes away on its own.
