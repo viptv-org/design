@@ -206,7 +206,9 @@ the board:
 
 The colours above are the design-system roles the implementation draws from
 (`color.bg`, the surface, text and accent roles; the raised surfaces are
-`Palette.raised` = `color.surface.2`). The Material type styles it names
+`Palette.raised` = `color.surface.2`). The V mark is the app's tile: an accent
+rounded square (radius 28 % of its side) with the letter **V** at 62.5 % of the
+side in the background colour, ExtraBold. The Material type styles it names
 (`headlineSmall`, `bodyLarge`, `bodySmall`, `bodyMedium`) and the dp gaps still
 need mapping onto the design-system type ramp and spacing on the board.
 
@@ -265,7 +267,9 @@ TV size.
   keep the standard focus treatment.
 - Unknown: whether the screen appearing or the percent changing is announced as
   a live region, and whether a reduced-motion variant of the indeterminate bar
-  exists. No board, no measurement and no screen-reader run exist yet.
+  exists. No board, no measurement and no screen-reader run exist yet. The V
+  mark is drawn as the text "V", so a screen reader may announce it before the
+  title; that has not been run.
 
 ### Platform scope
 
