@@ -1,5 +1,35 @@
 # Design changes
 
+## 2026-10-28 — Proposed: the Android Updating screen and its copy
+
+[AND-APP-UPDATE-001](specs/behavior/app-updates.md#updating-screen) records what
+app#139 shipped (PR [app#145](https://github.com/viptv-org/app/pull/145),
+`81cf5ae`) while the spec stays **proposed**: choosing **Install** now covers
+the app with one full-screen Updating screen until Android has replaced the
+process. It shows **Updating VIPTV to [version]…**, the write progress as a bar
+with **"[N]%"**, becomes indeterminate behind Android's confirmation, carries
+the install-permission step (**Allow updates**, **Open settings** or Fire TV's
+**Try again**, **Later**) on the same cover instead of the prompt's dialog, and
+makes Back do nothing while the session commits. An install Android rejects
+returns to the prompt as **Couldn't update VIPTV** · **Android didn't install
+the update.** · **Try again** · **Later**. Where the app can reopen itself it
+does, and confirms **Updated to [version]** at the bottom for six seconds.
+`copy.md` gains the strings, `components.md` §8 the cover and §9 the
+confirmation bar, and `decisions.md` the entry.
+
+No canvas board shows the screen (app `docs/DESIGN_GAPS.md` GAP-064 and
+GAP-065), so the recorded geometry is the implementation's, unmeasured against
+a board, and the section says so. The contract is retitled **Android in-app
+updates** and its source corrected to what the app actually reads — the
+signed-in server's `<server origin>/updates/android/update.json` feed (app#64) —
+with GitHub Releases named as the planned future source (owner decision
+2026-10-27) and acceptance for a missing, malformed and rejected feed. The
+spec's permission step keeps its earlier wording honest by moving the copy to
+the screen, and Back on the permission step is still the page's Back rather
+than Later ([app#146](https://github.com/viptv-org/app/issues/146)). Refs
+[app#139](https://github.com/viptv-org/app/issues/139),
+[design#32](https://github.com/viptv-org/design/issues/32).
+
 ## 2026-10-28 — The dropdown chip and its list are the one filter pattern
 
 [FILTER-CHIP-001](viptv-design-system/components.md#2-chips-and-segmented-controls)
