@@ -4,7 +4,7 @@
 
 [FILTER-CHIP-001](viptv-design-system/components.md#2-chips-and-segmented-controls)
 now records TV as implemented: app#121 (PR
-[app#148](https://github.com/viptv-org/app/pull/148)) moved Browse /
+[app#148](https://github.com/viptv-org/app/pull/148), `90d6e47`) moved Browse /
 Discover / Movies / Series / Anime, My List and the source picker onto the same
 one-row dropdown chips as phone, tablet, desktop and web. Browse reads
 **Catalog: Popular · Sort: Required · Genre: Any · Languages: Any · Free only ·
