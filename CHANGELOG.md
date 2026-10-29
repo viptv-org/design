@@ -1,5 +1,22 @@
 # Design changes
 
+## 2026-10-29 — Caught-up Continue Watching labels
+
+The app's caught-up Continue Watching card states what the app already draws (app#149, app#163):
+**`S3 E4 · Watched`** under the title on phone, tablet, desktop and web, then **`S3 E5 · Nov 4`**, or
+**`S3 E5 coming soon`** while the next episode has no air date; with nothing announced, the first
+label alone. TV keeps **`S3 E4`** and its corner check and adds the awaited episode to the same meta
+line (**`S3 E4  S3 E5 · Nov 4`**), so the one-line caption box and the shelf geometry stay as they
+were. A caught-up card opens the show's Details rather than the source picker for an episode already
+watched.
+
+`copy.md` gains the labels, the undated wording (no separator: **`S3 E5 coming soon`**), the
+month-and-day air date in the device's locale without the year, and the accessibility reading;
+`components.md` §6 the card they belong to.
+
+Refs [app#132](https://github.com/viptv-org/app/issues/132),
+[design#36](https://github.com/viptv-org/design/issues/36).
+
 ## 2026-10-28 — TV filters are the same chips and the right panel
 
 [FILTER-CHIP-001](viptv-design-system/components.md#2-chips-and-segmented-controls)
