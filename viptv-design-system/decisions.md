@@ -306,7 +306,7 @@ Decisions taken while implementing against this export:
   content starts at the 96 px inset.
 - **Catalog + Filters chips replace inline facet chips on TV**, and filtering is
   applied once from the full-page filter surface ("Show results"), not per
-  keystroke.
+  keystroke. (Superseded 2026-10-28 by FILTER-CHIP-001, [components.md §2](../viptv-design-system/components.md#2-chips-and-segmented-controls): app#121 put TV on the same dropdown chips and right panel as every other platform, and a pick applies at once.)
 - **D-pad geometry is not trusted blindly.** A row's last card dead-ends Right
   instead of jumping to the profile avatar, Up from the first shelf row returns to
   the billboard, and Up/Down are clamped inside a settings page. The board frames

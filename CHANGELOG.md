@@ -1,5 +1,38 @@
 # Design changes
 
+## 2026-10-28 — TV filters are the same chips and the right panel
+
+[FILTER-CHIP-001](viptv-design-system/components.md#2-chips-and-segmented-controls)
+now records TV as implemented: app#121 (PR
+[app#148](https://github.com/viptv-org/app/pull/148), `90d6e47`) moved Browse /
+Discover / Movies / Series / Anime, My List and the source picker onto the same
+one-row dropdown chips as phone, tablet, desktop and web. Browse reads
+**Catalog: Popular · Sort: Required · Genre: Any · Languages: Any · Free only ·
+Search: Any**, My List **List: My List · Type: All · Sort by: Last watched ·
+Status: Any · Genre: Any**, the source picker **Quality: All · Source: All
+sources**, and the Catalog + Filters chips, the applied-chip strip and the
+"Show results" full-page surface are gone. The only TV-specific part is the
+container of the list: the right panel, 760 × scale wide over the 0.6 scrim with
+the chip's title as its heading and 72 × scale rows, focus opening on the
+current option. A pick applies at once — a single choice closes the panel, a
+multiple stays open — and Back, Escape, the scrim or a pick close only the
+panel, returning the remote to the chip that opened it. Chips are focus stops in
+one row: the remote enters on the first chip, Left/Right walk it, and Clear
+resets the facets and leaves the remote on the row.
+
+`components.md` §2 gains the TV reading of the pattern and its chip geometry,
+§5 the panel's rows and focus, §8 the container and its close rules, and the
+implemented contracts name `BrowseFilterBar` / `LibraryFilterBar` /
+`SourceFilters`, `LocalTvScale` and `TvFilterBarTest`. The retired TV filter
+boards are marked superseded beside the desktop and phone ones: `Tv3Movies` and
+`Tv3MoviesCatalogs` for the Catalog + Filters chips and applied strip,
+`Tv3MoviesFilters` and `Tv3MoviesFilterText` for the full-page surface, and
+`Tv3MyList` for its type segments and Sort pill. No board is re-exported, and
+`decisions.md`'s 2026-10-19 TV filter decision carries the supersession.
+
+Refs [app#121](https://github.com/viptv-org/app/issues/121),
+[design#34](https://github.com/viptv-org/design/issues/34).
+
 ## 2026-10-28 — Proposed: the Android Updating screen and its copy
 
 [AND-APP-UPDATE-001](specs/behavior/app-updates.md#updating-screen) records what
