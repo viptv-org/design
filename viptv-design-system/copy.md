@@ -12,6 +12,13 @@ These are the exact strings used on the screens. Text in `[brackets]` is a place
 - Android TV episode jump (AND-EPISODE-JUMP-001): chip **"Episode #"**; dialog **"Jump to episode"**; field **"Episode number"**; actions **"Go"**, **"Cancel"**; invalid input **"Episode not found in this season."**
 - Android completed episode (AND-EPISODE-WATCHED-001): visible and accessible badge **"Watched"**.
 
+Continue Watching card, caught up (a series the profile has finished as far as it is released):
+
+- Phone, tablet, desktop, web: **`S3 E4 · Watched`** under the title, then **`S3 E5 · Nov 4`** on its own line; **`S3 E5 coming soon`** while the next episode has no air date. With nothing announced: **`S3 E4 · Watched`** alone.
+- TV: **`S3 E4`** then **`S3 E5 · Nov 4`** (or **`S3 E5 coming soon`**) on the card's one meta line, the corner check saying watched. With nothing announced: **`S3 E4`** and the check.
+- An episode with no season reads **`E4`**. The air date is the month and day, in the device's locale and never the year (**`4 nov.`** in French).
+- Spoken as drawn: "Show, S3 E4 · Watched, S3 E5 · Nov 4" on phone, tablet, desktop and web; "Show, S3 E4, Watched, S3 E5 · Nov 4" on TV.
+
 Responsive player picture mode (WEB-PLAYER-FIT-001): visible toggle **"Fit"** / **"Fill"**; accessible actions **"Fill video"** / **"Fit video"**.
 
 Next-episode end panel (PLAY-NEXT-AUTOPLAY-001):
