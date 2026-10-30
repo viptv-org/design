@@ -39,6 +39,41 @@ codes.
 
 Refs [design#40](https://github.com/viptv-org/design/issues/40).
 
+## 2026-10-29 — Proposed: motion for pointer and touch layouts
+
+[MOTION-001](specs/behavior/motion.md) proposes the motion phone, tablet, the
+desktop app and web get, and adds none of it to TV. One scale: 120 ms for what
+the pointer's own movement causes (hover fills, press scales, a chip filling, a
+carousel dot), 200 ms for content arriving in place (a list item, a hero slide,
+a page crossfade, a popover or dialog, player controls), 200 ms for every exit,
+300 ms for a sheet or drawer entering from its own edge, and 30 ms between two
+list items in one row; easing `cubic-bezier(0.2, 0, 0, 1)` in and
+`cubic-bezier(0.3, 0, 1, 1)` out. Pages crossfade in the page area only; cards
+fade their hover treatment and scale 0.98 under a press; the hero crossfades
+art, logo and text together and never resizes; overlays arrive from their edge
+and their content is usable from the first frame; a page's first load staggers
+its items 8 dp up, eight per row, while a refresh, paging and a restored page
+animate nothing; the Continue Watching preview crossfades the hero; the pull
+indicator keeps the library's timing as the one direct-manipulation exception;
+and the player's control layer fades as one layer with the video frame
+untouched.
+
+Every duration is read through the app's existing `motionSpec()`, so reduce
+motion snaps all of it in the frame of the state change; progress bars,
+spinners, the skeleton shimmer, the hero rotation and the Up Next number keep
+running, and the pull indicator holds a still arc. No copy is added.
+
+`components.md` gains §12 Motion (the scale and a per-component table) and
+motion notes on chips, cards, overlays, pull-to-refresh and player controls;
+`tokens.json` gains `motion.response`, `motion.arrive`, `motion.leave`,
+`motion.panel`, `motion.stagger-step`, `motion.easing-standard` and
+`motion.easing-exit`, with `tokens.css` and `tokens.ts` regenerated;
+`pull-to-refresh.md` gains the reduced-motion rule and loses its unverified
+spinner unknown; `decisions.md` records the decision. No board is re-exported:
+this contract is timing, not geometry.
+
+Refs [design#39](https://github.com/viptv-org/design/issues/39).
+
 ## 2026-10-29 — Caught-up Continue Watching labels
 
 The app's caught-up Continue Watching card states what the app already draws (app#149, app#163):

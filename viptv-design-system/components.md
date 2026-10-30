@@ -62,6 +62,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Quality and source chips (source picker):** "Quality: All ⌄" and "Source: All sources ⌄". Each row carries its source count in tertiary text on the right ("1080p 5"), and the clearing row carries the total ("All 12").
 - **Segmented control:** a surface-1 track with 4 px padding. The selected segment is an off-white fill with `on-light` text. P 44 (full width), D 40. It never filters: it only switches modes inside one control, such as the phone remote's Buttons / Swipe (§11).
 - **Group divider:** a 1 px × 20 vertical hairline with 4 px either side, between the catalog or list chip and the facets.
+- **Motion:** a chip's fill, border and text change over 120 ms (`motion.response`); the chip never moves or resizes, and its list opens with its container's motion (§8, [MOTION-001](../specs/behavior/motion.md#4-opening-and-closing-sheets-drawers-popovers-and-filter-chips)).
 - **TV:** 56 × scale tall with 22 × scale text, 24 × scale start and 20 × scale end insets, a 22 × scale chevron and at most 420 × scale wide. A chip is a focus stop in the row: focused it takes the off-white focus fill with dark ink, "[Title]: " in `on-light` at 0.62, and the board's 4 px ring drawn outside it; a set but unfocused chip is surface-3 with the 0.22 border, the same as P and D. The row reserves the outside ring's room so scrolling never clips it at either end. The "Clear" action chip is a focus stop too, with no border and no fill until it is focused.
 
 ---
@@ -129,7 +130,8 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Source discovery status (proposed, SRC-OVERFLOW-001):** Keep the existing accent spinner visible beside **Finding sources** while the picker is open and discovery is pending with no rows. Once at least one row arrives, show the same spinner beside **Still checking sources** until the actual in-flight discovery finishes or is cancelled. The status occupies a stable place above the list, is not focusable and does not displace or disable arriving rows. On completion remove the spinner/status; if no sources arrived, use the existing empty state. Announce state changes politely to assistive technology without repeatedly announcing each animation frame.
 - **Producer outcomes (proposed, SRC-PROVIDERS-001):** The Provider choice includes each distinct account-owned producer observed in this discovery, including producers reporting zero playable sources or a safe failure. Identify installed add-ons by their stable configured add-on ID and display their configured name; never group on upstream branding or source title. A producer with no row is still selectable and its filtered view explains its observed outcome. While discovery is pending, say **Still checking [provider]** when no final outcome is known; after completion, say **No playable sources from [provider]** for a zero-result producer. For the safe `source_format_unsupported` outcome, say **[provider] returned formats this app cannot play. Choose another source.** The revised format copy and opt-in torrent acquisition/delivery rules are proposed by [SRC-TORRENT-GATEWAY-001](../specs/behavior/torrent-gateway-sources.md); review and immutable adoption remain pending. Other safe producer failures use their server-projected message without exposing raw source data. A producer with playable rows keeps those rows usable even if another producer fails. Preserve the selected provider and focused source identity as events arrive; a disappearing account-owned producer must not leave a stale selectable filter. Do not show fabricated percentages, pending counts, torrent/magnet playback promises, or an automatic replacement source. The global discovery spinner follows the actual in-flight job, and Back cancels it.
 - **Channel logos** are always text monograms (CNN, CNBC, abc) in display type.
-- **Hover (D):** art dims to 0.38, an accent play disc appears, and an inset 2 px off-white ring is drawn (inset, so the card's clipping never cuts it).
+- **Hover (D):** art dims to 0.38, an accent play disc appears, and an inset 2 px off-white ring is drawn (inset, so the card's clipping never cuts it). The scrim, ring and disc fade in and out over 120 ms (`motion.response`); the card does not scale, lift or move.
+- **Press (P, tablet, D):** the art frame scales to 0.98 (`motion.pressed-scale-card`) under the press and returns on release; the caption and the card's slot in the grid never move. A press that becomes a scroll returns the scale and does not activate.
 - **Focus (D):** the keyboard ring outside the tile. **Focus (T):** a 4 px white ring without scale; the caption brightens.
 - **Touch overflow (P):** a ⋯ button (44 target) on posters and continue cards opens the title menu. Long-press does the same.
 - **Profile tiles:** a lock badge on PIN-protected profiles. "Add profile" shows as a dashed tile and is disabled at 12 profiles.
@@ -156,6 +158,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 | Actions | Stacked full width, 54 tall | Stacked 48 tall | Rows 80 tall |
 | Close | Grabber, or tap the scrim | × disc top-right, Esc | BACK |
 
+- **Motion:** on P, tablet and D a sheet rises its own height over 300 ms (`motion.panel`), a drawer travels its own width in from its edge over the same 300 ms, and a dialog or popover fades in from 0.98 scale over 200 ms (`motion.arrive`). Every exit takes 200 ms (`motion.leave`) with `motion.easing-exit`. The scrim fades with its container; the page behind it never moves. A pick applies in the frame it is made and focus is set at the start of an exit, so nothing waits on the motion. Durations, reduced motion and the per-container table are in [MOTION-001](../specs/behavior/motion.md#4-opening-and-closing-sheets-drawers-popovers-and-filter-chips).
 - A destructive action uses danger text on surface-3. Cancel stays neutral and gets default focus on D and T.
 - **Source drawer (proposed, SRC-DRAWER-001):** on desktop and web the source drawer is min(720, 55 % of the window) wide, never under 460 (a window under 640 gets the phone sheet). Other D drawers and the tablet source drawer stay 460. On web, a drawer opened from the Details dialog opens over it behind the 0.55 scrim, and closing it returns to the unchanged dialog. No layout shows a hint about how Play picks a source; TV keeps its status line only while add-ons answer or a stream opens. Geometry, focus, Escape, scrim, return paths, acceptance and the superseded `D3Sources`, `D3SourcesEmpty`, `D3SourcesTorrent`, `CmpDesk3`, `M3Sources`, `Tv3Sources` and `Tv3SourcesLoading` boards are in [source-drawer.md](../specs/behavior/source-drawer.md).
 - A **popover** belongs to one control (a menu for a card, a filter chip's list, the catalog, the genre, the provider or the engine) and has no scrim.
@@ -177,7 +180,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Empty state:** a 52 round icon, a title and one line of help, sometimes with one action (for example "Browse Discover").
 - **Loading more:** a spinner + "Loading more titles…" / "Loading more channels… [120] of [860]" at the end of a list. There are never Load more buttons.
 - **Skeletons:** these have the real layout's shapes (featured card, posters, continue cards, list rows) and appear on P and D. TV has no skeletons: it shows a "Starting VIPTV…" cover at launch, then real content.
-- **Pull-to-refresh (proposed, REFRESH-PULL-001):** phone and tablet layouts only, on Home, My List, History and Details. Pulling down at the very top of the page past the threshold shows the Material 3 indicator (a 40 disc in `color.surface.2` with a `color.text.secondary` spinner, top centre) over the shown content and reloads the page at once. There is no cover, skeleton or text, and a failure keeps the shown data with no error. D and T have no gesture. Gesture, reload scope, failure, return and acceptance are in [pull-to-refresh.md](../specs/behavior/pull-to-refresh.md).
+- **Pull-to-refresh (proposed, REFRESH-PULL-001):** phone and tablet layouts only, on Home, My List, History and Details. Pulling down at the very top of the page past the threshold shows the Material 3 indicator (a 40 disc in `color.surface.2` with a `color.text.secondary` spinner, top centre) over the shown content and reloads the page at once. There is no cover, skeleton or text, and a failure keeps the shown data with no error. D and T have no gesture. Gesture, reload scope, failure, return and acceptance are in [pull-to-refresh.md](../specs/behavior/pull-to-refresh.md); its motion stays the library's, and a finished reload re-animates nothing ([MOTION-001](../specs/behavior/motion.md#7-pull-to-refresh)).
 - **Updated to [version] (proposed, AND-APP-UPDATE-001):** after Android installs an update and reopens the app, a semibold bar at the bottom centre (radius 12, `color.surface.2`, 20 × 12 padding, 16 from the edges) for six seconds. It has no action and never blocks the page. TV currently draws the phone's density sizes instead of scaling them, so the board has to set the TV size; the copy and timing are in [app-updates.md](../specs/behavior/app-updates.md#updating-screen).
 
 ---
@@ -193,6 +196,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 | Track popups | Full-width card above the tools row | 340 wide, above their button, clear of the timeline | Right panel (scrolling list) |
 
 - **Timeline:** accent played fill, a lighter buffered segment, and a white knob. The time labels are `[12:48]` / `[52:10]`. Hovering (D) or seeking (T) shows a preview bubble above the bar.
+- **Showing and hiding (P, tablet, D):** the whole control layer fades in over 200 ms (`motion.arrive`) and out over 200 ms (`motion.leave`) as one layer; nothing slides or scales, and the video frame never dims, zooms or letterboxes. The 5 s idle timer and the paused, buffering, failed and open-panel rules are unchanged, and any input starts the fade in that frame. Reduced motion switches it in one frame. TV keeps its own 200 ms fade in and 300 ms fade out. [MOTION-001](../specs/behavior/motion.md#8-player-controls-showing-and-hiding).
 - **Up Next (end panel, PLAY-NEXT-AUTOPLAY-001):** when a series episode ends, a panel over the last frame. TV: a right-hand column with "Next episode", the episode, its facts and description, **Play next episode** and **Keep watching credits**, and a footnote. Phone, desktop and web: a bottom strip with a 128×72 still, "Up next", the episode and runtime, **Watch credits** and **Next episode**. With **Autoplay next episode** on, the primary action reads "Next episode in [N]" for 10 s inside a ring that empties (number only with reduced motion), then plays. Any viewer action cancels it. Geometry and copy are in [next-episode-autoplay.md](../specs/behavior/next-episode-autoplay.md#panel-layout-and-copy); the earlier "Starts in [8]" card with Play now / Cancel is retired.
 - **Playback info:** key / value rows in monospace (decoder, transport, container, delivery, codecs, resolution).
 - **Responsive picture mode:** the 44 px Fit/Fill button is immediately before Fullscreen on phone and desktop. Fit (the default) contains the full picture; Fill covers the viewport with centered crop. Its state and transitions are in [WEB-PLAYER-FIT-001](../specs/behavior/responsive-player-fit-fill.md). Existing static player renders predate this control.
@@ -219,6 +223,36 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - Phone **browsers** can't pair: they show the "Watch on TV" dialog pointing to the desktop app (`PhCastUnavailable`).
 
 **Screens:** PhTvSetup, PhTvSearch, PhTvNoAccess, PhTvManual, PhTvPin, PhTvDone, PhHomeRemote, PhRemote, PhRemoteSwipe, PhRemoteOffline, PhTvSettings, PhTvForget.
+
+## 12. Motion
+
+Pointer and touch layouts (P, tablet, D) animate; TV keeps the motion it already has, and nothing here is added to it. [MOTION-001](../specs/behavior/motion.md) owns the platforms, reduced motion and acceptance scenarios; this section is the component view.
+
+| Token | Value | Used for |
+|---|---|---|
+| `motion.response` | 120 ms | What the pointer's own movement causes: hover fills, press scales, a chip filling, a carousel dot resizing |
+| `motion.arrive` | 200 ms | Content arriving in place: a list item, a hero slide, a page crossfade, a popover or dialog, player controls |
+| `motion.leave` | 200 ms | Everything leaving, at every size |
+| `motion.panel` | 300 ms | A sheet or a drawer entering from its own edge |
+| `motion.stagger-step` | 30 ms | Between two list items entering in one row, eight items at most |
+| `motion.easing-standard` | `cubic-bezier(0.2, 0, 0, 1)` | Everything arriving, every state change |
+| `motion.easing-exit` | `cubic-bezier(0.3, 0, 1, 1)` | Surfaces leaving |
+
+| Component | Motion |
+|---|---|
+| Page area | Crossfade: the outgoing page out over 120 ms while the incoming page comes in over 200 ms. The nav, header, title bar and rail stay still; a page under an overlay, the player, startup and sign-in do not fade. |
+| Bottom nav pill, rail item | Fill changes over 120 ms; the pill does not slide between tabs |
+| Card | Hover scrim, ring and disc fade over 120 ms; press scales the art frame to 0.98 |
+| Button, row, player control | Press scales to 0.97, 0.99 and 0.94; the press returns on release |
+| Hero carousel | Art, logo, text and actions crossfade over 200 ms with no travel; the active dot grows 16 → 48 over 120 ms; the hero's footprint never changes |
+| Continue Watching preview (D) | Hero crossfades to the preview and back over 200 ms; the carousel pauses and resumes where it paused |
+| Sheet, drawer | Container travels its own height or width over 300 ms; the scrim fades over 200 ms; every exit takes 200 ms |
+| Dialog, popover, chip list | Fade from 0.98 scale over 200 ms; exit fades out over 200 ms without travel |
+| List item | Fade over 200 ms plus an 8 dp rise, 30 ms apart, eight per row; only on a page's first load. A refresh and paging never animate, and a skeleton crossfades in place |
+| Player controls | The whole layer fades in and out over 200 ms; the video frame never moves or dims |
+| Pull indicator | The library's own drag, settle and return; the one motion VIPTV does not re-time |
+
+Every duration and easing above is read through the app's `motionSpec()`, which snaps under reduce motion: the change happens in the same frame as its state change. Progress bars, spinners, the hero rotation and the Up Next countdown number keep running. No motion delays an action, and no item adds copy.
 
 ## Implemented component contracts (2026-10-19)
 

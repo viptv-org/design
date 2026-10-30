@@ -239,6 +239,23 @@ the dialog, and Back first hides the IME. [The behavior contract](../specs/behav
 defines the full state and acceptance scenarios. This does not change the
 shared Core hero Play/Resume rule or require Roku/TV-web adoption.
 
+## Motion for pointer and touch layouts (MOTION-001)
+
+Proposed from the 2026-10-29 owner request ([design#39](https://github.com/viptv-org/design/issues/39)):
+TV cannot afford much animation, but phone, tablet, the desktop app and web
+can. [The motion contract](../specs/behavior/motion.md) gives those layouts one
+small scale — 120 ms for what the pointer's own movement causes, 200 ms for
+content arriving or leaving, 300 ms for a sheet or drawer entering, 30 ms
+between two list items, and two easings — and uses it for page crossfades, card
+hover and press, the hero carousel, overlay entry and exit, list items entering
+on a page's first load, the Continue Watching preview, pull-to-refresh and the
+player's control layer. Nothing loops, bounces or overshoots; nothing moves on
+a refresh, on paging, behind an overlay or in the video frame; and no state
+change waits for an animation. Every duration is read through the app's
+existing `motionSpec()`, so reduce motion snaps all of it while progress,
+spinners and the Up Next number keep running. TV keeps the motion it has, and
+no TV renderer adopts this.
+
 ## Desktop pointer and playback corrections (DESK-PLAYBACK-2026-10-03)
 
 Owner approved 2026-10-03: the native desktop client uses pointer interaction.

@@ -1226,7 +1226,14 @@ export const tokens = {
   "motion.pressed-scale-card": 0.98,
   "motion.marquee-delay": "1000ms",
   "motion.up-next-tick": "250ms",
-  "motion.pressed-scale-control": 0.94
+  "motion.pressed-scale-control": 0.94,
+  "motion.response": "120ms",
+  "motion.arrive": "200ms",
+  "motion.leave": "200ms",
+  "motion.panel": "300ms",
+  "motion.stagger-step": "30ms",
+  "motion.easing-standard": "cubic-bezier(0.2, 0, 0, 1)",
+  "motion.easing-exit": "cubic-bezier(0.3, 0, 1, 1)"
 } as const;
 export type TokenName = keyof typeof tokens;
 export const accentOptions = {
