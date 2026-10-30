@@ -1,5 +1,29 @@
 # Design changes
 
+## 2026-10-30 — Live with no source gets a designed first run
+
+[LIVE-EMPTY-001](specs/behavior/live-empty-state.md) replaces the Live page's
+single empty line with two states. With no live source configured the page is a
+broadcast frame: a full-bleed night-stadium illustration, an eyebrow, a headline,
+a body line naming both routes, and the action for whoever is signed in. With a
+source configured that returns no channels, the page keeps its Source chip and
+shows the reason and a retry, with skeleton rows while the request is open. The
+filter row disappears when there is nothing to filter. Nothing is invented as a
+destination: the primary opens the existing Settings › Source integrations, the
+secondary Settings › Add-ons, and a member or a paired TV gets a line naming who
+can act instead of an action the server answers `403` to.
+
+The artwork is two hand-authored SVGs in `assets/illustrations/`, drawn only in
+the tokens' colours and only from paths, rectangles, circles, ellipses and
+gradients, with the reading scrim baked in: a 1920 × 1080 wide scene and a
+1080 × 1920 tall one, so a phone gets its own composition instead of a sliver of
+the wide one. `copy.md` gains four rows and retires three app strings;
+`components.md` §13 records how empty states and artwork work on every layout;
+`decisions.md` records the two states, the chip rule, the three who-can-act
+forms and the missing free-add-on directory.
+
+Refs [design#45](https://github.com/viptv-org/design/issues/45).
+
 ## 2026-10-30 — Settings split into Account, Profile, Playback and This device
 
 [ACCT-SPLIT-001](specs/behavior/account-and-profile-settings.md) separates what

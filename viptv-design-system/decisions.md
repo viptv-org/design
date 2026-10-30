@@ -1,5 +1,17 @@
 # Decisions
 
+## Live empty state (LIVE-EMPTY-001)
+
+Proposed from the 2026-10-30 owner report ([design#45](https://github.com/viptv-org/design/issues/45)): Live with no source is a blank page holding an orphan Favourites chip, one line and a button into the whole of Settings, and Live with a source that returns no channels says exactly the same thing.
+
+Settled here:
+
+- **Two states, not one.** *No source* (`LivePage.connections` empty, or the page answering `NeedsConfiguration`) gets the stadium artwork, the copy and the action. *Source, no channels* gets no artwork, keeps the Source chip as its way to another source, and shows the server's reason with **Try again**. A page emptied by a filter keeps today's line and today's chips.
+- **The illustration is ours and off the network.** Two hand-authored SVGs in the tokens' colours, wide and tall, with the reading scrim baked in and no text, raster, filter, mask, pattern or external reference, so an app converts each file to a vector drawable. Nothing is traced from a capture, and no team, league, logo, player or photograph appears.
+- **Chips only where there is something to filter.** The no-source state draws no filter row at all. The Source chip stays in the no-channels state while a second connection exists, because it is the only way to a working source; Favourites and Group wait for channels. This refines the issue's "hidden until there are channels" rule, which would have removed that recovery path.
+- **Who can act follows the server.** An owner account session and local mode get **Set up live TV** and **Add-ons**; a member reads "Only the household owner can set up live TV."; a paired TV reads "Manage live TV from a signed-in phone, computer or the web dashboard." because a device session cannot write a source at all. Backend `f30b2f5` (owner-only household writes, [backend#149](https://github.com/viptv-org/backend/pull/149)) is the rule behind the three forms.
+- **No free live add-ons action.** No add-on directory, catalogue or recommendation list exists in the app, the web dashboard or the server, so the issue's third next step is not drawn as an action; the body names the two routes that do exist.
+
 ## Android completed episode indicators (AND-EPISODE-WATCHED-001)
 
 Proposed from the 2026-10-02 owner request. Android TV and phone episode cards
