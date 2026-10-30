@@ -184,8 +184,8 @@ resumes where it paused. The dots stay non-interactive.
   is never a blank or half-loaded hero;
 - the logo, title, meta line, description and actions crossfade over the same
   200 ms, as one block, with no travel;
-- the active dot grows from 16 to 48 wide over `motion.response` (120 ms); the
-  other dots do not animate and nothing slides.
+- the active dot grows from the inactive dot's width to its pill width over
+  `motion.response` (120 ms); the other dots do not animate and nothing slides.
 
 **The hero never resizes.** A slide with a shorter title, a logo instead of a
 wordmark, or a Continue Watching preview never changes the hero's height or
@@ -316,14 +316,15 @@ row, lock button and any scrim the layout draws — fades in over
 (200 ms, `motion.easing-exit`), as one layer. Nothing slides in from an edge,
 nothing scales and no group of controls animates on its own.
 
-**The video frame never animates.** No dim, no zoom, no letterbox or fit-mode
-animation, no black scrim fading over the picture: only the controls' opacity
-changes.
+**The video frame never animates.** No zoom, no letterbox or fit-mode
+animation and no dim of the picture of its own: the layer's own gradient
+travels with the layer, and nothing else changes over the video.
 
 **Timing and interaction.** The 5 s idle timer, the rule that a paused,
-buffering, failed or open-panel player keeps its controls, and the rule that any
-key, pointer move or tap shows them are unchanged. The fade starts in the frame
-the state changes; there is no delay before it and no second timer.
+buffering, failed or open-panel player keeps its controls, and the rule that a
+key or a tap shows them (a tap on the picture toggles them) are unchanged. The
+fade starts in the frame the state changes; there is no delay before it and no
+second timer.
 
 **Panels.** A phone panel over the player (Episodes, Audio & subtitles, the
 failure panel) fades in over `motion.arrive` and the control layer returns when
@@ -388,8 +389,9 @@ nothing announces motion to the viewer.
    the scale.
 5. **MOTION-05:** let a Home hero with three slides rotate. Each change
    crossfades art, logo, text and actions together with no blank hero frame and
-   no row movement; the active dot grows to 48 while the others stay 16. A
-   slide whose artwork has not decoded keeps the previous artwork until it has.
+   no row movement; the active dot grows into its pill while the others stay
+   dots. A slide whose artwork has not decoded keeps the previous artwork until
+   it has.
 6. **MOTION-06:** on the desktop app, open a filter chip's list, a card menu
    and the source drawer. The popovers fade in from 0.98; the drawer travels in
    from the right over about 300 ms with the page behind it still. Escape
@@ -415,7 +417,7 @@ nothing announces motion to the viewer.
     never replace the hero.
 12. **MOTION-12:** play on the desktop app and on a phone. The control layer
     fades in and out over about 200 ms with the video frame unchanged; after 5 s
-    idle it fades out, any pointer move or key fades it back in at once. Open and
+    idle it fades out, and a key or a tap fades it back in at once. Open and
     close the phone's Episodes panel: it fades in and the controls return.
 13. **MOTION-13:** open the player and let an episode end with autoplay on. The
     Up Next ring keeps emptying while the number counts; no other motion is
@@ -454,3 +456,9 @@ nothing announces motion to the viewer.
 - No canvas or board defines what a "list item" is for a live guide or a
   calendar week; those rows are included by the general rule and may need their
   own pass if a stagger reads badly there.
+- Whether a pointer move should reveal the player's controls on desktop and web
+  is a behaviour question this contract does not answer: a key or a tap shows
+  them today, and the motion only changes how they appear.
+- `components.md` §3 draws the active carousel dot as an 18 × 6 pill and the
+  others as 6 × 6, while the app draws 48 × 4 and 16 × 4. This contract states
+  the motion without settling the geometry, which needs a board.
