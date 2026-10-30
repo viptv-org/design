@@ -254,6 +254,57 @@ Pointer and touch layouts (P, tablet, D) animate; TV keeps the motion it already
 
 Every duration and easing above is read through the app's `motionSpec()`, which snaps under reduce motion: the change happens in the same frame as its state change. Progress bars, spinners, the hero rotation and the Up Next countdown number keep running. No motion delays an action, and no item adds copy.
 
+## 13. Empty states and artwork
+
+**Rules**
+
+- An empty state says what the page is, why it is empty, and the one action that
+  fixes it. It is a page, not a dialog: no scrim, no centred card, no
+  illustration inside a frame.
+- A first-run empty state may carry a full-bleed illustration; every other empty
+  state is text on the page ground, next to the filters it belongs to. A page
+  never draws two empty states at once.
+- The illustration sits behind the page area only — under the navigation, the
+  phone header, the rail and the title bar, which keep their own grounds. It is
+  `cover`-anchored centre, carries its own scrim, and is decorative: no
+  accessible name, because the heading, body and actions carry the meaning.
+- Filter chips are not drawn on a page with nothing to filter. An empty state
+  caused by a filter keeps the row, because the row is the way out.
+- One primary action per empty state, plus at most one secondary. Loading is a
+  skeleton in the page's own row shape, never a "Loading…" line, and never an
+  empty state while a request is open.
+- An action the signed-in account may not take is replaced by one line naming
+  who can take it. The line takes the action's place, so nothing else moves.
+
+**States**
+
+| State | Artwork | Filters | Actions |
+|---|---|---|---|
+| Live, no source (T, P, W) | `live-empty-stadium-wide` / `-tall`, full bleed | none | primary and secondary for the owner and local mode; a who line for a member or a paired TV |
+| Live, source, no channels | none | Source chip while a second source exists | the retry, and Source integrations when the viewer may change sources |
+| Live, source, still loading | none | as above | none; skeleton rows |
+| My List, Discover, Search, Continue Watching | none | per [FILTER-CHIP-001](#2-chips-and-segmented-controls) | the page's own clear or browse action |
+
+**Geometry** (the block's stack, gaps and copy are
+[LIVE-EMPTY-001](../specs/behavior/live-empty-state.md))
+
+| | Block | Headline | Body | Primary |
+|---|---|---|---|---|
+| T | x 96, width 840, centred in the page area | D 56/700, line 64 | 26/400, line 38 | 72 tall, radius 36, 26/700, off-white |
+| W | x 40 (the Live page's own inset), width ≤ 620, centred | D 40/700, line 46 | 16/400, line 24 | 48 tall, radius 24, 16/700, accent |
+| P | x 16, width 358, 112 above the page's bottom edge | D 34/700, line 40 | 15/400, line 22 | 54 tall, radius 27, full width, accent |
+
+**Artwork**
+
+Two hand-authored SVGs in `assets/illustrations/`, inventoried in
+`assets/FILES.json` and described in `assets/ASSET_MANIFEST.md`: a 1920 × 1080
+wide scene for W and T and a 1080 × 1920 tall scene for P, both the same
+floodlit stadium with crowd silhouettes, pitch lines and a glowing `LIVE`
+scoreboard. Paths, rectangles, circles and ellipses with linear and radial
+gradients only, in the tokens' colours, with the reading scrim baked in; no
+text, raster, filter, mask, pattern, blend mode or external reference, so each
+file converts to a vector drawable unchanged. Under 30 KB each.
+
 ## Implemented component contracts (2026-10-19)
 
 - **TV focus**: `TvFocusTreatment.kt` — `tvFocusOutline` (content), `tvFocusColumn`

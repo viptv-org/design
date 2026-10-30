@@ -65,6 +65,17 @@ KMP form dialog assets are procedural nine-patches from
 field outlines and20px focus capsule. Geometry is measured from current KMP source;
 no app/device capture is embedded in these assets.
 
+## Live empty-state artwork
+
+`illustrations/live-empty-stadium-*.svg` is the Live page's no-source background ([LIVE-EMPTY-001](../specs/behavior/live-empty-state.md)): an original night stadium under floodlights, with crowd silhouettes, a lit pitch-side hoarding, the pitch's own lines, a centre circle, light beams and a glowing `LIVE` scoreboard. VIPTV owns it outright: no team, league, logo, player, photograph or third-party drawing appears in it, and nothing is traced from a capture.
+
+| File | Size | Contents |
+| --- | --- | --- |
+| `illustrations/live-empty-stadium-wide.svg` | 1920 × 1080 | The scene for tablet, desktop, web and TV, with a left-to-right and bottom scrim |
+| `illustrations/live-empty-stadium-tall.svg` | 1080 × 1920 | The same scene composed for phone widths, with a bottom scrim |
+
+Both files are hand-authored SVG containing only paths, rectangles, circles and ellipses, with linear and radial gradients: no text, raster image, filter, mask, pattern, blend mode or external reference, so each converts to a vector drawable unchanged and needs no network. The reading scrim is part of the file, so a page draws it once and adds no overlay. Colours are `viptv-design-system/tokens/tokens.json` values only — `bg` `#0B0B0C` and `bg-oled` `#000000` for the sky, stands, silhouettes and scrims; the `surface-1`–`surface-4` ladder for the pitch, crowd tiers, masts and scoreboard; `text-primary` `#F4F2EE` for lamps, pitch lines and the `LIVE` lettering; `accent` `#F5C542` for the hoarding strip and the scoreboard clock; `status.live` `#FF5A4E` for the scoreboard dot. Depth comes from lower opacities of those same colours.
+
 ## App icon and TV banner master
 
 `brand/app-icon/` is the square app-icon and TV-banner master for Android,
