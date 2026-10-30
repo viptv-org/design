@@ -103,7 +103,9 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Radio rows:** used for settings choices such as Subtitle size (Small / System default / Large).
 - **Settings group:** a surface-1 card with rows split by hairlines. Each row is icon + title (+ note) + value + chevron. Values never wrap. Rows that hold a toggle have no chevron.
 - **Destructive row:** danger text, for example "Sign out" or "Remove addon".
-- **Section nav (D settings):** a left list with uppercase group labels (Profile, Playback, This device, Account). The current item has a surface-2 fill.
+- **Section nav (D settings):** a left list with uppercase group labels (Profile, Playback, This device, Account). The current item has a surface-2 fill. The rows inside each group, and the Profile and Account pages they open, are [ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md).
+- **Settings groups and their labels:** every layout shows the same four groups in that order. Phone and tablet put each group in a card (radius 14 on phone, 16 on tablet) with a label above it; desktop and web put the labels in the rail (12/700, +0.06em, uppercase, `text.tertiary`, 8/12 padded on desktop, 12/16 on web); phone uses 11/700, +0.08em, `text.tertiary`, 8 above its card and 2 below the previous one, and tablet 11/700, +0.08em, 12/16 padded with 12 above and 16 below the group. Labels are headings for assistive technology, never focus stops. No board draws them; the type is the eyebrow role and the spacing follows each board's group gap.
+- **Settings rows:** icon + title + note + value + chevron, values never wrap, and a switch row has no chevron. A disabled row keeps its label and carries the reason as its note ("Manage this from a signed-in phone, computer or the web dashboard."); a row a platform does not implement is absent, never disabled.
 - **TV settings rows** are 80 tall with radius 22. The focused row is off-white. A description panel on the right explains the focused row.
 
 ---
@@ -141,7 +143,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Phone headers:** a wordmark + avatar (Home), a screen title, back + sub-page title, or a glass back button over art.
 - **Desktop title bar (Tauri):** 40 tall + hairline. It holds the wordmark, Back / Forward, a centred 460 search, and window controls. It is hidden in the fullscreen player. It has a pairing variant for sign-in (no search).
 - **Rail (D):** 84 wide. Items are 64 × 58 with radius 14: Home, Discover, Live, My List (web adds Search). The bottom holds On TV, Settings and the avatar. The current item has a surface-2 fill. "On TV" lights up while the Watch on TV dialog is open.
-- **TV rail:** 144 wide, icons only. Focusing it expands a 520 labelled menu over a 0.55 scrim, with the profile on top, then Search, Home, Discover, Live TV, My List, and Settings at the bottom.
+- **TV rail:** 144 wide, icons only. Focusing it expands a 520 labelled menu over a 0.55 scrim, with the profile on top, then Search, Home, Discover, Live TV, My List, and Settings at the bottom. The Settings menu carries the four group labels (18/700, +0.08em, uppercase, `text.tertiary`, 24 × scale above a group's first row and 8 × scale below its last) and holds **Profile**, **Switch profile**, Playback, Subtitles & audio, Display, About, Account, Add-ons, Source integrations, Parental controls ([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)).
 
 ---
 

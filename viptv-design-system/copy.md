@@ -137,6 +137,9 @@ recovery dialog and can be quoted when reporting a failure.
 | Dialog | Title | Actions |
 |---|---|---|
 | Sign out | Sign out of this device? (TV: "Sign out of this TV?") | Sign out (danger) · Cancel |
+| Sign out of all devices | Sign out of all devices? | "Every other device has to sign in again. This one stays signed in." · Cancel · Sign out all (danger) |
+| Sign out a device | Sign out this device? | "It will need a new code to sign in again." · Cancel · Sign out (danger) |
+| Delete account | Delete account | "This deletes [name]'s account, its profiles, their history, My List, add-ons and paired devices. It cannot be undone." · Cancel · Delete account (danger) |
 | Delete profile | Delete profile | "Delete [name]? This permanently removes this profile's watch history, favorites and preferences." Cancel · Delete profile (danger) |
 | Remove addon | Remove [Addon]? | "Its catalogs leave this device." (local mode) · Cancel · Remove (danger) |
 | Manage addon | Manage [Addon] | Enable / Disable · Remove addon (danger) · Cancel |
@@ -156,6 +159,20 @@ recovery dialog and can be quoted when reporting a failure.
 - Desktop: Continue in browser. "Sign in securely in your browser. This window will connect automatically."
 - Profiles: Who's watching? · Manage profiles · Add a profile · Edit profile · "A space for their favorites, shows, and discoveries." · Find your favorite · "[468] avatars. Pick a world, then pick your character."
 
+
+## Settings
+
+[ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md) groups Settings into **Profile**, **Playback**, **This device** and **Account**, in that order, on every platform.
+
+- Rows — Profile: **Profile** · **Linked services** · **Parental controls** · **Import from Stremio**. Playback: **Playback** · **Subtitles & audio**. This device: **Display** (TV) · **Watch on TV** (phone, tablet) · **About** · **Help**. Account: **Account** · **Password** · **Household PIN** · **Devices & sessions** · **Add a device** · **Add-ons** · **Source integrations** · **Sign out** · **Delete account**.
+- The profile card above the groups reads the profile's name with **Switch profile**. On TV the rail entry is **Switch profile**, beside a separate **Profile** entry that opens the page below.
+- Profile page: **Name** · **Avatar** · **Kids profile** ("Limits titles, search and Live for this profile.") · **Maturity limit** ("Titles above this rating are hidden for this profile"; values **All ratings**, `G` `PG` `PG-13` `R` `NC-17`, `TV-Y` `TV-Y7` `TV-G` `TV-PG` `TV-14` `TV-MA`) · **Approved titles** ("Only these titles show in the kids library") · **Profile lock** ("Ask for a PIN before this profile opens") · **Language** ("Default audio and subtitles for this profile") · **Delete profile**.
+- Account page: **Name**, **Username** `@[username]`, **Role** **Owner** / **Member**. There is no email row.
+- Household PIN: "Use a 4–8 digit PIN to protect leaving kids profiles. Turn off kids mode on all profiles before removing the PIN." A blocked removal reads "Turn off kids restrictions on all profiles before removing the PIN."
+- Devices: "Everywhere [name]'s account is signed in. Signing a device out doesn't delete anything from the account." · a row reads **Now** or **Signed in [when]**, and **This device** for the one in use · empty "No other devices are signed in." · **Sign out of all devices**.
+- Change password (proposed): **Current password** · **New password** · **Confirm new password** · **Change password** · **Cancel** · "Password changed. Other devices stay signed in." · "That password is not correct." · "Passwords do not match." · "Too many attempts. Wait a minute and try again." · "Could not change your password. Try again."
+- Delete account (proposed): type the username to confirm, plus the household PIN when one is set. "Could not delete your account. Nothing was changed. Try again." Success signs out with "Your account was deleted."
+- A TV cannot manage the account: those rows are disabled with "Manage this from a signed-in phone, computer or the web dashboard.", including the sign-out actions in Devices & sessions.
 
 ## Watch on TV (phone remote)
 
