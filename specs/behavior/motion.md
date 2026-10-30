@@ -94,10 +94,11 @@ Colour, opacity and fill states still apply instantly: a hover fill, a set
 chip, a watched badge and a focused ring all keep their meaning.
 
 Reduce motion follows the platform preference — Android animator scale 0, iOS
-Reduce Motion, browser `prefers-reduced-motion` — and the device Display
+Reduce Motion, browser `prefers-reduced-motion`, the desktop OS setting
+(macOS Reduce motion, Windows client-area animations, GNOME animations) — and the device Display
 record's **Reduce motion** value where that row exists (TV). Non-TV layouts
 have no such row, the same as [PLAY-NEXT-AUTOPLAY-001](next-episode-autoplay.md#countdown)
-records; the desktop app has no portable query yet (see Unknowns).
+records. A desktop setting the app cannot read counts as motion allowed.
 
 ## 1. Page and screen transitions
 
@@ -442,9 +443,6 @@ nothing announces motion to the viewer.
   against the app's current code (the phone sheet's 220 ms rise, the 180 ms
   artwork dissolve, the TV player's 200/300 fades), not measured against a
   running build.
-- The desktop app has no portable reduced-motion query today, so it counts as
-  motion allowed; a Windows, macOS and Linux preference read is an app task, not
-  a design change.
 - The Material 3 pull indicator, `DropdownMenu` and `Dialog` bring their own
   timings. This contract's durations replace them only where the app draws its
   own container, so the popover and dialog items are measured once the app
