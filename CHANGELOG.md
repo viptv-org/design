@@ -1,5 +1,32 @@
 # Design changes
 
+## 2026-10-30 — One vector master for the branded V
+
+`assets/brand/viptv-v.svg` is the VIPTV V for every surface: the branded V of
+the Roku wordmark as one closed path, traced from
+`assets/roku/roku/images/viptv-mark.png` and checked by
+`assets/brand/tools/trace_v.py`. It reproduces the raster at a mean absolute
+coverage error of 0.004 of a pixel and keeps the mark's own geometry: the flat
+top cut, the two outer edges, each arm's inner edge bending once on the way to
+the notch apex, and a bottom tip rounded tangent to both outer edges.
+
+`assets/brand/tools/make_app_icon.py` generates every variant from that path:
+
+- **In-app mark tile** — `assets/brand/brand-mark-tile.svg`: accent ground at
+  radius 30 (`radius.app-mark`), the V in the app's background colour.
+- **Launcher icons** — the 72-unit square and its 1024 px render, the adaptive
+  foreground for the 72-unit visible area and the monochrome layer, white on
+  black as before.
+- **TV banner** — 320 × 180, white "VIPTV" on black; both V's are the master at
+  the cap height and "IPT" stay in Bricolage Grotesque ExtraBold.
+
+So the icon, the tile and the banner stop being a typed font V; the app's
+`BrandMark`, navigation logos and update screen follow in
+[app#303](https://github.com/viptv-org/app/issues/303). `docs/branding.md` and
+the asset manifest name the vector master as the source for every surface, with
+the trace method, geometry, pinned tools and hashes. Refs
+[design#46](https://github.com/viptv-org/design/issues/46).
+
 ## 2026-10-30 — Live with no source gets a designed first run
 
 [LIVE-EMPTY-001](specs/behavior/live-empty-state.md) replaces the Live page's
