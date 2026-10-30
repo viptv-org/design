@@ -67,7 +67,8 @@ is below the phone header.
   accent [Spinner](../../viptv-design-system/components.md#3-badges-and-indicators)
   (see [Superseded](#superseded)).
 - **Timing:** the indicator's settle and return animations are the library's;
-  VIPTV sets no durations.
+  VIPTV sets no durations. The pull is the one motion [MOTION-001](motion.md#7-pull-to-refresh)
+  does not re-time: it is direct manipulation and must track the finger.
 - **During a reload:** pulling again does nothing until the indicator ends.
   The page underneath scrolls, taps and navigates as usual.
 
@@ -104,7 +105,9 @@ right after it in the same lane, and the indicator stays until both finish.
   An operation the viewer started (a save, a source load, playback) is never
   cancelled.
 - **Success:** the new data merges in place. The screen and scroll position
-  stay, and focus is not moved. The indicator goes away.
+  stay, and focus is not moved. The indicator goes away. Nothing re-enters:
+  a finished reload never animates the page
+  ([MOTION-001](motion.md#7-pull-to-refresh)).
 - **Failure** (network, server error): the shown data stays and no error or
   toast appears. The indicator goes away. The next pull or automatic check
   tries again.
@@ -142,8 +145,10 @@ While it spins, the indicator exposes an indeterminate progress value, so
 screen readers can announce that the page is busy. The gesture has no
 accessibility action. Screen-reader users get fresh data from the automatic
 refresh on foreground return and while Home is visible (HOME-ADDON-001).
-Reduced motion is not handled by the app here. Whether the Material spinner
-follows the system animation scale is unverified (see Unknowns).
+Reduced motion ([MOTION-001](motion.md#reduced-motion)): the indicator appears
+as its disc with a still arc and does not rotate while the reload runs, and the
+pull still follows the finger. The arc is the busy report, so it stays until
+the reload ends.
 
 ## Superseded
 
@@ -204,8 +209,8 @@ exception for the pull indicator:
 - The library defaults (threshold, drag resistance, elevation, animation
   timing) follow the Compose Material 3 version the app builds with. They
   have not been measured on a device.
-- Whether the spinner stops animating with the system's animations off is
-  unverified.
+- Whether the still arc under reduce motion reads as busy without the
+  rotation is unverified; the disc and the progress value are what announce it.
 - The browser case of REFRESH-PULL-09 rests on the layout rule (no gesture
   without a native touch layout). The app tests drive only the desktop and TV
   layouts.
