@@ -60,13 +60,18 @@ Actions, by who is looking:
 |---|---|
 | Owner account session | Primary **Set up live TV**, secondary **Add-ons** |
 | Member account session | No action; the who line **Only the household owner can set up live TV.** |
-| Paired TV device session (role `device`) | No action; the who line **Manage live TV from a signed-in phone, computer or the web dashboard.** |
+| Paired TV (a device session) | No action; the who line **Manage live TV from a signed-in phone, computer or the web dashboard.** |
 | Local mode (no account) | Primary plus secondary; the device owns its own sources |
 
 The who line occupies the action block's place, so the copy never moves between
-the two forms. Role comes from the account identity the app already reads
-(`/api/auth/me` → `account.role`); local mode is the app's own local build. The
-role is requested when this state first appears. Until it answers, the text
+the two forms. The facts come from the account identity the app already reads
+(`/api/auth/me`): `account.role` is `owner`, `member` or `device`, and
+`capabilities.manage_account` says whether this session may change household
+settings at all — false for a paired TV, true for a browser and for a native
+account session ([app#300](https://github.com/viptv-org/app/issues/300) puts
+that capability on the app's state; this state reads the same two fields and
+depends on neither landing first). Local mode is the app's own local build. The
+identity is requested when this state first appears. Until it answers, the text
 block draws without an action block or who line and reserves their height; the
 primary takes focus the frame it appears. No other loading state is drawn for
 this.
@@ -296,8 +301,10 @@ button in the no-source state.
   the product: there is no add-on directory, catalogue or recommendation list in
   the app, the web dashboard or the server. The body names the two routes that
   exist; a free-add-on directory needs its own design and its own route.
-- How quickly the account role answers is an app decision. This contract only
-  says the action block waits for it and holds its height.
+- How quickly the account identity answers is an app decision. This contract only
+  says the action block waits for it and holds its height. A server that omits
+  `capabilities.manage_account` is read through `account.role` (`device` means a
+  paired TV).
 - A paired TV cannot write sources at all, so its line names other devices
   rather than an action. Whether that line should become a QR code or a deep
   link to the dashboard is open, and no origin string is added to copy.
