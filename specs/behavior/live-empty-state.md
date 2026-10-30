@@ -3,7 +3,8 @@
 Status: **proposed**, owner report 2026-10-30
 ([design#45](https://github.com/viptv-org/design/issues/45)). Nothing here is
 built yet.
-Design commit: `bf8ac45` (this repository; the app issue cites it).
+Design commit: `bf8ac45` (this repository). Implementation:
+[app#304](https://github.com/viptv-org/app/issues/304).
 Source revision: app `da1b7de6` (`origin/edge`, 2026-10-30):
 `features/live/LiveRoute.kt`, `LiveScreen.kt`, `TvLiveScreen.kt` and
 `LiveFilters.kt`. Owner-only writes: backend `f30b2f5`
