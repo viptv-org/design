@@ -1,5 +1,44 @@
 # Design changes
 
+## 2026-10-30 — Settings split into Account, Profile, Playback and This device
+
+[ACCT-SPLIT-001](specs/behavior/account-and-profile-settings.md) separates what
+belongs to the household from what belongs to one viewer, and rebuilds the
+Account page around it. Settings keeps one shell with four labelled groups in
+this order on every platform: **Profile** (Profile · Linked services · Parental
+controls · Import from Stremio), **Playback** (Playback · Subtitles & audio),
+**This device** (Display on TV · Watch on TV on phone and tablet · About · Help)
+and **Account** (Account · Password · Household PIN · Devices & sessions · Add a
+device · Add-ons · Source integrations · Sign out · Delete account).
+
+**Profile** becomes a real page: name, avatar, kids flag, maturity limit,
+approved titles, profile lock, language (the profile's audio and subtitle
+languages, opening the one editor) and delete profile. **Account** becomes the
+household's own page: read-only identity (display name, `@username`, Owner or
+Member), password, household PIN, devices and sessions, Add a device, add-ons,
+source integrations, sign out and delete account.
+
+Three facts the split has to live with: there is **no sign-in email** (an account
+is a username, a display name and a password), **Simkl is per profile** and
+becomes Profile › Linked services, and the backend has **no route to change a
+password or delete an account**, so those two pages are specified as proposed and
+stay absent until the routes exist. The Account group is visible to everyone
+signed in; a TV device session cannot manage the account, so those rows are
+disabled with "Manage this from a signed-in phone, computer or the web
+dashboard." rather than hidden.
+
+`copy.md` gains the row labels, the group names, the identity, household PIN,
+devices, change-password and delete-account strings and four dialog rows;
+`components.md` §5 the group labels and their geometry on each layout and §7 the
+TV rail's labels with **Profile** and **Switch profile**; `decisions.md` the
+settled decision. The phone, tablet, desktop and web boards keep their geometry
+and lose their flat row order, `W3Account`'s sidebar is retitled **Settings**, and
+`Tv3SetAbout` / `Tv3SignOut` keep their geometry while the rail gains the groups.
+The boards' Recovery codes pages cannot be built: no route lists or regenerates
+codes.
+
+Refs [design#40](https://github.com/viptv-org/design/issues/40).
+
 ## 2026-10-29 — Caught-up Continue Watching labels
 
 The app's caught-up Continue Watching card states what the app already draws (app#149, app#163):
