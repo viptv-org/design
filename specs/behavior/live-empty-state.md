@@ -3,7 +3,7 @@
 Status: **proposed**, owner report 2026-10-30
 ([design#45](https://github.com/viptv-org/design/issues/45)). Nothing here is
 built yet.
-Design commit: the commit that added this file (see the app issue).
+Design commit: `bf8ac45` (this repository; the app issue cites it).
 Source revision: app `da1b7de6` (`origin/edge`, 2026-10-30):
 `features/live/LiveRoute.kt`, `LiveScreen.kt`, `TvLiveScreen.kt` and
 `LiveFilters.kt`. Owner-only writes: backend `f30b2f5`
@@ -30,15 +30,15 @@ Only the page's own facts decide, in this order.
 
 | Condition | State |
 |---|---|
-| A filter is applied (Favourites, a group, a source or a search) | Today's filtered-empty line, unchanged |
+| A filter is applied (Favourites, a group or a source) | Today's filtered-empty line, unchanged |
 | `LivePage.connections` is empty, or the page answered `NeedsConfiguration` | **No source** (LIVE-EMPTY-001A) |
 | The page has connections and zero channels, and a request is in flight | **Still loading** (LIVE-EMPTY-001B loading) |
 | The page has connections and zero channels after it answered | **No channels** (LIVE-EMPTY-001B) |
 | Any channels | Today's page, unchanged |
 
-`LivePage.connections` is the server's enabled live-capable connection list for
-this profile, so it answers "is a source configured" without guessing from an
-error string. The guide (`liveGuides`) is not a Live source and never satisfies
+`LivePage.connections` is the page's live-capable connection list for this
+profile (the app filters it by `enabled` for its Source chip), so it answers "is
+a source configured" without guessing from an error string. The guide (`liveGuides`) is not a Live source and never satisfies
 `connections`.
 
 ## No source (LIVE-EMPTY-001A)
@@ -195,8 +195,8 @@ measurements below are derived from the type roles and the page insets in
 | Gaps | 12, 16, 24, 10 as on T and W, in that order |
 
 **LIVE-EMPTY-001B geometry.** Page inset and gutter as above; the block is the
-top-left of the page area (T x 96 y 60 of the page area; W x gutter, y 40; P x
-16, y 24) because the chip row sits directly above it. T headline 44/700 line
+top-left of the page area (T 96/60, W 40/40, P 16/24, each measured from the
+page area's own origin) because the chip row sits directly above it. T headline 44/700 line
 50, body 24/400 line 34; W headline 28/700 line 34, body 15/400 line 22; P
 headline 20/700 line 26, body 14/400 line 21. Actions use each layout's primary
 and secondary geometry above. Skeleton rows start where channel rows start
