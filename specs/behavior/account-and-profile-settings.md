@@ -1,9 +1,8 @@
 # ACCT-SPLIT-001 — Account, profile and device settings
 
-Status: **proposed**, owner report 2026-10-30
-([design#40](https://github.com/viptv-org/design/issues/40)). Nothing here is
-built yet: the KMP app and the web dashboard both still mix account, profile and
-device settings in one list.
+Status: the Account/Profile/This device split is **proposed**. The three
+account pages below describe **baseline** app behavior and cite their source
+revisions. The settings shell and profile split remain unimplemented.
 
 Source revisions: the KMP app's Settings at app `d2db87f`
 (`features/settings/`, `state/SettingsPage.kt`, `state/SettingsRoute.kt`) and the
@@ -48,7 +47,10 @@ Every row below is one setting or one action, with its real owner. "Account" and
 | Household PIN | Account | `GET /parent/status`, `POST /parent/unlock`, `PUT /parent/pin` |
 | Add-ons (inventory) | Account | `GET/POST /addons`, `PATCH/DELETE /addons/:id` |
 | Add-on on/off for a profile | Profile | `GET/PUT /profiles/:id/addon-activation`, `GET/PUT /profiles/:id/integrations` |
-| Source integrations (VIPTV Sources, Xtream, M3U, IPTV connections) | Account | `GET/PUT /profiles/:id/source-integrations`, `GET/POST/PATCH/DELETE /iptv/connections` |
+| Source integrations (VIPTV Sources and M3U) | Account | `GET/PUT /profiles/:id/source-integrations` |
+| Xtream connections | Account owner; members read | `GET/POST/PATCH/DELETE /iptv/connections`, credentials, refresh and live-default routes |
+| VOD match overrides | Account owner; members read | `GET/PUT /iptv/matches` |
+| Playback gateways and access grants | Gateway owner; shared accounts read and check capacity | `GET/POST/PATCH/PUT/DELETE /gateways*` |
 | Devices and sessions | Account | `GET /account/devices`, `DELETE /account/devices`, `DELETE /account/devices/:id`, `DELETE /auth/sessions` |
 | Add a device (pairing code approval) | Account | `POST /auth/device/lookup|approve|deny` |
 | Delete account | Account | none |
@@ -83,7 +85,7 @@ where the platform implements it.
 | **Profile** | Profile · Linked services · Parental controls · Import from Stremio |
 | **Playback** | Playback · Subtitles & audio |
 | **This device** | Display (TV) · Watch on TV (phone, tablet) · Notifications (only where implemented) · About · Help |
-| **Account** | Account · Password · Household PIN · Devices & sessions · Add a device · Add-ons · Source integrations · Sign out · Delete account |
+| **Account** | Account · Password · Household PIN · Devices & sessions · Add a device · Add-ons · Source integrations · Xtream connections · VOD matches · Playback gateways · Sign out · Delete account |
 
 - **Profile** opens the page in [Profile](#profile): the current profile's name,
   avatar, kids flag, maturity limit, approved titles, lock, language, linked
@@ -244,10 +246,16 @@ Title **Account**. Rows, in order, each its own page or dialog:
    8-character code, Continue → confirm → done/denied).
 6. **Add-ons** — the existing inventory page. Add-ons belong to the account; the
    switch on a row enables one for the current profile and the page says so.
-7. **Source integrations** — VIPTV Sources, Xtream and M3U connections.
-8. **Sign out** — danger, last but one, with the existing confirmation
+7. **Source integrations** — VIPTV Sources and M3U.
+8. **Xtream connections** — the account's Xtream providers; see
+   [Xtream connections](#xtream-connections-baseline).
+9. **VOD matches** — provider titles and their metadata overrides; see
+   [VOD matches](#vod-matches-baseline).
+10. **Playback gateways** — shared stream gateways and their access grants; see
+    [Playback gateways](#playback-gateways-baseline).
+11. **Sign out** — danger, last but one, with the existing confirmation
    (**Sign out of this device?** / TV **Sign out of this TV?**).
-9. **Delete account** — danger, last, the page in
+12. **Delete account** — danger, last, the page in
    [Delete account](#delete-account-proposed).
 
 A TV device session cannot manage the account: the server answers
@@ -257,11 +265,155 @@ sessions are shown disabled with **"Manage this from a signed-in phone, computer
 or the web dashboard."** The rest of the group stays usable, because a TV must be
 able to sign out and read its devices.
 
-Operator surfaces (service health, providers, gateway grants, accounts) stay in
-the web dashboard and are not rows in the app. Account-level pages the app
-does implement beyond the list above sit after **Source integrations** and
-before **Sign out** — today Xtream connections (app#271), VOD matches
-(app#272) and playback gateways (app#273).
+Account-level pages sit after **Source integrations** and before **Sign out**:
+**Xtream connections**, **VOD matches** and **Playback gateways**. Gateway
+access grants are managed from the Playback gateways page by the gateway owner.
+
+### Xtream connections (baseline)
+
+Source revision: [app `c053998c727b66ef601a81da25a136eccc0b211f`](https://github.com/viptv-org/app/commit/c053998c727b66ef601a81da25a136eccc0b211f).
+
+The **Xtream connections** page lists the account's connections. Each row shows
+its name, **Enabled** or **Disabled**, sync state (**Sync queued**, **Syncing**,
+**Up to date**, **Sync failed**, **Sync cancelled** or **Not synced yet**), and
+the enabled content scopes (**Live TV**, **Movies**, **Series**, or **No content
+enabled**). A failed refresh also shows the provider's mapped error. The page
+shows **Default live playlist** only when there is at least one enabled live
+connection; its choices are enabled live connections. The selected row is marked
+**Default live**.
+
+The page lead reads **"Xtream connections belong to this account. Live, movie
+and series catalogues come from each connection you enable."** The list offers
+**Add an Xtream connection**, **Refresh list**, and a connection count. With no
+connections it reads **"No Xtream connections yet. Add one to browse its
+catalogues."** A failed initial load reads **"Could not load connections."**
+with **Retry**; while no request has loaded the list it reads **"Connections are
+not loaded."**
+
+An owner can add a connection with **Connection name**, **Server URL**,
+**Username**, **Password**, and **Available content** choices (**Connection
+enabled**, **Live TV**, **Movies**, **Series**). The primary action is **Add
+connection** and is disabled until required values are valid. The server URL,
+username and password are never rendered again after save; saved credentials are
+never shown. Editing offers the name and content scopes only, with the note
+**"The server address and username stay as they are. Saved credentials are never
+shown."** **Replace password** asks only for **New password**. Each connection
+offers **Edit**, **Replace password**, **Sync now**, **Use as default live** when
+eligible, and **Remove**. Sync shows its returned state and any provider error;
+the page notice reads **"Sync requested. Refresh the list to check progress."**
+and a saved default notice reads **"Default live playlist saved."**
+
+Remove opens **Remove [connection name]?** with **"This removes the connection
+and its saved credentials. Its catalogues and live channels stop showing.
+Viewing history is kept."** and **Remove** / **Cancel**. A connection whose
+credentials have not been migrated shows **"Operator migration required before
+this connection can be changed."** and disables Edit, Replace password, Sync
+now and Remove.
+
+Only the account owner can change connections. A member sees
+**"Only the account owner can change connections."** and has no write actions.
+A paired TV session reads **"Manage this from a signed-in phone, computer or the
+web dashboard."** and has no write actions. Server/provider errors use mapped
+copy, including **"The provider rejected this login. Check the username,
+password and subscription."**, **"This provider login is already in your
+account."**, **"This account has reached its limit of 64 connections."**,
+**"This server cannot store credentials, so connections cannot be changed
+here."**, and **"The provider could not be reached. Try again."**
+
+On TV, the page replaces the list in place. Enter opens a connection's action
+page; Up/Down move through the list and actions, Left returns to the rail, and
+Back returns focus to the rail row that opened the page. Forms and remove
+confirmation keep Cancel available and return focus to their opener. Touch
+layouts use a sheet; pointer layouts use a dialog for the form.
+
+### VOD matches (baseline)
+
+Source revision: [app `01a7fa3ae43d016df059bacf39b4bcefb01f6391`](https://github.com/viptv-org/app/commit/01a7fa3ae43d016df059bacf39b4bcefb01f6391).
+
+**VOD matches** lists provider titles without a metadata match. The lead reads
+**"Provider titles without a metadata match. Set the metadata ID a title should
+resolve to."** Filters are **Provider** (default **All providers**), **Type**
+(default **All types**, with **Movies** and **Series**) and **Search titles**.
+Rows show the title, provider, type, optional year, **No metadata match** or
+**Matched to [metadata ID]**, and **Match title** or **Edit match**. **Load more
+titles** appears when another page is available.
+
+Selecting a row opens **Match title** or **Edit match** with its title, type,
+provider, the **Metadata ID** field, the hint **"For example tt0111161 or
+tmdb:550."**, and **Save match** / **Cancel**. Saving updates that row in place
+and leaves the page, row order, filters and scroll position intact. The save
+button is disabled for a blank ID and while saving. Empty unfiltered results
+read **"No unmatched titles."**; an empty filtered result reads **"No matching
+titles. Change the filters or search."** A load failure shows its error and
+**Retry**. A profile restriction reads **"VOD matches aren’t available for this
+profile. Unlock parental controls or use the account owner’s profile."**; an
+unsupported server reads **"This server doesn’t support VOD matches. Update the
+server and try again."** A missing provider title reads **"That title is no
+longer in the provider catalog."**; an invalid metadata ID reads **"This title
+cannot be matched to that metadata ID."** An unclassified failure reads
+**"Could not load VOD matches. Try again."** or **"Could not save the match.
+Try again."**
+
+Members can list matches; only the account owner can save. A rejected save reads
+**"Only the account owner can change matches."** A profile restriction while
+loading reads **"VOD matches aren’t available for this profile. Unlock parental
+controls or use the account owner’s profile."**
+
+On phone, desktop and web, the match form is a dialog. On TV, provider, type and
+search chips sit above the D-pad list. The search panel
+uses the on-screen keyboard and debounces changes by 300 ms. Enter opens the
+match form; its **Metadata ID** is entered with the on-screen keyboard. Escape
+closes the form and restores focus to the row; when the list is empty, focus
+starts on **Search**. Saving keeps the list and viewport in place.
+
+### Playback gateways (baseline)
+
+Source revision: [app `f9da79f00f08fc78d83bc17191c221a52711cdb7`](https://github.com/viptv-org/app/commit/f9da79f00f08fc78d83bc17191c221a52711cdb7).
+
+The **Playback gateways** page lead reads **"Gateways transcode and deliver
+streams this device cannot play directly. Gateways are shared across the
+account."** Each row shows the name, **Yours** or **Shared with your account**,
+endpoint, namespace, priority, **Enabled** or **Disabled**, and any capacity
+check result: **Not ready**, **Capacity unknown**, or **Ready · [N] inputs, [N]
+outputs, [N] viewers**. **Check capacity** becomes **Check again** after a
+result. **Refresh** reloads the page; a load failure shows the error and **Retry**.
+An empty list reads **"No gateways are configured for your account."**
+
+An owner can enable or disable a gateway, **Register gateway**, **Replace** its
+configuration, **Delete** it, and open **Access**. Register and Replace use
+**Name**, **HTTPS endpoint**, **Namespace**, **Priority (0–10000)**, and a masked
+**Integration key**; the key is required and is never prefilled. The action is
+**Register** or **Replace**, with **Cancel**. Invalid priority reads **"Use a
+priority from 0 to 10000."** A missing server encryption keyring disables
+registration and explains **"The server's encryption keyring is not configured,
+so no gateway can be registered until the operator configures it."** A failed
+save reads **"Could not save the gateway. Try again."** or the mapped gateway
+error.
+
+Delete opens **Delete [gateway name]?** with **"Playback that uses this gateway
+will stop until another gateway is configured or shared with your account."**
+and **Delete** / **Cancel**. **Access to [gateway name]** explains **"Grant
+access to another account ID. Revoked accounts lose this gateway at their next
+playback."** It lists grantees as **Account [ID]**, or **"No account has access
+yet."**; **Account ID** and **Grant** add access. **Revoke** opens **Revoke
+access?** with **"Account [ID] will lose access to [gateway name]."** and
+**Revoke** / **Cancel**. **Close** dismisses access management.
+
+Only the gateway owner can change its configuration or grants. Members see
+shared gateways and can check capacity, but have no enable, Replace, Delete or
+Access action. On TV, the owner can toggle a gateway and check capacity; TV does
+not expose registration, replacement, deletion or grant management. The D-pad
+enters the first gateway, moves to **Check capacity**, and Left returns to the
+rail. A playback failure with code `gateway_required` offers **Open Gateways**
+and opens this page.
+
+Gateway errors use mapped copy, including **"The server's encryption keyring is
+not configured, so gateways can't be saved. Ask the server operator."**, **"Use
+a scoped gateway integration key starting with pgk_."**, **"Use a public HTTPS
+gateway endpoint."**, **"The gateway rejected this integration key."**, **"The
+key must allow this namespace and all required playback operations."**, **"The
+gateway is not ready or could not be reached securely. Try again."**, and
+**"Gateway checks are busy. Try again shortly."**
 
 ## Change password (proposed)
 
@@ -399,8 +551,9 @@ need a browser session say where to use them.
    groups appear in the order Profile, Playback, This device, Account, and no row
    sits outside a group except the profile card.
 2. **ACCT-SPLIT-02** The Account group shows Account, Password, Household PIN,
-   Devices & sessions, Add a device, Add-ons, Source integrations, Sign out and
-   Delete account; no row in it changes a single profile's playback.
+   Devices & sessions, Add a device, Add-ons, Source integrations, Xtream
+   connections, VOD matches, Playback gateways, Sign out and Delete account; no
+   row in it changes a single profile's playback.
 3. **ACCT-SPLIT-03** The Playback group holds Playback and Subtitles & audio; on
    desktop and web the sidebar is no longer titled Account, and neither page is
    reachable from the Account group.
@@ -443,6 +596,26 @@ need a browser session say where to use them.
 15. **ACCT-SPLIT-15** On phone, Back from a sub-page returns to the list at the
     same scroll position with the same row visible; on tablet, desktop and web
     the rail stays visible and keeps the current row filled throughout.
+16. **ACCT-SPLIT-16** An account owner adds an Xtream connection, changes its
+    content scopes, replaces its password, syncs it, sets an eligible default
+    live playlist and removes it with confirmation. Saved server details and
+    credentials never appear in the list or edit form. A member and paired TV
+    session see the stated read-only guidance; a connection requiring operator
+    migration keeps its write actions disabled. Load, provider and sync failures
+    keep the page available with mapped error copy and a retry path. TV Back
+    returns focus to the row that opened the page.
+17. **ACCT-SPLIT-17** A member filters and searches VOD matches and opens a
+    title; the account owner saves its metadata ID and sees that row update
+    without losing list position or filters. Empty, filtered-empty and failed-
+    load states remain distinct. A member's rejected save shows the owner-only
+    message; TV Escape returns focus to the title row and an empty list starts
+    on Search.
+18. **ACCT-SPLIT-18** A gateway owner registers and checks a gateway, replaces
+    or deletes it with confirmation, and grants or revokes another account's
+    access. A member can inspect shared gateways and check capacity but cannot
+    change them. TV exposes the owner's toggle and capacity check, and a
+    `gateway_required` playback failure opens Gateways. Missing secret storage,
+    load errors and gateway failures show their mapped copy and recovery action.
 
 ## Superseded
 
@@ -478,10 +651,10 @@ need a browser session say where to use them.
 - **No route edits the account's display name or username.**
 - **No per-profile menu language exists** and the app has one string language, so
   the Language row covers audio and subtitles only.
-- **Owner versus member is not enforced for account settings.** The backend's
-  `require_household_manager` rejects only device (TV) sessions, so a member's
-  browser session can change the household PIN today. The disabled-row rule here
-  covers TV device sessions; a member restriction needs a backend rule first.
+- Household PIN and the other account settings described above have no
+  owner-only rule; a signed-in member can use them. The Xtream, VOD match and
+  gateway pages follow their separate owner rules above.
 - Whether the household PIN should be asked for before **Delete account** even
   when none is set is unverified with the owner.
-- No device evidence exists for any layout; nothing here has been built.
+- No device evidence exists for the account page layouts. The three account
+  pages above have app source revisions, but no device parity evidence.
