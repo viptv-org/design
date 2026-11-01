@@ -1,5 +1,18 @@
 # Design changes
 
+## 2026-11-01 — The brand rasters are checked against the vector master
+
+`scripts/validate.py` now regenerates `assets/brand/app-icon/` and
+`brand-mark-tile.svg` from `assets/brand/viptv-v.svg` on every run and fails when
+a committed file no longer matches: the SVGs byte for byte, the two PNGs within
+resampling tolerance, so a Pillow other than the pin fails only on a changed
+mark. A stale icon, a hand-edited layer or a raster left behind by a master
+change can no longer pass validation. The committed rasters and the app's copies
+of them — the 1024 px square and the TV banner — already come from the master
+and are unchanged.
+
+Refs [design#49](https://github.com/viptv-org/design/issues/49).
+
 ## 2026-10-30 — One vector master for the branded V
 
 `assets/brand/viptv-v.svg` is the VIPTV V for every surface: the branded V of
