@@ -1,7 +1,13 @@
 """Validate the self-contained design contract and asset inventory."""
 from pathlib import Path
-import hashlib,json,re,os
+import hashlib,json,re,os,sys,tempfile
 root=Path(__file__).resolve().parents[1]
+try:
+    from PIL import Image,ImageChops,ImageStat
+    sys.path.insert(0,str(root/'assets/brand/tools'))
+    import make_app_icon
+except ImportError as error:
+    raise SystemExit(f'brand raster check needs Pillow and numpy ({error}): python3 -m venv /tmp/viptv-icons && /tmp/viptv-icons/bin/pip install pillow==13.0.0 numpy==2.2.6')
 def walk(base):
     for directory, folders, names in os.walk(base):
         folders[:]=[x for x in folders if x not in {'.git','node_modules','__pycache__'}]
@@ -38,9 +44,25 @@ for path,value in leaves(tokens.get('color',{})):
 m=json.loads((root/'assets/FILES.json').read_text())
 actual={str(p.relative_to(root/'assets')):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(walk(root/'assets')) if p.is_file() and p.name!='FILES.json'}
 assert actual==m['files'], 'Asset inventory mismatch; update intentionally with provenance'
+def brand_raster_matches(made):
+    committed=make_app_icon.checked_in(made)
+    name=committed.relative_to(root)
+    assert committed.is_file(), f'Missing brand asset: {name}'
+    if made.suffix!='.png':
+        return made.read_bytes()==committed.read_bytes(), name, ''
+    rendered,checked=Image.open(made).convert('RGB'),Image.open(committed).convert('RGB')
+    assert rendered.size==checked.size, f'{name} is {checked.size}, a fresh render is {rendered.size}'
+    difference=ImageChops.difference(rendered,checked)
+    mean=sum(ImageStat.Stat(difference).mean)/3/255
+    peak=max(high for _,high in ImageStat.Stat(difference).extrema)
+    return mean<=0.004 and peak<=96, name, f' (mean {mean:.4f}, peak {peak}/255)'
+with tempfile.TemporaryDirectory() as tmp:
+    fresh=make_app_icon.generate(Path(tmp)/'app-icon',Path(tmp)/'brand-mark-tile.svg')
+    stale=[(name,detail) for matches,name,detail in map(brand_raster_matches,fresh) if not matches]
+assert not stale, 'No longer a render of assets/brand/viptv-v.svg: ' + ', '.join(f'{name}{detail}' for name,detail in stale) + '; rerun assets/brand/tools/make_app_icon.py'
 ref=ds/'reference'
 rm=json.loads((ref/'FILES.json').read_text())
 assert rm.get('source'), 'Reference inventory needs a source/provenance note'
 ref_actual={str(p.relative_to(ref)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(walk(ref)) if p.is_file() and p.name!='FILES.json'}
 assert ref_actual==rm['files'], 'Design-system reference inventory mismatch; re-export from the canvas and update reference/FILES.json intentionally'
-print(f'Design validated: {len(required)} required docs, {len(actual)} asset files, {len(ref_actual)} canvas reference files, {count} design tokens')
+print(f'Design validated: {len(required)} required docs, {len(actual)} asset files, {len(fresh)} brand rasters matching the vector master, {len(ref_actual)} canvas reference files, {count} design tokens')
