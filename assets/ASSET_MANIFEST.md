@@ -138,5 +138,8 @@ python3 -m venv /tmp/viptv-icons
 ```
 
 `--check` re-traces the raster and regenerates into a temporary directory,
-failing if a committed file differs. The Roku `viptv-mark.png`, splash and
-channel posters are unchanged by this master.
+failing if a committed file differs. `scripts/validate.py` regenerates the same
+files from the master on every run and fails when one no longer matches it: the
+SVGs byte for byte, the PNGs within resampling tolerance, so a Pillow other
+than the pin fails only on a changed mark, not on its own antialiasing. The Roku
+`viptv-mark.png`, splash and channel posters are unchanged by this master.
