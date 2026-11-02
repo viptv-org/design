@@ -73,8 +73,9 @@ button in that state. The filtered Live line and its **"All channels"** button
 stay for a filtered page. Live with no channels never says "No channels" while
 the request is still open, and its loading form has no copy at all. The app
 ships **Only the household owner can set up live TV.** as the member line and
-shows a member no setup actions
-([viptv-org/app#484](https://github.com/viptv-org/app/issues/484)).
+shows a member no setup actions; the owner gate also hides the no-channels
+**Source integrations** secondary
+([viptv-org/app#492](https://github.com/viptv-org/app/pull/492)).
 
 ## Toasts, notices and loading
 
