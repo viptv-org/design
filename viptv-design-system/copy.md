@@ -157,7 +157,7 @@ recovery dialog and can be quoted when reporting a failure.
 | Parent PIN | Enter parent PIN (TV sign-out: "Enter parent PIN to sign out") | "Enter the parent PIN to continue." (TV: "Use your remote or a connected keyboard.") · Done · Cancel |
 | Watch on TV | Watch on TV | "Connect to a Vizio SmartCast TV on the same network." |
 | Watch on TV, browser | Watch on TV | "TV pairing is available in a VIPTV desktop app with SmartCast support…" · Close |
-| App update (Android) | Update available · Downloading update · Couldn't update VIPTV | See the [app updates contract](../specs/behavior/app-updates.md) for descriptions · Update now · Later · Open settings · Try again · Cancel · Close |
+| App update (Android) | Update ready · Update required · Couldn't update VIPTV | See the [app updates contract](../specs/behavior/app-updates.md) for descriptions · Install · Later · Try again |
 | Updating screen (Android, proposed) | Updating VIPTV to [version]… · Allow updates | A full-screen cover rather than a dialog; copy, states and failure flow in [app-updates.md](../specs/behavior/app-updates.md#updating-screen) · Open settings · Try again · Later |
 
 ## Sign-in

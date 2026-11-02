@@ -1,5 +1,19 @@
 # Design changes
 
+## 2026-11-02 — The app updates contract is the shipped Android flow
+
+[app-updates.md](specs/behavior/app-updates.md) now describes what
+viptv-org/app ships at `62e0c949`: the prompt is **Update ready**, **Update
+required** or **Couldn't update VIPTV** with **Install** · **Later**, a banner on
+phone and tablet and a corner card on TV; the About status lines and last-check
+line are the app's; the build downloads quietly before the prompt and there is
+no download dialog; checks run at most once an hour; and a required update comes
+back on every return to the app. The settings table no longer names GitHub
+releases as the source: updates come from the signed-in server's
+`/updates/android/update.json` and the APK it names.
+
+Refs [design#55](https://github.com/viptv-org/design/issues/55).
+
 ## 2026-11-01 — The brand rasters are checked against the vector master
 
 `scripts/validate.py` now regenerates `assets/brand/app-icon/` and

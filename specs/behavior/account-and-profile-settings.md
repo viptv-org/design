@@ -65,7 +65,7 @@ Every row below is one setting or one action, with its real owner. "Account" and
 | Autoplay next episode | Device | app-local; `PLAY-NEXT-AUTOPLAY-001` |
 | Display (accent, text size, reduce motion, screen saver, fit) | Device | TV local store |
 | Watch on TV (pairing and remote) | Device | local store |
-| App updates, diagnostics, licences | Device | GitHub releases |
+| App updates, diagnostics, licences | Device | app updates: the signed-in server's `/updates/android/update.json` and the APK it names |
 
 There is **no sign-in email** anywhere: an account is a `username`, a display
 `name` and a password, and nothing sends mail. The identity page shows the
