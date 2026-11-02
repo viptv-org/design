@@ -148,7 +148,7 @@ recovery dialog and can be quoted when reporting a failure.
 | Dialog | Title | Actions |
 |---|---|---|
 | Sign out | Sign out of VIPTV on this phone? (tablet, desktop and web: "Sign out of VIPTV on this device?"; TV: "Sign out of this TV?") | "Your profiles and progress stay on your account." · Sign out (danger) · Cancel |
-| Sign out, local mode | Leave local mode on this device? (TV: "Leave local mode on this TV?") | "Your profiles and progress stay on this device." · Leave (danger) · Cancel |
+| Change connection, local mode | Change connection? | "Your local library and progress stay on this device. You'll choose a server or local mode next." (TV: "Your local library and progress stay on this TV. You'll choose a server or local mode next.") · Change connection (danger) · Cancel |
 | Sign out of all devices | Sign out of all devices? | "Every device, including this browser, will need to sign in again. Your profiles, lists and history stay on your account." · Cancel · Sign out of all devices (danger) |
 | Sign out a device | Sign out [device name]? | "This device will need to sign in again. Your profiles, lists and history stay on your account." · Cancel · Sign out (danger) |
 | Delete account | Delete account | "This deletes [name]'s account, its profiles, their history, My List, add-ons and paired devices. It cannot be undone." · Cancel · Delete account (danger) |
