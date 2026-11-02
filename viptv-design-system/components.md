@@ -308,7 +308,7 @@ Every duration and easing above is read through the app's `motionSpec()`, which 
 |---|---|---|---|---|
 | T | x 96, width 840, centred in the page area | D 56/700, line 64 | 26/400, line 38 | 72 tall, radius 36, 26/700, off-white |
 | W | x 40 (the Live page's own inset), width ≤ 620, centred | D 40/700, line 46 | 16/400, line 24 | 48 tall, radius 24, 16/700, accent |
-| P | below the photo band, x 16, width 358, clear of the bottom bar and its fade | D 34/700, line 40 | 15/400, line 22 | 54 tall, radius 27, full width, accent |
+| P | below the photo band, x 16, width 358, clear of the bottom bar's 80 dp box | D 34/700, line 40 | 15/400, line 22 | 54 tall, radius 27, full width, accent |
 
 **Artwork**
 
