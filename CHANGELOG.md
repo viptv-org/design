@@ -1,5 +1,19 @@
 # Design changes
 
+## 2026-11-02 — The Episode # chip ends the season strip
+
+[AND-EPISODE-JUMP-001](specs/behavior/episode-number-jump.md) now places the
+`Episode #` chip at the end of the season strip, after every season badge, not
+beside the selected badge. The TV Details header is one focus run: Right walks
+the season badges and then reaches the chip, and Down from any badge enters the
+episode row, so the viewer keeps stepping seasons and the chip never interrupts
+that. The component and decision notes and the TV-044 pill row carry the same
+order. viptv-org/app ships it at `c8d541ff`
+([app#409](https://github.com/viptv-org/app/issues/409)); the reference screen
+exports predate the chip and need no re-export.
+
+Refs [design#63](https://github.com/viptv-org/design/issues/63).
+
 ## 2026-11-02 — The app updates contract is the shipped Android flow
 
 [app-updates.md](specs/behavior/app-updates.md) now describes what
