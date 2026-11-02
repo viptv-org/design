@@ -63,7 +63,7 @@ Every row below is one setting or one action, with its real owner. "Account" and
 | Xtream connections | Account owner; members read | `GET/POST/PATCH/DELETE /iptv/connections`, credentials, refresh and live-default routes |
 | VOD match overrides | Account owner; members read | `GET/PUT /iptv/matches` |
 | Playback gateways and access grants | Gateway owner; shared accounts read and check capacity | `GET/POST/PATCH/PUT/DELETE /gateways*`; `POST /gateways/:id/check` stays open to a member |
-| Devices and sessions | Account owner for sign-outs; members read | `GET /account/devices`, `GET /auth/sessions` for any account session; `DELETE /account/devices`, `DELETE /account/devices/:id`, `DELETE /auth/sessions` owner-only |
+| Devices and sessions | Account owner for sign-outs; members read | `GET /account/devices` for an account session only — a paired TV or other device session is refused `403 account_session_required`; `GET /auth/sessions` for any account session; `DELETE /account/devices`, `DELETE /account/devices/:id`, `DELETE /auth/sessions` owner-only |
 | Add a device (pairing code approval) | Account | `POST /auth/device/lookup|approve|deny` |
 | Delete account | Account | `DELETE /auth/account` (username, password, household PIN) |
 | Profile name and avatar | Profile | `PATCH /profiles/:id`, `DELETE /profiles/:id` |
@@ -268,6 +268,8 @@ Title **Account**. Rows, in order, each its own page or dialog:
    reads the household's PIN status.
 4. **Devices & sessions** — the page in [Devices and sessions](#devices-and-sessions).
    Only the account owner can sign a device out; a member reads the same list.
+   It is an account-session page: a device session gets no list, and the row
+   reads **Manage on the web** and opens the server dashboard instead.
 5. **Add a device** — the page where a TV signs in. **Add a device**, with
    **"Open VIPTV on the other device, choose Sign in, then enter the code it
    shows."** — or **"…then scan the code it shows."** where the platform offers
@@ -302,13 +304,13 @@ Title **Account**. Rows, in order, each its own page or dialog:
 12. **Delete account** — danger, last, the page in
     [Delete account](#delete-account).
 
-A TV device session cannot manage the account: the server answers
-`account_session_required` for anything but reading. On TV, **Password**,
+A TV device session cannot manage the account and cannot read the devices list:
+the server answers `account_session_required` to either. On TV, **Password**,
 **Household PIN** and **Delete account** are shown disabled with **"Manage this
-from a signed-in phone, computer or the web dashboard."**, and **Devices &
-sessions** opens the same list read-only, with that line in place of its sign-out
-actions. The rest of the group stays usable, because a TV must be able to sign
-out and read its devices.
+from a signed-in phone, computer or the web dashboard."**, and the **Devices &
+sessions** row reads **Manage on the web** and opens the server dashboard, not a
+list the server refuses (app#532). The rest of the group stays usable, because a
+TV must be able to sign out.
 
 A member account session reads the household's inventory but cannot write it:
 **Household PIN**, **Add-ons**, **Source integrations**, **Xtream connections**,
@@ -487,7 +489,11 @@ password**. Primary **Change password**, secondary **Cancel**.
 
 ## Devices and sessions
 
-The existing page (`W3Account` board), unchanged in shape:
+The existing page (`W3Account` board), unchanged in shape. It is an
+account-session page: a device session — a paired TV, or a phone whose session
+was recorded without the native origin — cannot read the devices list, so its
+Account page shows the **Manage on the web** row and opens the dashboard instead
+(app#532).
 
 - Lead: **"Everywhere [name]'s account is signed in. Signing a device out doesn't
   delete anything from the account."**
@@ -596,12 +602,12 @@ empty and the PIN is well formed), secondary **Cancel**.
 | Delete profile | Dialog over the Profile page | Dialog over the Profile page | Full-page dialog, Cancel focused |
 | Sign out | Danger row → confirmation | Danger row → confirmation | Danger row → confirmation (`Tv3SignOut`) |
 | Household PIN | Own page with 4–8 digit fields | Own page | Last row of Parental controls |
-| Devices | Own page | Own page | The same list, read-only: the sign-out actions are disabled with their reason |
+| Devices | Own page | Own page | **Manage on the web** row: a device session cannot read the list |
 | Add a device | Own page, code entry | Own page, code entry | Not on TV; a TV shows the code and is signed in from a phone, computer or the web dashboard |
 
 Every action keeps a stated equivalent. TV shows the account rows it cannot use
-as disabled with the reason, its devices list is read-only, and the pages that
-need a browser session say where to use them.
+as disabled with the reason, the Devices & sessions row becomes **Manage on the
+web**, and the pages that need a browser session say where to use them.
 
 ## Acceptance
 
@@ -634,10 +640,11 @@ need a browser session say where to use them.
    **Switch profile** row; the remote walks the labels without stopping on them,
    Left returns to the rail row that opened a page, and Back from a page lands on
    that row.
-10. **ACCT-SPLIT-10** On TV, Password, Household PIN, Delete account and the
-    sign-out actions in Devices & sessions are disabled with **"Manage this from
-    a signed-in phone, computer or the web dashboard."**, while Sign out and the
-    devices list keep working.
+10. **ACCT-SPLIT-10** On TV, Password, Household PIN and Delete account are
+    disabled with **"Manage this from a signed-in phone, computer or the web
+    dashboard."**; the Devices & sessions row reads **Manage on the web** and
+    opens the dashboard instead of a list a device session cannot read, while
+    Sign out keeps working.
 11. **ACCT-SPLIT-11** Change password with a wrong current password shows
     **"That password is not correct."** and saves nothing; with a mismatch shows
     **"Passwords do not match."**; on success returns to Account with
@@ -701,9 +708,9 @@ need a browser session say where to use them.
   placeholder pages (**Notifications**, **General**) are not carried over.
 - The issue text's "sign-in email" is corrected here: there is no email. The
   household writes are gated by the server's owner role — a member answers
-  `403 owner_required`, a paired TV `403 account_session_required` — while reads,
-  credential, pairing, profile and parental-policy routes stay with any account
-  session.
+  `403 owner_required`, a paired TV `403 account_session_required` — while the
+  other reads, credential, pairing, profile and parental-policy routes stay with
+  any account session; the devices list is account-session only.
 
 ## Unknowns
 
