@@ -233,7 +233,7 @@ phone and tablet.
   - Bottom row: Back, Play, Pause (64 round, surface-3, labels 12/600 in `text-tertiary`), and a 2-part volume rocker (− / +).
 - Vibrate on every press and keep the screen on while the sheet is open. Both are on by default and can be switched off in settings.
 - **TV not reachable:** the Open button is replaced by a surface-2 card ("Can't reach [TV name]", "Turn the TV on and check it's on the same Wi‑Fi as this phone.", a light "Try again" button), and every control drops to opacity 0.4.
-- **Pairing PIN:** 4 boxes 64 × 72 (radius 18). It pairs automatically when the 4th digit goes in, so there's no confirm button. Offer a "New PIN" text link.
+- **Pairing PIN:** 4 boxes 64 × 72 (radius 18). It pairs automatically when the 4th digit goes in, so there's no confirm button. Offer a "New PIN" text link. The page shows no certificate fingerprint: the app pins the TV's certificate on first pairing, and the TV displays nothing to compare a fingerprint with, so the four-digit PIN is the only pairing proof.
 - **Watch on TV settings (once set up):** a TV card (name, status, "Open the remote"), then Remote (Remote button, Vibrate on press, Keep screen on) and TV (Change TV; Forget this TV, danger). Forgetting the TV turns the feature off and removes the button.
 - Phone **browsers** can't pair: they show the "Watch on TV" dialog pointing to the desktop app (`PhCastUnavailable`).
 

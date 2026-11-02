@@ -224,7 +224,8 @@ outlined header-button treatment. No other platform UI changes.
 - Discovery consumes the actual shared-core Result envelope and probes both
   supported SmartCast ports. Results arrive progressively; a bad/unreachable
   host cannot abort the scan. Network, TLS, JNI client setup and credential
-  operations run off the UI thread. No global TLS weakening.
+  operations run off the UI thread. TLS keeps AND-038's per-TV pin on every
+  command; nothing else is relaxed.
 - Key presses never toggle the launch button's disabled/alpha state, clear its
   label, or rebuild connection chrome. Serialize an eight-command bounded queue,
   give immediate local press/haptic feedback, and cancel queued keys on exit.
@@ -297,32 +298,52 @@ the initial mode, then retain the last mode. Buttons remain an accessible
 equivalent to all swipe actions. Use native labeled touch targets.
 
 “Open VIPTV on TV” launches the configured HTTPS Vizio receiver, never transfers
-the phone video. All remote transport is exact-TV-origin HTTPS with no TLS
-weakening (the ordinary VIPTV backend and catalog keep normal certificate
-validation); pairing tokens live in the Android Keystore, and bearer tokens
-never enter the ordinary view model, logs or error copy. A TV acknowledgment
-is not proof the receiver rendered. Reconnect checks the saved token;
-authentication failure offers re-pairing. Network failure shows PhRemoteOffline
-and disables commands until retry succeeds. Remote button visibility, vibration,
-and keep-screen-on default on. Screen-on is active only while the sheet is
-visible. **Forget** deletes the credential/selection and hides the header
-button; cancelling Forget preserves both. TV mode never exposes this feature.
+the phone video. All remote transport is exact-TV-origin HTTPS to the one
+selected TV. Vizio SmartCast TVs serve self-signed certificates, so the client
+does not fall back to the platform trust store for them: it pins the TV's
+certificate on first use. A successful PIN pairing records the SHA-256
+fingerprint of the leaf certificate the TV presented for its exact origin (host
+and port), seals it with the pairing token under the Android Keystore key, and
+from then on accepts only that certificate there. A different certificate fails
+the connection, and the existing recovery's **Pair again** replaces the pin when
+the new pairing succeeds. Pairing is the trust-establishing step, so the
+challenge itself is not gated by the stored pin; the first pairing trusts
+whichever certificate answers at the selected TV address, and the pin protects
+every later connection. Nothing global is weakened: there is no trust-all
+manager, the selected TV's host is still required, and the ordinary VIPTV
+backend and catalog keep normal certificate validation. **Forget** discards the
+pin with the token; a replacement TV under **Change TV** pins its own
+certificate when it pairs. The fingerprint is never displayed or logged, like
+the bearer tokens that never enter the ordinary view model, logs or error copy.
+A TV acknowledgment is not proof the receiver rendered. Reconnect checks the saved token; authentication failure offers
+re-pairing. Network failure shows PhRemoteOffline and disables commands until
+retry succeeds. Remote button visibility, vibration, and keep-screen-on default
+on. Screen-on is active only while the sheet is visible. **Forget** deletes the
+credential/selection and hides the header button; cancelling Forget preserves
+both. TV mode never exposes this feature.
 
 Three distinct errors each recover in place: a TV offline shows PhRemoteOffline
 with **Try again** and **Pair again**; a denied local-network permission opens
 the access recovery page (manual IP does not bypass it); a rejected PIN stays on
 the PIN page with **Incorrect PIN. Try again.** and editable input. A rejected
-command alone is never an offline TV.
+command alone is never an offline TV. A changed TV certificate takes the same
+recovery and its **Pair again**.
 
-Implementation note: the app's checked-in `EngineWire.kt` is the generated core
-wire surface, so before an `androidMain` SmartcastBridge binding compiles,
+Implementation note: the SmartCast transport, certificate pin and Keystore
+credential store ship in viptv-org/app at `d5f89ea6` (app#485, PR #496) with
+this rule; the setup pages, remote sheet and their error lifecycle remain
+proposed (app#487–#489). The app's checked-in `EngineWire.kt` is the generated
+core wire surface, so before an `androidMain` SmartcastBridge binding compiles,
 refresh it from core's generated Vizio wire types.
 
-Acceptance: first setup, empty search/manual fallback, invalid IP, wrong/new PIN,
-cancel/stale response, paired restart, every button and swipe, offline/retry,
-revoked credential/re-pair, change-TV cancellation, preferences, Forget/cancel,
-rotation/font scaling/keyboard insets, background cleanup, unchanged phone
-playback and Android TV navigation. The physical-TV qualification is separate
+Acceptance: first setup pinning the TV certificate; empty search/manual
+fallback, invalid IP, wrong/new PIN, cancel/stale response, paired restart,
+every button and swipe, offline/retry, revoked credential/re-pair, a changed
+certificate refused then re-paired, pairing accepted without a stored pin,
+Forget dropping the pin, change-TV cancellation, preferences, Forget/cancel,
+rotation/font scaling/keyboard insets, background cleanup, unchanged backend
+and catalog certificate validation, unchanged phone playback and Android TV
+navigation. The physical-TV qualification is separate
 and runs on a real Vizio SmartCast TV: pair over the home LAN with a real
 four-digit PIN, exercise every key and swipe against an on-screen menu, confirm
 discovery enumerates the TV and both ports work, and verify the launched VIPTV

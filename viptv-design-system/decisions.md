@@ -137,6 +137,7 @@ change the launch button's appearance. See the Android contract for acceptance.
 - **Two modes:** big buttons (the default) and a swipe touchpad. The last-used mode is remembered.
 - **Honest setup:** the intro says nothing is mirrored before discovery. Android SDK 36 has no runtime LAN prompt; denied access gets recovery, never a fake permission prompt.
 - **The PIN pairs automatically** on the 4th digit.
+- **The TV's certificate is pinned on first pairing, and the PIN page shows no fingerprint.** SmartCast TVs serve self-signed certificates, so a client limited to the platform trust store fails every real TV; the remote pins the TV's leaf certificate at a successful pairing and accepts only that certificate for that exact origin afterwards, re-pairing on a change. The fingerprint is not displayed: Vizio's TV UI states no fingerprint to compare against, so the PIN page would ask people to check a value nothing else shows, while the four-digit PIN the TV displays is already the pairing proof. The first pairing trusts whichever certificate answers at the selected address; the pin protects every later connection.
 - **Forget this TV turns the feature off**, so there's no separate master switch.
 # Reliability follow-up — REL-001 (proposed, 2026-09-28)
 
