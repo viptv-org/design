@@ -1,5 +1,29 @@
 # Design changes
 
+## 2026-11-02 — The Live empty states are implemented, with a parity record of what differs
+
+[LIVE-EMPTY-001](specs/behavior/live-empty-state.md) is **implemented**, not
+device-verified: both states ship in viptv-org/app at `86df58c1`
+([app#304](https://github.com/viptv-org/app/issues/304),
+[app#349](https://github.com/viptv-org/app/issues/349),
+[app#376](https://github.com/viptv-org/app/issues/376)), and the spec carries
+the per-state record [DESIGN_SYNC](docs/process/DESIGN_SYNC.md) asks for:
+contract, implementation, functional, visual and device evidence, and
+disposition. Matching the app: the state order, the empty page without a chip,
+preview, guide or list, the copy, the action forms for local mode, the account
+owner and a paired TV, six skeletons with only the Source chip while loading,
+and the no-channels reason with **Try again** and **Source integrations**.
+Differing: the app ships two credited CC0 photographs with the scrim in code
+instead of the SVG illustration ([design#70](https://github.com/viptv-org/design/issues/70));
+a member account session is offered the setup actions and refused only at the
+source write ([viptv-org/app#484](https://github.com/viptv-org/app/issues/484));
+a chosen source is not a filter, so its zero channels show the no-channels state;
+and a failed first request shows no channels with no page in hand. The
+no-channels block offsets and skeleton bars are the app's own padding and bar
+widths, and the copy table drops its proposed tags.
+
+Refs [design#69](https://github.com/viptv-org/design/issues/69).
+
 ## 2026-11-02 — The phone Live no-source layout is a top photo band
 
 [LIVE-EMPTY-001](specs/behavior/live-empty-state.md)'s phone geometry now
