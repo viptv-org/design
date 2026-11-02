@@ -13,6 +13,35 @@ member form with what matches instead of among its differences.
 
 Refs [design#74](https://github.com/viptv-org/design/issues/74).
 
+## 2026-11-02 — The phone remote pins its TV's certificate instead of weakening TLS
+
+[AND-038](docs/platforms/ANDROID_DESIGN.md#and-038--android-phone-and-tablet-vizio-remote-2026-11-02)
+and [CORE-003](docs/architecture/SHARED_CORE.md#core-003--vizio-smartcast-control)
+now state the SmartCast transport rule the app implements at `d5f89ea6`
+([app#485](https://github.com/viptv-org/app/issues/485),
+[PR #496](https://github.com/viptv-org/app/pull/496)): Vizio SmartCast TVs
+serve self-signed certificates, so the exact-TV-origin client pins the SHA-256
+fingerprint of the TV's leaf certificate at a successful PIN pairing, seals it
+with the token under the Android Keystore key, and afterwards accepts only that
+certificate for that host and port. A different certificate fails the
+connection and the existing recovery's **Pair again** replaces the pin on the
+next successful pairing; pairing is the trust-establishing step and runs
+unpinned, the first pairing trusts whichever certificate answers at the selected
+address, **Forget** drops the pin with the token while a replacement TV under
+**Change TV** pins its own, and there is no trust-all manager: the pin is stored
+and checked per exact origin, and a self-signed certificate's names are not what
+binds the connection. The ordinary backend and catalog
+transport keep normal certificate validation. The pairing page keeps its copy,
+geometry and auto-submitted four-digit PIN and shows no certificate
+fingerprint, because the TV states none to compare it with
+([components §11](viptv-design-system/components.md#11-tv-remote-phone-watch-on-tv--proposed-for-android-phone-and-tablet),
+[decisions](viptv-design-system/decisions.md#phone-tv-remote-watch-on-tv--proposed-for-android-phone-and-tablet)).
+[AND-039](docs/platforms/ANDROID_DESIGN.md#and-039--phone-remote-reliability-and-responsiveness)
+keeps off-thread transport setup and names that pin instead of "no TLS
+weakening".
+
+Refs [design#76](https://github.com/viptv-org/design/issues/76).
+
 ## 2026-11-02 — Household configuration writes are owner-only again
 
 [ACCT-SPLIT-001](specs/behavior/account-and-profile-settings.md) and
