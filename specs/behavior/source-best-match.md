@@ -5,14 +5,23 @@ and core `985a23f`: the ranking order and hard filters below without the
 decode-class and series-memory keys, the Best matches and All sources groups
 with their headers and the Best match marker, progressive ranking, and the
 immediate start of the best match
-([app#336](https://github.com/viptv-org/app/issues/336)). Proposed, not
+([app#336](https://github.com/viptv-org/app/issues/336)). Also shipped: the
+[fallback](#fallback) with its notices in app `805b7c0f`
+([app#411](https://github.com/viptv-org/app/issues/411)), the [remembered
+source](#remembered-source) in app `5e4ebbc7`
+([app#419](https://github.com/viptv-org/app/issues/419), on the app's `edge`
+branch) and the [controlled next
+episode](next-episode-autoplay.md#how-the-next-episode-starts) with its
+last-three-minutes preparation in app `f19e0dc6` and `9e236f52`
+([app#417](https://github.com/viptv-org/app/issues/417),
+[app#420](https://github.com/viptv-org/app/issues/420)). Proposed, not
 implemented: decode-class ranking, series memory and device capability
-reporting ([core#32](https://github.com/viptv-org/core/issues/32)), and fallback
-with its notices ([app#411](https://github.com/viptv-org/app/issues/411)). No
-device evidence is recorded for the shipped parts.
+reporting ([core#32](https://github.com/viptv-org/core/issues/32)). No device
+evidence is recorded for the shipped parts.
 
-Source revisions: design `05c6078`; app `62e0c949`; backend `e1ec02d`; core
-`985a23f`. Prior art and citations: [workspace research
+Source revisions: design `05c6078`; app `62e0c949`, `805b7c0f`, `f19e0dc6`,
+`9e236f52` and `5e4ebbc7`; backend `e1ec02d`; core `985a23f`. Prior art and
+citations: [workspace research
 note](https://github.com/viptv-org/workspace/blob/main/docs/research/source-autoplay.md).
 
 Owner decisions: the best match starts as soon as it meets every preference and
@@ -26,35 +35,41 @@ groups](#source-groups-best-matches-and-all-sources)).
 
 ## Intent
 
-A profile whose source selection is **Best match** presses Play and gets the
+A profile whose **Default source** is **Best match** presses Play and gets the
 source it would most likely have chosen itself: playable on this device, in the
 audio it asked for, from a good release, without waiting for the slowest
-provider. On **Always ask** nothing starts on its own. In both
-modes ranking orders the list, groups it under **Best matches** and **All
-sources**, and marks the first Best matches row **Best match** (see
+provider. On **Always ask** ordinary Play opens the picker and nothing starts,
+except for a title with a [remembered source](#remembered-source) and for the
+[controlled next episode](next-episode-autoplay.md#how-the-next-episode-starts).
+In both modes ranking orders the list, groups it under **Best matches** and
+**All sources**, and marks the first Best matches row **Best match** (see
 [Source groups](#source-groups-best-matches-and-all-sources)).
 
 ## Entry and exit
 
 Entry: Play/Resume-with-new-source, an episode activation, or a next-episode
-activation on a profile with `source_selection = "best"`. The Sources picker
-opens and discovery streams rows into it.
+activation. The Sources picker opens and discovery streams rows into it. A
+title with a remembered source, and the controlled next episode, reach that
+discovery themselves (see below and
+[PLAY-NEXT-AUTOPLAY-001](next-episode-autoplay.md#how-the-next-episode-starts)).
 
 Exits: playback of the row that started, activated by the viewer or
 automatically; cancellation, which leaves the viewer on the populated picker
 with focus where the cancelling action put it; Back, which behaves exactly as
-Back on the picker does; or an exhausted fallback (proposed), which leaves the
-viewer on the picker with the failed rows annotated.
+Back on the picker does; or an exhausted fallback, which leaves the viewer on
+the picker with the failed rows annotated.
 
-Exact-source Resume (same source as last time) and controlled next episode keep
-their existing narrowly defined paths and never start automatically.
+Exact-source Resume (same source as last time) keeps its own narrowly defined
+path and never starts automatically. Two starts do: the [remembered
+source](#remembered-source) and the [controlled next
+episode](next-episode-autoplay.md#how-the-next-episode-starts).
 
 ## Start
 
-1. On **Best match**, discovery streams rows into the picker and every ranking
-   request ranks the rows received so far (see [Progressive
-   ranking](#progressive-ranking)). Rows failing a hard filter never become the
-   target.
+1. On **Best match**, and on the remembered-source start, discovery streams
+   rows into the picker and every ranking request ranks the rows received so
+   far (see [Progressive ranking](#progressive-ranking)). Rows failing a hard
+   filter never become the target.
 2. The target is the first Best matches row, the same row that carries the Best
    match marker (`best_match_id`). Every rule below starts that row.
 3. The target starts as soon as a ranking reports that it fully meets every
@@ -65,7 +80,9 @@ their existing narrowly defined paths and never start automatically.
    the last provider has answered. When the provider ceiling ends discovery
    instead, the picker keeps the rows that arrived and nothing starts.
 5. With no row passing the hard filters there is no target and nothing starts.
-6. On **Always ask** nothing starts on its own.
+6. On **Always ask** nothing starts on its own, except a title with a
+   [remembered source](#remembered-source) and the [controlled next
+   episode](next-episode-autoplay.md#how-the-next-episode-starts).
 
 A discovery starts at most one source. Group membership is computed before the
 provider and quality filters, so a filter never changes the target.
@@ -98,6 +115,44 @@ Any of these stops it, and nothing starts for the rest of that discovery:
 These do not stop it: rows arriving and re-ranking, initial focus placement,
 moving focus with the D-pad or arrow keys, wheel scrolling, pointer hover,
 window focus changes, and changing the provider or quality filter.
+
+## Remembered source
+
+Shipped in app `5e4ebbc7` ([app#419](https://github.com/viptv-org/app/issues/419))
+on both **Default source** values. It stores a choice; it does not rank. The
+ranking order never reads it, and the proposed [series
+memory](#order-each-key-breaks-ties-of-the-previous-one) stays a separate
+[core#32](https://github.com/viptv-org/core/issues/32) item.
+
+**Stored:** the add-on's `provider_id` and the source's audio languages, never
+the source id or URL, because both expire and are resolved again from a fresh
+discovery. One entry per profile and title, in the device's own store, at most
+200 titles and 8 languages per title; it survives restarts and never leaves the
+device. An episode is stored as its series, so every later episode inherits it;
+a movie is stored as itself.
+
+**Written** only by a source the viewer picked by hand that reached a presented
+frame. A failed start, an undecodable start and an abandoned pick clear the
+pending choice before any frame, so they never replace the last successful one.
+An automatic start never writes it.
+
+**Read** by Play of that title, including a resume from Continue Watching, and
+by the successor start: Next, the TV Next pill, the end panel's primary action,
+the countdown and the [next-episode preparation](next-episode-autoplay.md#preparation).
+Discovery ranks the fresh rows as for any start and the viewer picks nothing.
+The start is the first of:
+
+1. a row from the remembered add-on carrying one of the remembered audio
+   languages;
+2. any row carrying one of those languages;
+3. with no remembered language, a row from the remembered add-on;
+4. nothing: the picker opens with the rows and nothing plays. A row in another
+   audio language is never a substitute.
+
+The remembered start is a Best match start, so its failures fall back over the
+ranked rows and end on the picker with the `Didn’t start` labels.
+**Choose source** always opens the picker, and so does any title without an
+entry. Another profile never inherits one.
 
 ## Ranking
 
@@ -169,7 +224,7 @@ After the source opens, the player selects the audio track in the preferred
 language when the file has one (existing behaviour). If the file's actual
 tracks contain no track in the requested language, show the notice
 `This source has no [language] audio.` with **Next source** during a Best match
-session, or with no action otherwise; playback continues. Proposed
+session, or with no action otherwise; playback continues
 ([app#411](https://github.com/viptv-org/app/issues/411)).
 
 ## Source groups: Best matches and All sources
@@ -210,7 +265,7 @@ depend on the filter: with a filter that hides the first Best matches row, no
 visible row carries the marker. Fewer than five rows passing the hard filters
 gives a shorter Best matches group; none gives an empty one.
 
-After an exhausted Best match fallback (proposed), rows marked `Didn’t start`
+After an exhausted Best match fallback, rows marked `Didn’t start`
 keep their ranked positions and groups so the viewer sees what was tried; the
 marker does not move.
 
@@ -324,9 +379,10 @@ what their decoders report; emulator results are not device evidence.
 
 ## Fallback
 
-Proposed ([app#411](https://github.com/viptv-org/app/issues/411)). Only after an
-automatic start, never after a manual row activation; every start failure shows
-the existing failure screen.
+Shipped in app `805b7c0f` ([app#411](https://github.com/viptv-org/app/issues/411)).
+Only after an automatic start — a Best match start, the remembered source, the
+prepared handoff or the successor start — never after a manual row activation;
+every start failure shows the existing failure screen.
 
 1. A start failure is: a player error before the first frame, the
    undecodable state (clock advances with no frame), or no first frame within
@@ -356,7 +412,8 @@ Best matches row into All sources.
 
 Playback preferences (profile scoped):
 
-- **Source selection:** Best match / Always ask.
+- **Default source:** Best match / Always ask. A manual pick also stores a
+  [remembered source](#remembered-source) for that title on this device.
 - **Preferred audio:** `Original language` or a language. Applies to every title
   type.
 - **HDR and Dolby Vision:** No preference (default) / Prefer / Avoid.
@@ -375,13 +432,14 @@ No release-type setting: the order above is fixed.
 |---|---|
 | Start | The first ranking whose best match meets every preference, otherwise the last provider answer |
 | Provider ceiling | 60 s; discovery ends there, the picker keeps the rows that arrived and nothing starts |
-| Direct-source startup deadline | 20 s to first frame (proposed) |
-| Fallback notice | 2 s (proposed) |
-| Attempts | 3 per session (proposed) |
+| Direct-source startup deadline | 20 s to first frame |
+| Fallback notice | 2 s |
+| Attempts | 3 per session |
 
 The Best matches group size (at most 5 rows) is fixed the same way. Changing a
-value needs a behaviour review. The three proposed timers belong to
-[fallback](#fallback).
+value needs a behaviour review. The last three timers belong to
+[fallback](#fallback); the last-three-minutes preparation has its own timers in
+[PLAY-NEXT-AUTOPLAY-001](next-episode-autoplay.md#preparation).
 
 ## Acceptance scenarios
 
@@ -415,17 +473,17 @@ value needs a behaviour review. The three proposed timers belong to
 10. A Torrentio release with no language line on an English-original movie with
     English preference ties tier 1; the same release on a Japanese-original
     anime with English preference is tier 3.
-11. (proposed) The first target fails to decode: the fallback notice appears,
+11. The first target fails to decode: the fallback notice appears,
     the second target starts. Three failures return to the picker with the
     banner and `Didn’t start` labels; focus is on the first unfailed row.
 12. A manually activated row that fails shows the existing failure screen and
     never auto-advances.
 13. (proposed) Next episode of a series started from binge group G: a G row
     ranks first within its language tier and decode class.
-14. Always ask: nothing starts on its own; the list is grouped exactly as in
-    Best match mode and the first Best matches row carries the Best match
-    marker.
-15. (proposed) A file whose actual audio has no track in the preferred language
+14. Always ask, no remembered source, and no successor: nothing starts on its
+    own; the list is grouped exactly as in Best match mode and the first Best
+    matches row carries the Best match marker.
+15. A file whose actual audio has no track in the preferred language
     shows the no-audio notice; playback continues.
 16. Groups, either mode: discovery returns seven rows passing the hard filters
     and two camera releases. The list shows the `Best matches` header, the top
@@ -463,13 +521,28 @@ value needs a behaviour review. The three proposed timers belong to
 24. Desktop/web pointer: Source details is open for a row when a re-rank moves
     it to All sources; the open details stay on that source, and closing them
     returns focus to the same row in its new position.
+25. A manual pick of the English row from add-on A on episode 1 presents a
+    frame, so the series is remembered as `addon:A` in English. Episode 2 plays
+    with a fresh discovery that returns `addon:A` in English and `addon:B` in
+    Japanese: `addon:A` starts with no picker. A later discovery returns
+    only Japanese rows: the picker opens and nothing plays.
+26. Remembered source on **Always ask**: Play from Home, Details, Continue
+    Watching or the Calendar starts the remembered row with no picker. Next on
+    the successor start does the same. **Choose source** still opens the picker.
+27. Three failures of the remembered row walk the fresh rows and end on the
+    picker with the `Didn’t start` labels; the stored choice is unchanged, and
+    so it is after a single failed start.
+28. Another profile, and an unrelated title, find no entry: the picker opens
+    and nothing starts on its own.
 
 ## Open items
 
-- Boards for the fallback notice and the failed-row label on every surface
-  ([app#411](https://github.com/viptv-org/app/issues/411)). The group headers,
-  the release/audio badges and the Best match marker ship geometry that the
-  canvas does not pin.
+- Boards for the fallback notice and the failed-row label on every surface. The
+  app ships them; the canvas does not pin them, like the group headers, the
+  release/audio badges and the Best match marker.
+- A prepared successor can hand off a source outside the remembered audio while
+  the same next episode taken without a preparation opens the picker
+  ([app#475](https://github.com/viptv-org/app/issues/475)).
 - Series memory storage (proposed): server-side per profile and series, reset by
   a manual pick of a different source, or per device.
 - Web and desktop capability reporting (proposed).

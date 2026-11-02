@@ -7,6 +7,12 @@ evidence is recorded.
 Source revisions: the end panel is app `c4d6696`
 ([app#48](https://github.com/viptv-org/app/pull/48)), and the countdown and
 setting are app `f3bd256` ([app#77](https://github.com/viptv-org/app/pull/77)).
+The start of the next episode is app `f19e0dc6`
+([app#417](https://github.com/viptv-org/app/issues/417)), its last-three-minutes
+preparation app `9e236f52`
+([app#420](https://github.com/viptv-org/app/issues/420)) and the remembered
+source choice app `5e4ebbc7` ([app#419](https://github.com/viptv-org/app/issues/419),
+on the app's `edge` branch).
 The owner decided after implementation, so this contract records what
 shipped rather than leading it. The evidence is desktop UI tests that
 drive the countdown with a test clock. No device evidence is recorded yet.
@@ -34,6 +40,76 @@ The player's **Next episode** control (phone and desktop transport, the TV
 Next pill) plays the next episode at once. It goes through the same path as
 the panel's play action and does not open the panel. The panel belongs to the
 end of the media only.
+
+## How the next episode starts
+
+Next, the TV pill, the panel's primary action and the countdown start the next
+episode through one path, whatever the profile's **Default source** says
+(app `f19e0dc6`). A profile on **Always ask** does not stop at the Sources
+picker on a successor. Only the successor takes this path; every other episode
+keeps the ordinary source flow (see [Picking an episode](#picking-an-episode)).
+
+The start, in order:
+
+1. **The prepared source**, when the last three minutes prepared one (see
+   [Preparation](#preparation)): playback opens on it, with the rows and groups
+   the preparation ranked. No picker, no second discovery.
+2. **The series' remembered source**, when one is stored and nothing was
+   prepared (see [Remembered
+   source](source-best-match.md#remembered-source)): a fresh discovery starts
+   the first row in the remembered audio. A discovery with no row in that
+   audio opens the Sources picker and plays nothing.
+3. **The best match**, otherwise, as [SRC-BEST-MATCH-001](source-best-match.md#start)
+   defines it: the target starts as soon as a ranking reports that it fully
+   meets every preference, and at the end of discovery otherwise. The picker
+   plays nothing when no row is left after the hard filters, when the ranking
+   request fails, and after three failed starts.
+
+A start that fails falls back like any Best match start: the notice with the
+next ranked row, at most three attempts, then the picker with the `Didn’t
+start` labels ([Fallback](source-best-match.md#fallback)). A prepared handoff
+walks the rows the preparation ranked.
+
+### Preparation
+
+The app prepares the next episode's source during the episode's last three
+minutes and opens no stream: no lease, no player and no interruption of the
+episode playing (app `9e236f52`).
+
+It starts on a progress tick when all of these hold:
+
+- the player is on screen and an episode is playing under the current
+  profile;
+- the media is not live and the card is a series episode with a parent title;
+- the next episode is already resolved from the server's continuation;
+- the duration is known and 3:00 or less is left. Seeking into the last three
+  minutes starts it; an unknown duration, a movie, a live channel and a finale
+  never prepare.
+
+The prepared target is the first of:
+
+- **the series' remembered source**, matched against a fresh discovery: a row
+  from the remembered add-on in the remembered audio, then any row in that
+  audio (see [Remembered source](source-best-match.md#remembered-source));
+- **the best match**, and only when a ranking reports that it fully meets every
+  preference.
+
+Neither leaves a prepared target; Next then takes the second or third start
+above.
+
+One preparation runs per next episode, profile, preference revision, source
+selection and connection, with 45 s to finish. A ready source is used for 15
+minutes; after that it is prepared again while the episode is still in its last
+three minutes. Using it consumes it. Leaving the player, changing the profile,
+card, preferences or connection, or a next episode that is withdrawn releases
+the preparation and its request.
+
+### Picking an episode
+
+The player's Episodes list asks for every episode that is not the resolved
+successor, whether the profile is on **Best match** or **Always ask**: the best
+match starts on its own on **Best match**, the picker opens on **Always ask**.
+The episode lists in Details, and **Choose source** in a title menu, always ask.
 
 ## When the end panel opens
 
@@ -145,10 +221,13 @@ Each opened panel gets one countdown:
    `prefers-reduced-motion`. The desktop app has no portable query, so it
    counts as motion allowed.
 5. At 0 the next episode plays through the same path as the primary action:
-   the player closes and the next episode starts through the normal source
-   flow. That flow owns its loading and failure states, and Back from it
-   follows its own rules. It plays only if the panel is still open. A tick
-   that lands in the same frame that closed the panel plays nothing.
+   its best match whatever **Default source** says, from the prepared source
+   when the last three minutes prepared one, otherwise by closing the player
+   and starting the best match over a fresh discovery (see [How the next
+   episode starts](#how-the-next-episode-starts)). That start owns its loading
+   and failure states, and Back from it follows its own rules. It plays only
+   if the panel is still open. A tick that lands in the same frame that closed
+   the panel plays nothing.
 6. Activating the primary action during the countdown plays at once.
 
 Once cancelled or expired, a countdown never runs again for that panel. The
@@ -296,6 +375,27 @@ reduced motion the visible number is the only progress.
    while profile preferences fail to load.
 10. **PLAY-NEXT-AUTOPLAY-10:** during playback, the Next control plays the next
     episode at once, with no panel.
+11. **PLAY-NEXT-AUTOPLAY-11:** a profile whose **Default source** is **Always
+    ask** plays a series episode. The Next control, the TV Next pill, the
+    panel's primary action and a countdown that reaches 0 each start the next
+    episode's best match without the picker, and the outgoing episode keeps
+    its saved position. Any other episode picked from the player's list opens
+    the picker.
+12. **PLAY-NEXT-AUTOPLAY-12:** with 3:00 or less left the app prepares once,
+    opens no stream, holds no extra lease and does not interrupt the episode
+    playing; Next hands off to that source with a single open and no picker.
+    Seeking into the last three minutes prepares. An unknown duration, a
+    movie, a live channel and a finale prepare nothing. Leaving the player, a
+    preference change or a withdrawn next episode releases the preparation,
+    and an expired one is prepared again.
+13. **PLAY-NEXT-AUTOPLAY-13:** with nothing prepared, a series whose remembered
+    source has no row in its audio in a fresh discovery opens the picker. A
+    discovery with no row left after the hard filters, or a ranking request
+    that fails, leaves the picker open and plays nothing.
+14. **PLAY-NEXT-AUTOPLAY-14:** the prepared source and the best-match target
+    fail to start. The fallback notice and the next ranked row appear as in
+    any Best match start, and the third failure returns to the picker with the
+    `Didn’t start` labels.
 
 ## Unknowns
 
@@ -304,5 +404,10 @@ reduced motion the visible number is the only progress.
 - Web: a gateway VOD playlist that arrives without `ENDLIST` may be treated
   as live by hls.js. Then `ended` never fires and the panel does not open.
 - iOS reduced-motion and storage code has not been compiled on the Linux host.
+- No device evidence for the controlled start, the preparation or the
+  remembered source; desktop tests are the evidence.
+- A prepared successor can hand off a source outside the remembered audio,
+  while the same next episode taken without a preparation opens the picker
+  ([app#475](https://github.com/viptv-org/app/issues/475)).
 - Canvas boards for the countdown state, the cancelled state and the
   Settings › Playback row are still needed.

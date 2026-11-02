@@ -1,5 +1,25 @@
 # Design changes
 
+## 2026-11-02 — The controlled next episode plays the best match on either Default source
+
+[PLAY-NEXT-AUTOPLAY-001](specs/behavior/next-episode-autoplay.md) now says how
+the next episode starts, from app `f19e0dc6`, `9e236f52` and `5e4ebbc7`: Next,
+the TV pill, the end panel's primary action and the countdown play its best
+match whatever the profile's **Default source** says, from the source prepared
+during the last three minutes when there is one, otherwise from the series'
+remembered source or from the best match at the end of discovery. The picker
+plays nothing when no row survives the hard filters, a ranking request fails or
+three starts fail. Picking any other episode still asks.
+
+[SRC-BEST-MATCH-001](specs/behavior/source-best-match.md) records the shipped
+[remembered source](specs/behavior/source-best-match.md#remembered-source),
+names the two starts that **Always ask** now allows, and moves fallback with its
+notices from proposed to shipped (app `805b7c0f`, [app#411](https://github.com/viptv-org/app/issues/411)).
+[Playback capabilities](docs/playback/PLAYBACK_CAPABILITIES.md) names those
+starts instead of treating Best match as the only exception.
+
+Refs [design#62](https://github.com/viptv-org/design/issues/62).
+
 ## 2026-11-02 — The Episode # chip ends the season strip
 
 [AND-EPISODE-JUMP-001](specs/behavior/episode-number-jump.md) now places the
