@@ -47,10 +47,10 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | Discover, required filter | Choose the required filters to browse this catalog. |
 | Discover, no titles | No titles yet |
 | Search, no results | No matching titles |
-| Live, no source (proposed, LIVE-EMPTY-001) | Eyebrow **LIVE TV** · **Live TV isn't set up yet.** · **Add an IPTV connection with Xtream or M3U, or install a live add-on. Channels, the guide and favourites appear here.** · **Set up live TV** · **Add-ons** |
-| Live, no source, member (proposed, LIVE-EMPTY-001) | **Only the household owner can set up live TV.** |
-| Live, no source, paired TV (proposed, LIVE-EMPTY-001) | **Manage live TV from a signed-in phone, computer or the web dashboard.** |
-| Live, no channels (proposed, LIVE-EMPTY-001) | **No channels came back.** · the server's own human reason when it sent one, otherwise **This source is set up, but it isn't sending channels.** · **Try again** · **Source integrations** |
+| Live, no source (LIVE-EMPTY-001) | Eyebrow **LIVE TV** · **Live TV isn't set up yet.** · **Add an IPTV connection with Xtream or M3U, or install a live add-on. Channels, the guide and favourites appear here.** · **Set up live TV** · **Add-ons** |
+| Live, no source, member (LIVE-EMPTY-001) | **Only the household owner can set up live TV.** |
+| Live, no source, paired TV (LIVE-EMPTY-001) | **Manage live TV from a signed-in phone, computer or the web dashboard.** |
+| Live, no channels (LIVE-EMPTY-001) | **No channels came back.** · the server's own human reason when it sent one, otherwise **This source is set up, but it isn't sending channels.** · **Try again** · **Source integrations** |
 | Live, empty category | No channels here yet. Choose another category. (TV / desktop: "…another filter.") |
 | Live search, phone | No channels match your search. |
 | Live search, desktop / TV | No channels match your search. |
@@ -71,7 +71,10 @@ three app strings that were never in this file: **"No channels are available for
 this profile."**, the **"Manage add-ons"** button and the **"All channels"**
 button in that state. The filtered Live line and its **"All channels"** button
 stay for a filtered page. Live with no channels never says "No channels" while
-the request is still open, and its loading form has no copy at all.
+the request is still open, and its loading form has no copy at all. The app
+carries **Ask the account owner to set up live TV.** as the member line and
+offers a member the setup actions until its identity gate is fixed
+([viptv-org/app#484](https://github.com/viptv-org/app/issues/484)).
 
 ## Toasts, notices and loading
 

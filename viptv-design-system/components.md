@@ -307,7 +307,7 @@ Every duration and easing above is read through the app's `motionSpec()`, which 
 |---|---|---|---|---|
 | T | x 96, width 840, centred in the page area | D 56/700, line 64 | 26/400, line 38 | 72 tall, radius 36, 26/700, off-white |
 | W | x 40 (the Live page's own inset), width ≤ 620, centred | D 40/700, line 46 | 16/400, line 24 | 48 tall, radius 24, 16/700, accent |
-| P | x 16, width 358, 112 above the page's bottom edge | D 34/700, line 40 | 15/400, line 22 | 54 tall, radius 27, full width, accent |
+| P | below the photo band, x 16, width 358, clear of the bottom bar and its fade | D 34/700, line 40 | 15/400, line 22 | 54 tall, radius 27, full width, accent |
 
 **Artwork**
 
@@ -318,7 +318,12 @@ floodlit stadium with crowd silhouettes, pitch lines and a glowing `LIVE`
 scoreboard. Paths, rectangles, circles and ellipses with linear and radial
 gradients only, in the tokens' colours, with the reading scrim baked in; no
 text, raster, filter, mask, pattern, blend mode or external reference, so each
-file converts to a vector drawable unchanged. Under 30 KB each.
+file converts to a vector drawable unchanged. Under 30 KB each. No client
+packages them: the app ships a credited CC0 stadium photograph with the scrim
+drawn in code (app `2d7949b8`,
+[app#349](https://github.com/viptv-org/app/issues/349)), and
+[design#70](https://github.com/viptv-org/design/issues/70) decides which artwork
+the contract keeps.
 
 ## Implemented component contracts (2026-10-19)
 

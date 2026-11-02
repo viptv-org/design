@@ -1,15 +1,23 @@
 # LIVE-EMPTY-001 — Live with no source, and Live with a source but no channels
 
-Status: **proposed**, owner report 2026-10-30
-([design#45](https://github.com/viptv-org/design/issues/45)). Nothing here is
-built yet.
-Design commit: `bf8ac45` (this repository). Implementation:
-[app#304](https://github.com/viptv-org/app/issues/304).
-Source revision: app `da1b7de6` (`origin/edge`, 2026-10-30):
-`features/live/LiveRoute.kt`, `LiveScreen.kt`, `TvLiveScreen.kt` and
-`LiveFilters.kt`. Owner-only writes: backend `f30b2f5`
-([backend#149](https://github.com/viptv-org/backend/pull/149)) on `origin/edge`,
-not yet promoted to `main`.
+Status: **implemented**, not device-verified. Both states ship in
+viptv-org/app at `86df58c1` (`origin/edge`, 2026-11-02), from the owner report
+2026-10-30 ([design#45](https://github.com/viptv-org/design/issues/45)).
+Implemented is not verified: no device evidence exists, no board draws these
+states, and [Parity](#parity) lists what the app does differently.
+Design commits: `bf8ac45` for this contract and `342a8c7` for the phone band.
+Implementation: [app#304](https://github.com/viptv-org/app/issues/304) (both
+states), [app#349](https://github.com/viptv-org/app/issues/349) (the setup
+actions and the shipped photographs) and
+[app#376](https://github.com/viptv-org/app/issues/376) (the phone band),
+promoted to app `main` in `9577858` and `0074737`.
+Source revisions: app `86df58c1`, `features/live/LiveEmptyState.kt`,
+`LiveEmptyArtwork.kt`, `LiveRoute.kt`, `LiveScreen.kt`, `TvLiveScreen.kt`,
+`connection/AccountAccess.kt` and `state/ControllerLiveSource.kt`, with the
+desktop tests `LiveUiTest.kt`, `LiveEmptyStateTest.kt`,
+`LiveEmptyArtworkTest.kt` and `LiveEmptyPhoneLayoutTest.kt`. Owner-only writes:
+backend `f30b2f5` ([backend#149](https://github.com/viptv-org/backend/pull/149))
+on `main`.
 
 ## Intent
 
@@ -79,10 +87,12 @@ this.
 
 **Set up live TV** opens Settings › Source integrations (Xtream and M3U live
 there). **Add-ons** opens Settings › Add-ons. Both are the existing destinations;
-nothing new is routed. A member or a paired TV never reaches either from here,
-because the server answers `403 owner_required` /
-`403 account_session_required` to a source write, and the empty state says so
-before the tap instead of after it.
+nothing new is routed. A paired TV never reaches either from here, because the
+server answers `403 account_session_required` to a source write, and the empty
+state says so before the tap instead of after it. A member's write answers
+`403 owner_required`; the app offers a member the actions anyway and the who line
+waits for a capability the server reports true for every account session — see
+[Parity](#parity) and [viptv-org/app#484](https://github.com/viptv-org/app/issues/484).
 
 ## Sources, no channels (LIVE-EMPTY-001B)
 
@@ -94,9 +104,10 @@ run. The page ground is `bg` and the page keeps its normal inset.
   stay hidden while there are no channels: there is nothing yet to favourite or
   group.
 - **Still loading:** no copy and no artwork. Six skeleton channel rows in the
-  page's own row shape — TV rows 1728 × 72, 8 apart, with a 50-wide number bar
-  and a 300-wide title bar; P and W rows a 64 × 48 logo block plus two text
-  bars, 12 apart — in `surface-1` with the existing shimmer. The page's linear progress bar keeps
+  page's own row shape, in `surface-1` with the existing shimmer — TV rows
+  1728 × 72, 8 apart, with a 50-wide number bar and a 300-wide title bar; P and
+  W rows 72 tall with a 64 × 48 logo block and two bars, 150 and 96 wide on P
+  and 220 and 160 wide on W, 8 apart. The page's linear progress bar keeps
   running under the chrome. The page never says "No channels" while a request
   is still open.
 - **Answered with no channels:** headline, the server's own human reason when it
@@ -115,7 +126,7 @@ form again. Back from Source integrations returns here.
 Two hand-authored SVGs in the tokens' colours, both inventoried in
 `assets/FILES.json` and described in `assets/ASSET_MANIFEST.md`:
 
-| File | Size | Used by |
+| File | Size | Intended for |
 |---|---|---|
 | `assets/illustrations/live-empty-stadium-wide.svg` | 1920 × 1080 | Tablet, desktop, web and TV, and any layout 640 dp wide or more |
 | `assets/illustrations/live-empty-stadium-tall.svg` | 1080 × 1920 | Phone and any layout under 640 dp |
@@ -143,14 +154,27 @@ nothing is traced from a capture.
   bottom scrim; the tall file carries a bottom scrim (30 % at 45 %, 80 % at
   72 %, 100 % at the bottom) and a short top scrim. A page draws the file once
   and adds no overlay of its own, so the copy and actions always sit on the
-  darkest part.
+  darkest part; the phone band's bottom scrim draws in code instead, so it
+  ends exactly on `bg` at the band's bottom edge.
 - **Placement:** the page area only — under the TV navigation, the phone header,
   the desktop rail and the browser title bar, which keep their own grounds.
   Cover, anchored centre: at 1920 × 948 the wide file loses 66 px at the top and
   66 at the bottom (empty sky and the pitch's near edge); a narrow window uses
-  the tall file instead, so a phone never crops the wide scene to a sliver.
+  the tall file instead, so a phone never crops the wide scene to a sliver. On
+  a phone the tall file is a full-bleed band under the header, cropped
+  bottom-anchored rather than covering the page area; see the P row under
+  Layout.
 - **Not named:** the artwork is decorative. It carries no content description
   and no accessible text; the heading, body and actions are the page.
+
+**Shipped artwork.** No client packages either SVG. Since app `2d7949b8`
+([app#349](https://github.com/viptv-org/app/issues/349)) the app draws two
+credited CC0 photographs — `files/live/live-empty-wide.webp` and
+`live-empty-tall.webp`, one stadium photograph by Mario Klassen
+(Volksparkstadion, Hamburg) cropped wide and tall — and lists the credit under
+Settings › About and About VIPTV. The reading scrim is drawn in code there, not
+baked into the image. This contract keeps the illustrations; whether the
+photographs replace them is [design#70](https://github.com/viptv-org/design/issues/70).
 
 ## Layout
 
@@ -187,12 +211,12 @@ measurements below are derived from the type roles and the page insets in
 | Secondary | 40 tall, quiet text, 15/600, `text-secondary` |
 | Gaps | 16, 20, 28, 12 as on T, in that order |
 
-**P — 390 × 844, page gutter 16, bottom bar 80**
+**P — 390 × 844, page gutter 16, bottom bar 80 and its 28 page fade**
 
 | Element | Geometry |
 |---|---|
-| Artwork | fills the page area, cover, centre |
-| Text block | x 16, width 358, bottom-anchored 112 above the page's bottom edge |
+| Artwork | the tall file, full-bleed width, a band under the header from the top of the page area, cropped bottom-anchored; its bottom edge scrims into `bg` |
+| Text block | below the band with a 20 gap, x 16, width 358; the block ends clear of the shared bottom clearance |
 | Eyebrow | 11/700, +0.08em, uppercase, `text-secondary` |
 | Headline | D 34/700, −0.02em, line 40, at most 3 lines |
 | Body | 15/400, line 22, at most 3 lines |
@@ -200,9 +224,18 @@ measurements below are derived from the type roles and the page insets in
 | Secondary | 44 tall, quiet text, 15/600, `text-secondary` |
 | Gaps | 12, 16, 24, 10 as on T and W, in that order |
 
-**LIVE-EMPTY-001B geometry.** Page inset and gutter as above; the block is the
-top-left of the page area (T 96/60, W 40/40, P 16/24, each measured from the
-page area's own origin) because the chip row sits directly above it. T headline 44/700 line
+The band's height is not fixed: it takes whatever the copy block and the shared
+bottom clearance (`LocalBottomClearance`, app#345) leave it, at most about 55 %
+of the page area, so it shrinks first on a short screen and the copy and
+buttons never sit under the bottom bar. On a 411 × 914 dp phone the copy and
+clearance leave roughly a third of the page area for the band. This is what
+app `86df58c1` ships
+([app#376](https://github.com/viptv-org/app/issues/376)); the who line still
+takes the action block's place.
+
+**LIVE-EMPTY-001B geometry.** Page inset and gutter as above; the block starts
+at the page column's own top padding — T x 96, top 60, or top 24 when the
+Source chip is drawn above it; W x 40, top 28; P x 16, top 8. T headline 44/700 line
 50, body 24/400 line 34; W headline 28/700 line 34, body 15/400 line 22; P
 headline 20/700 line 26, body 14/400 line 21. Actions use each layout's primary
 and secondary geometry above. Skeleton rows start where channel rows start
@@ -224,8 +257,10 @@ today.
 - **P and tablet:** taps. The primary is 54 tall, above the bottom bar; nothing
   in the block is inside the bar's fade.
 - **Motion:** nothing animates in, loops or delays an action. The block and the
-  artwork appear in the same frame as the page. On TV the primary's focus fill
-  keeps the existing 150 ms fill; `reduced motion` leaves it as it is.
+  artwork appear in the same frame as the page here; the app's shipped
+  photograph loads asynchronously, so it can arrive after the copy (see
+  [Parity](#parity)). On TV the primary's focus fill keeps the existing 150 ms
+  fill; `reduced motion` leaves it as it is.
 - **Live updates:** if the page request answers with channels while this state
   is shown (a source added on the phone), the state is replaced in place with no
   transition and focus moves to the first channel row.
@@ -259,8 +294,10 @@ button in the no-source state.
     its **Source integrations** page; Back returns to Live with the primary
     focused and a re-requested page.
 3. **LIVE-EMPTY-03:** the same profile on a phone at 390 × 844. The tall artwork
-    covers the page area without letterboxing, the block sits above the bottom
-    bar, and the primary is a full-width accent button.
+    is a full-bleed band under the header, scrimmed into `bg` at its bottom
+    edge; the eyebrow, headline, body and both actions sit below it on the 16 dp
+    gutter; the primary is a full-width accent button and the actions clear the
+    bottom bar and its fade.
 4. **LIVE-EMPTY-04:** the same profile in a desktop window at 1440 × 900, in a
     browser at 1280 × 800, on a tablet at 1280 × 800 and with the desktop window
     narrowed to 600 wide. The first three use the wide artwork; the 600-wide
@@ -294,10 +331,96 @@ button in the no-source state.
     replaces it with the channel list in place, with no animation, and the
     remote lands on the first channel row.
 
+## Parity
+
+One row per state, in the fields [DESIGN_SYNC](../../docs/process/DESIGN_SYNC.md)
+requires. No reference screen draws these states, so the visual column holds the
+app's own rendered measurements, not a board comparison.
+
+| Field | No source (LIVE-EMPTY-001A) | Still loading (LIVE-EMPTY-001B) | Answered with no channels (LIVE-EMPTY-001B) |
+|---|---|---|---|
+| Contract | design `bf8ac45` and `342a8c7`; [No source](#no-source-live-empty-001a) and [Artwork](#artwork); LIVE-EMPTY-01–07 | design `bf8ac45`; [Sources, no channels](#sources-no-channels-live-empty-001b); LIVE-EMPTY-08 | design `bf8ac45`; the same section; LIVE-EMPTY-09–13 |
+| Implementation | app `86df58c1`: `LiveNoSourcePage` and `LiveEmptyArtwork` in `features/live/LiveEmptyState.kt` and `LiveEmptyArtwork.kt`; `LiveRoute` returns before the page chrome | app `86df58c1`: `liveSpread` → `Loading`, `LiveChannelSkeletons` in `LiveScreen.kt` and `TvLiveScreen.kt`, the route's progress bar | app `86df58c1`: `liveSpread` → `NoChannels`, `LiveNoChannels`, the route's retry and Source integrations |
+| Functional evidence | `LiveEmptyStateTest` and `LiveUiTest` cover the page facts, both actions and their Settings sections, the who-line forms, identity loading, the TV focus entry and return, and the four layouts; `LiveEmptyPhoneLayoutTest` covers the phone band | `LiveUiTest.noChannelsWhileTheRequestIsOpenDrawsSixSkeletonsAndOnlyTheSourceChip`, on TV and desktop with one and two connections | `LiveUiTest.noChannelsAnsweredShowsTheReasonAndRetryOnlyWhenSomethingFailed`, `sourceIntegrationsIsAbsentWhenTheViewerCannotManageSources` and `aSourceAddedElsewhereReplacesTheEmptyStateInPlace` |
+| Visual evidence | no board. `LiveEmptyArtworkTest` measures the photograph's distinct colours and its scrim luminance, `LiveEmptyPhoneLayoutTest` measures the band, gutter and clearance at 360 × 640 and 412 × 915 | no board; six rows and the row shape are asserted, not measured | no board; the copy, the absent artwork and the action geometry are asserted |
+| Device evidence | unverified: none | unverified: none | unverified: none |
+| Disposition | implemented/unverified | implemented/unverified | implemented/unverified |
+
+Run: app PR [#407](https://github.com/viptv-org/app/pull/407), `app checks`
+[41326673788](https://github.com/viptv-org/app/actions/runs/41326673788), on the
+revision that contains the tests above. app#349's own change is
+[app#352](https://github.com/viptv-org/app/pull/352)
+([run 41269197286](https://github.com/viptv-org/app/actions/runs/41269197286)).
+
+### What matches
+
+- A filter wins over both new states. With a page in hand, empty
+  `connections` or `NeedsConfiguration` is the no-source page, zero channels
+  with a request open is the loading form, and zero channels answered is the
+  no-channels state (`liveSpread`,
+  `LiveEmptyStateTest.thePageFactsPickTheStateInTheSpecifiedOrder`).
+- The no-source page returns before the page chrome: no filter chip, preview,
+  guide, channel list or progress bar
+  (`LiveUiTest.tvNoSourceIsOneBroadcastFrameAndBothSetupActionsReachTheirSettingsSection`).
+- The action block follows the identity. Local mode and the account owner get
+  **Set up live TV** and **Add-ons**; a paired TV gets its line and no action (a
+  member's form is the difference below); while the identity is open the
+  block's height is reserved; on TV the primary takes focus the frame it appears
+  (`identityStillLoadingLeavesTheActionBlockEmpty`); Down from the navigation
+  reaches it otherwise; Back from Settings returns to Live with the primary
+  focused (`liveSetupReturnFocus`, `tvDownFromTheNavigationEntersThePageOnThePrimary`).
+- Copy matches `copy.md` word for word except the member line: the eyebrow, the
+  headline, the body, both actions, the paired line, the no-channels headline,
+  the neutral body, **Try again** and **Source integrations**.
+- The loading form draws six skeletons in the page's row shape and no copy, with
+  the page's progress bar; the Source chip survives only while a second enabled
+  connection exists; Favourites and Group wait for channels.
+- **Source integrations** is absent when the viewer may not change sources;
+  **Try again** is the primary with a failure to retry.
+- Phone and tablet use the tall photograph, every layout 640 dp or wider the
+  wide one (`compact = maxWidth < 640.dp`), so a 600-wide desktop window uses the
+  phone block (`narrowDesktopWindowUsesThePhoneBlock`).
+- Retry re-requests the same `liveQuery` and shows the loading form again;
+  channels arriving replace the state in place
+  (`aSourceAddedElsewhereReplacesTheEmptyStateInPlace`, which does not assert the
+  TV focus landing).
+
+### What differs
+
+- **A member account session gets the actions.** `AccountAccess` decides by
+  `capabilities.manage_account` alone, which the server reports true for every
+  account session (`server/src/auth/handlers.rs`: `manage_account = role !=
+  "device"`). A member is therefore offered the two actions and refused only at
+  the write, which answers `403 owner_required` (backend `f30b2f5`). The member
+  line the app carries reads **Ask the account owner to set up live TV.** and is
+  not drawn while that capability is true. LIVE-EMPTY-05's member page, where
+  the who line replaces the actions, does not ship; it is
+  [viptv-org/app#484](https://github.com/viptv-org/app/issues/484).
+- **The artwork is credited photography.** From app `2d7949b8` the app packages
+  two CC0 photographs of a floodlit stadium, one by Mario Klassen
+  (Volksparkstadion, Hamburg), cropped wide and tall, credits them under
+  Settings › About and About VIPTV, and draws the scrim in code: wide 0.92 /
+  0.6 at 45 % / 0.18, tall 0 / 0.35 at 40 % / 0.9, phone 0 / 0.3 at 45 % /
+  0.86 at 80 % / 1. No client packages the two SVGs, so a page's first frame can
+  show the copy before the photograph arrives (Coil loads it).
+  [design#70](https://github.com/viptv-org/design/issues/70) decides which
+  artwork the contract keeps.
+- **A source pick is not a filter.** `liveSpread`'s `filtered` covers Favourites
+  and a group only, so a chosen source that answers zero channels shows the
+  no-channels state, not the filtered line; LIVE-EMPTY-11's "or source chosen"
+  does not ship.
+- **A failed first request shows no channels.** With no page and no request
+  open, `liveSpread` answers `NoChannels`, so a viewer whose first Live request
+  failed reads **No channels came back.** without the page having proved a
+  connection exists.
+
 ## Unknowns
 
-- No device evidence: nothing here is built, and the geometry is derived, not
-  board-drawn. A canvas board for the TV and phone states should follow.
+- No device evidence exists for either state on any platform; the evidence above
+  is the app's desktop tests. No board draws these states, so their geometry is
+  derived — the phone band measured by the app's own layout test.
+- Whether the contract keeps the SVG illustrations or adopts the shipped
+  photographs is open ([design#70](https://github.com/viptv-org/design/issues/70)).
 - The issue's third next step, "find free live add-ons", has no destination in
   the product: there is no add-on directory, catalogue or recommendation list in
   the app, the web dashboard or the server. The body names the two routes that

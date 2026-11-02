@@ -2,11 +2,13 @@
 
 ## Live empty state (LIVE-EMPTY-001)
 
-Proposed from the 2026-10-30 owner report
+From the 2026-10-30 owner report
 ([design#45](https://github.com/viptv-org/design/issues/45)): Live with no source
 is a blank page holding an orphan Favourites chip, one line and a button into the
 whole of Settings, and Live with a source that returns no channels says exactly
-the same thing.
+the same thing. Both states ship in the app; the
+[spec's parity record](../specs/behavior/live-empty-state.md#parity) lists where
+it differs.
 
 Settled here:
 
@@ -19,7 +21,11 @@ Settled here:
   tokens' colours, wide and tall, with the reading scrim baked in and no text,
   raster, filter, mask, pattern or external reference, so an app converts each
   file to a vector drawable. Nothing is traced from a capture, and no team,
-  league, logo, player or photograph appears.
+  league, logo, player or photograph appears. No client packages them: the app
+  ships a credited CC0 stadium photograph with the scrim in code (app `2d7949b8`,
+  [app#349](https://github.com/viptv-org/app/issues/349)), and
+  [design#70](https://github.com/viptv-org/design/issues/70) decides which
+  artwork the contract keeps.
 - **Chips only where there is something to filter.** The no-source state draws no
   filter row at all. The Source chip stays in the no-channels state while a
   second connection exists, because it is the only way to a working source;

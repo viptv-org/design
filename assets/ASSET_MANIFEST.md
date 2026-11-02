@@ -67,7 +67,7 @@ no app/device capture is embedded in these assets.
 
 ## Live empty-state artwork
 
-`illustrations/live-empty-stadium-*.svg` is the Live page's no-source background ([LIVE-EMPTY-001](../specs/behavior/live-empty-state.md)): an original night stadium under floodlights, with crowd silhouettes, a lit pitch-side hoarding, the pitch's own lines, a centre circle, light beams and a glowing `LIVE` scoreboard. VIPTV owns it outright: no team, league, logo, player, photograph or third-party drawing appears in it, and nothing is traced from a capture.
+`illustrations/live-empty-stadium-*.svg` is the design's Live no-source background ([LIVE-EMPTY-001](../specs/behavior/live-empty-state.md)): an original night stadium under floodlights, with crowd silhouettes, a lit pitch-side hoarding, the pitch's own lines, a centre circle, light beams and a glowing `LIVE` scoreboard. VIPTV owns it outright: no team, league, logo, player, photograph or third-party drawing appears in it, and nothing is traced from a capture. No client packages it; see below.
 
 | File | Size | Contents |
 | --- | --- | --- |
@@ -75,6 +75,8 @@ no app/device capture is embedded in these assets.
 | `illustrations/live-empty-stadium-tall.svg` | 1080 × 1920 | The same scene composed for phone widths, with a bottom scrim |
 
 Both files are hand-authored SVG containing only paths, rectangles, circles and ellipses, with linear and radial gradients: no text, raster image, filter, mask, pattern, blend mode or external reference, so each converts to a vector drawable unchanged and needs no network. The reading scrim is part of the file, so a page draws it once and adds no overlay. Colours are `viptv-design-system/tokens/tokens.json` values only — `bg` `#0B0B0C` and `bg-oled` `#000000` for the sky, stands, silhouettes and scrims; the `surface-1`–`surface-4` ladder for the pitch, crowd tiers, masts and scoreboard; `text-primary` `#F4F2EE` for lamps, pitch lines and the `LIVE` lettering; `accent` `#F5C542` for the hoarding strip and the scoreboard clock; `status.live` `#FF5A4E` for the scoreboard dot. Depth comes from lower opacities of those same colours.
+
+The app ships two credited CC0 stadium photographs instead (`live-empty-wide.webp`, `live-empty-tall.webp`; Mario Klassen, Volksparkstadion Hamburg) and draws the scrim in code since app `2d7949b8` ([app#349](https://github.com/viptv-org/app/issues/349)); [design#70](https://github.com/viptv-org/design/issues/70) decides which artwork the contract keeps.
 
 ## Branded V master, app icon and TV banner
 
