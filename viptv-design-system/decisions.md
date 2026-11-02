@@ -111,10 +111,12 @@ all addon catalog shelves, bounded lazy loading, three lower Home shelves,
 TvTitle composition and TvLive guide. See [ROK-043](../docs/platforms/ROKU_DESIGN.md#rok-043--complete-tv-screen-audit-and-catalog-correction).
 
 
-## Phone TV remote (Watch on TV) — proposed, not implemented
+## Phone TV remote (Watch on TV) — proposed for Android phone and tablet
 
-No app ships this remote and no layout shows the Settings row it starts from: a
-TV signs in with **Account › Add a device**
+The remote is proposed for the KMP app on Android phone and tablet
+([AND-038](../docs/platforms/ANDROID_DESIGN.md#and-038--android-phone-and-tablet-vizio-remote-2026-11-02)),
+superseding the earlier exclusion; no layout shows the Settings row it starts
+from until it ships. A TV signs in with **Account › Add a device**
 ([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)). The
 decisions below stand for the day it is built.
 
@@ -124,7 +126,7 @@ cancels abandoned TV challenges, and uses a 20 px glyph in the same borderless
 change the launch button's appearance. See the Android contract for acceptance.
 
 - **Opt-in, in Settings.** Most people never use it, so it is off by default and adds nothing to the app until a TV is paired.
-- **The button goes in the tab-screen headers**, next to the avatar. The bottom nav and search stay identical for everyone. Remotes are opened occasionally, and the controls themselves sit in the thumb zone of the sheet, so reaching up for the button once is fine. A one-time tip shows where it went.
+- **The button goes in the Discover, Live and My List headers**, next to the avatar (Home keeps its headerless hero). The bottom nav and search stay identical for everyone. Remotes are opened occasionally, and the controls themselves sit in the thumb zone of the sheet, so reaching up for the button once is fine. A one-time tip shows where it went.
 - **The remote is a sheet, not a page**, so the app stays underneath and closing it returns you where you were.
 - **Two modes:** big buttons (the default) and a swipe touchpad. The last-used mode is remembered.
 - **Honest setup:** the intro says nothing is mirrored before discovery. Android SDK 36 has no runtime LAN prompt; denied access gets recovery, never a fake permission prompt.

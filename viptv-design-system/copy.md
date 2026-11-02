@@ -6,7 +6,7 @@ These are the exact strings used on the screens. Text in `[brackets]` is a place
 
 - **My List** is the saved-titles list, everywhere (the nav tab, page title, menu item and toasts). Do not use "Library" or "Watchlist".
 - **Continue Watching** is the in-progress list: the second segment of My List, and the Home shelf ("Continue watching" as a shelf heading).
-- **Watch on TV** is the unbuilt phone-to-TV remote. No layout has an **On TV** rail item or a Settings row for it; a TV signs in with **Settings › Account › Add a device** (`components.md` §11 keeps the design).
+- **Watch on TV** is the phone-to-TV remote, proposed for Android phone and tablet ([AND-038](../docs/platforms/ANDROID_DESIGN.md#and-038--android-phone-and-tablet-vizio-remote-2026-11-02)); it is not built yet. No layout has an **On TV** rail item or a Settings row for it today; a TV signs in with **Settings › Account › Add a device** (`components.md` §11 keeps the design).
 - Search placeholder: **"Search movies and series"** (desktop and web show no keyboard-shortcut hint).
 - Android TV native input: **"Results"**, **"Done"**, **"Unlock"**, **"Cancel"**. The device owns IME action labels; the app shows no custom keyboard or jump-to-results hint.
 - Android TV episode jump (AND-EPISODE-JUMP-001): chip **"Episode #"**; dialog **"Jump to episode"**; field **"Episode number"**; actions **"Go"**, **"Cancel"**; invalid input **"Episode not found in this season."**
@@ -156,7 +156,7 @@ recovery dialog and can be quoted when reporting a failure.
 | Remove addon | Remove [Addon]? | "Its catalogs leave this device." (local mode) · Cancel · Remove (danger) |
 | Manage addon | Manage [Addon] | Enable / Disable · Remove addon (danger) · Cancel |
 | Parent PIN | Enter parent PIN (TV sign-out: "Enter parent PIN to sign out") | "Enter the parent PIN to continue." (TV: "Use your remote or a connected keyboard.") · Done · Cancel |
-| Watch on TV (proposed, not implemented) | Watch on TV | "Connect to a Vizio SmartCast TV on the same network." |
+| Watch on TV (Android phone and tablet, proposed) | Watch on TV | "Connect to a Vizio SmartCast TV on the same network." |
 | Watch on TV, browser (proposed, not implemented) | Watch on TV | "TV pairing is available in a VIPTV desktop app with SmartCast support…" · Close |
 | App update (Android) | Update ready · Update required · Couldn't update VIPTV | See the [app updates contract](../specs/behavior/app-updates.md) for descriptions · Install · Later · Try again |
 | Updating screen (Android, proposed) | Updating VIPTV to [version]… · Allow updates | A full-screen cover rather than a dialog; copy, states and failure flow in [app-updates.md](../specs/behavior/app-updates.md#updating-screen) · Open settings · Try again · Later |
@@ -186,22 +186,24 @@ recovery dialog and can be quoted when reporting a failure.
 - Delete account: type the username to confirm ("Type [username] to confirm"), the account password, plus the household PIN when one is set. "The username or password is not correct." · "The parent PIN is not correct." · "Other accounts still need an owner. Have them delete their accounts first." · "Could not delete your account. Nothing was changed. Try again." Success signs out with "Your account was deleted."
 - A TV cannot manage the account: those rows are disabled with "Manage this from a signed-in phone, computer or the web dashboard.", and **Devices & sessions** opens read-only with that line in place of its sign-out actions.
 
-## Watch on TV (phone remote) — proposed, not implemented
+## Watch on TV (phone remote) — proposed for Android phone and tablet
 
-No app ships this remote and no layout shows the **Watch on TV** row it starts
-from; the strings stay as the design for a feature that is not built
-(`components.md` §11). A TV signs in with **Settings › Account › Add a device**.
+The remote is proposed for the KMP app on Android phone and tablet
+([AND-038](../docs/platforms/ANDROID_DESIGN.md#and-038--android-phone-and-tablet-vizio-remote-2026-11-02)),
+superseding the earlier exclusion; no layout shows the **Watch on TV** row it
+starts from until it ships (`components.md` §11). A TV signs in with
+**Settings › Account › Add a device**.
 
-- Settings row (not shown): **Watch on TV** · "Use this phone as a Vizio TV remote" · value "Off" until a TV is paired.
+- Settings row (Android phone and tablet): **Watch on TV** · "Use this phone as a Vizio TV remote" · value "Off" until a TV is paired, then the TV name.
 - Intro: "Use this phone as your TV remote" / "Works with Vizio SmartCast TVs on the same Wi‑Fi as this phone. It's off until you set it up." Points: "Arrows, OK, Back, play and volume for your TV." · "Opens VIPTV on the TV in one tap." · "What's playing on this phone stays here. Nothing is sent to the TV." Note: "VIPTV searches your local network only to find your TV." Button: **Set up a TV**.
 - Choose your TV: "Looking for Vizio TVs on your Wi‑Fi…" · "Don't see your TV?" / "Turn the TV on, then check it's on the same Wi‑Fi as this phone. It can take a few seconds to show up." · **Enter IP address**.
 - Permission off: "VIPTV can't look for TVs" / "Local network access is off for VIPTV. Turn it on in your phone's settings, then come back here." · **Open phone settings** (Manual IP entry does not bypass a network permission denial).
 - IP entry: "Enter your TV's IP address" / "Find it on the TV under Settings › Network." · **Connect** · **Cancel**.
 - PIN: "Enter the PIN on your TV" / "[TV name] is showing a 4-digit PIN." · "Pairs as soon as all 4 digits are in." · **New PIN** · **Cancel**.
-- Connected: "Connected to [TV name]" / "You can control it from this phone now." · Remote button: "Shows at the top of Home, Discover, Live and My List." · **Open the remote** · **Done**.
-- One-time tip: "Your TV remote" / "It stays up here on Home, Discover, Live and My List. Turn it off in Settings › Watch on TV." · **Got it**.
-- Remote: "Connected · [IP]" · "Not reachable" · **Open VIPTV on TV** · Buttons / Swipe · "Swipe to move · Tap for OK" · Back · Play · Pause · Volume. Offline: "Can't reach [TV name]" / "Turn the TV on and check it's on the same Wi‑Fi as this phone." · **Try again**.
-- Settings: Remote button ("At the top of Home, Discover, Live and My List") · Vibrate on press · Keep screen on ("While the remote is open") · Change TV ("Pair a different Vizio TV") · Forget this TV ("Turns off Watch on TV").
+- Connected: "Connected to [TV name]" / "You can control it from this phone now." · Remote button: "Shows at the top of Discover, Live and My List." · **Open the remote** · **Done**.
+- One-time tip: "Your TV remote" / "It stays up here on Discover, Live and My List. Turn it off in Settings › Watch on TV." · **Got it**.
+- Remote: "Connected · [IP]" · "Not reachable" · **Open VIPTV on TV** · Buttons / Swipe · "Swipe to move · Tap for OK" · Back · Play · Pause · Volume. Offline: "Can't reach [TV name]" / "Turn the TV on and check it's on the same Wi‑Fi as this phone." · **Try again** · **Pair again**.
+- Settings: Remote button ("At the top of Discover, Live and My List") · Vibrate on press · Keep screen on ("While the remote is open") · Change TV ("Pair a different Vizio TV") · Forget this TV ("Turns off Watch on TV").
 - Forget: "Forget [TV name]?" / "The remote button goes away. You can set up a TV again at any time." · **Forget TV** (danger) · **Cancel**.
 
 ## Copy decisions (2026-10-19)

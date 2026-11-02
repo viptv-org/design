@@ -7,8 +7,9 @@ verified: no device evidence exists for these layouts (see [Unknowns](#unknowns)
 
 Not built: the **Notifications** row has no page (app#243); recovery codes and
 editing the account's display name or username have no route; the phone **TV
-remote** in `components.md` §11 is not in the app and Settings has no **Watch on
-TV** row, so a TV signs in with **Account › Add a device**.
+remote** in `components.md` §11 is proposed for Android phone and tablet
+(AND-038) but not implemented, so Settings has no **Watch on TV** row today and
+a TV signs in with **Account › Add a device**.
 
 Source revisions: the KMP app's Settings at app `62e0c949`
 (`features/settings/`, `state/ControllerAccountDevices.kt`,
@@ -107,7 +108,8 @@ where the platform implements it.
 - **This device** holds what changes this machine only. **Display** exists on TV.
   **Notifications** appears only once it has a real page (app#243); until then no
   layout shows the row, because a row that opens "not available on this
-  connection yet" is not a setting.
+  connection yet" is not a setting. The phone and tablet **Watch on TV** row is
+  proposed under AND-038; no layout shows it until the remote ships.
 - **Account** holds the household's own state, and it is visible to everyone
   signed in: signing out and approving a device must stay reachable from a
   member's TV and phone. See [Account](#account) for the rows a device session

@@ -1,5 +1,20 @@
 # Design changes
 
+## 2026-11-02 — The phone Vizio remote is specified for the KMP app
+
+AND-038 now brings the phone Vizio remote into the KMP app on Android phone
+and tablet, superseding AND-042's exclusion of it. The **Watch on TV** opt-in
+row returns to Settings › This device, setup is intro → bounded LAN search on
+both SmartCast ports (7345/9000) → manual IPv4 → four-digit auto-submitted PIN
+→ connected, and one paired TV shows the 44 dp header remote button next to the
+profile entry on Discover, Live and My List with the one-time "Your TV remote"
+tip. The remote sheet keeps the D-pad/OK, Back, Play/Pause, volume and swipe
+controls, an exact-TV-origin HTTPS transport with Android Keystore tokens, the
+eight-command bounded queue with no replay on return, and offline, permission
+and rejected-PIN recoveries. Android TV, iOS, desktop and web do not adopt it.
+
+Refs [design#67](https://github.com/viptv-org/design/issues/67).
+
 ## 2026-11-02 — The controlled next episode plays the best match on either Default source
 
 [PLAY-NEXT-AUTOPLAY-001](specs/behavior/next-episode-autoplay.md) now says how

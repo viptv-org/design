@@ -205,23 +205,26 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Live:** no timeline or next. It shows the channel name, "Live TV" and the live dot, and audio / exit only on TV.
 
 
-## 11. TV remote (phone, Watch on TV) — proposed, not implemented
+## 11. TV remote (phone, Watch on TV) — proposed for Android phone and tablet
 
-**Status:** no app ships this remote. The app has no **Watch on TV** row, page,
-header button or remote sheet, and Settings' This device group is Display (TV),
-About and Help ([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)).
-A TV signs in with **Settings › Account › Add a device**, which approves the code
-the TV shows; that page is the pairing story, not this one. The desktop title
-bar's cast and remote buttons have no caller, so they draw nowhere either. The
-rules below are the design for a remote that does not exist yet and claim no
-current entry point.
+**Status:** proposed for the KMP app on Android phone and tablet
+([AND-038](../docs/platforms/ANDROID_DESIGN.md#and-038--android-phone-and-tablet-vizio-remote-2026-11-02)),
+superseding the earlier exclusion. It is not implemented yet and no layout draws
+it: the app has no **Watch on TV** row, page, header button or remote sheet, and
+Settings' This device group is Display (TV), About and Help
+([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)). A TV
+signs in with **Settings › Account › Add a device**, which approves the code the
+TV shows; that page is the pairing story, not this one. TV, iOS, desktop and
+web do not adopt it, so the desktop title bar's cast and remote buttons have no
+caller and draw nowhere. The rules below are the design it will ship on the
+phone and tablet.
 
 **Rules**
 - Off by default. The design assumed a **Watch on TV** row in This device that
   read "Off" until a TV was paired; no layout shows that row, so the remote has
   no entry point. Nothing else in the app changes for people who never set it up.
 - Setup is a pushed page flow, not a dialog: intro → choose your TV → PIN → connected. The intro says what the remote does and does NOT do (nothing playing on the phone moves to the TV) before discovery starts. Android SDK 36 does not require a runtime local-network prompt.
-- **Remote button:** once a TV is paired, a 44 round button (surface-1, 1 px `line-outline` border, remote icon 20) sits in the header of the four tab screens (Home, Discover, Live, My List), left of the avatar. Its label is "TV remote: [TV name]". It never goes in the bottom nav. It can be switched off in Watch on TV settings. The first time it appears, show a one-time tip (off-white bubble with `on-light` text, "Got it") pointing at it.
+- **Remote button:** once a TV is paired, a 44 round button (surface-1, 1 px `line-outline` border, remote icon 20) sits in the header of Discover, Live and My List, next to the avatar (Home keeps its headerless hero). Its label is "TV remote: [TV name]". It never goes in the bottom nav. It can be switched off in Watch on TV settings. The first time it appears, show a one-time tip (off-white bubble with `on-light` text, "Got it") pointing at it.
 - **The remote** is a bottom sheet (top 118, radius 30, `scrim-sheet`) with every control in the lower half, for one-handed use:
   - Header: TV tile 44 + TV name (17/700) + status line ("Connected · [IP]" / "Not reachable" with a wifi-off icon) + a 44 close button.
   - "Open VIPTV on TV": the accent primary, full width.
