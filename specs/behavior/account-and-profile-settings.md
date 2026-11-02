@@ -273,9 +273,11 @@ Title **Account**. Rows, in order, each its own page or dialog:
     **Sign out of VIPTV on this phone?** on phone, **Sign out of VIPTV on this
     device?** on tablet, desktop and web, **Sign out of this TV?** on TV, with
     **"Your profiles and progress stay on your account."** · Cancel · Sign out
-    (danger). In local mode the row reads **Change connection** and asks **Leave
-    local mode on this device?** (TV: **Leave local mode on this TV?**) with
-    **"Your profiles and progress stay on this device."** · Cancel · Leave.
+    (danger). In local mode the row reads **Change connection** and asks
+    **Change connection?** with **"Your local library and progress stay on this
+    device. You'll choose a server or local mode next."** (TV: **"Your local
+    library and progress stay on this TV. You'll choose a server or local mode
+    next."**) · Cancel · Change connection (danger).
 12. **Delete account** — danger, last, the page in
     [Delete account](#delete-account).
 
