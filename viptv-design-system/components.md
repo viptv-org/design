@@ -359,6 +359,7 @@ Every duration and easing above is read through the app's `motionSpec()`, which 
 | Live, no source (T, P, W) | `live-empty-wide` / `-tall` crops of one stadium photograph, full bleed | none | primary and secondary for the owner and local mode; a who line for a member or a paired TV |
 | Live, source, no channels | none | Source chip while a second source exists | the retry, and Source integrations when the viewer may change sources |
 | Live, source, still loading | none | as above | none; skeleton rows |
+| Live, first request failed | none | none: no page names a source | the retry, and Source integrations when the viewer may change sources |
 | My List, Discover, Search, Continue Watching | none | per [FILTER-CHIP-001](#2-chips-and-segmented-controls) | the page's own clear or browse action |
 
 **Geometry** (the block's stack, gaps and copy are
