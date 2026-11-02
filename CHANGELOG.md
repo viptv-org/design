@@ -28,8 +28,9 @@ connection and the existing recovery's **Pair again** replaces the pin on the
 next successful pairing; pairing is the trust-establishing step and runs
 unpinned, the first pairing trusts whichever certificate answers at the selected
 address, **Forget** drops the pin with the token while a replacement TV under
-**Change TV** pins its own, and there is no trust-all manager or skipped
-hostname check. The ordinary backend and catalog
+**Change TV** pins its own, and there is no trust-all manager: the pin is stored
+and checked per exact origin, and a self-signed certificate's names are not what
+binds the connection. The ordinary backend and catalog
 transport keep normal certificate validation. The pairing page keeps its copy,
 geometry and auto-submitted four-digit PIN and shows no certificate
 fingerprint, because the TV states none to compare it with

@@ -310,17 +310,20 @@ the new pairing succeeds. Pairing is the trust-establishing step, so the
 challenge itself is not gated by the stored pin; the first pairing trusts
 whichever certificate answers at the selected TV address, and the pin protects
 every later connection. Nothing global is weakened: there is no trust-all
-manager, the selected TV's host is still required, and the ordinary VIPTV
-backend and catalog keep normal certificate validation. **Forget** discards the
+manager, the pin is stored and checked per exact origin (host and port) with
+requests outside it refused, and the ordinary VIPTV backend and catalog keep
+normal certificate validation. A self-signed TV certificate's names are not what
+binds the connection; the pin and the exact origin are. **Forget** discards the
 pin with the token; a replacement TV under **Change TV** pins its own
 certificate when it pairs. The fingerprint is never displayed or logged, like
 the bearer tokens that never enter the ordinary view model, logs or error copy.
-A TV acknowledgment is not proof the receiver rendered. Reconnect checks the saved token; authentication failure offers
-re-pairing. Network failure shows PhRemoteOffline and disables commands until
-retry succeeds. Remote button visibility, vibration, and keep-screen-on default
-on. Screen-on is active only while the sheet is visible. **Forget** deletes the
-credential/selection and hides the header button; cancelling Forget preserves
-both. TV mode never exposes this feature.
+A TV acknowledgment is not proof the receiver rendered. Reconnect checks the
+saved token; authentication failure offers re-pairing. Network failure shows
+PhRemoteOffline and disables commands until retry succeeds. Remote button
+visibility, vibration, and keep-screen-on default on. Screen-on is active only
+while the sheet is visible. **Forget** deletes the credential/selection and
+hides the header button; cancelling Forget preserves both. TV mode never exposes
+this feature.
 
 Three distinct errors each recover in place: a TV offline shows PhRemoteOffline
 with **Try again** and **Pair again**; a denied local-network permission opens
