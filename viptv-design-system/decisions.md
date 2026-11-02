@@ -6,9 +6,9 @@ From the 2026-10-30 owner report
 ([design#45](https://github.com/viptv-org/design/issues/45)): Live with no source
 is a blank page holding an orphan Favourites chip, one line and a button into the
 whole of Settings, and Live with a source that returns no channels says exactly
-the same thing. Both states ship in the app; the
-[spec's parity record](../specs/behavior/live-empty-state.md#parity) lists where
-it differs.
+the same thing. They ship in the app; the
+[spec's parity record](../specs/behavior/live-empty-state.md#parity) records the
+evidence per state.
 
 Settled here:
 
@@ -29,6 +29,11 @@ Settled here:
   second connection exists, because it is the only way to a working source;
   Favourites and Group wait for channels. This refines the issue's "hidden until
   there are channels" rule, which would have removed that recovery path.
+- **A failed first request is a failure, not an empty answer.** With no page and
+  no request open nothing has proved a source is configured, so the block reads
+  **Could not load Live TV.** and the message the request carried, in the
+  no-channels block and metrics, instead of claiming **No channels came back.** A
+  first request still in flight is the loading form.
 - **Who can act follows the server.** An owner account session and local mode get
   **Set up live TV** and **Add-ons**; a member reads "Only the household owner
   can set up live TV."; a paired TV reads "Manage live TV from a signed-in phone,

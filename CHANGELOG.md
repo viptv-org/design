@@ -1,5 +1,24 @@
 # Design changes
 
+## 2026-11-02 — A failed first Live request is a failure, not an empty page
+
+[LIVE-EMPTY-001](specs/behavior/live-empty-state.md) records app `1ca77237` on
+app `edge` ([app#541](https://github.com/viptv-org/app/issues/541), [PR
+#544](https://github.com/viptv-org/app/pull/544)): with no page and no request
+open, `liveSpread` answers `LiveSpread.Failed`, so a first Live request that
+fails reads **Could not load Live TV.**, the message the request read
+(**Something went wrong. Try again.** when it carried none), **Try again** and,
+when the viewer may change sources, **Source integrations** — the no-channels
+state's block and metrics instead of its **No channels came back.** The state
+table, LIVE-EMPTY-14 and the parity record carry it, and
+[copy.md](viptv-design-system/copy.md#empty-states) gains the headline.
+LIVE-EMPTY-11 loses **or source chosen**: a Source chip pick is not a filter, so
+switching back to a source that sends nothing reproduces the no-channels state
+LIVE-EMPTY-12 asks for ([app#539](https://github.com/viptv-org/app/issues/539)).
+
+Refs [app#541](https://github.com/viptv-org/app/issues/541),
+[app#539](https://github.com/viptv-org/app/issues/539).
+
 ## 2026-11-02 — The phone Watch on TV row, setup and remote surface ship
 
 [components §11](viptv-design-system/components.md#11-tv-remote-phone-watch-on-tv--android-phone-and-tablet)

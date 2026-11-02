@@ -5,7 +5,7 @@ viptv-org/app at `06bc0a96` (2026-11-02, the merge of app#493),
 from the owner report 2026-10-30
 ([design#45](https://github.com/viptv-org/design/issues/45)).
 Implemented is not verified: no device evidence exists, no board draws these
-states, and [Parity](#parity) lists what the app does differently.
+states, and [Parity](#parity) records the evidence per state.
 Design commits: `bf8ac45` for this contract, `342a8c7` for the phone band and
 [design#70](https://github.com/viptv-org/design/issues/70) for the artwork.
 Implementation: [app#304](https://github.com/viptv-org/app/issues/304) (both
@@ -15,13 +15,22 @@ actions and the shipped photographs),
 [app#492](https://github.com/viptv-org/app/pull/492) (the owner-role gate and
 the member line) and [app#454](https://github.com/viptv-org/app/issues/454)
 (the phone page bottom clearance), all of them promoted to app `main`, the
-first three in `9577858` and `0074737`.
+first three in `9577858` and `0074737`, plus
+[app#541](https://github.com/viptv-org/app/issues/541) (the failed first
+request) as [PR #544](https://github.com/viptv-org/app/pull/544) on `edge`, not
+promoted yet.
 Source revisions: app `06bc0a96`, `features/live/LiveEmptyState.kt`,
 `LiveEmptyArtwork.kt`, `LiveRoute.kt`, `LiveScreen.kt`, `TvLiveScreen.kt`,
 `connection/AccountAccess.kt`, `state/ControllerLiveSource.kt` and
 `components/ScrollEdgeFade.kt`, with the desktop tests `LiveUiTest.kt`,
 `LiveEmptyStateTest.kt`, `LiveEmptyArtworkTest.kt` and
-`LiveEmptyPhoneLayoutTest.kt`. `AccountAccess` reads `account.role`:
+`LiveEmptyPhoneLayoutTest.kt`. The failed first request is app `1ca77237` on
+`edge`, the merge of [PR #544](https://github.com/viptv-org/app/pull/544):
+`LiveSpread.Failed` and `LiveLoadFailed` in `features/live/LiveEmptyState.kt`,
+drawn by `LiveScreen.kt` and `TvLiveScreen.kt`, with
+`LiveEmptyStateTest.thePageFactsPickTheStateInTheSpecifiedOrder` and
+`LiveUiTest.aFailedFirstRequestShowsTheErrorStateNotNoChannels`.
+`AccountAccess` reads `account.role`:
 `managesSources` is `role == "owner" && manage_account` and the member form is
 `role == "member"`. Owner-only writes:
 backend `04bcbfc` ([backend#205](https://github.com/viptv-org/backend/pull/205))
@@ -48,16 +57,20 @@ Only the page's own facts decide, in this order.
 
 | Condition | State |
 |---|---|
-| A filter is applied (Favourites, a group or a source) | Today's filtered-empty line, unchanged |
+| Any channels | Today's page, unchanged |
+| A filter is applied (Favourites on, or a group chosen) | Today's filtered-empty line, unchanged |
+| No page yet and a request in flight | **Still loading** (LIVE-EMPTY-001B loading) |
+| No page and no request open: the first request failed | **Could not load Live TV.** (LIVE-EMPTY-001B failed) |
 | `LivePage.connections` is empty, or the page answered `NeedsConfiguration` | **No source** (LIVE-EMPTY-001A) |
 | The page has connections and zero channels, and a request is in flight | **Still loading** (LIVE-EMPTY-001B loading) |
 | The page has connections and zero channels after it answered | **No channels** (LIVE-EMPTY-001B) |
-| Any channels | Today's page, unchanged |
 
 `LivePage.connections` is the page's live-capable connection list for this
 profile (the app filters it by `enabled` for its Source chip), so it answers "is
 a source configured" without guessing from an error string. The guide (`liveGuides`) is not a Live source and never satisfies
-`connections`.
+`connections`. A filter is Favourites on or a group chosen, never a source pick:
+the Source chip is how a working connection is reached, so a source that answers
+nothing keeps the no-channels state below (LIVE-EMPTY-12).
 
 ## No source (LIVE-EMPTY-001A)
 
@@ -125,6 +138,13 @@ run. The page ground is `bg` and the page keeps its normal inset.
   integrations** is the secondary whenever the viewer may change sources, and
   absent otherwise. No reason and no failure → the neutral body line in
   `copy.md`.
+- **Failed before any page:** with no page and no request open nothing has
+  proved a source is configured, so the block never claims one is set up. It
+  keeps this section's block and metrics and reads **Could not load Live TV.**,
+  then the message the request read (the app's own error text, its generic
+  message otherwise), **Try again**, and **Source integrations** whenever the
+  viewer may change sources. There is no Source chip, no skeleton and no
+  artwork.
 - **Empty after a filter** stays today's line, not this state.
 
 Retry re-requests the same query with the same filters and shows the loading
@@ -286,8 +306,9 @@ today.
 ## Copy
 
 Exact strings live in [copy.md](../../viptv-design-system/copy.md#empty-states):
-the eyebrow, headline, body, both actions, both who lines, and the no-channel
-headline, body and retry. Retired: the app's `No channels are available for this
+the eyebrow, headline, body, both actions, both who lines, the no-channel
+headline, body and retry, and the failure headline with its generic body.
+Retired: the app's `No channels are available for this
 profile.`, its `Manage add-ons` button, and the page's empty-page `All channels`
 button in the no-source state.
 
@@ -339,15 +360,21 @@ button in the no-source state.
     form and then to this state if it fails again.
 10. **LIVE-EMPTY-10 (no channels, empty answer):** zero channels, no reason,
     no failure. The neutral body line shows and no error styling appears.
-11. **LIVE-EMPTY-11:** with a filter applied (Favourites on, or a group or
-    source chosen) and zero matching channels, the page keeps today's filtered
-    line and today's chips, and neither new state appears.
+11. **LIVE-EMPTY-11:** with a filter applied (Favourites on, or a group chosen)
+    and zero matching channels, the page keeps today's filtered line and
+    today's chips, and neither new state appears.
 12. **LIVE-EMPTY-12 (recovery):** from LIVE-EMPTY-09 with two connections,
     switching the Source chip to the working connection replaces the state with
     the channel list; switching back reproduces it.
 13. **LIVE-EMPTY-13:** a source added elsewhere while this state is shown
     replaces it with the channel list in place, with no animation, and the
     remote lands on the first channel row.
+14. **LIVE-EMPTY-14 (first request failed):** the first Live request fails with
+    no page. The page reads **Could not load Live TV.**, the message the request
+    carried, **Try again** and, when the viewer may change sources, **Source
+    integrations**; it never reads **No channels came back.** or **This source
+    is set up, but it isn't sending channels.** OK/Tap on **Try again** returns
+    to the loading form and then to this state if it fails again.
 
 ## Parity
 
@@ -355,14 +382,14 @@ One row per state, in the fields [DESIGN_SYNC](../../docs/process/DESIGN_SYNC.md
 requires. No reference screen draws these states, so the visual column holds the
 app's own rendered measurements, not a board comparison.
 
-| Field | No source (LIVE-EMPTY-001A) | Still loading (LIVE-EMPTY-001B) | Answered with no channels (LIVE-EMPTY-001B) |
-|---|---|---|---|
-| Contract | design `bf8ac45`, `342a8c7` and [design#70](https://github.com/viptv-org/design/issues/70); [No source](#no-source-live-empty-001a) and [Artwork](#artwork); LIVE-EMPTY-01–07 | design `bf8ac45`; [Sources, no channels](#sources-no-channels-live-empty-001b); LIVE-EMPTY-08 | design `bf8ac45`; the same section; LIVE-EMPTY-09–13 |
-| Implementation | app `06bc0a96`: `LiveNoSourcePage` and `LiveEmptyArtwork` in `features/live/LiveEmptyState.kt` and `LiveEmptyArtwork.kt`; `AccountAccess` picks the owner, member and paired forms from `account.role`; `LiveRoute` returns before the page chrome; the phone block ends on `bottomBarClearance` | app `06bc0a96`: `liveSpread` → `Loading`, `LiveChannelSkeletons` in `LiveScreen.kt` and `TvLiveScreen.kt`, the route's progress bar | app `06bc0a96`: `liveSpread` → `NoChannels`, `LiveNoChannels`, the route's retry and Source integrations |
-| Functional evidence | `LiveEmptyStateTest` and `LiveUiTest` cover the page facts, both actions and their Settings sections, identity loading, the TV focus entry and return, and the four layouts; the owner, member and paired forms are `ownerAccountSessionSeesTheSetupActionsAndNoWhoLine`, `memberAccountSessionSeesTheWhoLineAndNoSetupActions`, `aMemberOnTheTvGetsNoFocusStopInTheBlock`, `whoMayChangeSourcesFollowsTheHouseholdOwner` and `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo`; `LiveEmptyPhoneLayoutTest` covers the phone band and its who line | `LiveUiTest.noChannelsWhileTheRequestIsOpenDrawsSixSkeletonsAndOnlyTheSourceChip`, on TV and desktop with one and two connections | `LiveUiTest.noChannelsAnsweredShowsTheReasonAndRetryOnlyWhenSomethingFailed`, `sourceIntegrationsIsAbsentWhenTheViewerCannotManageSources`, `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo` and `aSourceAddedElsewhereReplacesTheEmptyStateInPlace` |
-| Visual evidence | no board. `LiveEmptyArtworkTest` measures the photograph's distinct colours and its scrim luminance, `LiveEmptyPhoneLayoutTest` measures the band, gutter and clearance at 360 × 640 and 412 × 915 | no board; six rows and the row shape are asserted, not measured | no board; the copy, the absent artwork and the action geometry are asserted |
-| Device evidence | unverified: none | unverified: none | unverified: none |
-| Disposition | implemented/unverified | implemented/unverified | implemented/unverified |
+| Field | No source (LIVE-EMPTY-001A) | Still loading (LIVE-EMPTY-001B) | Answered with no channels (LIVE-EMPTY-001B) | Failed first request (LIVE-EMPTY-001B) |
+|---|---|---|---|---|
+| Contract | design `bf8ac45`, `342a8c7` and [design#70](https://github.com/viptv-org/design/issues/70); [No source](#no-source-live-empty-001a) and [Artwork](#artwork); LIVE-EMPTY-01–07 | design `bf8ac45`; [Sources, no channels](#sources-no-channels-live-empty-001b); LIVE-EMPTY-08 | design `bf8ac45`; the same section; LIVE-EMPTY-09–13 | this contract; the same section; LIVE-EMPTY-14 |
+| Implementation | app `06bc0a96`: `LiveNoSourcePage` and `LiveEmptyArtwork` in `features/live/LiveEmptyState.kt` and `LiveEmptyArtwork.kt`; `AccountAccess` picks the owner, member and paired forms from `account.role`; `LiveRoute` returns before the page chrome; the phone block ends on `bottomBarClearance` | app `06bc0a96`: `liveSpread` → `Loading`, `LiveChannelSkeletons` in `LiveScreen.kt` and `TvLiveScreen.kt`, the route's progress bar | app `06bc0a96`: `liveSpread` → `NoChannels`, `LiveNoChannels`, the route's retry and Source integrations | app `1ca77237` (PR [#544](https://github.com/viptv-org/app/pull/544)): `liveSpread` → `Failed`, `LiveLoadFailed` in `features/live/LiveEmptyState.kt` drawn by `LiveScreen.kt` and `TvLiveScreen.kt`, the route's retry and Source integrations |
+| Functional evidence | `LiveEmptyStateTest` and `LiveUiTest` cover the page facts, both actions and their Settings sections, identity loading, the TV focus entry and return, and the four layouts; the owner, member and paired forms are `ownerAccountSessionSeesTheSetupActionsAndNoWhoLine`, `memberAccountSessionSeesTheWhoLineAndNoSetupActions`, `aMemberOnTheTvGetsNoFocusStopInTheBlock`, `whoMayChangeSourcesFollowsTheHouseholdOwner` and `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo`; `LiveEmptyPhoneLayoutTest` covers the phone band and its who line | `LiveUiTest.noChannelsWhileTheRequestIsOpenDrawsSixSkeletonsAndOnlyTheSourceChip`, on TV and desktop with one and two connections | `LiveUiTest.noChannelsAnsweredShowsTheReasonAndRetryOnlyWhenSomethingFailed`, `sourceIntegrationsIsAbsentWhenTheViewerCannotManageSources`, `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo` and `aSourceAddedElsewhereReplacesTheEmptyStateInPlace` | `LiveUiTest.aFailedFirstRequestShowsTheErrorStateNotNoChannels` on desktop 1280 and TV 1920, with `LiveEmptyStateTest.thePageFactsPickTheStateInTheSpecifiedOrder` |
+| Visual evidence | no board. `LiveEmptyArtworkTest` measures the photograph's distinct colours and its scrim luminance, `LiveEmptyPhoneLayoutTest` measures the band, gutter and clearance at 360 × 640 and 412 × 915 | no board; six rows and the row shape are asserted, not measured | no board; the copy, the absent artwork and the action geometry are asserted | no board; the failure headline, the read message, the retry and the absent no-channels copy are asserted |
+| Device evidence | unverified: none | unverified: none | unverified: none | unverified: none |
+| Disposition | implemented/unverified | implemented/unverified | implemented/unverified | implemented/unverified |
 
 Run: app PR [#407](https://github.com/viptv-org/app/pull/407), `app checks`
 [41326673788](https://github.com/viptv-org/app/actions/runs/41326673788), on the
@@ -371,17 +398,20 @@ revision that contains the tests above, and app PR
 [41443517520](https://github.com/viptv-org/app/actions/runs/41443517520), for the
 member line, and app PR [#493](https://github.com/viptv-org/app/pull/493), `app
 checks` [41448928194](https://github.com/viptv-org/app/actions/runs/41448928194),
-for the phone page bottom clearance. app#349's own change is
+for the phone page bottom clearance, and app PR
+[#544](https://github.com/viptv-org/app/pull/544), `app checks`
+[41528882283](https://github.com/viptv-org/app/actions/runs/41528882283), for the
+failed first request. app#349's own change is
 [app#352](https://github.com/viptv-org/app/pull/352)
 ([run 41269197286](https://github.com/viptv-org/app/actions/runs/41269197286)).
 
 ### What matches
 
-- A filter wins over both new states. With a page in hand, empty
+- A filter wins over every other state. With a page in hand, empty
   `connections` or `NeedsConfiguration` is the no-source page, zero channels
   with a request open is the loading form, and zero channels answered is the
-  no-channels state (`liveSpread`,
-  `LiveEmptyStateTest.thePageFactsPickTheStateInTheSpecifiedOrder`).
+  no-channels state; with no page and no request open it is the failed form
+  (`liveSpread`, `LiveEmptyStateTest.thePageFactsPickTheStateInTheSpecifiedOrder`).
 - The no-source page returns before the page chrome: no filter chip, preview,
   guide, channel list or progress bar
   (`LiveUiTest.tvNoSourceIsOneBroadcastFrameAndBothSetupActionsReachTheirSettingsSection`).
@@ -399,8 +429,13 @@ for the phone page bottom clearance. app#349's own change is
   (`whoMayChangeSourcesFollowsTheHouseholdOwner`,
   `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo`).
 - Copy matches `copy.md` word for word: the eyebrow, the headline, the body,
-  both actions, both who lines, the no-channels headline, the neutral body,
-  **Try again** and **Source integrations**.
+  both actions, both who lines, the no-channels headline, the neutral body, the
+  failure headline and its generic body, **Try again** and **Source
+  integrations**.
+- A failed first request draws the no-channels block and metrics with
+  **Could not load Live TV.**, the message it read and **Try again**, never the
+  no-channels headline or neutral body
+  (`aFailedFirstRequestShowsTheErrorStateNotNoChannels`).
 - The loading form draws six skeletons in the page's row shape and no copy, with
   the page's progress bar; the Source chip survives only while a second enabled
   connection exists; Favourites and Group wait for channels.
@@ -423,22 +458,12 @@ for the phone page bottom clearance. app#349's own change is
   (`aSourceAddedElsewhereReplacesTheEmptyStateInPlace`, which does not assert the
   TV focus landing).
 
-### What differs
-
-- **A source pick is not a filter.** `liveSpread`'s `filtered` covers Favourites
-  and a group only, so a chosen source that answers zero channels shows the
-  no-channels state, not the filtered line; LIVE-EMPTY-11's "or source chosen"
-  does not ship.
-- **A failed first request shows no channels.** With no page and no request
-  open, `liveSpread` answers `NoChannels`, so a viewer whose first Live request
-  failed reads **No channels came back.** without the page having proved a
-  connection exists.
-
 ## Unknowns
 
-- No device evidence exists for either state on any platform; the evidence above
-  is the app's desktop tests. No board draws these states, so their geometry is
-  derived — the phone band measured by the app's own layout test.
+- No device evidence exists for any of the three states on any platform; the
+  evidence above is the app's desktop tests. No board draws these states, so
+  their geometry is derived — the phone band measured by the app's own layout
+  test.
 - The issue's third next step, "find free live add-ons", has no destination in
   the product: there is no add-on directory, catalogue or recommendation list in
   the app, the web dashboard or the server. The body names the two routes that

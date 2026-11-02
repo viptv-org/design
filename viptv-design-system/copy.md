@@ -51,6 +51,7 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | Live, no source, member (LIVE-EMPTY-001) | **Only the household owner can set up live TV.** |
 | Live, no source, paired TV (LIVE-EMPTY-001) | **Manage live TV from a signed-in phone, computer or the web dashboard.** |
 | Live, no channels (LIVE-EMPTY-001) | **No channels came back.** · the server's own human reason when it sent one, otherwise **This source is set up, but it isn't sending channels.** · **Try again** · **Source integrations** |
+| Live, first request failed (LIVE-EMPTY-001) | **Could not load Live TV.** · the message the request read, otherwise **Something went wrong. Try again.** · **Try again** · **Source integrations** |
 | Live, empty category | No channels here yet. Choose another category. (TV / desktop: "…another filter.") |
 | Live search, phone | No channels match your search. |
 | Live search, desktop / TV | No channels match your search. |
@@ -75,7 +76,11 @@ the request is still open, and its loading form has no copy at all. The app
 ships **Only the household owner can set up live TV.** as the member line and
 shows a member no setup actions; the owner gate also hides the no-channels
 **Source integrations** secondary
-([viptv-org/app#492](https://github.com/viptv-org/app/pull/492)).
+([viptv-org/app#492](https://github.com/viptv-org/app/pull/492)). A first Live
+request that fails with no page is a failure, not an empty answer: it reads
+**Could not load Live TV.** and the message the request read, never **No
+channels came back.**
+([viptv-org/app#541](https://github.com/viptv-org/app/issues/541)).
 
 ## Toasts, notices and loading
 
