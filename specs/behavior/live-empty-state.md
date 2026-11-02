@@ -5,7 +5,8 @@ viptv-org/app at `86df58c1` (`origin/edge`, 2026-11-02), from the owner report
 2026-10-30 ([design#45](https://github.com/viptv-org/design/issues/45)).
 Implemented is not verified: no device evidence exists, no board draws these
 states, and [Parity](#parity) lists what the app does differently.
-Design commits: `bf8ac45` for this contract and `342a8c7` for the phone band.
+Design commits: `bf8ac45` for this contract, `342a8c7` for the phone band and
+[design#70](https://github.com/viptv-org/design/issues/70) for the artwork.
 Implementation: [app#304](https://github.com/viptv-org/app/issues/304) (both
 states), [app#349](https://github.com/viptv-org/app/issues/349) (the setup
 actions and the shipped photographs) and
@@ -52,7 +53,7 @@ a source configured" without guessing from an error string. The guide (`liveGuid
 
 ## No source (LIVE-EMPTY-001A)
 
-The page becomes one broadcast frame: a full-bleed night-stadium illustration
+The page becomes one broadcast frame: a full-bleed night-stadium photograph
 behind a short, left-set text block.
 
 - **Visible:** the artwork, an eyebrow, a one-line headline, a body line naming
@@ -123,58 +124,62 @@ form again. Back from Source integrations returns here.
 
 ## Artwork
 
-Two hand-authored SVGs in the tokens' colours, both inventoried in
+One photograph in two crops, both in `assets/photography/`, inventoried in
 `assets/FILES.json` and described in `assets/ASSET_MANIFEST.md`:
 
 | File | Size | Intended for |
 |---|---|---|
-| `assets/illustrations/live-empty-stadium-wide.svg` | 1920 × 1080 | Tablet, desktop, web and TV, and any layout 640 dp wide or more |
-| `assets/illustrations/live-empty-stadium-tall.svg` | 1080 × 1920 | Phone and any layout under 640 dp |
+| `assets/photography/live-empty-wide.webp` | 1920 × 1080 | Tablet, desktop, web and TV, and any layout 640 dp wide or more |
+| `assets/photography/live-empty-tall.webp` | 1080 × 1440 | Phone and any layout under 640 dp |
 
-Both are one original composition: a floodlit night stadium seen from the
-halfway line, with crowd silhouettes and camera flashes in the stands, a lit
-pitch-side hoarding, the pitch's own lines and a centre circle, floodlights with
-light beams, and a glowing `LIVE` scoreboard bug in the top right. There is no
-team, league, logo, player, photograph or third-party asset in either file, and
-nothing is traced from a capture.
+Both are crops of one photograph of the Volksparkstadion in Hamburg: the roof
+canopy and its blue-lit truss running across the frame, the floodlights beneath
+it and the lit stands along the bottom edge. The wide crop carries the whole
+curve with the stands as a band and, at the far side, the stadium's own video
+screen playing an interview — about 110 × 75 px of the 1920 px frame, so at page
+size it reads as stadium light; the tall crop turns to the roof's corner and the
+right-hand stands, so a phone keeps the lights and the crowd instead of a sliver
+of the wide frame. No team, league, club crest, VIPTV mark or legible face
+appears in either crop.
 
-- **Drawing:** paths, rectangles, circles and ellipses with linear and radial
-  gradients only — no text, raster, filter, mask, pattern, blend mode or
-  external reference, so an app can convert a file into a vector drawable
-  without losing anything. Both files stay under 30 KB.
-- **Palette:** `bg` `#0B0B0C` and `bg-oled` `#000000` for the scrim, the sky,
-  the stands and the silhouettes; the `surface-1`–`surface-4` ladder for the
-  pitch, the crowd tiers, the masts and the scoreboard; `text-primary`
-  `#F4F2EE` for floodlights, lamps, pitch lines and the `LIVE` lettering;
-  `accent` `#F5C542` for the hoarding light strip and the scoreboard clock; and
-  `status.live` `#FF5A4E` for the scoreboard dot, which is the only red in the
-  artwork. Lower opacities of the same colours build depth.
-- **Scrim, baked in:** the wide file carries a left-to-right scrim (96 % at the
-  left edge, 80 % at 26 %, 42 % at 44 %, 12 % at 56 %, 2 % at 72 %) and a
-  bottom scrim; the tall file carries a bottom scrim (30 % at 45 %, 80 % at
-  72 %, 100 % at the bottom) and a short top scrim. A page draws the file once
-  and adds no overlay of its own, so the copy and actions always sit on the
-  darkest part; the phone band's bottom scrim draws in code instead, so it
-  ends exactly on `bg` at the band's bottom edge.
+- **Source, licence and credit:** Mario Klassen (`marioklassen`), [CC0 1.0
+  Universal Public Domain
+  Dedication](https://creativecommons.org/publicdomain/zero/1.0/), via
+  Wikimedia Commons
+  [Well lit soccer stadium (Unsplash)](https://commons.wikimedia.org/wiki/File:Well_lit_soccer_stadium_(Unsplash).jpg)
+  and Unsplash [70YxSTWa2Zw](https://unsplash.com/photos/70YxSTWa2Zw). CC0
+  requires no attribution; the product credits the photographer under
+  Settings › About and About VIPTV anyway. `assets/photography/README.md` holds
+  the same record beside the files.
+- **Exact bytes:** lossy VP8 WebP, 8-bit RGB, no alpha, 173 KB wide and 111 KB
+  tall. The wide crop's SHA-256 is
+  `aa34ba0293dcb726421ffc79266716f91cc5b3caf779d10492b8a7ba1c89aa11`, the
+  tall's
+  `c212f2497a81515de0a4edb55c68c34ae43d018a85a6cbfa61c0e46e2b7ebefc`, and
+  viptv-org/app packages the same two files at
+  `composeApp/src/commonMain/composeResources/files/live/` since app `2d7949b8`
+  ([app#349](https://github.com/viptv-org/app/issues/349)). Nothing is derived
+  from them at build time and no vector source exists.
+- **Scrim, drawn in code:** a page draws the crop once and then a `bg` gradient
+  over it, so the copy and the actions always sit on the darkest part. Wide,
+  left to right: 92 % at the left edge, 60 % at 45 %, 18 % at the right. Tall,
+  top to bottom: 0 % at the top, 35 % at 40 %, 90 % at the bottom. Phone band,
+  top to bottom: 0 %, 30 % at 45 %, 86 % at 80 %, 100 % at the bottom, so the
+  band ends exactly on `bg` at its bottom edge. Those are the shipped stops; a
+  page does not substitute its own.
 - **Placement:** the page area only — under the TV navigation, the phone header,
   the desktop rail and the browser title bar, which keep their own grounds.
-  Cover, anchored centre: at 1920 × 948 the wide file loses 66 px at the top and
-  66 at the bottom (empty sky and the pitch's near edge); a narrow window uses
-  the tall file instead, so a phone never crops the wide scene to a sliver. On
-  a phone the tall file is a full-bleed band under the header, cropped
+  Cover, anchored centre: at 1920 × 948 the wide crop loses 66 px at the top and
+  66 at the bottom (roof edge and the nearest stands); a layout under 640 dp
+  uses the tall crop instead, so a phone never crops the wide frame to a sliver.
+  On a phone the tall crop is a full-bleed band under the header, cropped
   bottom-anchored rather than covering the page area; see the P row under
   Layout.
+- **Arrival:** the page loads the crop asynchronously, so the page ground and
+  its copy can paint before it (the app decodes with Coil). Nothing else on the
+  page waits on the image and no placeholder is drawn.
 - **Not named:** the artwork is decorative. It carries no content description
   and no accessible text; the heading, body and actions are the page.
-
-**Shipped artwork.** No client packages either SVG. Since app `2d7949b8`
-([app#349](https://github.com/viptv-org/app/issues/349)) the app draws two
-credited CC0 photographs — `files/live/live-empty-wide.webp` and
-`live-empty-tall.webp`, one stadium photograph by Mario Klassen
-(Volksparkstadion, Hamburg) cropped wide and tall — and lists the credit under
-Settings › About and About VIPTV. The reading scrim is drawn in code there, not
-baked into the image. This contract keeps the illustrations; whether the
-photographs replace them is [design#70](https://github.com/viptv-org/design/issues/70).
 
 ## Layout
 
@@ -215,7 +220,7 @@ measurements below are derived from the type roles and the page insets in
 
 | Element | Geometry |
 |---|---|
-| Artwork | the tall file, full-bleed width, a band under the header from the top of the page area, cropped bottom-anchored; its bottom edge scrims into `bg` |
+| Artwork | the tall crop, full-bleed width, a band under the header from the top of the page area, cropped bottom-anchored; its bottom edge scrims into `bg` |
 | Text block | below the band with a 20 gap, x 16, width 358; the block ends clear of the shared bottom clearance |
 | Eyebrow | 11/700, +0.08em, uppercase, `text-secondary` |
 | Headline | D 34/700, −0.02em, line 40, at most 3 lines |
@@ -286,21 +291,21 @@ button in the no-source state.
 ## Acceptance
 
 1. **LIVE-EMPTY-01:** a profile with no live connection, opened on TV at
-   1920 × 1080. The stadium artwork fills the page area under the navigation, the
-    eyebrow, headline and body read against its dark left side, and there is no
-    filter chip, no preview and no channel list anywhere on the page. The
-    navigation's Live tab is focused; Down lands on **Set up live TV**.
+   1920 × 1080. The stadium photograph fills the page area under the navigation,
+   the eyebrow, headline and body read against its scrimmed left side, and there
+   is no filter chip, no preview and no channel list anywhere on the page. The
+   navigation's Live tab is focused; Down lands on **Set up live TV**.
 2. **LIVE-EMPTY-02:** from LIVE-EMPTY-01, OK on the primary opens Settings on
     its **Source integrations** page; Back returns to Live with the primary
     focused and a re-requested page.
-3. **LIVE-EMPTY-03:** the same profile on a phone at 390 × 844. The tall artwork
+3. **LIVE-EMPTY-03:** the same profile on a phone at 390 × 844. The tall crop
     is a full-bleed band under the header, scrimmed into `bg` at its bottom
     edge; the eyebrow, headline, body and both actions sit below it on the 16 dp
     gutter; the primary is a full-width accent button and the actions clear the
     bottom bar and its fade.
 4. **LIVE-EMPTY-04:** the same profile in a desktop window at 1440 × 900, in a
     browser at 1280 × 800, on a tablet at 1280 × 800 and with the desktop window
-    narrowed to 600 wide. The first three use the wide artwork; the 600-wide
+    narrowed to 600 wide. The first three use the wide crop; the 600-wide
     window uses the tall one. No layout shows a chip.
 5. **LIVE-EMPTY-05 (member):** signed in as a member, the page shows the
     headline, body and **Only the household owner can set up live TV.** and no
@@ -339,7 +344,7 @@ app's own rendered measurements, not a board comparison.
 
 | Field | No source (LIVE-EMPTY-001A) | Still loading (LIVE-EMPTY-001B) | Answered with no channels (LIVE-EMPTY-001B) |
 |---|---|---|---|
-| Contract | design `bf8ac45` and `342a8c7`; [No source](#no-source-live-empty-001a) and [Artwork](#artwork); LIVE-EMPTY-01–07 | design `bf8ac45`; [Sources, no channels](#sources-no-channels-live-empty-001b); LIVE-EMPTY-08 | design `bf8ac45`; the same section; LIVE-EMPTY-09–13 |
+| Contract | design `bf8ac45`, `342a8c7` and [design#70](https://github.com/viptv-org/design/issues/70); [No source](#no-source-live-empty-001a) and [Artwork](#artwork); LIVE-EMPTY-01–07 | design `bf8ac45`; [Sources, no channels](#sources-no-channels-live-empty-001b); LIVE-EMPTY-08 | design `bf8ac45`; the same section; LIVE-EMPTY-09–13 |
 | Implementation | app `86df58c1`: `LiveNoSourcePage` and `LiveEmptyArtwork` in `features/live/LiveEmptyState.kt` and `LiveEmptyArtwork.kt`; `LiveRoute` returns before the page chrome | app `86df58c1`: `liveSpread` → `Loading`, `LiveChannelSkeletons` in `LiveScreen.kt` and `TvLiveScreen.kt`, the route's progress bar | app `86df58c1`: `liveSpread` → `NoChannels`, `LiveNoChannels`, the route's retry and Source integrations |
 | Functional evidence | `LiveEmptyStateTest` and `LiveUiTest` cover the page facts, both actions and their Settings sections, the who-line forms, identity loading, the TV focus entry and return, and the four layouts; `LiveEmptyPhoneLayoutTest` covers the phone band | `LiveUiTest.noChannelsWhileTheRequestIsOpenDrawsSixSkeletonsAndOnlyTheSourceChip`, on TV and desktop with one and two connections | `LiveUiTest.noChannelsAnsweredShowsTheReasonAndRetryOnlyWhenSomethingFailed`, `sourceIntegrationsIsAbsentWhenTheViewerCannotManageSources` and `aSourceAddedElsewhereReplacesTheEmptyStateInPlace` |
 | Visual evidence | no board. `LiveEmptyArtworkTest` measures the photograph's distinct colours and its scrim luminance, `LiveEmptyPhoneLayoutTest` measures the band, gutter and clearance at 360 × 640 and 412 × 915 | no board; six rows and the row shape are asserted, not measured | no board; the copy, the absent artwork and the action geometry are asserted |
@@ -377,6 +382,10 @@ revision that contains the tests above. app#349's own change is
   connection exists; Favourites and Group wait for channels.
 - **Source integrations** is absent when the viewer may not change sources;
   **Try again** is the primary with a failure to retry.
+- The artwork is the contract's own photograph: the two packaged WebP crops are
+  byte-for-byte the files in `assets/photography/`, the tall crop carries the
+  phone band, and the scrims use the stops above. The page's first frame can
+  still show the copy before the crop decodes (Coil loads it).
 - Phone and tablet use the tall photograph, every layout 640 dp or wider the
   wide one (`compact = maxWidth < 640.dp`), so a 600-wide desktop window uses the
   phone block (`narrowDesktopWindowUsesThePhoneBlock`).
@@ -396,15 +405,6 @@ revision that contains the tests above. app#349's own change is
   not drawn while that capability is true. LIVE-EMPTY-05's member page, where
   the who line replaces the actions, does not ship; it is
   [viptv-org/app#484](https://github.com/viptv-org/app/issues/484).
-- **The artwork is credited photography.** From app `2d7949b8` the app packages
-  two CC0 photographs of a floodlit stadium, one by Mario Klassen
-  (Volksparkstadion, Hamburg), cropped wide and tall, credits them under
-  Settings › About and About VIPTV, and draws the scrim in code: wide 0.92 /
-  0.6 at 45 % / 0.18, tall 0 / 0.35 at 40 % / 0.9, phone 0 / 0.3 at 45 % /
-  0.86 at 80 % / 1. No client packages the two SVGs, so a page's first frame can
-  show the copy before the photograph arrives (Coil loads it).
-  [design#70](https://github.com/viptv-org/design/issues/70) decides which
-  artwork the contract keeps.
 - **A source pick is not a filter.** `liveSpread`'s `filtered` covers Favourites
   and a group only, so a chosen source that answers zero channels shows the
   no-channels state, not the filtered line; LIVE-EMPTY-11's "or source chosen"
@@ -419,8 +419,6 @@ revision that contains the tests above. app#349's own change is
 - No device evidence exists for either state on any platform; the evidence above
   is the app's desktop tests. No board draws these states, so their geometry is
   derived — the phone band measured by the app's own layout test.
-- Whether the contract keeps the SVG illustrations or adopts the shipped
-  photographs is open ([design#70](https://github.com/viptv-org/design/issues/70)).
 - The issue's third next step, "find free live add-ons", has no destination in
   the product: there is no add-on directory, catalogue or recommendation list in
   the app, the web dashboard or the server. The body names the two routes that

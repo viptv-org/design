@@ -17,15 +17,13 @@ Settled here:
   action. *Source, no channels* gets no artwork, keeps the Source chip as its way
   to another source, and shows the server's reason with **Try again**. A page
   emptied by a filter keeps today's line and today's chips.
-- **The illustration is ours and off the network.** Two hand-authored SVGs in the
-  tokens' colours, wide and tall, with the reading scrim baked in and no text,
-  raster, filter, mask, pattern or external reference, so an app converts each
-  file to a vector drawable. Nothing is traced from a capture, and no team,
-  league, logo, player or photograph appears. No client packages them: the app
-  ships a credited CC0 stadium photograph with the scrim in code (app `2d7949b8`,
-  [app#349](https://github.com/viptv-org/app/issues/349)), and
-  [design#70](https://github.com/viptv-org/design/issues/70) decides which
-  artwork the contract keeps.
+- **The artwork is one credited photograph.** Two WebP crops of Mario Klassen's
+  CC0 photograph of the Volksparkstadion, Hamburg: the wide crop for W and T,
+  the tall crop for P, byte-identical to what the app packages (app `2d7949b8`,
+  [app#349](https://github.com/viptv-org/app/issues/349)), with the reading
+  scrim drawn in code at the stops LIVE-EMPTY-001 lists. CC0 requires no
+  attribution; the product credits the photographer under Settings › About and
+  About VIPTV. No vector source exists.
 - **Chips only where there is something to filter.** The no-source state draws no
   filter row at all. The Source chip stays in the no-channels state while a
   second connection exists, because it is the only way to a working source;
