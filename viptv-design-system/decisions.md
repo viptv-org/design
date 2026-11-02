@@ -70,14 +70,14 @@ their pinned episode presentation until they explicitly adopt this addition.
 4. **Protected profiles:** a lock badge only. The PIN is asked for when the profile is opened.
 5. **Hiding from Continue Watching:** one menu item, "Remove from Continue Watching", followed by an Undo dialog.
 6. **Touch overflow:** a visible ⋯ on phone cards (long-press still works).
-7. **Sign-out copy:** "Sign out of this device?" (TV: "Sign out of this TV?").
+7. **Sign-out copy:** "Sign out of VIPTV on this phone?" on phone, "Sign out of VIPTV on this device?" on tablet, desktop and web, "Sign out of this TV?" on TV.
 8. **Desktop keyboard focus:** an off-white 2 px ring with a 2 px ground-coloured gap, shown on `:focus-visible` only. Never accent.
 9. **Naming:** "My List" everywhere. It has two segments, My List | Continue Watching. History and counts are dropped from the tabs.
 10. **Avatars:** hide broken categories and compute the count shown in the header.
 11. **TV focus:** focused tiles, profiles, rows and controls keep their size. Use the white ring or off-white fill without scale.
 12. **TV reliability corrections:** [TV-034](../docs/platforms/TV_POLISH.md) defines carousel bounds, stable rail geometry, profile activation, season navigation, live-only controls and progressive startup. These owner-requested corrections supersede conflicting static reference hints and spacing.
 13. **Native Android:** [AND-035](../docs/platforms/ANDROID_DESIGN.md) adopts the current phone and 1920×1080 TV design, replacing the historical Android Roku reconstruction while retaining native Compose, Media3 and shared core behavior.
-14. **Settings split into four groups:** Profile, Playback, This device and Account, in that order, on every platform ([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)). Profile owns name, avatar, kids flag, maturity limit, approved titles, profile lock, language, Simkl and delete profile. Playback owns the two preference pages, per profile. This device owns Display, Watch on TV, About and Help. Account owns identity, password, household PIN, devices and sessions, Add a device, add-ons, source integrations, sign out and delete account. The Account group is visible to everyone signed in; the rows a TV cannot use are disabled with their reason. There is no email row, Simkl is profile-scoped because it tracks one person's viewing, and the phone, tablet, desktop and web boards' flat lists and the web sidebar titled **Account** are superseded on row order only, not geometry. Owner decision 2026-10-30 ([design#40](https://github.com/viptv-org/design/issues/40)).
+14. **Settings split into four groups:** Profile, Playback, This device and Account, in that order, on every platform ([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)). Profile owns name, avatar, kids flag, maturity limit, approved titles, profile lock, language, Simkl and delete profile. Playback owns the two preference pages, per profile. This device owns Display, About and Help. Account owns identity, password, household PIN, devices and sessions, Add a device, add-ons, source integrations, sign out and delete account. The Account group is visible to everyone signed in; the rows a TV cannot use are disabled with their reason, and its devices list opens read-only. There is no email row, Simkl is profile-scoped because it tracks one person's viewing, and the phone, tablet, desktop and web boards' flat lists and the web sidebar titled **Account** are superseded on row order only, not geometry. Owner decision 2026-10-30 ([design#40](https://github.com/viptv-org/design/issues/40)).
 
 ## Design decisions made during the redesign
 
@@ -111,7 +111,12 @@ all addon catalog shelves, bounded lazy loading, three lower Home shelves,
 TvTitle composition and TvLive guide. See [ROK-043](../docs/platforms/ROKU_DESIGN.md#rok-043--complete-tv-screen-audit-and-catalog-correction).
 
 
-## Phone TV remote (Watch on TV)
+## Phone TV remote (Watch on TV) — proposed, not implemented
+
+No app ships this remote and no layout shows the Settings row it starts from: a
+TV signs in with **Account › Add a device**
+([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)). The
+decisions below stand for the day it is built.
 
 Android owner follow-up AND-039 keeps pairing visible across backgrounding,
 cancels abandoned TV challenges, and uses a 20 px glyph in the same borderless
