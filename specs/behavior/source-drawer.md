@@ -83,15 +83,19 @@ are removed; the list takes their space.
 TV keeps a status line under the list, with a spinner, only while it is
 working:
 
-- `Checking add-ons · [N] sources so far` while add-ons are still answering,
-  or while nothing has arrived yet;
+- `Finding sources` while nothing has arrived yet;
+- `Still checking sources` once sources have arrived but discovery is still
+  in flight;
 - `Opening stream…`, or the current opening stage, while a chosen stream
   opens.
 
 An idle TV picker, the no-sources state and the torrent-only state have no
-status line. Phone and D keep the discovery status of
-[SRC-OVERFLOW-001](../../viptv-design-system/components.md#6-cards-and-tiles)
-(`Finding sources` / `Still checking sources`).
+status line. Phone, D and TV share the discovery status
+(`Finding sources` / `Still checking sources`) in
+[SRC-OVERFLOW-001](../../viptv-design-system/components.md#6-cards-and-tiles);
+TV adds `Opening stream…`. Source revision: app `9ddb5a0` (the merge of
+[app#452](https://github.com/viptv-org/app/pull/452)),
+`features/sources/TvSourcesScreen.kt`.
 
 ## Copy
 
@@ -118,7 +122,7 @@ These canvas boards stay as exported until the canvas re-exports them:
 - `Tv3Sources` shows the idle line
   `Play always starts the best match. Change how it’s chosen in Settings › Playback.`;
 - `Tv3SourcesLoading` shows `Checking add-ons · 2 of 3 done · 4 sources so far`.
-  The app has no done count: it shows `Checking add-ons · 4 sources so far`.
+  The app shows `Finding sources` / `Still checking sources` (no done count).
 
 No board shows the drawer over the web Details dialog.
 
@@ -153,8 +157,9 @@ No board shows the drawer over the web Details dialog.
    dialog, and closing it returns to the unchanged dialog.
 9. **SRC-DRAWER-09:** no `Play always starts the best match` text at
    390×844, 1024×768, 1440×900, tablet 1280×800 or TV 1920×1080.
-10. **SRC-DRAWER-10:** TV shows `Checking add-ons · 3 sources so far` while
-    add-ons answer and `Opening stream…` while a stream opens. Idle, the
+10. **SRC-DRAWER-10:** TV shows `Finding sources` while nothing has arrived,
+    `Still checking sources` once sources have arrived but discovery is
+    still in flight, and `Opening stream…` while a stream opens. Idle, the
     status line is absent and the list fills its space.
 
 ## Unknowns
