@@ -18,7 +18,12 @@ Source revisions: the KMP app's Settings at app `62e0c949`
 pages below describe **baseline** app behavior and cite their own revisions.
 Backend routes are cited from `server/src/routes.rs`,
 `server/src/auth/middleware.rs`, `server/src/auth/actions.rs` and
-`server/src/kids/` in viptv-org/backend.
+`server/src/kids/` in viptv-org/backend. The owner-only household-write rule is
+backend `04bcbfc` (`server/src/auth/principal.rs`,
+`server/src/auth/handlers.rs`): household configuration writes answer
+`403 owner_required` to a member account session and
+`403 account_session_required` to a paired TV, while their reads stay open to
+any account session.
 
 Reference boards exist for the parts, not for the split: `M3Settings`,
 `T3Settings`, `D3SetGeneral`, `W3Account`, `W3Recovery`, `M3Recovery`,
@@ -51,14 +56,14 @@ Every row below is one setting or one action, with its real owner. "Account" and
 | Display name, `@username`, role | Account | `GET /auth/me`; no edit route |
 | Password | Account | `POST /auth/password` (current and new password) |
 | Recovery codes | Account | issued once at register/recover; no list or regenerate route |
-| Household PIN | Account | `GET /parent/status`, `POST /parent/unlock`, `PUT /parent/pin` |
-| Add-ons (inventory) | Account | `GET/POST /addons`, `PATCH/DELETE /addons/:id` |
+| Household PIN | Account owner; members read | `GET /parent/status`, `POST /parent/unlock` for any account session; `PUT /parent/pin` owner-only |
+| Add-ons (inventory) | Account owner; members read | `GET /addons` for any account session; `POST /addons`, `PATCH/DELETE /addons/:id` owner-only |
 | Add-on on/off for a profile | Profile | `GET/PUT /profiles/:id/addon-activation`, `GET/PUT /profiles/:id/integrations` |
-| Source integrations (VIPTV Sources and M3U) | Account | `GET/PUT /profiles/:id/source-integrations` |
+| Source integrations (VIPTV Sources and M3U) | Account owner; members read | `GET /profiles/:id/source-integrations` for any account session; `PUT /profiles/:id/source-integrations`, `DELETE /profiles/:id/source-integrations/:connection` owner-only |
 | Xtream connections | Account owner; members read | `GET/POST/PATCH/DELETE /iptv/connections`, credentials, refresh and live-default routes |
 | VOD match overrides | Account owner; members read | `GET/PUT /iptv/matches` |
-| Playback gateways and access grants | Gateway owner; shared accounts read and check capacity | `GET/POST/PATCH/PUT/DELETE /gateways*` |
-| Devices and sessions | Account | `GET /account/devices`, `DELETE /account/devices`, `DELETE /account/devices/:id`, `DELETE /auth/sessions` |
+| Playback gateways and access grants | Gateway owner; shared accounts read and check capacity | `GET/POST/PATCH/PUT/DELETE /gateways*`; `POST /gateways/:id/check` stays open to a member |
+| Devices and sessions | Account owner for sign-outs; members read | `GET /account/devices`, `GET /auth/sessions` for any account session; `DELETE /account/devices`, `DELETE /account/devices/:id`, `DELETE /auth/sessions` owner-only |
 | Add a device (pairing code approval) | Account | `POST /auth/device/lookup|approve|deny` |
 | Delete account | Account | `DELETE /auth/account` (username, password, household PIN) |
 | Profile name and avatar | Profile | `PATCH /profiles/:id`, `DELETE /profiles/:id` |
@@ -72,6 +77,16 @@ Every row below is one setting or one action, with its real owner. "Account" and
 | Autoplay next episode | Device | app-local; `PLAY-NEXT-AUTOPLAY-001` |
 | Display (accent, text size, reduce motion, screen saver, fit) | Device | TV local store |
 | App updates, diagnostics, licences | Device | app updates: the signed-in server's `/updates/android/update.json` and the APK it names |
+
+Every row marked "Account owner; members read" follows one rule: the write is
+owner-only. A member account session writing it answers `403 owner_required`
+("Only the account owner can change household settings."), and a paired TV
+answers `403 account_session_required`. The reads of those same inventories stay
+open to any account session — a member still browses the household's PIN status,
+add-ons, connections, matches, gateways, devices and sessions, and checks a
+shared gateway's capacity — and the credential, pairing, profile and
+parental-policy routes stay self-service for any account session. `GET /auth/me`
+reports `capabilities.manage_account` only for the owner.
 
 There is **no sign-in email** anywhere: an account is a `username`, a display
 `name` and a password, and nothing sends mail. The identity page shows the
@@ -249,8 +264,10 @@ Title **Account**. Rows, in order, each its own page or dialog:
    digit PIN to protect leaving kids profiles. Turn off kids mode on all profiles
    before removing the PIN."** Removing it is disabled while any profile has kids
    mode on, with **"Turn off kids restrictions on all profiles before removing
-   the PIN."**
+   the PIN."** Only the account owner can set, change or remove it; a member
+   reads the household's PIN status.
 4. **Devices & sessions** — the page in [Devices and sessions](#devices-and-sessions).
+   Only the account owner can sign a device out; a member reads the same list.
 5. **Add a device** — the page where a TV signs in. **Add a device**, with
    **"Open VIPTV on the other device, choose Sign in, then enter the code it
    shows."** — or **"…then scan the code it shows."** where the platform offers
@@ -262,9 +279,11 @@ Title **Account**. Rows, in order, each its own page or dialog:
    page reads **"TV sign-in uses a server account. Sign in to the same server on
    both devices to share profiles and progress."** with **Change connection**.
    This page, not a Settings row of its own, is how pairing is reached.
-6. **Add-ons** — the existing inventory page. Add-ons belong to the account; the
-   switch on a row enables one for the current profile and the page says so.
-7. **Source integrations** — VIPTV Sources and M3U.
+6. **Add-ons** — the existing inventory page. Add-ons belong to the account;
+   only the account owner can install, enable, disable or remove one. The switch
+   on a row enables one for the current profile and the page says so.
+7. **Source integrations** — VIPTV Sources and M3U. Only the account owner can
+   add, change or remove one; a member reads the list.
 8. **Xtream connections** — the account's Xtream providers; see
    [Xtream connections](#xtream-connections-baseline).
 9. **VOD matches** — provider titles and their metadata overrides; see
@@ -290,6 +309,15 @@ from a signed-in phone, computer or the web dashboard."**, and **Devices &
 sessions** opens the same list read-only, with that line in place of its sign-out
 actions. The rest of the group stays usable, because a TV must be able to sign
 out and read its devices.
+
+A member account session reads the household's inventory but cannot write it:
+**Household PIN**, **Add-ons**, **Source integrations**, **Xtream connections**,
+**VOD matches**, **Playback gateways** and the sign-out actions in **Devices &
+sessions** answer `403 owner_required` ("Only the account owner can change
+household settings."). The reads stay open — a member still lists add-ons,
+connections, matches, gateways, devices and sessions, and checks a shared
+gateway's capacity — while password, delete-account, pairing, profile and
+parental-policy routes stay self-service for any account session.
 
 Account-level pages sit after **Source integrations** and before **Sign out**:
 **Xtream connections**, **VOD matches** and **Playback gateways**. Gateway
@@ -647,6 +675,12 @@ need a browser session say where to use them.
     change them. TV exposes the owner's toggle and capacity check, and a
     `gateway_required` playback failure opens Gateways. Missing secret storage,
     load errors and gateway failures show their mapped copy and recovery action.
+19. **ACCT-SPLIT-19** A member account session reads the household PIN status,
+    add-ons, source integrations, connections, matches, gateways, devices and
+    sessions and checks a shared gateway's capacity, but every household write
+    answers `403 owner_required` ("Only the account owner can change household
+    settings.") while the account owner's same write succeeds; a paired TV answers
+    `403 account_session_required` on the same writes.
 
 ## Superseded
 
@@ -665,9 +699,11 @@ need a browser session say where to use them.
 - The app's current `AccountSettingsSidebar` (web), `SettingsSidebar` (desktop,
   phone) and `TvSettingsSidebar` row lists are replaced. `DESIGN_GAPS`-style
   placeholder pages (**Notifications**, **General**) are not carried over.
-- The issue text's "sign-in email" and "owner only" are corrected here: there is
-  no email, and account rows are gated by the server's device-session rule, not
-  by an owner role.
+- The issue text's "sign-in email" is corrected here: there is no email. The
+  household writes are gated by the server's owner role — a member answers
+  `403 owner_required`, a paired TV `403 account_session_required` — while reads,
+  credential, pairing, profile and parental-policy routes stay with any account
+  session.
 
 ## Unknowns
 
@@ -680,8 +716,9 @@ need a browser session say where to use them.
 - **No route edits the account's display name or username.**
 - **No per-profile menu language exists** and the app has one string language, so
   the Language row covers audio and subtitles only.
-- Household PIN and the other account settings described above have no
-  owner-only rule; a signed-in member can use them. The Xtream, VOD match and
-  gateway pages follow their separate owner rules above.
+- A member account session reads the household inventories and checks a shared
+  gateway's capacity, but cannot write household configuration: the household
+  PIN, add-ons, source integrations, connections, matches, gateways and
+  device/session sign-outs are owner-only (backend `04bcbfc`).
 - No device evidence exists for the account page layouts. The three account
   provider pages above have app source revisions, but no device parity evidence.

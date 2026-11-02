@@ -17,8 +17,9 @@ Source revisions: app `86df58c1`, `features/live/LiveEmptyState.kt`,
 `connection/AccountAccess.kt` and `state/ControllerLiveSource.kt`, with the
 desktop tests `LiveUiTest.kt`, `LiveEmptyStateTest.kt`,
 `LiveEmptyArtworkTest.kt` and `LiveEmptyPhoneLayoutTest.kt`. Owner-only writes:
-backend `f30b2f5` ([backend#149](https://github.com/viptv-org/backend/pull/149))
-on `main`.
+backend `04bcbfc` ([backend#205](https://github.com/viptv-org/backend/pull/205))
+on `edge`, restoring the owner gate backend#149 added and backend#168 relaxed; it
+reports `capabilities.manage_account` only for the owner.
 
 ## Intent
 
@@ -77,8 +78,9 @@ The who line occupies the action block's place, so the copy never moves between
 the two forms. The facts come from the account identity the app already reads
 (`/api/auth/me`): `account.role` is `owner`, `member` or `device`, and
 `capabilities.manage_account` says whether this session may change household
-settings at all — false for a paired TV, true for a browser and for a native
-account session ([app#300](https://github.com/viptv-org/app/issues/300) puts
+settings at all — false for a paired TV and for a member account session, true
+only for the owner's account session (backend `04bcbfc` reports it only for
+`role == "owner"`; [app#300](https://github.com/viptv-org/app/issues/300) puts
 that capability on the app's state; this state reads the same two fields and
 depends on neither landing first). Local mode is the app's own local build. The
 identity is requested when this state first appears. Until it answers, the text
@@ -91,9 +93,8 @@ there). **Add-ons** opens Settings › Add-ons. Both are the existing destinatio
 nothing new is routed. A paired TV never reaches either from here, because the
 server answers `403 account_session_required` to a source write, and the empty
 state says so before the tap instead of after it. A member's write answers
-`403 owner_required`; the app offers a member the actions anyway and the who line
-waits for a capability the server reports true for every account session — see
-[Parity](#parity) and [viptv-org/app#484](https://github.com/viptv-org/app/issues/484).
+`403 owner_required` ("Only the account owner can change household settings.");
+the who line says so before the tap instead of after it.
 
 ## Sources, no channels (LIVE-EMPTY-001B)
 
@@ -396,15 +397,15 @@ revision that contains the tests above. app#349's own change is
 
 ### What differs
 
-- **A member account session gets the actions.** `AccountAccess` decides by
-  `capabilities.manage_account` alone, which the server reports true for every
-  account session (`server/src/auth/handlers.rs`: `manage_account = role !=
-  "device"`). A member is therefore offered the two actions and refused only at
-  the write, which answers `403 owner_required` (backend `f30b2f5`). The member
-  line the app carries reads **Ask the account owner to set up live TV.** and is
-  not drawn while that capability is true. LIVE-EMPTY-05's member page, where
-  the who line replaces the actions, does not ship; it is
-  [viptv-org/app#484](https://github.com/viptv-org/app/issues/484).
+- **The member form was the backend#168 behaviour and no longer differs.** At
+  app `86df58c1` `AccountAccess` decided by `capabilities.manage_account` alone,
+  the server reported it true for every account session, and a member was offered
+  the two actions and refused only at the write. Backend `04bcbfc` reports
+  `manage_account` only for the owner again and answers a member's write
+  `403 owner_required`, and app PR
+  [#492](https://github.com/viptv-org/app/pull/492) reads `account.role` so a
+  member gets **Only the household owner can set up live TV.** and no action:
+  LIVE-EMPTY-05 now ships.
 - **A source pick is not a filter.** `liveSpread`'s `filtered` covers Favourites
   and a group only, so a chosen source that answers zero channels shows the
   no-channels state, not the filtered line; LIVE-EMPTY-11's "or source chosen"
@@ -424,9 +425,9 @@ revision that contains the tests above. app#349's own change is
   the app, the web dashboard or the server. The body names the two routes that
   exist; a free-add-on directory needs its own design and its own route.
 - How quickly the account identity answers is an app decision. This contract only
-  says the action block waits for it and holds its height. A server that omits
-  `capabilities.manage_account` is read through `account.role` (`device` means a
-  paired TV).
+  says the action block waits for it and holds its height. `account.role` picks
+  the owner/member/device form, and `capabilities.manage_account` — owner-only
+  since backend `04bcbfc` — confirms the owner before the setup actions draw.
 - A paired TV cannot write sources at all, so its line names other devices
   rather than an action. Whether that line should become a QR code or a deep
   link to the dashboard is open, and no origin string is added to copy.
