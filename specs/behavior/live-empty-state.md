@@ -1,22 +1,27 @@
 # LIVE-EMPTY-001 — Live with no source, and Live with a source but no channels
 
 Status: **implemented**, not device-verified. Both states ship in
-viptv-org/app at `86df58c1` (`origin/edge`, 2026-11-02), from the owner report
-2026-10-30 ([design#45](https://github.com/viptv-org/design/issues/45)).
+viptv-org/app at `434d10e2` (`origin/edge`, 2026-11-02, the merge of app#492),
+from the owner report 2026-10-30
+([design#45](https://github.com/viptv-org/design/issues/45)).
 Implemented is not verified: no device evidence exists, no board draws these
 states, and [Parity](#parity) lists what the app does differently.
 Design commits: `bf8ac45` for this contract, `342a8c7` for the phone band and
 [design#70](https://github.com/viptv-org/design/issues/70) for the artwork.
 Implementation: [app#304](https://github.com/viptv-org/app/issues/304) (both
 states), [app#349](https://github.com/viptv-org/app/issues/349) (the setup
-actions and the shipped photographs) and
-[app#376](https://github.com/viptv-org/app/issues/376) (the phone band),
-promoted to app `main` in `9577858` and `0074737`.
-Source revisions: app `86df58c1`, `features/live/LiveEmptyState.kt`,
+actions and the shipped photographs),
+[app#376](https://github.com/viptv-org/app/issues/376) (the phone band) and
+[app#492](https://github.com/viptv-org/app/pull/492) (the owner-role gate and
+the member line), the first three promoted to app `main` in `9577858` and
+`0074737` and the last on `edge`.
+Source revisions: app `434d10e2`, `features/live/LiveEmptyState.kt`,
 `LiveEmptyArtwork.kt`, `LiveRoute.kt`, `LiveScreen.kt`, `TvLiveScreen.kt`,
 `connection/AccountAccess.kt` and `state/ControllerLiveSource.kt`, with the
 desktop tests `LiveUiTest.kt`, `LiveEmptyStateTest.kt`,
-`LiveEmptyArtworkTest.kt` and `LiveEmptyPhoneLayoutTest.kt`. Owner-only writes:
+`LiveEmptyArtworkTest.kt` and `LiveEmptyPhoneLayoutTest.kt`. `AccountAccess`
+reads `account.role`: `managesSources` is `role == "owner" && manage_account`
+and the member form is `role == "member"`. Owner-only writes:
 backend `04bcbfc` ([backend#205](https://github.com/viptv-org/backend/pull/205))
 on `edge`, restoring the owner gate backend#149 added and backend#168 relaxed; it
 reports `capabilities.manage_account` only for the owner.
@@ -346,15 +351,18 @@ app's own rendered measurements, not a board comparison.
 | Field | No source (LIVE-EMPTY-001A) | Still loading (LIVE-EMPTY-001B) | Answered with no channels (LIVE-EMPTY-001B) |
 |---|---|---|---|
 | Contract | design `bf8ac45`, `342a8c7` and [design#70](https://github.com/viptv-org/design/issues/70); [No source](#no-source-live-empty-001a) and [Artwork](#artwork); LIVE-EMPTY-01–07 | design `bf8ac45`; [Sources, no channels](#sources-no-channels-live-empty-001b); LIVE-EMPTY-08 | design `bf8ac45`; the same section; LIVE-EMPTY-09–13 |
-| Implementation | app `86df58c1`: `LiveNoSourcePage` and `LiveEmptyArtwork` in `features/live/LiveEmptyState.kt` and `LiveEmptyArtwork.kt`; `LiveRoute` returns before the page chrome | app `86df58c1`: `liveSpread` → `Loading`, `LiveChannelSkeletons` in `LiveScreen.kt` and `TvLiveScreen.kt`, the route's progress bar | app `86df58c1`: `liveSpread` → `NoChannels`, `LiveNoChannels`, the route's retry and Source integrations |
-| Functional evidence | `LiveEmptyStateTest` and `LiveUiTest` cover the page facts, both actions and their Settings sections, the who-line forms, identity loading, the TV focus entry and return, and the four layouts; `LiveEmptyPhoneLayoutTest` covers the phone band | `LiveUiTest.noChannelsWhileTheRequestIsOpenDrawsSixSkeletonsAndOnlyTheSourceChip`, on TV and desktop with one and two connections | `LiveUiTest.noChannelsAnsweredShowsTheReasonAndRetryOnlyWhenSomethingFailed`, `sourceIntegrationsIsAbsentWhenTheViewerCannotManageSources` and `aSourceAddedElsewhereReplacesTheEmptyStateInPlace` |
+| Implementation | app `434d10e2`: `LiveNoSourcePage` and `LiveEmptyArtwork` in `features/live/LiveEmptyState.kt` and `LiveEmptyArtwork.kt`; `AccountAccess` picks the owner, member and paired forms from `account.role`; `LiveRoute` returns before the page chrome | app `434d10e2`: `liveSpread` → `Loading`, `LiveChannelSkeletons` in `LiveScreen.kt` and `TvLiveScreen.kt`, the route's progress bar | app `434d10e2`: `liveSpread` → `NoChannels`, `LiveNoChannels`, the route's retry and Source integrations |
+| Functional evidence | `LiveEmptyStateTest` and `LiveUiTest` cover the page facts, both actions and their Settings sections, identity loading, the TV focus entry and return, and the four layouts; the owner, member and paired forms are `ownerAccountSessionSeesTheSetupActionsAndNoWhoLine`, `memberAccountSessionSeesTheWhoLineAndNoSetupActions`, `aMemberOnTheTvGetsNoFocusStopInTheBlock`, `whoMayChangeSourcesFollowsTheHouseholdOwner` and `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo`; `LiveEmptyPhoneLayoutTest` covers the phone band and its who line | `LiveUiTest.noChannelsWhileTheRequestIsOpenDrawsSixSkeletonsAndOnlyTheSourceChip`, on TV and desktop with one and two connections | `LiveUiTest.noChannelsAnsweredShowsTheReasonAndRetryOnlyWhenSomethingFailed`, `sourceIntegrationsIsAbsentWhenTheViewerCannotManageSources`, `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo` and `aSourceAddedElsewhereReplacesTheEmptyStateInPlace` |
 | Visual evidence | no board. `LiveEmptyArtworkTest` measures the photograph's distinct colours and its scrim luminance, `LiveEmptyPhoneLayoutTest` measures the band, gutter and clearance at 360 × 640 and 412 × 915 | no board; six rows and the row shape are asserted, not measured | no board; the copy, the absent artwork and the action geometry are asserted |
 | Device evidence | unverified: none | unverified: none | unverified: none |
 | Disposition | implemented/unverified | implemented/unverified | implemented/unverified |
 
 Run: app PR [#407](https://github.com/viptv-org/app/pull/407), `app checks`
 [41326673788](https://github.com/viptv-org/app/actions/runs/41326673788), on the
-revision that contains the tests above. app#349's own change is
+revision that contains the tests above, and app PR
+[#492](https://github.com/viptv-org/app/pull/492), `app checks`
+[41443517520](https://github.com/viptv-org/app/actions/runs/41443517520), for the
+member line. app#349's own change is
 [app#352](https://github.com/viptv-org/app/pull/352)
 ([run 41269197286](https://github.com/viptv-org/app/actions/runs/41269197286)).
 
@@ -369,15 +377,21 @@ revision that contains the tests above. app#349's own change is
   guide, channel list or progress bar
   (`LiveUiTest.tvNoSourceIsOneBroadcastFrameAndBothSetupActionsReachTheirSettingsSection`).
 - The action block follows the identity. Local mode and the account owner get
-  **Set up live TV** and **Add-ons**; a paired TV gets its line and no action (a
-  member's form is the difference below); while the identity is open the
-  block's height is reserved; on TV the primary takes focus the frame it appears
+  **Set up live TV** and **Add-ons**; a member account session gets
+  **Only the household owner can set up live TV.** and no action; a paired TV
+  gets its own line and no action. While the identity is open the block's height
+  is reserved; on TV the primary takes focus the frame it appears
   (`identityStillLoadingLeavesTheActionBlockEmpty`); Down from the navigation
   reaches it otherwise; Back from Settings returns to Live with the primary
   focused (`liveSetupReturnFocus`, `tvDownFromTheNavigationEntersThePageOnThePrimary`).
-- Copy matches `copy.md` word for word except the member line: the eyebrow, the
-  headline, the body, both actions, the paired line, the no-channels headline,
-  the neutral body, **Try again** and **Source integrations**.
+- The owner role decides. `AccountAccess` requires `role == "owner"`
+  alongside `manage_account`, so a member gets neither the no-source actions nor
+  the no-channels **Source integrations** secondary
+  (`whoMayChangeSourcesFollowsTheHouseholdOwner`,
+  `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo`).
+- Copy matches `copy.md` word for word: the eyebrow, the headline, the body,
+  both actions, both who lines, the no-channels headline, the neutral body,
+  **Try again** and **Source integrations**.
 - The loading form draws six skeletons in the page's row shape and no copy, with
   the page's progress bar; the Source chip survives only while a second enabled
   connection exists; Favourites and Group wait for channels.
@@ -397,15 +411,6 @@ revision that contains the tests above. app#349's own change is
 
 ### What differs
 
-- **The member form was the backend#168 behaviour and no longer differs.** At
-  app `86df58c1` `AccountAccess` decided by `capabilities.manage_account` alone,
-  the server reported it true for every account session, and a member was offered
-  the two actions and refused only at the write. Backend `04bcbfc` reports
-  `manage_account` only for the owner again and answers a member's write
-  `403 owner_required`, and app PR
-  [#492](https://github.com/viptv-org/app/pull/492) reads `account.role` so a
-  member gets **Only the household owner can set up live TV.** and no action:
-  LIVE-EMPTY-05 now ships.
 - **A source pick is not a filter.** `liveSpread`'s `filtered` covers Favourites
   and a group only, so a chosen source that answers zero channels shows the
   no-channels state, not the filtered line; LIVE-EMPTY-11's "or source chosen"

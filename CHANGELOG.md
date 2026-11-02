@@ -1,5 +1,18 @@
 # Design changes
 
+## 2026-11-02 — The Live member who line ships
+
+[LIVE-EMPTY-001](specs/behavior/live-empty-state.md) records app `434d10e2`
+(app `edge`, [app#492](https://github.com/viptv-org/app/pull/492)): the Live
+no-source block decides by `account.role`, so a member account session gets
+**Only the household owner can set up live TV.** and no action while the owner
+and local mode keep **Set up live TV** and **Add-ons** and a paired TV keeps its
+own line. The same rule removes the no-channels **Source integrations**
+secondary for a member. LIVE-EMPTY-05 ships, and the parity record lists the
+member form with what matches instead of among its differences.
+
+Refs [design#74](https://github.com/viptv-org/design/issues/74).
+
 ## 2026-11-02 — Household configuration writes are owner-only again
 
 [ACCT-SPLIT-001](specs/behavior/account-and-profile-settings.md) and
