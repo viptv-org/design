@@ -1,7 +1,7 @@
 {
   "source_commit": "7d6b4131a44d87b58edcf12709af5851da387176",
   "files": {
-    "ASSET_MANIFEST.md": "a45cedcbeada1a44b412f1842c0d4257fe563b12c6e2716bc63c9a9e0dacbf33",
+    "ASSET_MANIFEST.md": "6bb904508f29ae2f9903aeaf0b1661e3d2528429e6f83531a768615b8fac5db4",
     "brand/app-icon/app-icon-foreground.svg": "bc76f8b2a77f25dcb0025497814763874c0624c6e83459a3d99a731fc6224b41",
     "brand/app-icon/app-icon-monochrome.svg": "c02ad78caff139f1471a3b02ea1ec224db34c58323b2f0be8b54869d8423d939",
     "brand/app-icon/app-icon-square-1024.png": "1ac37a83827fcc1958629bd60e2c30b7c4c17c0afbc608792cc0f91ddec77964",
@@ -25,8 +25,9 @@
     "fonts/remote_onest_500.ttf": "1a90fc95c49c44c7be65b7f0b937fd14fdbaa8ab61e4fdc6a3e449701f0b1a27",
     "fonts/remote_onest_600.ttf": "9e38662a50b6c52bbb0b5ccac5adc31ddf5b02a8e4e30484e19fde34cf8e64ba",
     "fonts/remote_onest_700.ttf": "0d39bd5cc47051018dd6d7fbd8c7e4a517abbf0d6270cb23050b87ef82a553e8",
-    "illustrations/live-empty-stadium-tall.svg": "ce9439858789bed6f8868fcd8bf1dfa1d11ed2eb4c08c1b69e704d6da02d6532",
-    "illustrations/live-empty-stadium-wide.svg": "fb96835a740a880d2f2e559a5a12a117caff8df6ad82c12a6b6e9325a87803c1",
+    "photography/README.md": "30e1a58067e7af9dee6408d601729d6bc678f30aa499df07980c4fc2a933616a",
+    "photography/live-empty-tall.webp": "c212f2497a81515de0a4edb55c68c34ae43d018a85a6cbfa61c0e46e2b7ebefc",
+    "photography/live-empty-wide.webp": "aa34ba0293dcb726421ffc79266716f91cc5b3caf779d10492b8a7ba1c89aa11",
     "roku/package-lock.json": "3fa5cdc60113e4302f2791958966d02543fb5044af18f126c45701e89fab2340",
     "roku/package.json": "051ad2ddf396d9a3b8f3012e64621207556fa9bf3d693efa5830827d72617176",
     "roku/roku/data/BSLIB-LICENSE.txt": "a504a982a1f5eb69d0297c83b7d1c10c8bb09ab84b44247be3330cb19bc1212f",

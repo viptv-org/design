@@ -1,5 +1,21 @@
 # Design changes
 
+## 2026-11-02 — The Live no-source artwork is the shipped CC0 photograph
+
+[LIVE-EMPTY-001](specs/behavior/live-empty-state.md#artwork) and
+[components.md §13](viptv-design-system/components.md#13-empty-states-and-artwork)
+now specify one artwork: two crops of Mario Klassen's CC0 photograph of the
+Volksparkstadion, Hamburg, 1920 × 1080 for W and T and 1080 × 1440 for P,
+copied into `assets/photography/` byte for byte from what viptv-org/app
+packages since `2d7949b8` ([app#349](https://github.com/viptv-org/app/issues/349)),
+with the photographer, both source URLs, the CC0 licence and the file hashes
+recorded beside them and in `assets/ASSET_MANIFEST.md`. The reading scrim is
+drawn in code at the stops the app ships. The two hand-authored SVGs are retired
+from the contract and the inventory. Copy, layout and state selection are
+unchanged.
+
+Refs [design#70](https://github.com/viptv-org/design/issues/70).
+
 ## 2026-11-02 — The phone Vizio remote is specified for the KMP app
 
 AND-038 now brings the phone Vizio remote into the KMP app on Android phone

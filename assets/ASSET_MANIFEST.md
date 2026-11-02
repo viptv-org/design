@@ -65,18 +65,18 @@ KMP form dialog assets are procedural nine-patches from
 field outlines and20px focus capsule. Geometry is measured from current KMP source;
 no app/device capture is embedded in these assets.
 
-## Live empty-state artwork
+## Live empty-state photograph
 
-`illustrations/live-empty-stadium-*.svg` is the design's Live no-source background ([LIVE-EMPTY-001](../specs/behavior/live-empty-state.md)): an original night stadium under floodlights, with crowd silhouettes, a lit pitch-side hoarding, the pitch's own lines, a centre circle, light beams and a glowing `LIVE` scoreboard. VIPTV owns it outright: no team, league, logo, player, photograph or third-party drawing appears in it, and nothing is traced from a capture. No client packages it; see below.
+`photography/live-empty-*.webp` is the Live no-source background ([LIVE-EMPTY-001](../specs/behavior/live-empty-state.md#artwork)): one CC0 photograph of the Volksparkstadion in Hamburg, its roof canopy and blue-lit truss over the floodlit stands, cropped wide for tablet, desktop, web and TV and tall for phone widths. The app packages the same two files at `composeApp/src/commonMain/composeResources/files/live/` since `2d7949b8` ([app#349](https://github.com/viptv-org/app/issues/349)), so a copy is a byte-for-byte copy.
 
-| File | Size | Contents |
-| --- | --- | --- |
-| `illustrations/live-empty-stadium-wide.svg` | 1920 × 1080 | The scene for tablet, desktop, web and TV, with a left-to-right and bottom scrim |
-| `illustrations/live-empty-stadium-tall.svg` | 1080 × 1920 | The same scene composed for phone widths, with a bottom scrim |
+| File | Size | SHA-256 | Contents |
+| --- | --- | --- | --- |
+| `photography/live-empty-wide.webp` | 1920 × 1080 | `aa34ba0293dcb726421ffc79266716f91cc5b3caf779d10492b8a7ba1c89aa11` | The whole canopy curve with the stands along the bottom edge |
+| `photography/live-empty-tall.webp` | 1080 × 1440 | `c212f2497a81515de0a4edb55c68c34ae43d018a85a6cbfa61c0e46e2b7ebefc` | The roof's corner and the right-hand stands |
 
-Both files are hand-authored SVG containing only paths, rectangles, circles and ellipses, with linear and radial gradients: no text, raster image, filter, mask, pattern, blend mode or external reference, so each converts to a vector drawable unchanged and needs no network. The reading scrim is part of the file, so a page draws it once and adds no overlay. Colours are `viptv-design-system/tokens/tokens.json` values only — `bg` `#0B0B0C` and `bg-oled` `#000000` for the sky, stands, silhouettes and scrims; the `surface-1`–`surface-4` ladder for the pitch, crowd tiers, masts and scoreboard; `text-primary` `#F4F2EE` for lamps, pitch lines and the `LIVE` lettering; `accent` `#F5C542` for the hoarding strip and the scoreboard clock; `status.live` `#FF5A4E` for the scoreboard dot. Depth comes from lower opacities of those same colours.
+Photographer Mario Klassen (`marioklassen`), [CC0 1.0 Universal Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/): no attribution is required, and the product credits it under Settings › About and About VIPTV. Source: [Well lit soccer stadium (Unsplash)](https://commons.wikimedia.org/wiki/File:Well_lit_soccer_stadium_(Unsplash).jpg) on Wikimedia Commons and [Unsplash 70YxSTWa2Zw](https://unsplash.com/photos/70YxSTWa2Zw); `photography/README.md` holds the same record beside the files.
 
-The app ships two credited CC0 stadium photographs instead (`live-empty-wide.webp`, `live-empty-tall.webp`; Mario Klassen, Volksparkstadion Hamburg) and draws the scrim in code since app `2d7949b8` ([app#349](https://github.com/viptv-org/app/issues/349)); [design#70](https://github.com/viptv-org/design/issues/70) decides which artwork the contract keeps.
+Both files are lossy VP8 WebP, 8-bit RGB, no alpha. The reading scrim is not in the image: the page draws a `bg` gradient in code at the stops [LIVE-EMPTY-001](../specs/behavior/live-empty-state.md#artwork) lists, so the copy and actions sit on the darkest part. The wide crop also holds the stadium's far-side video screen, playing an interview (about 110 × 75 px of its 1920 px width); no team, league, club crest, VIPTV mark or legible face appears in either crop, and no vector or derived source exists.
 
 ## Branded V master, app icon and TV banner
 

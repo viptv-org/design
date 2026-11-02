@@ -276,13 +276,14 @@ Every duration and easing above is read through the app's `motionSpec()`, which 
 - An empty state says what the page is, why it is empty, and the one action that
   fixes it. It is a page, not a dialog: no scrim, no centred card, no
   illustration inside a frame.
-- A first-run empty state may carry a full-bleed illustration; every other empty
-  state is text on the page ground, next to the filters it belongs to. A page
-  never draws two empty states at once.
-- The illustration sits behind the page area only — under the navigation, the
+- A first-run empty state may carry full-bleed artwork (Live's is a
+  photograph); every other empty state is text on the page ground, next to the
+  filters it belongs to. A page never draws two empty states at once.
+- The artwork sits behind the page area only — under the navigation, the
   phone header, the rail and the title bar, which keep their own grounds. It is
-  `cover`-anchored centre, carries its own scrim, and is decorative: no
-  accessible name, because the heading, body and actions carry the meaning.
+  `cover`-anchored centre, a `bg` scrim is drawn in code over it, and it is
+  decorative: no accessible name, because the heading, body and actions carry
+  the meaning. The scrim is not part of the image.
 - Filter chips are not drawn on a page with nothing to filter. An empty state
   caused by a filter keeps the row, because the row is the way out.
 - One primary action per empty state, plus at most one secondary. Loading is a
@@ -295,7 +296,7 @@ Every duration and easing above is read through the app's `motionSpec()`, which 
 
 | State | Artwork | Filters | Actions |
 |---|---|---|---|
-| Live, no source (T, P, W) | `live-empty-stadium-wide` / `-tall`, full bleed | none | primary and secondary for the owner and local mode; a who line for a member or a paired TV |
+| Live, no source (T, P, W) | `live-empty-wide` / `-tall` crops of one stadium photograph, full bleed | none | primary and secondary for the owner and local mode; a who line for a member or a paired TV |
 | Live, source, no channels | none | Source chip while a second source exists | the retry, and Source integrations when the viewer may change sources |
 | Live, source, still loading | none | as above | none; skeleton rows |
 | My List, Discover, Search, Continue Watching | none | per [FILTER-CHIP-001](#2-chips-and-segmented-controls) | the page's own clear or browse action |
@@ -311,19 +312,16 @@ Every duration and easing above is read through the app's `motionSpec()`, which 
 
 **Artwork**
 
-Two hand-authored SVGs in `assets/illustrations/`, inventoried in
-`assets/FILES.json` and described in `assets/ASSET_MANIFEST.md`: a 1920 × 1080
-wide scene for W and T and a 1080 × 1920 tall scene for P, both the same
-floodlit stadium with crowd silhouettes, pitch lines and a glowing `LIVE`
-scoreboard. Paths, rectangles, circles and ellipses with linear and radial
-gradients only, in the tokens' colours, with the reading scrim baked in; no
-text, raster, filter, mask, pattern, blend mode or external reference, so each
-file converts to a vector drawable unchanged. Under 30 KB each. No client
-packages them: the app ships a credited CC0 stadium photograph with the scrim
-drawn in code (app `2d7949b8`,
-[app#349](https://github.com/viptv-org/app/issues/349)), and
-[design#70](https://github.com/viptv-org/design/issues/70) decides which artwork
-the contract keeps.
+One photograph in `assets/photography/`, inventoried in `assets/FILES.json` and
+described in `assets/ASSET_MANIFEST.md`: the Volksparkstadion roof, its blue-lit
+truss and the floodlit stands, by Mario Klassen under CC0 1.0, as a 1920 × 1080
+wide crop for W and T and a 1080 × 1440 tall crop for P. A page draws the crop
+once, `cover` and centre-anchored, then a `bg` gradient in code — wide
+left-to-right 92 / 60 % at 45 % / 18 %, tall top-to-bottom 0 / 35 % at 40 % /
+90 %, phone band 0 / 30 % at 45 % / 86 % at 80 % / 100 % — so the copy and
+actions sit on the darkest part. Decorative: no accessible name.
+[LIVE-EMPTY-001](../specs/behavior/live-empty-state.md#artwork) owns the crops,
+the exact bytes, the source, the licence and the credit.
 
 ## Implemented component contracts (2026-10-19)
 
