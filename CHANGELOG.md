@@ -1,5 +1,22 @@
 # Design changes
 
+## 2026-11-02 — Household configuration writes are owner-only again
+
+[ACCT-SPLIT-001](specs/behavior/account-and-profile-settings.md) and
+[LIVE-EMPTY-001](specs/behavior/live-empty-state.md) now record backend
+`04bcbfc` ([backend#205](https://github.com/viptv-org/backend/pull/205)): a
+member account session reads the household inventories and checks a shared
+gateway's capacity but cannot write them — the household PIN, add-ons, source
+integrations, connections, matches, gateways and device/session sign-outs answer
+`403 owner_required` ("Only the account owner can change household settings."),
+and `GET /auth/me` reports `capabilities.manage_account` only for the owner.
+Reads stay open to any account session, and password, delete-account, pairing,
+profile and parental-policy routes stay self-service. The Live member who line
+**Only the household owner can set up live TV.** is no longer a parity
+difference.
+
+Refs [design#77](https://github.com/viptv-org/design/issues/77).
+
 ## 2026-11-02 — The Live no-source artwork is the shipped CC0 photograph
 
 [LIVE-EMPTY-001](specs/behavior/live-empty-state.md#artwork) and

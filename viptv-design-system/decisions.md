@@ -35,7 +35,9 @@ Settled here:
   computer or the web dashboard." because a device session cannot write a source
   at all. Backend `f30b2f5` (owner-only household writes,
   [backend#149](https://github.com/viptv-org/backend/pull/149)) is the rule
-  behind the three forms.
+  behind the three forms; backend#168 relaxed it and
+  [backend#205](https://github.com/viptv-org/backend/pull/205) restored it, also
+  reporting `capabilities.manage_account` only for the owner.
 - **No free live add-ons action.** No add-on directory, catalogue or
   recommendation list exists in the app, the web dashboard or the server, so the
   issue's third next step is not drawn as an action; the body names the two
