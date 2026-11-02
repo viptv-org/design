@@ -1,5 +1,22 @@
 # Design changes
 
+## 2026-11-02 — The phone Watch on TV row, setup and remote surface ship
+
+[components §11](viptv-design-system/components.md#11-tv-remote-phone-watch-on-tv--android-phone-and-tablet)
+and [ACCT-SPLIT-001](specs/behavior/account-and-profile-settings.md) record the
+phone **Watch on TV** row as shipped at app `09fef5c7` (app#486,
+[app#512](https://github.com/viptv-org/app/pull/512)): `SettingsRow.WatchOnTv`
+in the This device group, gated by `watchOnTvAvailable()` to non-television
+Android UI modes, reading **Off** until a TV is paired. The setup flow ships at
+app `04599d57` (app#487, [app#520](https://github.com/viptv-org/app/pull/520))
+and the remote surface — the 44 dp header button, the one-time tip and the
+bottom-sheet remote — ships at app `cc3684a0` on `edge` (app#488,
+[app#536](https://github.com/viptv-org/app/pull/536)). The full **Watch on TV**
+settings page, the error and permission lifecycle (app#489) and the browser
+dialog stay proposed.
+
+Refs [design#80](https://github.com/viptv-org/design/issues/80).
+
 ## 2026-11-02 — The phone Live empty state ends on the bottom bar's box
 
 [LIVE-EMPTY-001](specs/behavior/live-empty-state.md) records app `06bc0a96`
@@ -49,7 +66,7 @@ binds the connection. The ordinary backend and catalog
 transport keep normal certificate validation. The pairing page keeps its copy,
 geometry and auto-submitted four-digit PIN and shows no certificate
 fingerprint, because the TV states none to compare it with
-([components §11](viptv-design-system/components.md#11-tv-remote-phone-watch-on-tv--proposed-for-android-phone-and-tablet),
+([components §11](viptv-design-system/components.md#11-tv-remote-phone-watch-on-tv--android-phone-and-tablet),
 [decisions](viptv-design-system/decisions.md#phone-tv-remote-watch-on-tv--proposed-for-android-phone-and-tablet)).
 [AND-039](docs/platforms/ANDROID_DESIGN.md#and-039--phone-remote-reliability-and-responsiveness)
 keeps off-thread transport setup and names that pin instead of "no TLS

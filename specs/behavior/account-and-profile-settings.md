@@ -6,10 +6,12 @@ desktop, web and TV at the source revision cited next. Implemented is not
 verified: no device evidence exists for these layouts (see [Unknowns](#unknowns)).
 
 Not built: the **Notifications** row has no page (app#243); recovery codes and
-editing the account's display name or username have no route; the phone **TV
-remote** in `components.md` §11 is proposed for Android phone and tablet
-(AND-038) but not implemented, so Settings has no **Watch on TV** row today and
-a TV signs in with **Account › Add a device**.
+editing the account's display name or username have no route; the phone
+**Watch on TV** page has no **Open the remote** action and no **Remote button**,
+**Vibrate on press**, **Keep screen on**, **Change TV** or **Forget this TV**
+rows yet, and the error and permission lifecycle plus the browser dialog are
+app#489 and later, still proposed (`components.md` §11). A TV signs in with
+**Account › Add a device**, not the phone remote.
 
 Source revisions: the KMP app's Settings at app `62e0c949`
 (`features/settings/`, `state/ControllerAccountDevices.kt`,
@@ -105,7 +107,7 @@ where the platform implements it.
 |---|---|
 | **Profile** | Profile · Linked services · Parental controls · Import from Stremio |
 | **Playback** | Playback · Subtitles & audio |
-| **This device** | Display (TV) · Notifications (only where implemented) · About · Help |
+| **This device** | Display (TV) · Notifications (only where implemented) · Watch on TV (Android phone and tablet) · About · Help |
 | **Account** | Account · Password · Household PIN · Devices & sessions · Add a device · Add-ons · Source integrations · Xtream connections · VOD matches · Playback gateways · Sign out · Delete account |
 
 - **Profile** opens the page in [Profile](#profile): the current profile's name,
@@ -123,8 +125,14 @@ where the platform implements it.
 - **This device** holds what changes this machine only. **Display** exists on TV.
   **Notifications** appears only once it has a real page (app#243); until then no
   layout shows the row, because a row that opens "not available on this
-  connection yet" is not a setting. The phone and tablet **Watch on TV** row is
-  proposed under AND-038; no layout shows it until the remote ships.
+  connection yet" is not a setting. The phone and tablet **Watch on TV** row
+  (AND-038) ships at app `09fef5c7`
+  ([app#512](https://github.com/viptv-org/app/pull/512)): it reads **Off** until
+  a TV is paired, then the TV name, with **Use this phone as a Vizio TV remote**
+  as its note, and it opens the **Watch on TV** page — the setup flow, or a
+  status card once a TV is paired. `watchOnTvAvailable()` gates it to
+  non-television Android UI modes, so Android TV, iOS, desktop and web show no
+  row. The setup flow and remote surface ship per `components.md` §11.
 - **Account** holds the household's own state, and it is visible to everyone
   signed in: signing out and approving a device must stay reachable from a
   member's TV and phone. See [Account](#account) for the rows a device session

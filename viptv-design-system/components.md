@@ -205,37 +205,97 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Live:** no timeline or next. It shows the channel name, "Live TV" and the live dot, and audio / exit only on TV.
 
 
-## 11. TV remote (phone, Watch on TV) — proposed for Android phone and tablet
+## 11. TV remote (phone, Watch on TV) — Android phone and tablet
 
-**Status:** proposed for the KMP app on Android phone and tablet
+**Status:** shipping for the KMP app on Android phone and tablet
 ([AND-038](../docs/platforms/ANDROID_DESIGN.md#and-038--android-phone-and-tablet-vizio-remote-2026-11-02)),
-superseding the earlier exclusion. It is not implemented yet and no layout draws
-it: the app has no **Watch on TV** row, page, header button or remote sheet, and
-Settings' This device group is Display (TV), About and Help
-([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)). A TV
-signs in with **Settings › Account › Add a device**, which approves the code the
-TV shows; that page is the pairing story, not this one. TV, iOS, desktop and
-web do not adopt it, so the desktop title bar's cast and remote buttons have no
-caller and draw nowhere. The rules below are the design it will ship on the
-phone and tablet.
+superseding the earlier exclusion. The **Watch on TV** settings row ships on app
+`main` at `09fef5c7` (app#486, [app#512](https://github.com/viptv-org/app/pull/512)):
+`SettingsRow.WatchOnTv` in the This device group, gated by
+`watchOnTvAvailable()` to non-television Android UI modes (phone and tablet),
+reading **Off** until a TV is paired and then the persisted TV name, with
+**Use this phone as a Vizio TV remote** as its note. The setup flow ships on app
+`main` at `04599d57` (app#487, [app#520](https://github.com/viptv-org/app/pull/520)).
+The remote surface — the 44 dp header button, the one-time tip and the
+bottom-sheet remote — ships on app `edge` at `cc3684a0` (app#488,
+[app#536](https://github.com/viptv-org/app/pull/536)), not yet promoted to
+`main`, and is phone-only today: the header button lives in the compact phone
+header, so a tablet can pair a TV but has no header entry point to open the
+sheet. TV, iOS, desktop and web do not adopt it, so the desktop title bar's
+cast and remote buttons have no caller and draw nowhere. A TV signs in with
+**Settings › Account › Add a device**, which approves the code the TV shows;
+that page is the pairing story, not this one. Still proposed: the full **Watch
+on TV** settings page (a TV card with **Open the remote**, the Remote-button /
+Vibrate / Keep-screen-on toggles, **Change TV** and **Forget this TV**), the
+error and permission lifecycle (app#489), and the browser **Watch on TV**
+dialog (`PhCastUnavailable`). The rules below describe the remote that ships
+and name the parts that remain proposed.
 
 **Rules**
-- Off by default. The design assumed a **Watch on TV** row in This device that
-  read "Off" until a TV was paired; no layout shows that row, so the remote has
-  no entry point. Nothing else in the app changes for people who never set it up.
-- Setup is a pushed page flow, not a dialog: intro → choose your TV → PIN → connected. The intro says what the remote does and does NOT do (nothing playing on the phone moves to the TV) before discovery starts. Android SDK 36 does not require a runtime local-network prompt.
-- **Remote button:** once a TV is paired, a 44 round button (surface-1, 1 px `line-outline` border, remote icon 20) sits in the header of Discover, Live and My List, next to the avatar (Home keeps its headerless hero). Its label is "TV remote: [TV name]". It never goes in the bottom nav. It can be switched off in Watch on TV settings. The first time it appears, show a one-time tip (off-white bubble with `on-light` text, "Got it") pointing at it.
-- **The remote** is a bottom sheet (top 118, radius 30, `scrim-sheet`) with every control in the lower half, for one-handed use:
-  - Header: TV tile 44 + TV name (17/700) + status line ("Connected · [IP]" / "Not reachable" with a wifi-off icon) + a 44 close button.
-  - "Open VIPTV on TV": the accent primary, full width.
+- Off by default. The **Watch on TV** row reads **Off** until a TV is paired,
+  then the persisted TV name, with **Use this phone as a Vizio TV remote** as
+  its note. It opens the **Watch on TV** page — the setup flow while no TV is
+  paired, and a status card (name, value, note) once one is, with no **Open the
+  remote** action or toggles yet. The opt-in and the chosen TV (name and
+  `https://` origin) persist device-locally, never to a server or profile.
+  Nothing else changes for people who never set it up.
+- Setup is a pushed page flow, not a dialog: intro → choose your TV (bounded
+  search) → manual IPv4 → PIN → connected. The intro says what the remote does
+  and does NOT do (nothing playing on the phone moves to the TV) before
+  discovery starts, and reads "VIPTV searches your local network only to find
+  your TV." The search is bounded (16 results, 30 s) and adds candidates as
+  they arrive; a failed search offers manual entry. The manual step takes a
+  private IPv4 address (optionally `:7345` or `:9000`) canonicalized to `https`.
+  The PIN page pairs as soon as the 4th digit goes in. Android SDK 36 requires
+  no runtime local-network prompt.
+- **Remote button (phone):** once a TV is paired, a 44 round button (surface-1,
+  remote icon 20) sits in the phone header of Discover, Live and My List, next
+  to the avatar (Home keeps its headerless hero). Its label is "TV remote:
+  [TV name]". It never goes in the bottom nav. The first time it appears, a
+  one-time tip (a 260-wide off-white bubble with `on-light` text) reads
+  **Your TV remote** / "It stays up here on Discover, Live and My List. Turn it
+  off in Settings › Watch on TV." with **Got it**; dismissing it persists. The
+  tablet has no header button, so it cannot open the sheet yet.
+- **The remote** is a phone bottom sheet (radius 30 top, `Palette.surface`,
+  scrim 0.62, navigation-bar padding, scrolls):
+  - Header: a 44 TV tile (radius 12, raised) + the TV name (17/700) + a status
+    line (**Connected · [host:port]** while online, the host alone while it is
+    still checking, **Not reachable** with a wifi-off icon while offline) + a
+    44 close button.
+  - **Open VIPTV on TV**: the accent primary, full width, 54 tall, shown while
+    the TV is reachable or being checked; while offline it is replaced by the
+    offline card.
   - A Buttons / Swipe segmented control (232 wide, 40 tall).
-  - Buttons mode: a 272 round pad (surface-2, hairline) with 88 arrow targets and a 104 off-white OK. Swipe mode: a 358 × 272 touchpad (surface-2, radius 28, faint dot grid, "Swipe to move · Tap for OK").
-  - Bottom row: Back, Play, Pause (64 round, surface-3, labels 12/600 in `text-tertiary`), and a 2-part volume rocker (− / +).
-- Vibrate on every press and keep the screen on while the sheet is open. Both are on by default and can be switched off in settings.
-- **TV not reachable:** the Open button is replaced by a surface-2 card ("Can't reach [TV name]", "Turn the TV on and check it's on the same Wi‑Fi as this phone.", a light "Try again" button), and every control drops to opacity 0.4.
-- **Pairing PIN:** 4 boxes 64 × 72 (radius 18). It pairs automatically when the 4th digit goes in, so there's no confirm button. Offer a "New PIN" text link. The page shows no certificate fingerprint: the app pins the TV's certificate on first pairing, and the TV displays nothing to compare a fingerprint with, so the four-digit PIN is the only pairing proof.
-- **Watch on TV settings (once set up):** a TV card (name, status, "Open the remote"), then Remote (Remote button, Vibrate on press, Keep screen on) and TV (Change TV; Forget this TV, danger). Forgetting the TV turns the feature off and removes the button.
-- Phone **browsers** can't pair: they show the "Watch on TV" dialog pointing to the desktop app (`PhCastUnavailable`).
+  - Buttons mode: a 272 round pad (raised, hairline) with 88 arrow targets and
+    a 104 off-white OK. Swipe mode: a 358 × 272 touchpad (raised, radius 28,
+    "Swipe to move · Tap for OK"), narrower on small screens; a swipe past
+    32 dp sends one direction, a tap sends OK.
+  - Bottom row: Back, Play, Pause (64 round, `surface-3`, labels 12/600 in
+    `text-tertiary`), and two 64 round volume keys (− / +) under a **Volume**
+    caption. Commands serialize into an eight-command bounded queue and are
+    dropped beyond it, with no replay on return.
+- Vibrate on every key press and keep the screen on while the sheet is open.
+  Both ship always-on on the phone remote; settings toggles for them are still
+  proposed (see the settings bullet).
+- **TV not reachable:** the Open button is replaced by a raised card
+  ("Can't reach [TV name]", "Turn the TV on and check it's on the same Wi-Fi as
+  this phone.", a **Try again** text button), and every control drops to
+  opacity 0.4. Only transport, HTTP-status and authentication failures take the
+  TV offline; a single rejected command does not.
+- **Pairing PIN:** 4 boxes 64 × 72 (radius 18). It pairs automatically when the
+  4th digit goes in, so there's no confirm button. **New PIN** starts a fresh
+  challenge and **Cancel** leaves it. The page shows no certificate fingerprint:
+  the app pins the TV's certificate on first pairing, and the TV displays
+  nothing to compare a fingerprint with, so the four-digit PIN is the only
+  pairing proof.
+- **Watch on TV settings (still proposed):** a TV card (name, status, "Open the
+  remote"), then Remote (Remote button, Vibrate on press, Keep screen on) and
+  TV (Change TV; Forget this TV, danger). Forgetting the TV turns the feature
+  off and removes the button. None of this ships yet: the Watch on TV page is
+  the setup flow or the status card only.
+- Phone **browsers** can't pair: web, desktop, iOS and TV simply have no row,
+  and the proposed `PhCastUnavailable` dialog that points to the desktop app
+  does not ship.
 
 **Screens (boards only; no layout draws them):** PhTvSetup, PhTvSearch, PhTvNoAccess, PhTvManual, PhTvPin, PhTvDone, PhHomeRemote, PhRemote, PhRemoteSwipe, PhRemoteOffline, PhTvSettings, PhTvForget.
 
