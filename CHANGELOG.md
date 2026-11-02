@@ -1,5 +1,20 @@
 # Design changes
 
+## 2026-11-02 — The phone Live empty state ends on the bottom bar's box
+
+[LIVE-EMPTY-001](specs/behavior/live-empty-state.md) records app `06bc0a96`
+([app#454](https://github.com/viptv-org/app/issues/454),
+[PR #493](https://github.com/viptv-org/app/pull/493)): the shared bottom
+clearance (`LocalBottomClearance`) is the bottom bar's own 80 dp box, so the
+phone no-source block, its actions and the member who line end 28 dp lower than
+the bar-plus-fade band they used to clear. The root applies
+`WindowInsets.safeDrawing` around the page and the bar once, and nothing on the
+page scrolls, so no fade is drawn over the block and the clearance reserves
+neither the fade nor the navigation-bar inset. The P geometry row, the
+LIVE-EMPTY-03 acceptance and the design-system P geometry row match.
+
+Refs [design#75](https://github.com/viptv-org/design/issues/75).
+
 ## 2026-11-02 — The Live member who line ships
 
 [LIVE-EMPTY-001](specs/behavior/live-empty-state.md) records app `434d10e2`

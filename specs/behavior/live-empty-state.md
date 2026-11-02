@@ -1,7 +1,7 @@
 # LIVE-EMPTY-001 — Live with no source, and Live with a source but no channels
 
 Status: **implemented**, not device-verified. Both states ship in
-viptv-org/app at `434d10e2` (`origin/edge`, 2026-11-02, the merge of app#492),
+viptv-org/app at `06bc0a96` (2026-11-02, the merge of app#493),
 from the owner report 2026-10-30
 ([design#45](https://github.com/viptv-org/design/issues/45)).
 Implemented is not verified: no device evidence exists, no board draws these
@@ -11,17 +11,19 @@ Design commits: `bf8ac45` for this contract, `342a8c7` for the phone band and
 Implementation: [app#304](https://github.com/viptv-org/app/issues/304) (both
 states), [app#349](https://github.com/viptv-org/app/issues/349) (the setup
 actions and the shipped photographs),
-[app#376](https://github.com/viptv-org/app/issues/376) (the phone band) and
+[app#376](https://github.com/viptv-org/app/issues/376) (the phone band),
 [app#492](https://github.com/viptv-org/app/pull/492) (the owner-role gate and
-the member line), the first three promoted to app `main` in `9577858` and
-`0074737` and the last on `edge`.
-Source revisions: app `434d10e2`, `features/live/LiveEmptyState.kt`,
+the member line) and [app#454](https://github.com/viptv-org/app/issues/454)
+(the phone page bottom clearance), all of them promoted to app `main`, the
+first three in `9577858` and `0074737`.
+Source revisions: app `06bc0a96`, `features/live/LiveEmptyState.kt`,
 `LiveEmptyArtwork.kt`, `LiveRoute.kt`, `LiveScreen.kt`, `TvLiveScreen.kt`,
-`connection/AccountAccess.kt` and `state/ControllerLiveSource.kt`, with the
-desktop tests `LiveUiTest.kt`, `LiveEmptyStateTest.kt`,
-`LiveEmptyArtworkTest.kt` and `LiveEmptyPhoneLayoutTest.kt`. `AccountAccess`
-reads `account.role`: `managesSources` is `role == "owner" && manage_account`
-and the member form is `role == "member"`. Owner-only writes:
+`connection/AccountAccess.kt`, `state/ControllerLiveSource.kt` and
+`components/ScrollEdgeFade.kt`, with the desktop tests `LiveUiTest.kt`,
+`LiveEmptyStateTest.kt`, `LiveEmptyArtworkTest.kt` and
+`LiveEmptyPhoneLayoutTest.kt`. `AccountAccess` reads `account.role`:
+`managesSources` is `role == "owner" && manage_account` and the member form is
+`role == "member"`. Owner-only writes:
 backend `04bcbfc` ([backend#205](https://github.com/viptv-org/backend/pull/205))
 on `edge`, restoring the owner gate backend#149 added and backend#168 relaxed; it
 reports `capabilities.manage_account` only for the owner.
@@ -222,12 +224,12 @@ measurements below are derived from the type roles and the page insets in
 | Secondary | 40 tall, quiet text, 15/600, `text-secondary` |
 | Gaps | 16, 20, 28, 12 as on T, in that order |
 
-**P — 390 × 844, page gutter 16, bottom bar 80 and its 28 page fade**
+**P — 390 × 844, page gutter 16, bottom bar 80**
 
 | Element | Geometry |
 |---|---|
 | Artwork | the tall crop, full-bleed width, a band under the header from the top of the page area, cropped bottom-anchored; its bottom edge scrims into `bg` |
-| Text block | below the band with a 20 gap, x 16, width 358; the block ends clear of the shared bottom clearance |
+| Text block | below the band with a 20 gap, x 16, width 358; the block ends above the shared bottom clearance, the bottom bar's 80 dp box |
 | Eyebrow | 11/700, +0.08em, uppercase, `text-secondary` |
 | Headline | D 34/700, −0.02em, line 40, at most 3 lines |
 | Body | 15/400, line 22, at most 3 lines |
@@ -238,10 +240,14 @@ measurements below are derived from the type roles and the page insets in
 The band's height is not fixed: it takes whatever the copy block and the shared
 bottom clearance (`LocalBottomClearance`, app#345) leave it, at most about 55 %
 of the page area, so it shrinks first on a short screen and the copy and
-buttons never sit under the bottom bar. On a 411 × 914 dp phone the copy and
-clearance leave roughly a third of the page area for the band. This is what
-app `86df58c1` ships
-([app#376](https://github.com/viptv-org/app/issues/376)); the who line still
+buttons never sit under the bottom bar. That clearance is the bar's own 80 dp
+box and nothing more: the root applies `WindowInsets.safeDrawing` around the
+page and the bar, and nothing on this page scrolls, so no page fade is drawn
+over the block and neither the fade nor the navigation-bar inset is reserved.
+On a 411 × 914 dp phone the copy and clearance leave roughly a third of the
+page area for the band. This is what app `06bc0a96` ships
+([app#376](https://github.com/viptv-org/app/issues/376),
+[app#454](https://github.com/viptv-org/app/issues/454)); the who line still
 takes the action block's place.
 
 **LIVE-EMPTY-001B geometry.** Page inset and gutter as above; the block starts
@@ -265,8 +271,9 @@ today.
   today's Live page shows instead.
 - **W:** no autofocus. Tab reaches the primary, then the secondary; Enter and
   Space activate. A pointer press keeps the existing 0.97 scale and hover steps.
-- **P and tablet:** taps. The primary is 54 tall, above the bottom bar; nothing
-  in the block is inside the bar's fade.
+- **P and tablet:** taps. The primary is 54 tall, above the bottom bar; the
+  block does not scroll, so no page fade covers it and nothing in the block sits
+  under the bar.
 - **Motion:** nothing animates in, loops or delays an action. The block and the
   artwork appear in the same frame as the page here; the app's shipped
   photograph loads asynchronously, so it can arrive after the copy (see
@@ -307,8 +314,8 @@ button in the no-source state.
 3. **LIVE-EMPTY-03:** the same profile on a phone at 390 × 844. The tall crop
     is a full-bleed band under the header, scrimmed into `bg` at its bottom
     edge; the eyebrow, headline, body and both actions sit below it on the 16 dp
-    gutter; the primary is a full-width accent button and the actions clear the
-    bottom bar and its fade.
+    gutter; the primary is a full-width accent button and the actions end above
+    the bottom bar's 80 dp box, with nothing reserved for a scroll fade.
 4. **LIVE-EMPTY-04:** the same profile in a desktop window at 1440 × 900, in a
     browser at 1280 × 800, on a tablet at 1280 × 800 and with the desktop window
     narrowed to 600 wide. The first three use the wide crop; the 600-wide
@@ -351,7 +358,7 @@ app's own rendered measurements, not a board comparison.
 | Field | No source (LIVE-EMPTY-001A) | Still loading (LIVE-EMPTY-001B) | Answered with no channels (LIVE-EMPTY-001B) |
 |---|---|---|---|
 | Contract | design `bf8ac45`, `342a8c7` and [design#70](https://github.com/viptv-org/design/issues/70); [No source](#no-source-live-empty-001a) and [Artwork](#artwork); LIVE-EMPTY-01–07 | design `bf8ac45`; [Sources, no channels](#sources-no-channels-live-empty-001b); LIVE-EMPTY-08 | design `bf8ac45`; the same section; LIVE-EMPTY-09–13 |
-| Implementation | app `434d10e2`: `LiveNoSourcePage` and `LiveEmptyArtwork` in `features/live/LiveEmptyState.kt` and `LiveEmptyArtwork.kt`; `AccountAccess` picks the owner, member and paired forms from `account.role`; `LiveRoute` returns before the page chrome | app `434d10e2`: `liveSpread` → `Loading`, `LiveChannelSkeletons` in `LiveScreen.kt` and `TvLiveScreen.kt`, the route's progress bar | app `434d10e2`: `liveSpread` → `NoChannels`, `LiveNoChannels`, the route's retry and Source integrations |
+| Implementation | app `06bc0a96`: `LiveNoSourcePage` and `LiveEmptyArtwork` in `features/live/LiveEmptyState.kt` and `LiveEmptyArtwork.kt`; `AccountAccess` picks the owner, member and paired forms from `account.role`; `LiveRoute` returns before the page chrome; the phone block ends on `bottomBarClearance` | app `06bc0a96`: `liveSpread` → `Loading`, `LiveChannelSkeletons` in `LiveScreen.kt` and `TvLiveScreen.kt`, the route's progress bar | app `06bc0a96`: `liveSpread` → `NoChannels`, `LiveNoChannels`, the route's retry and Source integrations |
 | Functional evidence | `LiveEmptyStateTest` and `LiveUiTest` cover the page facts, both actions and their Settings sections, identity loading, the TV focus entry and return, and the four layouts; the owner, member and paired forms are `ownerAccountSessionSeesTheSetupActionsAndNoWhoLine`, `memberAccountSessionSeesTheWhoLineAndNoSetupActions`, `aMemberOnTheTvGetsNoFocusStopInTheBlock`, `whoMayChangeSourcesFollowsTheHouseholdOwner` and `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo`; `LiveEmptyPhoneLayoutTest` covers the phone band and its who line | `LiveUiTest.noChannelsWhileTheRequestIsOpenDrawsSixSkeletonsAndOnlyTheSourceChip`, on TV and desktop with one and two connections | `LiveUiTest.noChannelsAnsweredShowsTheReasonAndRetryOnlyWhenSomethingFailed`, `sourceIntegrationsIsAbsentWhenTheViewerCannotManageSources`, `sourceIntegrationsWaitsForTheOwnerAsTheSetupActionsDo` and `aSourceAddedElsewhereReplacesTheEmptyStateInPlace` |
 | Visual evidence | no board. `LiveEmptyArtworkTest` measures the photograph's distinct colours and its scrim luminance, `LiveEmptyPhoneLayoutTest` measures the band, gutter and clearance at 360 × 640 and 412 × 915 | no board; six rows and the row shape are asserted, not measured | no board; the copy, the absent artwork and the action geometry are asserted |
 | Device evidence | unverified: none | unverified: none | unverified: none |
@@ -362,7 +369,9 @@ Run: app PR [#407](https://github.com/viptv-org/app/pull/407), `app checks`
 revision that contains the tests above, and app PR
 [#492](https://github.com/viptv-org/app/pull/492), `app checks`
 [41443517520](https://github.com/viptv-org/app/actions/runs/41443517520), for the
-member line. app#349's own change is
+member line, and app PR [#493](https://github.com/viptv-org/app/pull/493), `app
+checks` [41448928194](https://github.com/viptv-org/app/actions/runs/41448928194),
+for the phone page bottom clearance. app#349's own change is
 [app#352](https://github.com/viptv-org/app/pull/352)
 ([run 41269197286](https://github.com/viptv-org/app/actions/runs/41269197286)).
 
@@ -404,6 +413,11 @@ member line. app#349's own change is
 - Phone and tablet use the tall photograph, every layout 640 dp or wider the
   wide one (`compact = maxWidth < 640.dp`), so a 600-wide desktop window uses the
   phone block (`narrowDesktopWindowUsesThePhoneBlock`).
+- The phone block ends at the shared bottom clearance, the bar's own 80 dp box,
+  and nothing scrolls, so no fade is drawn over it and neither the fade nor the
+  navigation-bar inset is reserved
+  (`LiveEmptyPhoneLayoutTest.thePhoneBlockFitsUnderTheHeaderWithItsActionsClearOfTheBottomBar`,
+  `aViewerWhoCannotSetUpLiveReadsTheWhoLineWhereTheActionsWouldBe`).
 - Retry re-requests the same `liveQuery` and shows the loading form again;
   channels arriving replace the state in place
   (`aSourceAddedElsewhereReplacesTheEmptyStateInPlace`, which does not assert the
