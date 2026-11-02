@@ -280,10 +280,12 @@ lists them.
 
 ## Android TV episode-number jump (AND-EPISODE-JUMP-001)
 
-The proposed compact `Episode #` chip beside the season badge opens a native
-numeric-input dialog. Exact current-season episode metadata controls the jump;
-success only scrolls and focuses the card. Invalid input remains editable in
-the dialog, and Back first hides the IME. [The behavior contract](../specs/behavior/episode-number-jump.md)
+The proposed compact `Episode #` chip ends the season strip, after every season
+badge, and opens a native numeric-input dialog. Right walks the season badges
+and then reaches the chip; Down from any badge enters the episode row. Exact
+current-season episode metadata controls the jump; success only scrolls and
+focuses the card. Invalid input remains editable in the dialog, and Back first
+hides the IME. [The behavior contract](../specs/behavior/episode-number-jump.md)
 defines the full state and acceptance scenarios. This does not change the
 shared Core hero Play/Resume rule or require Roku/TV-web adoption.
 
