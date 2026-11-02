@@ -14,6 +14,26 @@ releases as the source: updates come from the signed-in server's
 
 Refs [design#55](https://github.com/viptv-org/design/issues/55).
 
+## 2026-11-02 — Best match starts as soon as it meets every preference
+
+[SRC-BEST-MATCH-001](specs/behavior/source-best-match.md) describes one start
+rule: the first Best matches row starts as soon as a ranking reports that it
+fully meets the profile's quality, audio, HDR and delivery preferences, and at
+the end of discovery otherwise. The countdown, its hard deadline and its
+Play now / Cancel controls, with the acceptance scenarios that assumed them,
+make way for that rule. The status header separates what ships in app
+`62e0c949`, backend `e1ec02d` and core `985a23f` — the ranking order and hard
+filters without decode class and series memory, the Best matches and All sources
+groups with their headers and marker, progressive ranking, and the early start —
+from what is still proposed: decode class, series memory and device capability
+([core#32](https://github.com/viptv-org/core/issues/32)), and fallback with its
+notices ([app#411](https://github.com/viptv-org/app/issues/411)). A start stops
+on a pick, a close, leaving the screen or a drag on the list; moving focus in
+the list does not stop it. The marker and the row that starts are the same row.
+`docs/playback/PLAYBACK_CAPABILITIES.md` names the automatic start.
+
+Refs [design#56](https://github.com/viptv-org/design/issues/56).
+
 ## 2026-11-01 — The brand rasters are checked against the vector master
 
 `scripts/validate.py` now regenerates `assets/brand/app-icon/` and

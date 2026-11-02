@@ -1,14 +1,22 @@
 # ACCT-SPLIT-001 — Account, profile and device settings
 
-Status: the Account/Profile/This device split is **proposed**. The three
-account pages below describe **baseline** app behavior and cite their source
-revisions. The settings shell and profile split remain unimplemented.
+Status: **implemented**, not device-verified. The four-group shell, the Profile
+page and every This device and Account row below exist on phone, tablet,
+desktop, web and TV at the source revision cited next. Implemented is not
+verified: no device evidence exists for these layouts (see [Unknowns](#unknowns)).
 
-Source revisions: the KMP app's Settings at app `d2db87f`
-(`features/settings/`, `state/SettingsPage.kt`, `state/SettingsRoute.kt`) and the
-archived dashboard at web `d2d5b27` (`src/AccountApp.tsx`, `src/AdminShell.tsx`,
-`src/AccountScreens.tsx`, `src/ParentalControls.tsx`). Backend routes are cited
-from `server/src/routes.rs`, `server/src/auth/middleware.rs` and
+Not built: the **Notifications** row has no page (app#243); recovery codes and
+editing the account's display name or username have no route; the phone **TV
+remote** in `components.md` §11 is not in the app and Settings has no **Watch on
+TV** row, so a TV signs in with **Account › Add a device**.
+
+Source revisions: the KMP app's Settings at app `62e0c949`
+(`features/settings/`, `state/ControllerAccountDevices.kt`,
+`state/ControllerAccountDeletion.kt`, `state/ControllerAccountPassword.kt`,
+`state/SettingsPage.kt`, `state/SettingsRoute.kt`). The three account provider
+pages below describe **baseline** app behavior and cite their own revisions.
+Backend routes are cited from `server/src/routes.rs`,
+`server/src/auth/middleware.rs`, `server/src/auth/actions.rs` and
 `server/src/kids/` in viptv-org/backend.
 
 Reference boards exist for the parts, not for the split: `M3Settings`,
@@ -27,12 +35,10 @@ in their hand (This device), or the household they signed in to (Account). An
 account-level action is never mixed into a profile page, and a profile action is
 never shown as if it changed the whole household.
 
-The current app gets this wrong in three ways: phone shows one flat list with
-Playback, Add-ons, Account, Devices, Parental controls, Help and About as
-siblings; desktop and web put Playback and Subtitles inside a sidebar headed
-**Account**; TV has one flat rail with **Account** and **Profiles** next to each
-other, so "Account" reads as "my profile". The dashboard (`AdminShell`) already
-groups its nav as *Your profile*, *Your account* and *Operator*.
+The groups keep four kinds of row apart. A flat list makes "Account" read as
+"my profile", and a sidebar headed **Account** makes a per-profile preference
+look account-wide. The four labels answer "whose setting is this?" before a row
+is opened.
 
 ## Who owns what
 
@@ -42,7 +48,7 @@ Every row below is one setting or one action, with its real owner. "Account" and
 | Setting or action | Owner | Backend today |
 |---|---|---|
 | Display name, `@username`, role | Account | `GET /auth/me`; no edit route |
-| Password | Account | none — `POST /auth/recover` only, which needs a recovery code |
+| Password | Account | `POST /auth/password` (current and new password) |
 | Recovery codes | Account | issued once at register/recover; no list or regenerate route |
 | Household PIN | Account | `GET /parent/status`, `POST /parent/unlock`, `PUT /parent/pin` |
 | Add-ons (inventory) | Account | `GET/POST /addons`, `PATCH/DELETE /addons/:id` |
@@ -53,7 +59,7 @@ Every row below is one setting or one action, with its real owner. "Account" and
 | Playback gateways and access grants | Gateway owner; shared accounts read and check capacity | `GET/POST/PATCH/PUT/DELETE /gateways*` |
 | Devices and sessions | Account | `GET /account/devices`, `DELETE /account/devices`, `DELETE /account/devices/:id`, `DELETE /auth/sessions` |
 | Add a device (pairing code approval) | Account | `POST /auth/device/lookup|approve|deny` |
-| Delete account | Account | none |
+| Delete account | Account | `DELETE /auth/account` (username, password, household PIN) |
 | Profile name and avatar | Profile | `PATCH /profiles/:id`, `DELETE /profiles/:id` |
 | Kids flag and age limit | Profile | `GET/PUT /profiles/:id/kids` |
 | Approved and blocked titles | Profile | `GET/POST /profiles/:id/approvals`, `GET /parent/search` |
@@ -64,7 +70,6 @@ Every row below is one setting or one action, with its real owner. "Account" and
 | Import from Stremio | Profile | `POST /profiles/:id/imports/stremio/preview|…/review|…/apply` |
 | Autoplay next episode | Device | app-local; `PLAY-NEXT-AUTOPLAY-001` |
 | Display (accent, text size, reduce motion, screen saver, fit) | Device | TV local store |
-| Watch on TV (pairing and remote) | Device | local store |
 | App updates, diagnostics, licences | Device | app updates: the signed-in server's `/updates/android/update.json` and the APK it names |
 
 There is **no sign-in email** anywhere: an account is a `username`, a display
@@ -84,7 +89,7 @@ where the platform implements it.
 |---|---|
 | **Profile** | Profile · Linked services · Parental controls · Import from Stremio |
 | **Playback** | Playback · Subtitles & audio |
-| **This device** | Display (TV) · Watch on TV (phone, tablet) · Notifications (only where implemented) · About · Help |
+| **This device** | Display (TV) · Notifications (only where implemented) · About · Help |
 | **Account** | Account · Password · Household PIN · Devices & sessions · Add a device · Add-ons · Source integrations · Xtream connections · VOD matches · Playback gateways · Sign out · Delete account |
 
 - **Profile** opens the page in [Profile](#profile): the current profile's name,
@@ -100,17 +105,19 @@ where the platform implements it.
   next episode** keeps its note **"Plays the next episode after a 10-second
   countdown. Applies to this device."**
 - **This device** holds what changes this machine only. **Display** exists on TV.
-  **Watch on TV** exists on phone and tablet. **Notifications** appears only once
-  it has a real page (app#243); until then no layout shows the row, because a row
-  that opens "not available on this connection yet" is not a setting.
+  **Notifications** appears only once it has a real page (app#243); until then no
+  layout shows the row, because a row that opens "not available on this
+  connection yet" is not a setting.
 - **Account** holds the household's own state, and it is visible to everyone
   signed in: signing out and approving a device must stay reachable from a
   member's TV and phone. See [Account](#account) for the rows a device session
-  cannot use.
+  cannot use. **Add a device** is the only place a TV signs in: the TV shows a
+  code, and this page approves it.
 
 Local mode (no server) keeps the same shell. Profile and Playback rows that need
-a server are absent rather than disabled, This device keeps its rows, and Account
-holds **Sign out** only, whose row reads **Change connection** in local mode.
+a server are absent rather than disabled, This device keeps its rows, and
+Account holds **Add a device** and **Sign out**, whose row reads **Change
+connection** in local mode.
 
 ## Settings shell per platform
 
@@ -234,16 +241,25 @@ Title **Account**. Rows, in order, each its own page or dialog:
 1. **Account** — the identity page: **Name** `[display name]`, **Username**
    `@[username]`, **Role** `Owner` or `Member`. Read-only, because no route edits
    them. The name is set when the account is created.
-2. **Password** — the page in [Change password](#change-password-proposed).
+2. **Password** — the page in [Change password](#change-password). The row is
+   absent only on a server that predates the route (it answers 404).
 3. **Household PIN** — set, change or remove the household PIN: **"Use a 4–8
    digit PIN to protect leaving kids profiles. Turn off kids mode on all profiles
    before removing the PIN."** Removing it is disabled while any profile has kids
    mode on, with **"Turn off kids restrictions on all profiles before removing
    the PIN."**
 4. **Devices & sessions** — the page in [Devices and sessions](#devices-and-sessions).
-5. **Add a device** — the existing code-entry page (**Add a device**, **"Open
-   VIPTV on the other device, choose Sign in, then enter the code it shows."**,
-   8-character code, Continue → confirm → done/denied).
+5. **Add a device** — the page where a TV signs in. **Add a device**, with
+   **"Open VIPTV on the other device, choose Sign in, then enter the code it
+   shows."** — or **"…then scan the code it shows."** where the platform offers
+   scanning — then the 8-character code and **Continue**, **Sign in this
+   device?** · **"Only continue if the code matches the one on that device."** ·
+   **Sign in this device** / **Deny**, and **Device signed in** ("It can now pick
+   its profile.") or **Denied** ("That device will not be signed in."). Both end
+   on **Add another device**. Local mode has no server to approve a code, so the
+   page reads **"TV sign-in uses a server account. Sign in to the same server on
+   both devices to share profiles and progress."** with **Change connection**.
+   This page, not a Settings row of its own, is how pairing is reached.
 6. **Add-ons** — the existing inventory page. Add-ons belong to the account; the
    switch on a row enables one for the current profile and the page says so.
 7. **Source integrations** — VIPTV Sources and M3U.
@@ -253,17 +269,23 @@ Title **Account**. Rows, in order, each its own page or dialog:
    [VOD matches](#vod-matches-baseline).
 10. **Playback gateways** — shared stream gateways and their access grants; see
     [Playback gateways](#playback-gateways-baseline).
-11. **Sign out** — danger, last but one, with the existing confirmation
-   (**Sign out of this device?** / TV **Sign out of this TV?**).
+11. **Sign out** — danger, last but one, with the existing confirmation. Title
+    **Sign out of VIPTV on this phone?** on phone, **Sign out of VIPTV on this
+    device?** on tablet, desktop and web, **Sign out of this TV?** on TV, with
+    **"Your profiles and progress stay on your account."** · Cancel · Sign out
+    (danger). In local mode the row reads **Change connection** and asks **Leave
+    local mode on this device?** (TV: **Leave local mode on this TV?**) with
+    **"Your profiles and progress stay on this device."** · Cancel · Leave.
 12. **Delete account** — danger, last, the page in
-   [Delete account](#delete-account-proposed).
+    [Delete account](#delete-account).
 
 A TV device session cannot manage the account: the server answers
 `account_session_required` for anything but reading. On TV, **Password**,
-**Household PIN**, **Delete account** and the sign-out buttons inside Devices &
-sessions are shown disabled with **"Manage this from a signed-in phone, computer
-or the web dashboard."** The rest of the group stays usable, because a TV must be
-able to sign out and read its devices.
+**Household PIN** and **Delete account** are shown disabled with **"Manage this
+from a signed-in phone, computer or the web dashboard."**, and **Devices &
+sessions** opens the same list read-only, with that line in place of its sign-out
+actions. The rest of the group stays usable, because a TV must be able to sign
+out and read its devices.
 
 Account-level pages sit after **Source integrations** and before **Sign out**:
 **Xtream connections**, **VOD matches** and **Playback gateways**. Gateway
@@ -415,10 +437,7 @@ key must allow this namespace and all required playback operations."**, **"The
 gateway is not ready or could not be reached securely. Try again."**, and
 **"Gateway checks are busy. Try again shortly."**
 
-## Change password (proposed)
-
-Needs a backend route; none exists (`POST /auth/recover` only resets a password
-with a recovery code). Until it exists the row is absent rather than dead.
+## Change password
 
 Page title **Change password**, three fields: **Current password**, **New
 password** (at least 12 characters, matching the register rule), **Confirm new
@@ -440,33 +459,40 @@ The existing page (`W3Account` board), unchanged in shape:
 
 - Lead: **"Everywhere [name]'s account is signed in. Signing a device out doesn't
   delete anything from the account."**
-- One row per signed-in device: a 40 icon tile, the device name 15/600 (for
-  example **"This browser · Chrome on macOS"**, **"Living room TV"**), and
-  **Now** or **Signed in [when]**. The current device reads **This device** in
-  place of a sign-out action.
-- **Sign out** on each other row, opening **Sign out this device?** ·
-  **"It will need a new code to sign in again."** · Cancel · Sign out (danger).
-- **Sign out of all devices** below the list (240 × 40, danger fill), disabled on
-  the device you are using, opening **Sign out of all devices?** · **"Every other
-  device has to sign in again. This one stays signed in."** · Cancel · Sign out
-  all (danger).
+- One row per signed-in device: a 40 icon tile, the device name 15/600 — the
+  session's own name, else **This browser** for a browser session and **VIPTV
+  app** for an app session — and **Now** or **Signed in [when]**. The current
+  device reads **This device** in place of a sign-out action.
+- **Sign out** on each other row, where the server allows it, opening **Sign out
+  [device name]?** · **"This device will need to sign in again. Your profiles,
+  lists and history stay on your account."** · Cancel · Sign out (danger).
+- **Sign out of all devices** below the list (240 × 40, danger fill), when the
+  server allows it. It signs out this device too, so it is offered on the device
+  you are using as well: **Sign out of all devices?** · **"Every device,
+  including this browser, will need to sign in again. Your profiles, lists and
+  history stay on your account."** · Cancel · Sign out of all devices (danger).
+  Confirming clears this device's session and returns to sign-in.
 - Empty: **"No other devices are signed in."** Loading: three 68-high skeleton
-  rows. Failure: the error line plus **Retry**, with the list left as it was.
+  rows. Failure: the error line plus **Retry**, with the list left as it was; a
+  loaded list also offers **Refresh**.
 - Refresh after every successful sign-out; a row that disappears stays gone.
 
-## Delete account (proposed)
-
-Needs a backend route; none exists. Until it exists the row is absent.
+## Delete account
 
 Page title **Delete account**, danger. Body: **"This deletes [name]'s account,
 its profiles, their history, My List, add-ons and paired devices. It cannot be
-undone."** Fields: the account's username typed to confirm, and the household PIN
-when one is set. Primary **Delete account** (danger, disabled until the typed
-username matches exactly), secondary **Cancel**.
+undone."** Fields: the account's username typed to confirm (**"Type [username]
+to confirm"**), the account password, and the household PIN when one is set —
+the PIN field is absent when the account has none. Primary **Delete account**
+(danger, disabled until the typed username matches exactly, the password is not
+empty and the PIN is well formed), secondary **Cancel**.
 
 - Success: the app clears its session and opens the sign-in screen with
   **"Your account was deleted."**
-- Wrong username or PIN: inline error, both fields kept.
+- Wrong username or password: **"The username or password is not correct."**
+- Wrong PIN: **"The parent PIN is not correct."**
+- The last owner: **"Other accounts still need an owner. Have them delete their
+  accounts first."**
 - Failure: **"Could not delete your account. Nothing was changed. Try again."**
 - Back, Cancel and Escape leave without deleting.
 
@@ -538,8 +564,8 @@ username matches exactly), secondary **Cancel**.
 | Delete profile | Dialog over the Profile page | Dialog over the Profile page | Full-page dialog, Cancel focused |
 | Sign out | Danger row → confirmation | Danger row → confirmation | Danger row → confirmation (`Tv3SignOut`) |
 | Household PIN | Own page with 4–8 digit fields | Own page | Last row of Parental controls |
-| Devices | Own page | Own page | The same list, read-only: sign-out actions are disabled with their reason |
-| Add a device | Own page, code entry | Own page, code entry | Not on TV; a TV pairs itself |
+| Devices | Own page | Own page | The same list, read-only: the sign-out actions are disabled with their reason |
+| Add a device | Own page, code entry | Own page, code entry | Not on TV; a TV shows the code and is signed in from a phone, computer or the web dashboard |
 
 Every action keeps a stated equivalent. TV shows the account rows it cannot use
 as disabled with the reason, its devices list is read-only, and the pages that
@@ -577,19 +603,20 @@ need a browser session say where to use them.
    Left returns to the rail row that opened a page, and Back from a page lands on
    that row.
 10. **ACCT-SPLIT-10** On TV, Password, Household PIN, Delete account and the
-    per-device sign-out actions are disabled with **"Manage this from a signed-in
-    phone, computer or the web dashboard."**, while Sign out and the devices list
-    still work.
+    sign-out actions in Devices & sessions are disabled with **"Manage this from
+    a signed-in phone, computer or the web dashboard."**, while Sign out and the
+    devices list keep working.
 11. **ACCT-SPLIT-11** Change password with a wrong current password shows
     **"That password is not correct."** and saves nothing; with a mismatch shows
     **"Passwords do not match."**; on success returns to Account with
     **"Password changed. Other devices stay signed in."**
-12. **ACCT-SPLIT-12** Delete account is disabled until the typed username matches;
-    a wrong PIN fails without deleting anything; success clears the session and
-    shows **"Your account was deleted."** on sign-in.
+12. **ACCT-SPLIT-12** Delete account is disabled until the typed username matches
+    and the password is not empty; a wrong password or PIN fails without deleting
+    anything; success clears the session and shows **"Your account was deleted."**
+    on sign-in.
 13. **ACCT-SPLIT-13** In local mode, no Account rows that need a server appear,
-    the Account group holds **Change connection**, and the Profile page offers the
-    local profile PIN instead of a household PIN.
+    the Account group holds **Add a device** and **Change connection**, and the
+    Profile page offers the local profile PIN instead of a household PIN.
 14. **ACCT-SPLIT-14** A failed load on Devices and on Parental controls keeps the
     page, shows one error line and a retry, and retrying recovers. An expired
     session from any row goes to sign-in with **"Session expired. Sign in again."**
@@ -643,8 +670,6 @@ need a browser session say where to use them.
 - No board shows group labels on phone, tablet, desktop or TV, or the Profile
   page. Their geometry is derived from the type roles and the surrounding board
   spacing and is marked above; a canvas board should follow.
-- **No route changes a password or deletes an account.** Both pages are specified
-  and stay absent until the routes exist.
 - **No route lists or regenerates recovery codes.** `W3Recovery`, `M3Recovery`
   and `D3Recovery` cannot be built as drawn; the Account page has no Recovery
   codes row until a route exists.
@@ -654,7 +679,5 @@ need a browser session say where to use them.
 - Household PIN and the other account settings described above have no
   owner-only rule; a signed-in member can use them. The Xtream, VOD match and
   gateway pages follow their separate owner rules above.
-- Whether the household PIN should be asked for before **Delete account** even
-  when none is set is unverified with the owner.
 - No device evidence exists for the account page layouts. The three account
-  pages above have app source revisions, but no device parity evidence.
+  provider pages above have app source revisions, but no device parity evidence.

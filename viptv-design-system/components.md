@@ -145,7 +145,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Phone bottom nav:** a floating glass bar (`rgba(32,32,35,0.94)`, 20 px blur), 64 tall, 28 px above the edge, 16 px side insets. Tabs are Home, Discover, Live, My List. The current tab is an off-white pill with dark text. Search is a separate 64 round button. It appears on tab screens only, with a 150 px fade behind it.
 - **Phone headers:** a wordmark + avatar (Home), a screen title, back + sub-page title, or a glass back button over art.
 - **Desktop title bar (Tauri):** 40 tall + hairline. It holds the wordmark, Back / Forward, a centred 460 search, and window controls. It is hidden in the fullscreen player. It has a pairing variant for sign-in (no search).
-- **Rail (D):** 84 wide. Items are 64 × 58 with radius 14: Home, Discover, Live, My List (web adds Search). The bottom holds On TV, Settings and the avatar. The current item has a surface-2 fill. "On TV" lights up while the Watch on TV dialog is open.
+- **Rail (D):** 84 wide. Items are 64 × 58 with radius 14: Home, Discover, Live, My List (web adds Search). The bottom holds Settings and the avatar. The current item has a surface-2 fill.
 - **TV rail:** 144 wide, icons only. Focusing it expands a 520 labelled menu over a 0.55 scrim, with the profile on top, then Search, Home, Discover, Live TV, My List, and Settings at the bottom. The Settings menu carries the four group labels (18/700, +0.08em, uppercase, `text.tertiary`, 24 × scale above a group's first row and 8 × scale below its last) and holds **Profile**, **Switch profile**, Playback, Subtitles & audio, Display, About, Account, Add-ons, Source integrations, Parental controls ([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)).
 
 ---
@@ -205,10 +205,21 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Live:** no timeline or next. It shows the channel name, "Live TV" and the live dot, and audio / exit only on TV.
 
 
-## 11. TV remote (phone, Watch on TV)
+## 11. TV remote (phone, Watch on TV) — proposed, not implemented
+
+**Status:** no app ships this remote. The app has no **Watch on TV** row, page,
+header button or remote sheet, and Settings' This device group is Display (TV),
+About and Help ([ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md)).
+A TV signs in with **Settings › Account › Add a device**, which approves the code
+the TV shows; that page is the pairing story, not this one. The desktop title
+bar's cast and remote buttons have no caller, so they draw nowhere either. The
+rules below are the design for a remote that does not exist yet and claim no
+current entry point.
 
 **Rules**
-- Off by default. The only way in is **Settings → This device → Watch on TV** (the row reads "Off" until a TV is paired). Nothing else in the app changes for people who never set it up.
+- Off by default. The design assumed a **Watch on TV** row in This device that
+  read "Off" until a TV was paired; no layout shows that row, so the remote has
+  no entry point. Nothing else in the app changes for people who never set it up.
 - Setup is a pushed page flow, not a dialog: intro → choose your TV → PIN → connected. The intro says what the remote does and does NOT do (nothing playing on the phone moves to the TV) before discovery starts. Android SDK 36 does not require a runtime local-network prompt.
 - **Remote button:** once a TV is paired, a 44 round button (surface-1, 1 px `line-outline` border, remote icon 20) sits in the header of the four tab screens (Home, Discover, Live, My List), left of the avatar. Its label is "TV remote: [TV name]". It never goes in the bottom nav. It can be switched off in Watch on TV settings. The first time it appears, show a one-time tip (off-white bubble with `on-light` text, "Got it") pointing at it.
 - **The remote** is a bottom sheet (top 118, radius 30, `scrim-sheet`) with every control in the lower half, for one-handed use:
@@ -223,7 +234,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Watch on TV settings (once set up):** a TV card (name, status, "Open the remote"), then Remote (Remote button, Vibrate on press, Keep screen on) and TV (Change TV; Forget this TV, danger). Forgetting the TV turns the feature off and removes the button.
 - Phone **browsers** can't pair: they show the "Watch on TV" dialog pointing to the desktop app (`PhCastUnavailable`).
 
-**Screens:** PhTvSetup, PhTvSearch, PhTvNoAccess, PhTvManual, PhTvPin, PhTvDone, PhHomeRemote, PhRemote, PhRemoteSwipe, PhRemoteOffline, PhTvSettings, PhTvForget.
+**Screens (boards only; no layout draws them):** PhTvSetup, PhTvSearch, PhTvNoAccess, PhTvManual, PhTvPin, PhTvDone, PhHomeRemote, PhRemote, PhRemoteSwipe, PhRemoteOffline, PhTvSettings, PhTvForget.
 
 ## 12. Motion
 

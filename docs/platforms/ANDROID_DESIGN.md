@@ -94,10 +94,11 @@ differ from those boards, these rules win.
 
 - AND-042-HOME: Home has no header bar. Its first element is the Main hero
   card: 16dp gutters, 28dp radius on every corner, starting at the system top
-  inset plus 8dp. The profile and Watch on TV entries leave Home. Settings
-  stays reachable from the Discover, Live and My List headers. Watch on TV
-  stays in Settings › This device. A paired TV's remote button stays in those
-  three headers. This replaces only AND-038's Home header remote button.
+  inset plus 8dp. The profile and remote entries leave Home. Settings stays
+  reachable from the Discover, Live and My List headers. The phone remote is not
+  in the app: there is no **Watch on TV** row and no header remote button, and a
+  TV signs in with **Settings › Account › Add a device**. This replaces only
+  AND-038's Home header remote button.
 - AND-042-NAV: the floating bar keeps the Main geometry: a 64dp glass bar,
   52dp segments and a separate 64dp Search disc. Segments show 22dp icons
   only, with no text, and keep accessible names (Home, Discover, Live TV,
@@ -144,7 +145,7 @@ differ from those boards, these rules win.
   the panel.
 
 Acceptance AND-042-01: phone Home starts with the rounded hero under the status
-bar, shows no header, and keeps Settings and Watch on TV reachable. AND-042-02:
+bar, shows no header, and keeps Settings reachable. AND-042-02:
 icon-only nav with accessible names, content-type headings, live logo tiles,
 6dp lifted progress and year/episode captions. AND-042-03: skeletons for
 Home, Discover, Search and Live, with no loading copy and automatic paging.
@@ -240,17 +241,21 @@ distinct from emulator and synthetic-network evidence.
 ## AND-038 — Android phone Vizio remote (2026-09-27)
 
 Status: approved implementation contract; device qualification remains separate.
+No app ships this remote: it has no **Watch on TV** row, page or header button,
+and a TV signs in with **Settings › Account › Add a device**. The contract below
+stands for the day it is built.
 Source: owner's `viptv-design-system (1).zip`, exported 2026-09-27. The twelve
 PhTv*/PhRemote*/PhHomeRemote reference states and components section 11 define
 the phone remote. Existing AND-036/037 and TV corrections continue to apply.
 
-Settings → This device → Watch on TV is the only entry before pairing. Setup
-pushes native pages over the saved app route: introduction, bounded LAN search,
-manual IPv4 address, four-digit PIN (submit automatically), connected. Back
-cancels the pending operation and returns one step; leaving setup restores the
-originating screen. New PIN starts a fresh challenge. A failed PIN stays on the
-PIN page with editable input. Pairing tokens use the Android Keystore; selected
-TV and preferences are device-local, never account credentials.
+The design entry is a **Watch on TV** row in This device, read "Off" until a TV
+is paired. Setup pushes native pages over the saved app route: introduction,
+bounded LAN search, manual IPv4 address, four-digit PIN (submit automatically),
+connected. Back cancels the pending operation and returns one step; leaving setup
+restores the originating screen. New PIN starts a fresh challenge. A failed PIN
+stays on the PIN page with editable input. Pairing tokens use the Android
+Keystore; selected TV and preferences are device-local, never account
+credentials.
 
 The target remains SDK 36: do not display a fictitious local-network permission
 prompt. Intro copy is “VIPTV searches your local network only to find your TV.”

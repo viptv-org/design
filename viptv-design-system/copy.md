@@ -6,7 +6,7 @@ These are the exact strings used on the screens. Text in `[brackets]` is a place
 
 - **My List** is the saved-titles list, everywhere (the nav tab, page title, menu item and toasts). Do not use "Library" or "Watchlist".
 - **Continue Watching** is the in-progress list: the second segment of My List, and the Home shelf ("Continue watching" as a shelf heading).
-- **Watch on TV** is the pairing / remote feature (the desktop app). The rail item is "On TV".
+- **Watch on TV** is the unbuilt phone-to-TV remote. No layout has an **On TV** rail item or a Settings row for it; a TV signs in with **Settings › Account › Add a device** (`components.md` §11 keeps the design).
 - Search placeholder: **"Search movies and series"** (desktop and web show no keyboard-shortcut hint).
 - Android TV native input: **"Results"**, **"Done"**, **"Unlock"**, **"Cancel"**. The device owns IME action labels; the app shows no custom keyboard or jump-to-results hint.
 - Android TV episode jump (AND-EPISODE-JUMP-001): chip **"Episode #"**; dialog **"Jump to episode"**; field **"Episode number"**; actions **"Go"**, **"Cancel"**; invalid input **"Episode not found in this season."**
@@ -147,16 +147,17 @@ recovery dialog and can be quoted when reporting a failure.
 
 | Dialog | Title | Actions |
 |---|---|---|
-| Sign out | Sign out of this device? (TV: "Sign out of this TV?") | Sign out (danger) · Cancel |
-| Sign out of all devices | Sign out of all devices? | "Every other device has to sign in again. This one stays signed in." · Cancel · Sign out all (danger) |
-| Sign out a device | Sign out this device? | "It will need a new code to sign in again." · Cancel · Sign out (danger) |
+| Sign out | Sign out of VIPTV on this phone? (tablet, desktop and web: "Sign out of VIPTV on this device?"; TV: "Sign out of this TV?") | "Your profiles and progress stay on your account." · Sign out (danger) · Cancel |
+| Sign out, local mode | Leave local mode on this device? (TV: "Leave local mode on this TV?") | "Your profiles and progress stay on this device." · Leave (danger) · Cancel |
+| Sign out of all devices | Sign out of all devices? | "Every device, including this browser, will need to sign in again. Your profiles, lists and history stay on your account." · Cancel · Sign out of all devices (danger) |
+| Sign out a device | Sign out [device name]? | "This device will need to sign in again. Your profiles, lists and history stay on your account." · Cancel · Sign out (danger) |
 | Delete account | Delete account | "This deletes [name]'s account, its profiles, their history, My List, add-ons and paired devices. It cannot be undone." · Cancel · Delete account (danger) |
 | Delete profile | Delete profile | "Delete [name]? This permanently removes this profile's watch history, favorites and preferences." Cancel · Delete profile (danger) |
 | Remove addon | Remove [Addon]? | "Its catalogs leave this device." (local mode) · Cancel · Remove (danger) |
 | Manage addon | Manage [Addon] | Enable / Disable · Remove addon (danger) · Cancel |
 | Parent PIN | Enter parent PIN (TV sign-out: "Enter parent PIN to sign out") | "Enter the parent PIN to continue." (TV: "Use your remote or a connected keyboard.") · Done · Cancel |
-| Watch on TV | Watch on TV | "Connect to a Vizio SmartCast TV on the same network." |
-| Watch on TV, browser | Watch on TV | "TV pairing is available in a VIPTV desktop app with SmartCast support…" · Close |
+| Watch on TV (proposed, not implemented) | Watch on TV | "Connect to a Vizio SmartCast TV on the same network." |
+| Watch on TV, browser (proposed, not implemented) | Watch on TV | "TV pairing is available in a VIPTV desktop app with SmartCast support…" · Close |
 | App update (Android) | Update ready · Update required · Couldn't update VIPTV | See the [app updates contract](../specs/behavior/app-updates.md) for descriptions · Install · Later · Try again |
 | Updating screen (Android, proposed) | Updating VIPTV to [version]… · Allow updates | A full-screen cover rather than a dialog; copy, states and failure flow in [app-updates.md](../specs/behavior/app-updates.md#updating-screen) · Open settings · Try again · Later |
 
@@ -175,19 +176,23 @@ recovery dialog and can be quoted when reporting a failure.
 
 [ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md) groups Settings into **Profile**, **Playback**, **This device** and **Account**, in that order, on every platform.
 
-- Rows — Profile: **Profile** · **Linked services** · **Parental controls** · **Import from Stremio**. Playback: **Playback** · **Subtitles & audio**. This device: **Display** (TV) · **Watch on TV** (phone, tablet) · **About** · **Help**. Account: **Account** · **Password** · **Household PIN** · **Devices & sessions** · **Add a device** · **Add-ons** · **Source integrations** · **Sign out** · **Delete account**.
+- Rows — Profile: **Profile** · **Linked services** · **Parental controls** · **Import from Stremio**. Playback: **Playback** · **Subtitles & audio**. This device: **Display** (TV) · **About** · **Help**. Account: **Account** · **Password** · **Household PIN** · **Devices & sessions** · **Add a device** · **Add-ons** · **Source integrations** · **Sign out** · **Delete account**.
 - The profile card above the groups reads the profile's name with **Switch profile**. On TV the rail entry is **Switch profile**, beside a separate **Profile** entry that opens the page below.
 - Profile page: **Name** · **Avatar** · **Kids profile** ("Limits titles, search and Live for this profile.") · **Maturity limit** ("Titles above this rating are hidden for this profile"; values **All ratings**, `G` `PG` `PG-13` `R` `NC-17`, `TV-Y` `TV-Y7` `TV-G` `TV-PG` `TV-14` `TV-MA`) · **Approved titles** ("Only these titles show in the kids library") · **Profile lock** ("Ask for a PIN before this profile opens") · **Language** ("Default audio and subtitles for this profile") · **Delete profile**.
 - Account page: **Name**, **Username** `@[username]`, **Role** **Owner** / **Member**. There is no email row.
 - Household PIN: "Use a 4–8 digit PIN to protect leaving kids profiles. Turn off kids mode on all profiles before removing the PIN." A blocked removal reads "Turn off kids restrictions on all profiles before removing the PIN."
 - Devices: "Everywhere [name]'s account is signed in. Signing a device out doesn't delete anything from the account." · a row reads **Now** or **Signed in [when]**, and **This device** for the one in use · empty "No other devices are signed in." · **Sign out of all devices**.
-- Change password (proposed): **Current password** · **New password** · **Confirm new password** · **Change password** · **Cancel** · "Password changed. Other devices stay signed in." · "That password is not correct." · "Passwords do not match." · "Too many attempts. Wait a minute and try again." · "Could not change your password. Try again."
-- Delete account (proposed): type the username to confirm, plus the household PIN when one is set. "Could not delete your account. Nothing was changed. Try again." Success signs out with "Your account was deleted."
-- A TV cannot manage the account: those rows are disabled with "Manage this from a signed-in phone, computer or the web dashboard.", including the sign-out actions in Devices & sessions.
+- Change password: **Current password** · **New password** · **Confirm new password** · **Change password** · **Cancel** · "Password changed. Other devices stay signed in." · "That password is not correct." · "Passwords do not match." · "Too many attempts. Wait a minute and try again." · "Could not change your password. Try again."
+- Delete account: type the username to confirm ("Type [username] to confirm"), the account password, plus the household PIN when one is set. "The username or password is not correct." · "The parent PIN is not correct." · "Other accounts still need an owner. Have them delete their accounts first." · "Could not delete your account. Nothing was changed. Try again." Success signs out with "Your account was deleted."
+- A TV cannot manage the account: those rows are disabled with "Manage this from a signed-in phone, computer or the web dashboard.", and **Devices & sessions** opens read-only with that line in place of its sign-out actions.
 
-## Watch on TV (phone remote)
+## Watch on TV (phone remote) — proposed, not implemented
 
-- Settings row: **Watch on TV** · "Use this phone as a Vizio TV remote" · value "Off" until a TV is paired.
+No app ships this remote and no layout shows the **Watch on TV** row it starts
+from; the strings stay as the design for a feature that is not built
+(`components.md` §11). A TV signs in with **Settings › Account › Add a device**.
+
+- Settings row (not shown): **Watch on TV** · "Use this phone as a Vizio TV remote" · value "Off" until a TV is paired.
 - Intro: "Use this phone as your TV remote" / "Works with Vizio SmartCast TVs on the same Wi‑Fi as this phone. It's off until you set it up." Points: "Arrows, OK, Back, play and volume for your TV." · "Opens VIPTV on the TV in one tap." · "What's playing on this phone stays here. Nothing is sent to the TV." Note: "VIPTV searches your local network only to find your TV." Button: **Set up a TV**.
 - Choose your TV: "Looking for Vizio TVs on your Wi‑Fi…" · "Don't see your TV?" / "Turn the TV on, then check it's on the same Wi‑Fi as this phone. It can take a few seconds to show up." · **Enter IP address**.
 - Permission off: "VIPTV can't look for TVs" / "Local network access is off for VIPTV. Turn it on in your phone's settings, then come back here." · **Open phone settings** (Manual IP entry does not bypass a network permission denial).
