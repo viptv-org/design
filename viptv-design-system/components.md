@@ -315,7 +315,12 @@ floodlit stadium with crowd silhouettes, pitch lines and a glowing `LIVE`
 scoreboard. Paths, rectangles, circles and ellipses with linear and radial
 gradients only, in the tokens' colours, with the reading scrim baked in; no
 text, raster, filter, mask, pattern, blend mode or external reference, so each
-file converts to a vector drawable unchanged. Under 30 KB each.
+file converts to a vector drawable unchanged. Under 30 KB each. No client
+packages them: the app ships a credited CC0 stadium photograph with the scrim
+drawn in code (app `2d7949b8`,
+[app#349](https://github.com/viptv-org/app/issues/349)), and
+[design#70](https://github.com/viptv-org/design/issues/70) decides which artwork
+the contract keeps.
 
 ## Implemented component contracts (2026-10-19)
 
