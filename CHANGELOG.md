@@ -1,5 +1,21 @@
 # Design changes
 
+## 2026-11-02 — The phone Live no-source layout is a top photo band
+
+[LIVE-EMPTY-001](specs/behavior/live-empty-state.md)'s phone geometry now
+matches what viptv-org/app ships at `86df58c1`
+([app#376](https://github.com/viptv-org/app/issues/376)): under 640 dp the tall
+artwork is a full-bleed band under the header, cropped bottom-anchored and
+scrimmed into `bg` at its bottom edge, and the eyebrow, headline, body and
+full-width actions sit below it on the 16 dp gutter. The band takes whatever
+the copy and the shared bottom clearance leave — at most about 55 % of the page
+area and about a third on a 411 × 914 dp phone — so it shrinks first on short
+screens and the copy and buttons never sit under the bottom bar. The who line
+still takes the action place. The design-system P geometry row and
+LIVE-EMPTY-03 match.
+
+Refs [design#54](https://github.com/viptv-org/design/issues/54).
+
 ## 2026-11-02 — The controlled next episode plays the best match on either Default source
 
 [PLAY-NEXT-AUTOPLAY-001](specs/behavior/next-episode-autoplay.md) now says how

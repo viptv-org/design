@@ -143,12 +143,16 @@ nothing is traced from a capture.
   bottom scrim; the tall file carries a bottom scrim (30 % at 45 %, 80 % at
   72 %, 100 % at the bottom) and a short top scrim. A page draws the file once
   and adds no overlay of its own, so the copy and actions always sit on the
-  darkest part.
+  darkest part; the phone band's bottom scrim draws in code instead, so it
+  ends exactly on `bg` at the band's bottom edge.
 - **Placement:** the page area only — under the TV navigation, the phone header,
   the desktop rail and the browser title bar, which keep their own grounds.
   Cover, anchored centre: at 1920 × 948 the wide file loses 66 px at the top and
   66 at the bottom (empty sky and the pitch's near edge); a narrow window uses
-  the tall file instead, so a phone never crops the wide scene to a sliver.
+  the tall file instead, so a phone never crops the wide scene to a sliver. On
+  a phone the tall file is a full-bleed band under the header, cropped
+  bottom-anchored rather than covering the page area; see the P row under
+  Layout.
 - **Not named:** the artwork is decorative. It carries no content description
   and no accessible text; the heading, body and actions are the page.
 
@@ -187,18 +191,27 @@ measurements below are derived from the type roles and the page insets in
 | Secondary | 40 tall, quiet text, 15/600, `text-secondary` |
 | Gaps | 16, 20, 28, 12 as on T, in that order |
 
-**P — 390 × 844, page gutter 16, bottom bar 80**
+**P — 390 × 844, page gutter 16, bottom bar 80 and its 28 page fade**
 
 | Element | Geometry |
 |---|---|
-| Artwork | fills the page area, cover, centre |
-| Text block | x 16, width 358, bottom-anchored 112 above the page's bottom edge |
+| Artwork | the tall file, full-bleed width, a band under the header from the top of the page area, cropped bottom-anchored; its bottom edge scrims into `bg` |
+| Text block | below the band with a 20 gap, x 16, width 358; the block ends clear of the shared bottom clearance |
 | Eyebrow | 11/700, +0.08em, uppercase, `text-secondary` |
 | Headline | D 34/700, −0.02em, line 40, at most 3 lines |
 | Body | 15/400, line 22, at most 3 lines |
 | Primary | 54 tall, radius 27, full block width, accent fill, `on-accent` 17/700 |
 | Secondary | 44 tall, quiet text, 15/600, `text-secondary` |
 | Gaps | 12, 16, 24, 10 as on T and W, in that order |
+
+The band's height is not fixed: it takes whatever the copy block and the shared
+bottom clearance (`LocalBottomClearance`, app#345) leave it, at most about 55 %
+of the page area, so it shrinks first on a short screen and the copy and
+buttons never sit under the bottom bar. On a 411 × 914 dp phone the copy and
+clearance leave roughly a third of the page area for the band. This is what
+app `86df58c1` ships
+([app#376](https://github.com/viptv-org/app/issues/376)); the who line still
+takes the action block's place.
 
 **LIVE-EMPTY-001B geometry.** Page inset and gutter as above; the block is the
 top-left of the page area (T 96/60, W 40/40, P 16/24, each measured from the
@@ -259,8 +272,10 @@ button in the no-source state.
     its **Source integrations** page; Back returns to Live with the primary
     focused and a re-requested page.
 3. **LIVE-EMPTY-03:** the same profile on a phone at 390 × 844. The tall artwork
-    covers the page area without letterboxing, the block sits above the bottom
-    bar, and the primary is a full-width accent button.
+    is a full-bleed band under the header, scrimmed into `bg` at its bottom
+    edge; the eyebrow, headline, body and both actions sit below it on the 16 dp
+    gutter; the primary is a full-width accent button and the actions clear the
+    bottom bar and its fade.
 4. **LIVE-EMPTY-04:** the same profile in a desktop window at 1440 × 900, in a
     browser at 1280 × 800, on a tablet at 1280 × 800 and with the desktop window
     narrowed to 600 wide. The first three use the wide artwork; the 600-wide
