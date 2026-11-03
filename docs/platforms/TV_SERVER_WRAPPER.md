@@ -108,11 +108,13 @@ zoom. Round secondary controls retain the reference 24px backdrop blur and
 30px glyphs; the primary filled Play glyph is 24px. Foreground controls and copy
 remain above asynchronously loaded artwork.
 
-The client advances only through the server's featured order. Remote activity
-restarts the nine-second presentation cycle; rows, menus, pending/error states
-and hidden-page lifecycle pause it. Returning to an active billboard starts a
-fresh cycle. A new featured identity restarts the artwork effect, even if its
-image URL is shared; unrelated metadata changes do not reload artwork. Reduced
+The client presents the server's featured order once per activation, then parks
+on the last slide: the indicator stops and nothing draws until remote activity
+or a new featured identity starts a fresh pass. Rows, menus, pending/error
+states and hidden-page lifecycle pause the pass. Returning to an active
+billboard starts a fresh pass. A new featured identity restarts the artwork
+effect, even if its image URL is shared; unrelated metadata changes do not
+reload artwork. Reduced
 motion keeps artwork at 100%, disables automatic cycling and shows a static
 indicator. Auto-cycling must never request viewing intent, sources or playback.
 
