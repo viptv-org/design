@@ -1,5 +1,21 @@
 # Design changes
 
+## 2026-11-03 — The saved session's failed launch is retried, then retriable
+
+[STARTUP-RECOVERY-001](specs/behavior/startup-recovery.md) records app PR
+[#563](https://github.com/viptv-org/app/pull/563) (app#557, branch
+`fix/557-post-update-launch-hang`, targeting `edge`): a saved session whose
+first launch refresh hits a transport or 5xx failure retries quietly after 1 s,
+2 s and 4 s before the entry screen shows anything; when every attempt fails the
+reason line reads **Could not reach your server. Check the connection and try
+again.** (transport) or the server's own message (5xx), with **Try again** below
+it on every layout, and a return to the app retries by itself. An expired
+session still goes straight to sign-in with **Session expired. Sign in again.**
+and is never retried. [copy.md](viptv-design-system/copy.md#sign-in) gains the
+**Try again** entry copy.
+
+Refs [app#557](https://github.com/viptv-org/app/issues/557).
+
 ## 2026-11-02 — A failed first Live request is a failure, not an empty page
 
 [LIVE-EMPTY-001](specs/behavior/live-empty-state.md) records app `1ca77237` on
