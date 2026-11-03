@@ -1,5 +1,11 @@
 # Design changes
 
+## 2026-11-03 — The phone title source-summary row records real quality/provider/count
+
+[AND-043](docs/platforms/ANDROID_DESIGN.md#and-043--title-source-summary-and-episode-watching-marker-2026-10-02) already defined the phone source summary and episode watching marker as proposed; the shipped phone surface is now recorded in the normative files so the title page has a matching component and copy spec. [components.md](viptv-design-system/components.md#6-cards-and-tiles) gains the AND-043 row and [copy.md](viptv-design-system/copy.md#names) its strings: a full-width 58 dp row under the primary Play/Resume action that reads the best source's quality badge (or **Auto**), **provider · N sources** and a chevron, opens the source picker without starting playback, and shows a skeleton before a source arrives, **No sources found** for a settled empty result and **Sources unavailable** for a failed or timed-out one. Records app PR [#582](https://github.com/viptv-org/app/pull/582) (app#560, branch `fix/560-phone-series-info`, targeting `edge`).
+
+Refs [app#560](https://github.com/viptv-org/app/issues/560).
+
 ## 2026-11-03 — Episode rows show their air date and mark planned episodes as upcoming
 
 [EPISODE-AIR-DATE-001](viptv-design-system/components.md#6-cards-and-tiles) records app PR
