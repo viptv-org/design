@@ -19,6 +19,13 @@ Continue Watching card, caught up (a series the profile has finished as far as i
 - An episode with no season reads **`E4`**. The air date is the month and day, in the device's locale and never the year (**`4 nov.`** in French).
 - Spoken as drawn: "Show, S3 E4 · Watched, S3 E5 · Nov 4" on phone, tablet, desktop and web; "Show, S3 E4, Watched, S3 E5 · Nov 4" on TV.
 
+Details episode selector, air date and upcoming (EPISODE-AIR-DATE-001):
+
+- A released episode shows its air date under the caption: month, day and year in the device's locale (**`Mar 4, 2026`**, French **`4 mars 2026`**).
+- A planned episode shows **`Upcoming · Airs Mar 11`** under the caption; with no announced date it shows **`Upcoming`** alone. The upcoming air date is month and day only, no year.
+- An episode with no date that is not upcoming shows no date; the row stays the same height whether or not a date exists.
+- Opening an upcoming episode explains **`This episode isn't out yet.`** instead of fetching sources.
+
 Responsive player picture mode (WEB-PLAYER-FIT-001): visible toggle **"Fit"** / **"Fill"**; accessible actions **"Fill video"** / **"Fit video"**.
 
 Next-episode end panel (PLAY-NEXT-AUTOPLAY-001):
