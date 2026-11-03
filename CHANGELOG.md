@@ -1,5 +1,22 @@
 # Design changes
 
+## 2026-11-03 — Episode rows show their air date and mark planned episodes as upcoming
+
+[EPISODE-AIR-DATE-001](viptv-design-system/components.md#6-cards-and-tiles) records app PR
+[#580](https://github.com/viptv-org/app/pull/580) (app#574, branch
+`feat/574-episode-air-dates`, targeting `edge`): the Details episode selector
+shows each episode's release date under the caption — month, day and year in the
+device's locale. A future date, or no date later than the last released episode,
+is upcoming: the row shows **Upcoming · Airs [month day]** (or **Upcoming** with
+no date), mutes its title, drops the play affordance and explains **This episode
+isn't out yet.** instead of fetching sources. Row height is unchanged whether or
+not a date exists, and player episode pickers are unchanged.
+[copy.md](viptv-design-system/copy.md#names) gains the selector copy and
+[components.md](viptv-design-system/components.md#6-cards-and-tiles) the
+EPISODE-AIR-DATE-001 entry.
+
+Refs [app#574](https://github.com/viptv-org/app/issues/574).
+
 ## 2026-11-03 — The saved session's failed launch is retried, then retriable
 
 [STARTUP-RECOVERY-001](specs/behavior/startup-recovery.md) records app PR
