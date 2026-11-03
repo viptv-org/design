@@ -178,6 +178,7 @@ recovery dialog and can be quoted when reporting a failure.
 - Use without an account: "Your addons and playback stay on this device. No account, profiles, or sync." (local builds only)
 - TV: "Visit this address, then enter the code shown below." [viptv.syek.tech/device] [AB12CD34EF]
 - Desktop: Continue in browser. "Sign in securely in your browser. This window will connect automatically."
+- Startup recovery ([STARTUP-RECOVERY-001](../specs/behavior/startup-recovery.md)): when the saved session can't reach the server, the entry screen shows the reason — **"Could not reach your server. Check the connection and try again."** for a transport failure, the server's own message on a 5xx — and **"Try again"** under it. An expired session reads the existing **"Session expired. Sign in again."** and offers no action.
 - Profiles: Who's watching? · Manage profiles · Add a profile · Edit profile · "A space for their favorites, shows, and discoveries." · Find your favorite · "[468] avatars. Pick a world, then pick your character."
 
 
