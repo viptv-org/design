@@ -1,5 +1,11 @@
 # Design changes
 
+## 2026-11-04 — The player Audio & subtitles panel is redesigned with inline subtitle settings
+
+[PLAY-TRACKS-001](specs/behavior/player-audio-subtitles-panel.md) records the owner-requested redesign of the player Audio & subtitles panel (app#647): subtitle rows become one line per language with the source as a quieter secondary line, grouped when several sources offer the same language, ellipsizing instead of wrapping, with equal row heights and a fixed selection-mark slot; the Audio column collapses to a single **Default audio** line with zero or one track; and the profile's subtitle settings — **Subtitles**, **Subtitle language**, **Size** (Small / Medium / Large) and **Background** (None / Box) — sit compactly in the panel, saved and applied live where the player supports it. [copy.md](viptv-design-system/copy.md#names) gains the panel strings and [components.md](viptv-design-system/components.md#10-player-controls) the panel geometry and rules. The `W3PlayerAudio` board is superseded until the canvas re-exports it.
+
+Refs [app#647](https://github.com/viptv-org/app/issues/647).
+
 ## 2026-11-03 — The phone title source-summary row records real quality/provider/count
 
 [AND-043](docs/platforms/ANDROID_DESIGN.md#and-043--title-source-summary-and-episode-watching-marker-2026-10-02) already defined the phone source summary and episode watching marker as proposed; the shipped phone surface is now recorded in the normative files so the title page has a matching component and copy spec. [components.md](viptv-design-system/components.md#6-cards-and-tiles) gains the AND-043 row and [copy.md](viptv-design-system/copy.md#names) its strings: a full-width 58 dp row under the primary Play/Resume action that reads the best source's quality badge (or **Auto**), **provider · N sources** and a chevron, opens the source picker without starting playback, and shows a skeleton before a source arrives, **No sources found** for a settled empty result and **Sources unavailable** for a failed or timed-out one. Records app PR [#582](https://github.com/viptv-org/app/pull/582) (app#560, branch `fix/560-phone-series-info`, targeting `edge`).

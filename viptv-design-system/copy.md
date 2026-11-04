@@ -32,6 +32,14 @@ Title detail Starring line:
 
 Responsive player picture mode (WEB-PLAYER-FIT-001): visible toggle **"Fit"** / **"Fill"**; accessible actions **"Fill video"** / **"Fit video"**.
 
+Player Audio & subtitles panel ([PLAY-TRACKS-001](../specs/behavior/player-audio-subtitles-panel.md)):
+
+- Panel title **Audio & subtitles**; accessible pane name **Audio and subtitles**; the × is **Close track selection**.
+- Audio column heading **Audio**, collapsed to **Default audio** with zero or one track.
+- Subtitles column heading **Subtitles**; the first row is **Off**; the empty note is **No subtitle tracks available**. A subtitle row's primary line is the language name (**English**, **Croatian**) and its secondary line the source (**OpenSubtitles v3**); several sources of one language join with ** · **.
+- Inline settings rows share the Settings page copy: **Subtitles** (**Always** · **When audio isn’t [language]** · **Never**), **Subtitle language** (**Default** when none), **Size** (**Small** · **Medium** · **Large**), **Background** (**None** · **Box**).
+- The footer link stays **Subtitles & audio settings**.
+
 Next-episode end panel (PLAY-NEXT-AUTOPLAY-001):
 - TV: eyebrow **"Next episode"**; primary **"Next episode in [N]"** while counting, otherwise **"Play next episode"**; secondary **"Keep watching credits"**; caption **"[Series] · Credits"**.
 - TV footnote: **"Starts automatically. Press any button to cancel."** while counting; **"Nothing plays on its own."** with the setting off or after a cancel.
