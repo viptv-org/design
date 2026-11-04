@@ -77,6 +77,7 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | Sources, in-progress label after rows | Still checking sources |
 | Sources, none | No sources available. Check your add-ons in Settings. |
 | Sources, filtered out | No matching sources. Choose another provider or quality. |
+| Sources, failed | **Couldn't load sources.** · the message the request read, otherwise **Something went wrong. Try again.** · **Try again** |
 | Live details, no guide | No guide information. You can still watch this channel. |
 | Local mode, no addons | Install an addon to start browsing. |
 
