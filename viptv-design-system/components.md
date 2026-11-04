@@ -190,6 +190,15 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Pull-to-refresh (proposed, REFRESH-PULL-001):** phone and tablet layouts only, on Home, My List, History and Details. Pulling down at the very top of the page past the threshold shows the Material 3 indicator (a 40 disc in `color.surface.2` with a `color.text.secondary` spinner, top centre) over the shown content and reloads the page at once. There is no cover, skeleton or text, and a failure keeps the shown data with no error. D and T have no gesture. Gesture, reload scope, failure, return and acceptance are in [pull-to-refresh.md](../specs/behavior/pull-to-refresh.md); its motion stays the library's, and a finished reload re-animates nothing ([MOTION-001](../specs/behavior/motion.md#7-pull-to-refresh)).
 - **Updated to [version] (proposed, AND-APP-UPDATE-001):** after Android installs an update and reopens the app, a semibold bar at the bottom centre (radius 12, `color.surface.2`, 20 × 12 padding, 16 from the edges) for six seconds. It has no action and never blocks the page. TV currently draws the phone's density sizes instead of scaling them, so the board has to set the TV size; the copy and timing are in [app-updates.md](../specs/behavior/app-updates.md#updating-screen).
 
+**Instant feedback.** No action may show nothing for more than about 100 ms (app `ApplicationController.run` clears `busy` only when the operation settles, and several writes now ship on the explicit Save button, so the rule applies to every handler that waits on the network, the player or storage). Every action answers in the frame it is made:
+
+1. **A pressed state, always.**
+2. **An optimistic change where the result is predictable** — a selection, a toggle, a chip pick, a slide or segment value, a My List add, a track or source choice — applied to the state immediately, before the network, the player or storage answers. The optimistic value draws in the frame of the press and reverts only on a real failure.
+3. **Otherwise a pending indicator on the exact element acted on** — a spinner replacing the icon or label ("Saving…" / "Signing in…", §1 button state), a progress ring over a card, a thin bar inside the row or sheet — never a spinner somewhere else, and never a global busy alone.
+4. **De-duplicate repeat taps:** a second press on an action already in flight is ignored, not re-sent, and every pending element stays cancellable where cancelling is safe.
+5. **On failure, revert and offer Retry in place:** put the element back to its previous state (or the known-good snapshot), show an inline error on that element or surface, and let the same element retry.
+6. **One shared mechanism per action.** Every surface that can trigger the same action reads one pending state keyed by the action's identity, so the pending indicator, the de-duplication and the revert are written once and shared by every trigger of that action.
+
 ---
 
 ## 10. Player controls
