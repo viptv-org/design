@@ -114,7 +114,7 @@ channels came back.**
 - The stream could not seek there. (player notice)
 - Preparing playback…
 - Loading more titles… / Loading more channels… / Loading more channels… [120] of [860]
-- Paging footer: a finished list reads **"You've reached the end."**; a later page that fails reads **"Couldn't load more"** with a **Retry** button.
+- Paging footer: a finished list reads **"You’ve reached the end."**; a later page that fails reads **"Couldn’t load more"** with a **Retry** button.
 - Still checking [2] addons
 - Can't reach the backend. The connection was refused, so the backend is down or unreachable. Retrying every 10 seconds; this clears itself once the backend answers.
 - Pending labels (on the acted element, never a toast; §1 button state): **Saving…** · **Removing…** · **Installing…** · **Connecting…** · **Checking…** · **Signing in…** · the play-trigger **Starting playback** (accessible name). The failure line that follows a revert is the existing inline error with **Retry**, not a toast.
