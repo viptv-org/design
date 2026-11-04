@@ -107,7 +107,7 @@ and 1280 × 800.
 |---|---|
 | D (desktop app, web) | Bottom-right popover above the transport bar: end inset 150, bottom inset 76, width up to 680, height up to 460. It stays inside the player at 1280 and 1440 wide. |
 | P | Full-height end sheet, 0.82 × window wide, single-column stack (Audio, Subtitles, inline settings) |
-| T | Bottom focus panel, existing geometry (1920 × 1080, 540 × scale tall), Audio and Subtitles columns plus a subtitle settings column |
+| T | Bottom focus panel, existing geometry (1920 × 1080, 540 × scale tall): Audio, Subtitles and Subtitle size columns, unchanged |
 
 On D the two track columns sit side by side above the inline settings; on P they
 stack vertically so the grouped two-line rows have room on a 390-wide screen.
@@ -118,10 +118,7 @@ stack vertically so the grouped two-line rows have room on a 390-wide screen.
   to dismiss). Inline settings stack at the bottom of the sheet.
 - **D (desktop app, web):** one component; tab focus and Escape behave as on the
   web Details dialog (focus stays inside, Escape closes only the panel).
-- **T (TV):** the focus model is unchanged — Up/Down walk the Audio, Subtitles
-  and settings columns; the settings column offers the same four inline
-  settings the D panel offers, in addition to the existing **Extra large**
-  size. The Audio column collapses to **Default audio** the same way.
+- **T (TV):** the focus panel is unchanged in this revision — Up/Down walk the Audio, Subtitles and Subtitle size columns, and the size column keeps **Extra large**. The grouped tracks, the **Default audio** collapse and the other inline settings (mode, language, background) are available to TV through the panel's **Subtitles & audio settings** link to the full page, which already edits the same preferences.
 
 ## Copy
 
@@ -154,9 +151,7 @@ All strings live in [copy.md](../../viptv-design-system/copy.md#player-audio--su
 6. **PLAY-TRACKS-06 (phone):** the end sheet lays Audio, Subtitles and the
    inline settings out vertically; choosing Size or Background updates captions
    live; the sheet closes with the ×, swipe, Back or a scrim tap.
-7. **PLAY-TRACKS-07 (TV):** the focus panel keeps working with the same inline
-   settings; Up/Down reach every setting, the Audio column collapses to
-   **Default audio**, and the settings column retains **Extra large**.
+7. **PLAY-TRACKS-07 (TV):** the focus panel keeps working unchanged; Up/Down reach Audio, Subtitles and Subtitle size, the size column retains **Extra large**, and the **Subtitles & audio settings** link opens the full page where mode, language and background are set.
 8. **PLAY-TRACKS-08:** the **Subtitles & audio settings** link still opens the
    full page, and returning from it reopens the player without losing the
    changes the panel already saved.
