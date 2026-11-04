@@ -38,7 +38,7 @@ the popover is focusable and keyboard focus stays inside on web.
   embedded **English (SDH)**) is its own row with no secondary line.
 - **Inline settings:** the compact settings below the two columns edit the
   profile's subtitle preferences and apply immediately (see
-  [apply](#apply)). They are **Subtitles** (mode), **Subtitle language**,
+  [apply](#apply)). They are **Show subtitles** (mode), **Language**,
   **Size** and **Background**.
 - **Footer:** the **Subtitles & audio settings** link stays and opens the full
   page, unchanged.
@@ -68,13 +68,13 @@ owns (`subtitle_mode`, `preferred_subtitle_language`, `subtitle_font_scale`,
 
 | Setting | Values | Preference |
 |---|---|---|
-| **Subtitles** | **Always** · **When audio isn’t [language]** · **Never** | `subtitle_mode` (+ `subtitles_enabled`) |
-| **Subtitle language** | **Default** then the language list | `preferred_subtitle_language` |
+| **Show subtitles** | **Always** · **When audio isn’t [language]** · **Never** | `subtitle_mode` (+ `subtitles_enabled`) |
+| **Language** | **Default** then the language list | `preferred_subtitle_language` |
 | **Size** | **Small** (0.75) · **Medium** (1.0) · **Large** (1.25) | `subtitle_font_scale` |
 | **Background** | **None** · **Box** | `subtitle_background_color` (`#00000000` / `#B3000000`) |
 
-- **Size** and **Background** are segmented controls shown inline. **Subtitles**
-  and **Subtitle language** are radio rows whose value opens the same one-choice
+- **Size** and **Background** are segmented controls shown inline. **Show subtitles**
+  and **Language** are radio rows whose value opens the same one-choice
   dialog the Settings page uses; choosing a value returns to the panel.
 - **Extra large** (1.5) stays on the full page only, so the panel's Size stays
   three segments.
@@ -92,7 +92,7 @@ owns (`subtitle_mode`, `preferred_subtitle_language`, `subtitle_font_scale`,
 - **Background** restyles the live captions at once
   (`PlayerCommand.SubtitleBackground` on the renderers that honour it) and
   saves `subtitle_background_color`.
-- **Subtitles** and **Subtitle language** save immediately and the panel shows
+- **Show subtitles** and **Language** save immediately and the panel shows
   the saved value at once. They govern auto-selection, which runs when a track
   changes or the next playback opens; a track already chosen is
   left alone (the manual-choice rule).
@@ -145,7 +145,7 @@ All strings live in [copy.md](../../viptv-design-system/copy.md#player-audio--su
 4. **PLAY-TRACKS-04:** changing Size re-scales the live captions and persists
    `subtitle_font_scale`; changing Background restyles live captions and
    persists `subtitle_background_color`.
-5. **PLAY-TRACKS-05:** changing **Subtitles** or **Subtitle language** persists
+5. **PLAY-TRACKS-05:** changing **Show subtitles** or **Language** persists
    the preference and the panel reflects it at once; the value survives an app
    restart and a profile switch back.
 6. **PLAY-TRACKS-06 (phone):** the end sheet lays Audio, Subtitles and the
