@@ -68,6 +68,7 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | Discover, required filter | Choose the required filters to browse this catalog. |
 | Discover, no titles | No titles yet |
 | Search, no results | No matching titles |
+| Search, no query | **Recent** · **Clear** · **Trending searches** |
 | Live, no source (LIVE-EMPTY-001) | Eyebrow **LIVE TV** · **Live TV isn't set up yet.** · **Add an IPTV connection with Xtream or M3U, or install a live add-on. Channels, the guide and favourites appear here.** · **Set up live TV** · **Add-ons** |
 | Live, no source, member (LIVE-EMPTY-001) | **Only the household owner can set up live TV.** |
 | Live, no source, paired TV (LIVE-EMPTY-001) | **Manage live TV from a signed-in phone, computer or the web dashboard.** |
