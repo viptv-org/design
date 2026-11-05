@@ -128,7 +128,7 @@ repeats once per failed provider and never replaces the results that loaded.
 - Paging footer: a finished list reads **"You’ve reached the end."**; a later page that fails reads **"Couldn’t load more"** with a **Retry** button.
 - Still checking [2] addons
 - Partial add-on failure (ADDON-FAILURE-001): a Browse/Discover page that loaded shows this above the grid and a Details page near the metadata, only when some results loaded — **`[Add-on] didn't respond`** (two add-ons: **`[Add-on] and [Add-on] didn't respond`**; more: **`[Add-on] and [N] more didn't respond`**) with the action **Manage add-ons** opening Settings › Add-ons. It never replaces or hides the results that loaded.
-- Can't reach the backend. The connection was refused, so the backend is down or unreachable. Retrying every 10 seconds; this clears itself once the backend answers.
+- Can't reach the backend. The backend is down or unreachable. Retrying in [n] seconds; this clears itself once the backend answers.
 - Pending labels (on the acted element, never a toast; §1 button state): **Saving…** · **Removing…** · **Installing…** · **Connecting…** · **Checking…** · **Signing in…** · the play-trigger **Starting playback** (accessible name). The failure line that follows a revert is the existing inline error with **Retry**, not a toast.
 
 ## Errors
