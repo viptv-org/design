@@ -142,6 +142,7 @@ repeats once per failed provider and never replaces the results that loaded.
 - That does not look like an addon URL.
 - This addon is already installed.
 - This source could not be played / The selected source did not become ready in time.
+- Playback failure page: **This source stopped working**; `[Source] didn’t respond. Choose another source.` (`to continue from [time]` when playback had a position above 0); **Try [next source]**, **Choose another source**, **Back**.
 - Playback could not be restored
 - The TV could not complete this request.
 - VIPTV receiver is unavailable (HTTP [status]). The TV was not launched.

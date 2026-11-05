@@ -1,5 +1,11 @@
 # Design changes
 
+## 2026-11-05 — The player's failure page is one page with one set of copy
+
+The owner decided [design#128](https://github.com/viptv-org/design/issues/128): every platform draws the same failure page from the same state. [components.md §10](viptv-design-system/components.md#10-player-controls) records it — **"This source stopped working"**, the source's failure (`[Source] didn’t respond. Choose another source.`, adding `to continue from [time]` when playback had a position above 0), then **Try [next source]** / **Choose another source** / **Back**. The Details disclosure is dropped because nothing implements it, phone and desktop said "Choose a source" where TV said "Choose another source"; all of them say **Choose another source** now. [copy.md](viptv-design-system/copy.md#errors) gains the strings. The `M3PlayerError`, `D3PlayerError` and `Tv3PlayerError` boards and their WebP exports are re-rendered with the new copy.
+
+Refs [design#128](https://github.com/viptv-org/design/issues/128), [app#848](https://github.com/viptv-org/app/issues/848).
+
 ## 2026-11-04 — The player Audio & subtitles panel is redesigned with inline subtitle settings
 
 [PLAY-TRACKS-001](specs/behavior/player-audio-subtitles-panel.md) records the owner-requested redesign of the player Audio & subtitles panel (app#647): subtitle rows become one line per language with the source as a quieter secondary line, grouped when several sources offer the same language, ellipsizing instead of wrapping, with equal row heights and a fixed selection-mark slot; the Audio column collapses to a single **Default audio** line with zero or one track; and the profile's subtitle settings — **Subtitles**, **Subtitle language**, **Size** (Small / Medium / Large) and **Background** (None / Box) — sit compactly in the panel, saved and applied live where the player supports it. [copy.md](viptv-design-system/copy.md#names) gains the panel strings and [components.md](viptv-design-system/components.md#10-player-controls) the panel geometry and rules. The `W3PlayerAudio` board is superseded until the canvas re-exports it.
