@@ -182,7 +182,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Toast:** P sits above the nav (bottom 116), D sits bottom-centre 24 from the edge, T sits top-centre. Surface-3, radius 20. Notices last 5 s with text only. Errors last 4 s and carry Dismiss (a startup error carries "Try again"). Maximum width is 358 (P) or 560 (D).
 - **Player notice pill:** 4 s, for example "The stream could not seek there."
 - **Preparing playback:** a pill on P/D ("Preparing playback…") and a centred panel with a spinner on T.
-- **Backend banner:** "Can't reach the backend", with the explanation and "Backend unreachable since [time]". It has Dismiss and clears itself when the backend answers.
+- **Backend banner:** "Can't reach the backend", the explanation and "Backend unreachable since [time]". The explanation's [n] is the client's own next retry in seconds, so the banner never promises a wait the client is not keeping. It has Dismiss and clears itself when the backend answers.
 - **Inline error:** an alert icon + danger text under the field.
 - **Status line:** a spinner + tertiary text, for example "Still checking 2 addons".
 - **Empty state:** a 52 round icon, a title and one line of help, sometimes with one action (for example "Browse Discover").
