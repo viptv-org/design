@@ -401,6 +401,34 @@ actions sit on the darkest part. Decorative: no accessible name.
 [LIVE-EMPTY-001](../specs/behavior/live-empty-state.md#artwork) owns the crops,
 the exact bytes, the source, the licence and the credit.
 
+## 14. Text over artwork
+
+**Rules**
+
+- Copy drawn over a title's or a channel's artwork keeps 4.5:1 against the
+  brightest pixel behind it, and a flat white frame is the test.
+- The page draws the scrim in code, in one of the stops below, and it is the
+  ground at that opacity: `bg`, or the OLED black. A surface never invents its
+  own stops; the app reads them from `Scrim` (`theme/Scrims.kt`).
+- The stop under copy is opaque enough for `text.secondary` and `text.tertiary`
+  as well as `text.primary` and `text.body`, because a hero draws all four.
+- The scrim is not part of the artwork and adds no copy, motion or focus stop.
+
+**Stops** (fraction of the surface, then the ground's opacity)
+
+| Surface | Stops |
+|---|---|
+| TV hero, wide | 95, 90 at 46 %, 55 at 62 %, clear |
+| TV hero, tall | 30, clear at 45 %, 90 at 80 %, ground |
+| TV top navigation band | 94, 82 at 72 %, clear |
+| Phone hero | clear to 45 %, 84 at 72 %, 98 |
+| Tablet hero | 93, 84 at 50 %, clear at 72 %; and clear to 50 %, 84 at 76 %, 98 |
+| Desktop Home backdrop | 30, 78 at 55 %, ground |
+
+`TextOverArtworkContrastTest` in `viptv-org/app` renders TV, phone, tablet and
+desktop Home over flat white artwork, samples the brightest background around
+every drawn line and fails the ones under 4.5:1.
+
 ## Implemented component contracts (2026-10-19)
 
 - **TV focus**: `TvFocusTreatment.kt` — `tvFocusOutline` (content), `tvFocusColumn`
