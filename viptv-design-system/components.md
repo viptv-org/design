@@ -408,8 +408,9 @@ the exact bytes, the source, the licence and the credit.
 - Copy drawn over a title's or a channel's artwork keeps 4.5:1 against the
   brightest pixel behind it, and a flat white frame is the test.
 - The page draws the scrim in code, in one of the stops below, and it is the
-  ground at that opacity: `bg`, or the OLED black. A surface never invents its
-  own stops; the app reads them from `Scrim` (`theme/Scrims.kt`).
+  ground at that opacity: `bg`, the OLED black, or, for the web Details hero,
+  the browser dialog's own surface (`#181818`). A surface never invents its own
+  stops; the app reads them from `Scrim` (`theme/Scrims.kt`).
 - The stop under copy is opaque enough for `text.secondary` and `text.tertiary`
   as well as `text.primary` and `text.body`, because a hero draws all four.
 - The scrim is not part of the artwork and adds no copy, motion or focus stop.
@@ -424,10 +425,16 @@ the exact bytes, the source, the licence and the credit.
 | Phone hero | clear to 45 %, 84 at 72 %, 98 |
 | Tablet hero | 93, 84 at 50 %, clear at 72 %; and clear to 50 %, 84 at 76 %, 98 |
 | Desktop Home backdrop | 30, 78 at 55 %, ground |
+| TV Details, wide | 95, 92 at 46 %, 55 at 60 %, clear at 80 % |
+| TV Details, lower band | clear, 95 at 60 % of the 480 px band that starts at y 600, ground |
+| Phone Details artwork | 55, clear at 30 %, clear at 55 %, ground |
+| Tablet Details pane | 30, clear at 30 %, 95 at 70 % |
+| Desktop Details | 88, 92 at 50 %, ground |
+| Web Details hero | clear to 30 %, 55 at 52 %, 86 at 70 %, the dialog's own surface |
 
-`TextOverArtworkContrastTest` in `viptv-org/app` renders TV, phone, tablet and
-desktop Home over flat white artwork, samples the brightest background around
-every drawn line and fails the ones under 4.5:1.
+`TextOverArtworkContrastTest` in `viptv-org/app` renders every Home hero, every
+Details layout and the TV top bar over flat white artwork, samples the brightest
+background around every drawn line and fails the ones under 4.5:1.
 
 ## Implemented component contracts (2026-10-19)
 
