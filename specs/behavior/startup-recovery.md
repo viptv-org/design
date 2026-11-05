@@ -45,6 +45,9 @@ starting, and when that also fails the entry screen says why and offers a
 - **Other non-5xx server response** (for example a rate limit): not auto-retried;
   the entry screen shows the server's message at once and keeps the saved
   session retriable, so **Try again** is still offered.
+- **Unparseable answer** (a proxy or captive portal answering something that is
+  not VIPTV's JSON): treated like a transport failure — quiet retries, then the
+  reason with **Try again**; the saved session is never cleared.
 
 ## Try again
 
@@ -116,3 +119,6 @@ choice, desktop choice and the browser sign-in form.
 6. **STARTUP-RECOVERY-06:** a viewer action (sign-in, local mode, choosing a
    connection) retires **Try again**, and repeated presses while a retry runs
    dispatch one restore.
+7. **STARTUP-RECOVERY-07:** an unparseable answer (a non-JSON 200 from a proxy or
+   captive portal) retries quietly like a transport failure, then shows the
+   reason with **Try again**, and never clears the saved session.
