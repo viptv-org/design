@@ -71,6 +71,8 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | Discover, no titles | No titles yet |
 | Search, no results | No matching titles |
 | Search, no query | **Recent** · **Clear** · **Trending searches** |
+| Search, provider failed | **This search provider could not respond. Try again.** · **Try again** |
+| Search, some results unavailable | **Some search results are unavailable. Try again.** · **Try again** |
 | Live, no source (LIVE-EMPTY-001) | Eyebrow **LIVE TV** · **Live TV isn't set up yet.** · **Add an IPTV connection with Xtream or M3U, or install a live add-on. Channels, the guide and favourites appear here.** · **Set up live TV** · **Add-ons** |
 | Live, no source, member (LIVE-EMPTY-001) | **Only the household owner can set up live TV.** |
 | Live, no source, paired TV (LIVE-EMPTY-001) | **Manage live TV from a signed-in phone, computer or the web dashboard.** |
@@ -106,6 +108,13 @@ request that fails with no page is a failure, not an empty answer: it reads
 **Could not load Live TV.** and the message the request read, never **No
 channels came back.**
 ([viptv-org/app#541](https://github.com/viptv-org/app/issues/541)).
+
+A search result area's failure line sits under the heading of the provider that
+failed, and under the scope row when no provider returned anything. Its **Try
+again** re-runs the query the viewer already typed, for every provider, so
+nothing has to be retyped
+([viptv-org/app#821](https://github.com/viptv-org/app/pull/822)). A failure line
+repeats once per failed provider and never replaces the results that loaded.
 
 ## Toasts, notices and loading
 
