@@ -462,6 +462,8 @@ W add no autofocus and keep the normal Tab order.
 - The stop under copy is opaque enough for `text.secondary` and `text.tertiary`
   as well as `text.primary` and `text.body`, because a hero draws all four.
 - The scrim is not part of the artwork and adds no copy, motion or focus stop.
+- A component's own opaque fill is not the artwork: the LIVE badge's white label
+  is measured against the badge's red, not against the frame behind it.
 
 **Stops** (fraction of the surface, then the ground's opacity)
 
@@ -479,10 +481,20 @@ W add no autofocus and keep the normal Tab order.
 | Tablet Details pane | 30, clear at 30 %, 95 at 70 % |
 | Desktop Details | 88, 92 at 50 %, ground |
 | Web Details hero | clear to 30 %, 55 at 52 %, 86 at 70 %, the dialog's own surface |
+| Phone Live preview | clear to 34 %, 90 at 52 %, 97 |
+| TV Live preview | clear to 58 %, 90 at 82 %, 97 |
+
+The Live preview's copy sits on its artwork, not beside it: the phone card is at
+least 196 dp tall and draws the channel number and name, the programme title,
+the progress bar and the status line inside the 90 to 97 band; on TV only
+"OK to watch" sits on the picture, in the band at its bottom edge. The LIVE
+badge keeps its own red fill above the band.
 
 `TextOverArtworkContrastTest` in `viptv-org/app` renders every Home hero, every
-Details layout and the TV top bar over flat white artwork, samples the brightest
-background around every drawn line and fails the ones under 4.5:1.
+Details layout, the phone and TV Live previews and the TV top bar over flat
+white artwork, samples the brightest background around every drawn line and
+fails the ones under 4.5:1. It skips a line whose ground is a coloured fill
+rather than the artwork, which is how the LIVE badge is left to its own colour.
 
 ## Implemented component contracts (2026-10-19)
 
