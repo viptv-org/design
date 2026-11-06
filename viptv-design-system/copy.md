@@ -219,7 +219,7 @@ recovery dialog and can be quoted when reporting a failure.
 | Remove from My List | Remove from My List? | "“{title}” leaves this list. Watched history is preserved." · Cancel · Remove (danger) · then the §9 toast with **Undo** |
 | Remove from Continue Watching | Remove from Continue Watching? | "“{title}” leaves this list. Watched history is preserved." · Cancel · Remove (danger) · then the §9 toast with **Undo** |
 | Remove addon | Remove [Addon]? | "Its catalogs leave this device." (local mode) · Cancel · Remove (danger) |
-| Manage addon (TV) | Manage [Addon] | Enable / Disable · Reconfigure (only when the add-on is configurable) · Remove addon (danger) · Cancel |
+| Manage addon (TV) | Manage [Addon] | Enable / Disable · Reconfigure (only when the add-on is configurable) · Remove add-on (danger) · Cancel |
 | Reconfigure add-on (TV, configurable add-ons only) | Reconfigure [Addon] | "Scan this code with a phone or computer camera to change [Addon]'s settings." · the configure address in text · "This code expires in 5 minutes." · New code · Close. A link the server refuses reads "Couldn't get the configure link." with the server's own line when it sent one, · Try again · Close |
 | Parent PIN | Enter parent PIN (TV sign-out: "Enter parent PIN to sign out") | "Enter the parent PIN to continue." (TV: "Use your remote or a connected keyboard.") · Done · Cancel |
 | Watch on TV (Android phone and tablet, proposed) | Watch on TV | "Connect to a Vizio SmartCast TV on the same network." |
