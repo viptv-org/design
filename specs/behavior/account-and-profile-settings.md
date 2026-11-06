@@ -302,8 +302,8 @@ Title **Account**. Rows, in order, each its own page or dialog:
    row's focus fill plus a 2 dp accent ring, on phone, tablet, desktop, web and
    TV. The ring is the arrival marker and is gone once the page is left; the row
    is otherwise the ordinary inventory row, so the switch turns the add-on off in
-   one action. Back returns to the source picker it came from with its rows and
-   filters unchanged.
+   one action. Back leaves Settings for the screen the picker was opened over,
+   as Back from any Settings entry does; the picker is not restored.
 7. **Source integrations** — VIPTV Sources and M3U. Only the account owner can
    add, change or remove one; a member reads the list.
 8. **Xtream connections** — the account's Xtream providers; see
