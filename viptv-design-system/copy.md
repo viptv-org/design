@@ -71,7 +71,7 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | My List, results still arriving | **Loading matching titles…** · Results update as metadata becomes available. |
 | My List, first read failed | **Couldn’t load My List** · the message the request read · **Try again** |
 | Continue Watching | Nothing in progress. Titles you start watching appear here. |
-| Home, no catalogs | **No catalogs are available.** · Add or enable a catalog addon in Settings. · **Open settings** |
+| Home, no catalogs | **No catalogs are available.** · Add or enable a catalog add-on in Settings. · **Open settings** |
 | Home, catalogs with no titles | **No titles yet** · Your catalogs answered with nothing for this profile. · **Try again** |
 | Home, first read failed | **Couldn’t load Home** · the message the request read · **Try again** |
 | Home, an action failed | never a page state: the failure stays on the control that acted, as §9 rule 5 of [components.md](components.md#9-feedback) says |
@@ -79,7 +79,7 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | Calendar, no source | The calendar needs series in My List or a Simkl connection. · **Manage integrations** |
 | Calendar, empty day | None of your shows air this day. (All shows: No releases for this day.) |
 | Calendar, first read failed | **Couldn’t load the calendar** · the message the request read · **Try again** |
-| Discover, no catalogs | No catalogs are available. Add or enable a catalog addon in Settings. |
+| Discover, no catalogs | No catalogs are available. Add or enable a catalog add-on in Settings. |
 | Discover, required filter | Choose the required filters to browse this catalog. |
 | Discover, no titles | No titles yet |
 | Search, no results | No matching titles |
