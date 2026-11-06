@@ -186,6 +186,7 @@ Live preview (LIVE-PREVIEW-001): the preview frames the programme the guide pick
 - **TV preview:** the same star action under the programme, with the server's own line above it and **Retry** (rotate icon) on the button itself once the save has failed; the artwork tile beside it is one focus stop reading **OK to watch** (play icon) over the picture.
 - **Channel rows** (phone, tablet, desktop): the programme on now, then **"[start]–[end]"** beside the progress bar, then **"Next: [programme] [time]"** when the guide knows what follows. The row's thumbnail carries the channel number under its artwork.
 - **Favourites with nothing to show:** **No favourite channels from [source].**, **No favourite channels from this source.** when the server named no source, or **Loading favourite channels…** while the first read is still open, with the **All channels** action.
+- **Channel search:** the field's placeholder and its accessible name are **Search channels**; the server matches channel names only. **Clear search** empties it and asks for the whole directory again, keeping the chosen source and group. A term that matches nothing draws **No channels match your search.** (the §Empty states row) with **Clear search** as its action, and the chip row stays on the page.
 
 ## Calendar
 
