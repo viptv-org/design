@@ -378,6 +378,18 @@ Every duration and easing above is read through the app's `motionSpec()`, which 
   empty state while a request is open.
 - An action the signed-in account may not take is replaced by one line naming
   who can take it. The line takes the action's place, so nothing else moves.
+- A list page with nothing to show draws one **page state block**: a decorative
+  icon, the page's headline, one line of help and its actions, centred in the
+  page area on the page ground. It is never a card, a surface, a banner or a
+  toast, and never a row above the content. Home, Continue Watching and My List
+  use the icon-tile form; a catalog page (Discover, Movies, Series, Anime) uses
+  the bare-icon form ([W3BrowseEmpty](reference/screens/html/web/W3BrowseEmpty.html),
+  [D3BrowseEmpty](reference/screens/html/desktop/D3BrowseEmpty.html),
+  [Tv3MoviesEmpty](reference/screens/html/tv/Tv3MoviesEmpty.html)).
+- A failed page load draws the same block in the failure form: a cloud-off
+  icon, the page's **Couldn’t load [page]** headline, the message the request
+  read and **Try again**. A failed action never becomes a page state: the page
+  keeps its content and the failure stays on the control that acted (§9 rule 5).
 
 **States**
 
@@ -388,6 +400,10 @@ Every duration and easing above is read through the app's `motionSpec()`, which 
 | Live, source, still loading | none | as above | none; skeleton rows |
 | Live, first request failed | none | none: no page names a source | the retry, and Source integrations when the viewer may change sources |
 | My List, Discover, Search, Continue Watching | none | per [FILTER-CHIP-001](#2-chips-and-segmented-controls) | the page's own clear or browse action |
+| Home, no catalogs | none | none: no catalog to filter | **Open settings** |
+| Home, catalogs with no titles | none | none | the retry |
+| Home, first request failed | none | none | **Try again** |
+| Home, an action failed | none | unchanged | none: the control that failed draws the inline error and its own Retry, and the hero and rows stay |
 
 **Geometry** (the block's stack, gaps and copy are
 [LIVE-EMPTY-001](../specs/behavior/live-empty-state.md))
@@ -410,6 +426,28 @@ left-to-right 92 / 60 % at 45 % / 18 %, tall top-to-bottom 0 / 35 % at 40 % /
 actions sit on the darkest part. Decorative: no accessible name.
 [LIVE-EMPTY-001](../specs/behavior/live-empty-state.md#artwork) owns the crops,
 the exact bytes, the source, the licence and the credit.
+
+**Page state block** (Home, Continue Watching, My List, and a catalog page's
+empty or failed state)
+
+The facts are the same at every width: one icon, one headline, one line of help,
+one primary action and at most one secondary ([M3MyListEmpty](reference/screens/html/phone/M3MyListEmpty.html)).
+The block is centred in the page area on the page ground; it has no surface,
+border, shadow or scrim of its own. The icon is decorative and carries no
+accessible name; the headline is the page's heading and comes before the help
+line in reading order.
+
+| | Block | Icon | Headline | Body | Actions |
+|---|---|---|---|---|---|
+| T | centred in the page area, width ≤ 980 | 96 round tile, `white .1`, 46 icon | 44/700, line 50 | 26/400, line 38 | one row, 16 apart, 18 below the body; 72 tall, radius 12, 26/700 |
+| W | top 120, centred, side 20 | bare 30, or the 72 tile (radius 20) in the tile form | 22/700, line 25 | 14/400, line 20, ≤ 440 | one row, 8 apart, 6 below the body; 38 tall, radius 12, 14/700 |
+| P | top 90, centred, side 20 | bare 30, or the 72 tile (radius 20) in the tile form | 22/700, line 25 | 15/400, line 22 | one column, 12 apart; 44 tall, radius 12, 15/700 |
+
+The primary is off-white with `bg` ink. The secondary is `white .12` on P and T
+and a 1 px `white .14` border on W. A skeleton in the page's own row shape is
+the loading form; the block never says "Loading…". On T the block takes focus
+on its primary action and its icon, headline and body are not focus stops. P and
+W add no autofocus and keep the normal Tab order.
 
 ## 14. Text over artwork
 
