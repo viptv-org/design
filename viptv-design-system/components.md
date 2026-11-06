@@ -431,8 +431,8 @@ actions sit on the darkest part. Decorative: no accessible name.
 [LIVE-EMPTY-001](../specs/behavior/live-empty-state.md#artwork) owns the crops,
 the exact bytes, the source, the licence and the credit.
 
-**Page state block** (Home, Continue Watching, My List, and a catalog page's
-empty or failed state)
+**Page state block** (Home, Continue Watching, My List, the Calendar, and a
+catalog page's empty or failed state)
 
 The facts are the same at every width: one icon, one headline, one line of help,
 one primary action and at most one secondary ([M3MyListEmpty](reference/screens/html/phone/M3MyListEmpty.html)).
@@ -440,6 +440,12 @@ The block is centred in the page area on the page ground; it has no surface,
 border, shadow or scrim of its own. The icon is decorative and carries no
 accessible name; the headline is the page's heading and comes before the help
 line in reading order.
+
+The Calendar's two states are a page state and draw the block: a week with
+nothing scheduled and a calendar with no source each set the copy.md sentence as
+the headline, draw no help line, and offer **Manage integrations** as the
+primary action. A single empty day inside a non-empty week is not a page state:
+it keeps its inline day line above the list.
 
 | | Block | Icon | Headline | Body | Actions |
 |---|---|---|---|---|---|
