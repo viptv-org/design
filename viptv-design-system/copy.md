@@ -133,6 +133,48 @@ nothing has to be retyped
 ([viptv-org/app#821](https://github.com/viptv-org/app/pull/822)). A failure line
 repeats once per failed provider and never replaces the results that loaded.
 
+## Home
+
+Desktop and web draw the hero's eyebrow: **Featured**, and **Featured · [N] of
+[M]** while the carousel carries more than one slide. Phone, tablet and TV draw
+no eyebrow. The Continue Watching hover preview replaces the eyebrow with the
+shelf's own heading — **Continue watching** when the snapshot sends none — and
+plays the hovered title.
+
+- **Hero actions:** **Play**, **More info** (tablet, desktop, web and TV), and the
+  save control. On phone it reads **My List**, and **Saving…** while the write
+  runs. Tablet, desktop, web and TV draw it icon-only: an accessible
+  **Add to My List**, or **Remove from My List** once the title is saved. The
+  spinner a write swaps in carries no name.
+- **Shelf headings:** a row's heading is the title its provider sent. A row that
+  ends in a **See all** card keeps a **See all** link at the end of its heading on
+  phone, tablet, desktop and web. The card reads the arrow, **See all**, the row's
+  title and a caption — **“[N] titles in progress”** on Continue Watching or
+  **“[N] titles saved”** on My List, **“Everything in progress”** while a later
+  page is still unsent. Its accessible name is **See all [row]**, with **, [N]
+  titles** appended when the row knows the count. A shelf's arrows are named
+  **Next items** and **Previous items** and are drawn on tablet, desktop and web.
+- **Card preview** (the pointer's hover on desktop and web): its three circles are
+  named **Resume** or **Play** (Resume when the title has a position),
+  **Add to My List** or **Remove from My List**, and **More info**; a save in
+  flight reads **Saving…** in place of the save name.
+- **Card menu** (⋯, right-click, long-press, TV hold OK), in order: **Resume
+  previous episode** for a Continue Watching episode that has a position,
+  otherwise **Resume** (a title with a position) or **Play**; **Choose source**;
+  **Mark watched** or **Mark unwatched**; **Watch from the beginning**;
+  **Add to My List** or **In My List**, with **Saving…** while the write runs;
+  **Remove from Continue Watching** or **Remove from My List** (danger, above a
+  divider); **More info**; **Cancel**. Choose source, Mark watched and Watch from
+  the beginning appear only on a movie or a single episode; Remove from Continue
+  Watching appears only where the menu was opened from that shelf.
+- **Rows that fail or come back empty are not drawn:** no heading, no gap, no
+  retry ([viptv-org/app#14](https://github.com/viptv-org/app/issues/14)). A row
+  whose request is still open keeps its skeleton, and a skeleton that resolves
+  empty or failed disappears without moving the row above it. The freshness lane
+  and the next Home rebuild retry a failed row, and it appears once it loads.
+  When every row is empty or failed, Home draws the page state block from Empty
+  states above.
+
 ## Live
 
 Live preview (LIVE-PREVIEW-001): the preview frames the programme the guide picked by the clock, not by the selection. Phone draws the **LIVE** badge, the progress bar and **"[N] min left"** only while it is on air; before it starts the line reads **"Starts at [time] · [N] min"**, where [N] is the programme's own length, and after it ends **"Ended"**. A programme that is not on air carries no LIVE badge and no bar. TV and the desktop preview keep their **"start – end"** line and append **" · [N] min left"** while it is on air, **" · [N] min"** before it starts and **" · Ended"** after it ends.
@@ -391,8 +433,11 @@ starts from until it ships (`components.md` §11). A TV signs in with
   filters: it reads "No titles yet" and offers no clear action. A filtered or
   failed catalog offers **Choose another catalog** as a second action when the
   page has more than one catalog.
-- A row that fails shows a titled card — "Couldn’t load this row" plus the
-  provider's message plus "Try again" — never the provider text alone in a button.
+- A row that fails is not drawn: no heading, no gap and no retry. The freshness
+  lane and the next Home rebuild retry it, and it appears once it loads; a page
+  whose rows all fail draws the page state block instead. No page draws a
+  "Couldn’t load this row" card
+  ([viptv-org/app#14](https://github.com/viptv-org/app/issues/14)).
 - "Could not load" strings are never used for a title page; it is "This title
   couldn’t load" with a Go back action.
 - Server-originated messages are mapped to human copy before display; a raw

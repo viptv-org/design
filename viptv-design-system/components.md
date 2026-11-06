@@ -177,7 +177,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **TV dialog actions (proposed, DIALOG-TV-ACTIONS-001):** a TV dialog panel's actions sit in one row while they fit. When they do not — three or more actions, or long labels at a small canvas — they wrap onto further rows inside the panel: every action keeps one line with no ellipsis, all of them stay fully inside the panel's padding, and the rows are 16 × scale apart. No action is cut off or pushed outside the panel, and the named first stop is still the one that takes focus. The **Manage [Addon]** panel (Enable / Disable · Reconfigure · Remove add-on · Cancel) is the case that defines it.
 - **TV full-screen text panel:** long text (More info, Source details) scrolls inside an opaque surface-1 box with a scroll bar and the legend "▲▼ Scroll".
 - **Updating screen (proposed, AND-APP-UPDATE-001):** a full-screen opaque cover, not an overlay on a page, while Android writes, confirms and installs an update. It covers the update prompt too. One centred column: V mark, title, what is happening, a progress bar with a percent, the restart line and, on the permission step only, a primary action and **Later**. Phone: 32 inset, column max 420, 16 gaps. TV: 120 × scale side inset, 120 × scale mark, 320 × 80 primary. Copy, states, focus, Back, failure, timing and acceptance are in [app-updates.md](../specs/behavior/app-updates.md#updating-screen); no board exists yet (app `docs/DESIGN_GAPS.md` GAP-065).
-- The **title menu** (⋯ / right-click / long-press / TV hold OK) holds: Resume previous episode, Choose source, Mark watched, Watch from the beginning, Remove from Continue Watching, Add to My List, Cancel. On TV it draws at the TV menu metrics below.
+- The **title menu** (⋯ / right-click / long-press / TV hold OK) holds, in order: Resume previous episode for a Continue Watching episode that has a position, otherwise Resume (a title with a position) or Play; Choose source; Mark watched / Mark unwatched; Watch from the beginning; Add to My List / In My List, with Saving… while the write runs; Remove from Continue Watching or Remove from My List (danger); More info; Cancel. [copy.md](copy.md#home) owns the words and says which actions a movie, a single episode or a Continue Watching card offers. On TV it draws at the TV menu metrics below.
 - **TV menu metrics (proposed, MENU-TV-001):** on TV every anchored popover menu — the title menu above and the source row menu (§6, SRC-ROW-MENU-001) — draws at the TV geometry instead of the phone geometry: 600 × scale wide, rows at least 72 × scale tall with 26 × scale text on a 32 × scale line and 26 × scale icons, 24 × scale horizontal and 12 × scale vertical row padding, a 16 × scale icon gap, 14 × scale row radius, 20 × scale menu radius, the hairline border and a 40 × scale shadow. The focused row carries the TV focus ring, 2 × scale wide and 3 × scale outside the row. Rows, their order, dividers, dismissal and the anchored position (below the control, above it when it does not fit) are the pointer menu's, unchanged. Pointer and touch layouts keep the geometry they have.
 
 ---
@@ -451,6 +451,26 @@ and a 1 px `white .14` border on W. A skeleton in the page's own row shape is
 the loading form; the block never says "Loading…". On T the block takes focus
 on its primary action and its icon, headline and body are not focus stops. P and
 W add no autofocus and keep the normal Tab order.
+
+**Search with no query (T)** is the page's own content rather than a page state
+block, and no board draws it: [Tv3Search](reference/screens/html/tv/Tv3Search.html)
+draws the typing state. It draws [copy.md](copy.md#empty-states)'s
+**Recent** · **Clear** · **Trending searches** at the page's own metrics:
+
+- **Recent heading:** 30 × scale semibold on a 36 × scale line, in a 56 × scale row.
+- **Clear:** an action at the heading row's end, 56 × scale tall, 24 × scale
+  semibold, 32 × scale side padding.
+- **Term row:** 72 × scale tall across the page's full width inside the 96 × scale
+  insets, an 18 × scale search icon, the term at 24 × scale semibold on a 30 ×
+  scale line; rows 8 × scale apart.
+- **Sections:** the recent rows come first, then **Trending searches** 32 × scale
+  below the last of them and its rows.
+
+A row focuses like any other TV row — off-white fill, `bg` ink, the 4 px ring
+drawn outside it. The field's Down enters the list at its first stop, Left from
+any row returns to the field, and Select runs the term. Clear empties the recent
+terms only, then returns focus to the field. A page with no recent and no
+trending term keeps its normal results area rather than a blank.
 
 ## 14. Text over artwork
 
