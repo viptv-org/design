@@ -138,7 +138,7 @@ cancels abandoned TV challenges, and uses a 20 px glyph in the same borderless
 change the launch button's appearance. See the Android contract for acceptance.
 
 - **Opt-in, in Settings.** Most people never use it, so it is off by default and adds nothing to the app until a TV is paired.
-- **The button goes in the Discover, Live and My List headers**, next to the avatar (Home keeps its headerless hero). The bottom nav and search stay identical for everyone. Remotes are opened occasionally, and the controls themselves sit in the thumb zone of the sheet, so reaching up for the button once is fine. A one-time tip shows where it went.
+- **The button goes in the Home, Live and My List headers**, next to the avatar. Home is the discover surface on phone and tablet, which have no Discover page. The bottom nav and search stay identical for everyone. Remotes are opened occasionally, and the controls themselves sit in the thumb zone of the sheet, so reaching up for the button once is fine. A one-time tip shows where it went.
 - **The remote is a sheet, not a page**, so the app stays underneath and closing it returns you where you were.
 - **Two modes:** big buttons (the default) and a swipe touchpad. The last-used mode is remembered.
 - **Honest setup:** the intro says nothing is mirrored before discovery. Android SDK 36 has no runtime LAN prompt; denied access gets recovery, never a fake permission prompt.

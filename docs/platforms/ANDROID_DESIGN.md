@@ -99,8 +99,8 @@ differ from those boards, these rules win.
   of the phone remote is superseded by AND-038: the **Watch on TV** row and the
   header remote button return on phone and tablet as AND-038 specifies, while a
   TV still signs in with **Settings › Account › Add a device**. Home keeps this
-  section's headerless hero; only the Discover, Live and My List headers gain
-  the remote button, replacing AND-038's former Home header remote button.
+  section's headerless hero; the Home, Live and My List headers gain the remote
+  button.
 - AND-042-NAV: the floating bar keeps the Main geometry: a 64dp glass bar,
   52dp segments and a separate 64dp Search disc. Segments show 22dp icons
   only, with no text, and keep accessible names (Home, Discover, Live TV,
@@ -285,8 +285,9 @@ local network, cancellable, and falls back to manual entry. Timeouts and
 offline TVs have retry actions.
 
 One paired TV shows a 44 dp header remote button next to the profile entry on
-Discover, Live and My List; Home keeps AND-042's headerless hero. The bottom
-navigation is unchanged. Show the one-time “Your TV remote” tip with “Got it”.
+Home, Live and My List, on phone and tablet; Home is the discover surface there
+and no other page shows the button. The bottom navigation is unchanged. Show
+the one-time “Your TV remote” tip with “Got it”.
 The sheet uses the 390×844 reference proportionally with safe insets and
 scrolling on smaller screens; it restores the underlying route when closed. Its
 controls are D-pad/OK, Back, separate Play/Pause and volume −/+. Each tap sends

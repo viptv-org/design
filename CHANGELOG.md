@@ -1,5 +1,21 @@
 # Design changes
 
+## 2026-11-07 — The header remote button lives on Home, Live and My List
+
+Phone and tablet have no Discover page, so naming it in the Watch on TV copy
+sent people looking for a page that isn't there. [components.md
+§11](viptv-design-system/components.md#11-tv-remote-phone-watch-on-tv--android-phone-and-tablet),
+[copy.md](viptv-design-system/copy.md#watch-on-tv-phone-remote--proposed-for-android-phone-and-tablet)
+and [decisions.md](viptv-design-system/decisions.md#phone-tv-remote-watch-on-tv--proposed-for-android-phone-and-tablet)
+now put the 44 dp button, its one-time tip and the proposed Settings lines on
+**Home, Live and My List**, and say Home is the discover surface on phone and
+tablet. The same section records the tablet's button, shipped at app `c1fdac7b`
+(app#540, [app#546](https://github.com/viptv-org/app/pull/546)), replacing the
+"phone-only today" note. TV, iOS, desktop and web still do not adopt the remote.
+
+Refs [design#165](https://github.com/viptv-org/design/issues/165),
+[app#918](https://github.com/viptv-org/app/issues/918).
+
 ## 2026-11-06 — Real startup progress on the opening screen, a grace window and start cap, provider affinity, racing behind measurement
 
 The owner decided four changes ([design#142](https://github.com/viptv-org/design/issues/142)). [components.md §9](viptv-design-system/components.md#9-feedback) gains the **player opening screen** (proposed): the title's logo art, or the title in display type, dimmed to about 25 % opacity and filling to full opacity bottom to top, driven only by real signals across discovery and ranking, the source opening and buffering toward the start threshold, never backwards, holding with a subtle shimmer when a stage has no measurable signal, with the stage's status line under the art and no percentage or byte counter. [SRC-TORRENT-GATEWAY-001](specs/behavior/torrent-gateway-sources.md) replaces "no fabricated percentages or torrent progress counters" with the same real-progress-only rule for gateway delivery, and gives it an acceptance scenario. [SRC-BEST-MATCH-001](specs/behavior/source-best-match.md#start) replaces the "as soon as" start with a **1.5 s grace window** for a better full match and adds a **5 s start cap** from the first eligible row, so discovery is never waited out for its slowest provider; the timing table and four acceptance scenarios follow, and three are added for the window, the cap and affinity. The ranking gains **provider affinity** as key 7 — the provider, add-on or debrid service, of the last start on that profile that reached a presented frame, stored per profile on the device and written only by a start that presents a frame — which the owner places after the quality, audio and HDR keys and before release type; that puts HDR/Dolby Vision preference above release type, where it used to sit below. **Racing starts** are recorded as proposed and gated on the measurement in [app#955](https://github.com/viptv-org/app/issues/955). [copy.md](viptv-design-system/copy.md#toasts-notices-and-loading) records that the opening screen reuses the picker's stage lines and adds no string, and [TV-034](docs/platforms/TV_POLISH.md) the TV surface. No canvas board draws the opening screen, so none is exported. [decisions.md](viptv-design-system/decisions.md#settled-with-the-product-owner) §Settled 15 records the four.

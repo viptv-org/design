@@ -240,9 +240,9 @@ reading **Off** until a TV is paired and then the persisted TV name, with
 The remote surface — the 44 dp header button, the one-time tip and the
 bottom-sheet remote — ships on app `edge` at `cc3684a0` (app#488,
 [app#536](https://github.com/viptv-org/app/pull/536)), not yet promoted to
-`main`, and is phone-only today: the header button lives in the compact phone
-header, so a tablet can pair a TV but has no header entry point to open the
-sheet. TV, iOS, desktop and web do not adopt it, so the desktop title bar's
+`main`; the tablet's copy of the header button ships at app `c1fdac7b` (app#540,
+[app#546](https://github.com/viptv-org/app/pull/546)). TV, iOS, desktop and web
+do not adopt it, so the desktop title bar's
 cast and remote buttons have no caller and draw nowhere. A TV signs in with
 **Settings › Account › Add a device**, which approves the code the TV shows;
 that page is the pairing story, not this one. Still proposed: the full **Watch
@@ -269,14 +269,16 @@ and name the parts that remain proposed.
   private IPv4 address (optionally `:7345` or `:9000`) canonicalized to `https`.
   The PIN page pairs as soon as the 4th digit goes in. Android SDK 36 requires
   no runtime local-network prompt.
-- **Remote button (phone):** once a TV is paired, a 44 round button (surface-1,
-  remote icon 20) sits in the phone header of Discover, Live and My List, next
-  to the avatar (Home keeps its headerless hero). Its label is "TV remote:
-  [TV name]". It never goes in the bottom nav. The first time it appears, a
-  one-time tip (a 260-wide off-white bubble with `on-light` text) reads
-  **Your TV remote** / "It stays up here on Discover, Live and My List. Turn it
-  off in Settings › Watch on TV." with **Got it**; dismissing it persists. The
-  tablet has no header button, so it cannot open the sheet yet.
+- **Remote button (phone and tablet):** once a TV is paired, a 44 round button
+  (surface-1, remote icon 20) sits next to the avatar in the header of Home,
+  Live and My List. Home is the discover surface on phone and tablet, which
+  have no Discover page; no other page and no other platform shows the button.
+  Its label is "TV remote: [TV name]". It never goes in the bottom nav. The
+  first time it appears, a one-time tip (a 260-wide off-white bubble with
+  `on-light` text) reads **Your TV remote** / "It stays up here on Home, Live
+  and My List. Turn it off in Settings › Watch on TV." with **Got it**;
+  dismissing it persists. The tablet's button sits at the top-right of its
+  header row.
 - **The remote** is a phone bottom sheet (radius 30 top, `Palette.surface`,
   scrim 0.62, navigation-bar padding, scrolls):
   - Header: a 44 TV tile (radius 12, raised) + the TV name (17/700) + a status
