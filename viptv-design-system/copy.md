@@ -137,6 +137,7 @@ Live preview (LIVE-PREVIEW-001): the preview frames the programme the guide pick
 - Could not save your profile. Please try again. (error, Dismiss)
 - [VIPTV could not start.] (startup error, Try again)
 - The stream could not seek there. (player notice)
+- Error-slate notice ([SRC-ERROR-SLATE-001](../specs/behavior/error-slate-detect.md)): **This source might not be working.** Then **[Add-on] handed back this video. Its settings may need a new key.** (no provider name: **This source's settings may need a new key.**) with **Configure source** and **Choose another source**.
 - Preparing playback…
 - Player opening screen (proposed, [SRC-BEST-MATCH-001](../specs/behavior/source-best-match.md) and [components §9](components.md#9-feedback)): the dimmed title art fills with real startup progress and the status line under it names the stage. It reuses the existing lines — **Finding sources**, **Still checking sources**, **Opening [provider] [quality]…** — and never shows a percentage or a byte counter, so no string is added.
 - Loading more titles… / Loading more channels… / Loading more channels… [120] of [860]
