@@ -1,5 +1,11 @@
 # Design changes
 
+## 2026-11-05 — A Live preview frames its programme by the clock
+
+[LIVE-PREVIEW-001](viptv-design-system/copy.md#live) records that the Live page's preview follows the clock, not the guide's selection: phone draws the **LIVE** badge, the progress bar and **"[N] min left"** only while the programme is on air, **"Starts at [time] · [N] min"** with the programme's own length before it starts and **"Ended"** after it ends. A programme that is not on air carries no LIVE badge and no bar. TV and the desktop preview keep their **"start – end"** line and append the same state. [copy.md](viptv-design-system/copy.md#live) gains the section and [components.md §3](viptv-design-system/components.md#3-badges-and-indicators) the rule that the badge marks only what is on air.
+
+Refs [design#135](https://github.com/viptv-org/design/issues/135), [app#893](https://github.com/viptv-org/app/issues/893).
+
 ## 2026-11-05 — The player's failure page is one page with one set of copy
 
 The owner decided [design#128](https://github.com/viptv-org/design/issues/128): every platform draws the same failure page from the same state. [components.md §10](viptv-design-system/components.md#10-player-controls) records it — **"This source stopped working"**, the source's failure (`[Source] didn’t respond. Choose another source.`, adding `to continue from [time]` when playback had a position above 0), then **Try [next source]** / **Choose another source** / **Back**. The Details disclosure is dropped because nothing implements it, phone and desktop said "Choose a source" where TV said "Choose another source"; all of them say **Choose another source** now. [copy.md](viptv-design-system/copy.md#errors) gains the strings. The `M3PlayerError`, `D3PlayerError` and `Tv3PlayerError` boards and their WebP exports are re-rendered with the new copy.

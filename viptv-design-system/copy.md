@@ -116,6 +116,10 @@ nothing has to be retyped
 ([viptv-org/app#821](https://github.com/viptv-org/app/pull/822)). A failure line
 repeats once per failed provider and never replaces the results that loaded.
 
+## Live
+
+Live preview (LIVE-PREVIEW-001): the preview frames the programme the guide picked by the clock, not by the selection. Phone draws the **LIVE** badge, the progress bar and **"[N] min left"** only while it is on air; before it starts the line reads **"Starts at [time] · [N] min"**, where [N] is the programme's own length, and after it ends **"Ended"**. A programme that is not on air carries no LIVE badge and no bar. TV and the desktop preview keep their **"start – end"** line and append **" · [N] min left"** while it is on air, **" · [N] min"** before it starts and **" · Ended"** after it ends.
+
 ## Toasts, notices and loading
 
 - Added to My List
