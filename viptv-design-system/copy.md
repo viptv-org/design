@@ -239,6 +239,19 @@ The entry surfaces: Connect and the sign-in choice, the password panels, TV pair
 - TV welcome (`TvWelcome`): the wordmark over "Your shows, channels and progress. All in one place.", **Sign in** and, on local builds, **Use without an account**; local builds read "Your addons and playback stay on this device. No account, profiles, or sync." under the actions.
 - TV choice (`TvSignInChoice`): heading **Sign in to VIPTV**, **Use your phone** · "Scan a QR code — quickest", **Use a browser** · "Go to a web address and type a code", **Use a password**, local builds **Use without an account** · "Everything stays on this TV", and beside the artwork "All of these reach the same VIPTV account. You can add more ways to sign in later from your phone or computer.".
 
+### Create account and recovery
+
+The browser's sign-up and recovery forms state each field's rule as a hint under the field while the value follows it, and replace that hint with an inline error line (components.md §4) once it breaks:
+
+- **Create account** (`BrowserAccountForm`): heading **Create your account**, "Create an account on this server. You’ll receive a recovery code to keep somewhere safe.", the fields **Username**, **Display name**, **Password** and **Confirm password**, **Create account**, and **Back to sign in**.
+- **Recover account**: heading **Recover your account**, "Use the recovery code you saved when creating your account. This changes your password and signs out existing devices.", the fields **Username**, **Recovery code**, **New password** and **Confirm password**, **Recover account**, and **Back to sign in**.
+- **Username**: hint "Letters, numbers, or . _ - @. Up to 80 characters."; errors "Use letters, numbers, or . _ - @ only." and "Use at most 80 characters.".
+- **Display name**: hint "Up to 80 characters."; error "Use at most 80 characters.".
+- **Password** (sign-up) and **New password** (recovery): hint "At least 12 characters."; errors "Use at least 12 characters." and "Use at most 256 characters.".
+- **Recovery code**: hint "The code you saved when creating your account."; error "Use at most 256 characters.".
+- **Confirm password**: "Passwords do not match." while the two differ, with no hint of its own.
+- While a rule is broken the submit action stays disabled and the field that broke it carries the danger border and its error line, the same shape as the change-password form's "At least 12 characters.".
+
 ### TV pairing
 
 The TV pairs by QR code or by a browser, both halves on one screen:
