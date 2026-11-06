@@ -243,12 +243,12 @@ The entry surfaces: Connect and the sign-in choice, the password panels, TV pair
 The TV pairs by QR code or by a browser, both halves on one screen:
 
 - **Scan with your phone** · "Point your camera at the code. You’ll finish on your phone and this TV signs in by itself." over the QR code; with no code yet, "Request a sign-in code, then scan it with your phone." over the empty code tile.
-- **Use any browser** with the numbered steps **1 Go to** [viptv.syek.tech/device] and **2 Enter this code** [AB12CD34EF], "Code expires in [m:ss]" beside **New code**. **Use another server** replaces the server.
+- **Use any browser** with the numbered steps **1 Go to** [viptv.syek.tech/device] and **2 Enter this code** [AB12CD34EF], "Code expires in [m:ss]" beside **New code**. **Use another server** replaces the server. Before a code arrives the empty code tile reads **Sign-in code**, the browser address **Your server** (**Creating a code…** while it is requested) and the code slot **No code** (**Waiting…** while it is requested).
 - The status line under the board reads "Creating your sign-in code…" while a code is requested, "Request a sign-in code to continue." with none, and "Waiting for you to sign in…" while the code waits. An expired code reads "This code expired." and the action becomes **Try again**.
 
 ### Device pairing (phone, desktop and web)
 
-- **Use another device** over "Scan this code with another device, or go to [address] and enter the code. Sign in there and approve this device.", the QR code, **Code** [AB12CD34EF] with "Expires in [m:ss]", and **New code** · **Use another server**. The status reads "Creating a sign-in code…" or "Waiting for approval…".
+- **Use another device** over "Scan this code with another device, or go to [address] and enter the code. Sign in there and approve this device.", the QR code, **Code** [AB12CD34EF] with "Expires in [m:ss]", and **New code** · **Use another server**. The status reads "Creating a sign-in code…" or "Waiting for approval…". Before a code arrives the QR tile reads **No code**, the code reads **—** (**Creating…** while it is requested), and the address falls back to "your server’s device sign-in page" (**your server** beside the browser action).
 - Browser variant (**Continue in browser**): heading **Finish signing in in your browser**; with no code, "Create a sign-in link, then approve this device in your browser." and **Create a new code**; with a code, "We opened [address]. This window connects by itself when you’re done." or, when it did not open, "Approve this device at [address]. This window connects by itself when you’re done.", beside **Open browser again** and **Copy link**. A browser that cannot open reads "Could not open your browser. Copy the link to continue.". **All sign-in options** returns.
 
 ### Device approval page (/device)
