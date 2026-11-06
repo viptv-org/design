@@ -206,6 +206,8 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 5. **On failure, revert and offer Retry in place:** put the element back to its previous state (or the known-good snapshot), show an inline error on that element or surface, and let the same element retry.
 6. **One shared mechanism per action.** Every surface that can trigger the same action reads one pending state keyed by the action's identity, so the pending indicator, the de-duplication and the revert are written once and shared by every trigger of that action.
 
+**Where the failure line sits.** The one line — alert icon, `copy.md`'s message and **Retry** — sits beside the control that failed: under a hero's save control, on the title menu row that was pressed, and under the card or row itself, which keeps it once the preview or menu that triggered the write has closed. A surface narrower than a menu row drops **Retry** under the message instead of squeezing both onto one line. On TV the failed control becomes a **Retry** pill in the Home and Details heroes, and a card keeps the line under its caption with **Retry** in its title menu, because a button nested in a grid cell never takes the D-pad.
+
 ---
 
 ## 10. Player controls
