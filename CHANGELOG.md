@@ -1,5 +1,20 @@
 # Design changes
 
+## 2026-11-06 — The toast carries a removal's Undo, and My List removals get a line
+
+[app#892](https://github.com/viptv-org/app/issues/892) needs one notice surface for every
+completed save and removal. [components.md §9](viptv-design-system/components.md#9-feedback)
+now says the toast may carry **Undo**: a removal notice lasts 8 s, the action is a text
+button at the end of the copy's line, Undo puts the title back where it was and dismisses
+the notice, one notice shows at a time and a newer one replaces the old one, and a toast
+never takes focus by itself — on T, Up from the page's topmost control reaches its action
+and Down returns, as the backend banner's Dismiss does. [copy.md](viptv-design-system/copy.md#toasts-notices-and-loading)
+gains **Removed from My List** and records both removals as the §9 toast with **Undo**,
+replacing the Undo-dialog wording; [decisions.md](viptv-design-system/decisions.md#settled-with-the-product-owner)
+§Settled 5 follows.
+
+Refs [design#137](https://github.com/viptv-org/design/issues/137), [app#892](https://github.com/viptv-org/app/issues/892).
+
 ## 2026-11-05 — A Live preview frames its programme by the clock
 
 [LIVE-PREVIEW-001](viptv-design-system/copy.md#live) records that the Live page's preview follows the clock, not the guide's selection: phone draws the **LIVE** badge, the progress bar and **"[N] min left"** only while the programme is on air, **"Starts at [time] · [N] min"** with the programme's own length before it starts and **"Ended"** after it ends. A programme that is not on air carries no LIVE badge and no bar. TV and the desktop preview keep their **"start – end"** line and append the same state. [copy.md](viptv-design-system/copy.md#live) gains the section and [components.md §3](viptv-design-system/components.md#3-badges-and-indicators) the rule that the badge marks only what is on air.
