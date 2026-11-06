@@ -123,7 +123,8 @@ Live preview (LIVE-PREVIEW-001): the preview frames the programme the guide pick
 ## Toasts, notices and loading
 
 - Added to My List
-- Removed from Continue Watching (a dialog with Undo / Done)
+- Removed from My List (**Undo**, §9 toast)
+- Removed from Continue Watching (**Undo**, §9 toast)
 - Could not save your profile. Please try again. (error, Dismiss)
 - [VIPTV could not start.] (startup error, Try again)
 - The stream could not seek there. (player notice)
