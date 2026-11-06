@@ -1,5 +1,22 @@
 # Design changes
 
+## 2026-11-07 — The Live preview's scrim stops join the text-over-artwork rule
+
+[app#1042](https://github.com/viptv-org/app/issues/1042) measured the phone
+Live preview's copy at **1.81:1** over a white frame: the feature drew its own
+`Transparent → Black 0.8` gradient that only reached full strength at the card's
+bottom edge, below the copy. [components.md §14](viptv-design-system/components.md#14-text-over-artwork)
+gains the two Live preview stops the app now reads from `Scrim` — phone clear to
+34 %, 90 at 52 %, 97; TV clear to 58 %, 90 at 82 %, 97 — says that the phone
+card's number, title, bar and status line all sit inside the solid band and that
+only "OK to watch" sits on the TV picture, and adds the Live previews to the
+surfaces `TextOverArtworkContrastTest` renders. The rule also states that a
+component's own opaque fill is not the artwork, so the LIVE badge's white label
+is measured against its red and not against the frame.
+
+Refs [design#189](https://github.com/viptv-org/design/issues/189),
+[app#1042](https://github.com/viptv-org/app/issues/1042).
+
 ## 2026-11-07 — One metadata line on every detail hero
 
 The Details entry added yesterday recorded a split the app then had: desktop
