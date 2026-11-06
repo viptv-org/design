@@ -440,8 +440,8 @@ line in reading order.
 | | Block | Icon | Headline | Body | Actions |
 |---|---|---|---|---|---|
 | T | centred in the page area, width ≤ 980 | 96 round tile, `white .1`, 46 icon | 44/700, line 50 | 26/400, line 38 | one row, 16 apart, 18 below the body; 72 tall, radius 12, 26/700 |
-| W | top 120, centred, side 20 | bare 30, or the 72 tile (radius 20) in the tile form | 22/700, line 25 | 14/400, line 20, ≤ 440 | one row, 8 apart, 6 below the body; 38 tall, radius 12, 14/700 |
-| P | top 90, centred, side 20 | bare 30, or the 72 tile (radius 20) in the tile form | 22/700, line 25 | 15/400, line 22 | one column, 12 apart; 44 tall, radius 12, 15/700 |
+| W | centred in the page area, side 20 | bare 30, or the 72 tile (radius 20) in the tile form | 22/700, line 25 | 14/400, line 20, ≤ 440 | one row, 8 apart, 6 below the body; 38 tall, radius 12, 14/700 |
+| P | centred in the page area, side 20 | bare 30, or the 72 tile (radius 20) in the tile form | 22/700, line 25 | 15/400, line 22 | one column, 12 apart; 44 tall, radius 12, 15/700 |
 
 The primary is off-white with `bg` ink. The secondary is `white .12` on P and T
 and a 1 px `white .14` border on W. A skeleton in the page's own row shape is
