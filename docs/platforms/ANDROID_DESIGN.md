@@ -92,19 +92,20 @@ limited to the player track panel. Visual sources are the Main, Live,
 PhPlayerSubs and TvPlayerSubs canvas boards. Where the phone rules below
 differ from those boards, these rules win.
 
-- AND-042-HOME: Home has no header bar. Its first element is the Main hero
-  card: 16dp gutters, 28dp radius on every corner, starting at the system top
-  inset plus 8dp. The profile and remote entries leave Home. Settings stays
-  reachable from the Discover, Live and My List headers. The earlier exclusion
-  of the phone remote is superseded by AND-038: the **Watch on TV** row and the
-  header remote button return on phone and tablet as AND-038 specifies, while a
-  TV still signs in with **Settings › Account › Add a device**. Home keeps this
-  section's headerless hero; the Home, Live and My List headers gain the remote
-  button.
-- AND-042-NAV: the floating bar keeps the Main geometry: a 64dp glass bar,
-  52dp segments and a separate 64dp Search disc. Segments show 22dp icons
-  only, with no text, and keep accessible names (Home, Discover, Live TV,
-  My List). The active segment keeps the off-white fill.
+- AND-042-HOME: Home carries the phone header — the VIPTV mark, the remote
+  button once a TV is paired, and the profile menu (**Switch profile**,
+  **Settings**) — then the Home tab row (All, Movies, Series, Anime, and the
+  Genres chip on Home). Below them the page opens on the Main hero card: 16dp
+  gutters, a 16dp radius on every corner, 470dp tall, 12dp under the tab row.
+  Settings is one tap away in that profile menu, not a nav entry. The earlier
+  exclusion of the phone remote is superseded by AND-038: the **Watch on TV**
+  row and the header remote button return on phone and tablet as AND-038
+  specifies, while a TV still signs in with **Settings › Account › Add a
+  device**. The Home, Live and My List headers carry the remote button.
+- AND-042-NAV: the bottom bar is the phone bottom nav
+  ([components.md §7](../../viptv-design-system/components.md#7-navigation)):
+  tabs Home, Live, Calendar and My List, and Search on its own disc. AND-042
+  adds nothing to it.
 - AND-042-CARDS: phone media cards keep the caption under the art: the title,
   then one line of minimal context, S1 E1 for an episode, otherwise the year.
   They show no genres, runtime or resume times. Progress is 6dp with rounded
@@ -146,11 +147,13 @@ differ from those boards, these rules win.
   the current row; Back closes and restores focus to the control that opened
   the panel.
 
-Acceptance AND-042-01: phone Home starts with the rounded hero under the status
-bar, shows no header, and keeps Settings reachable. AND-042-02:
-icon-only nav with accessible names, content-type headings, live logo tiles,
-6dp lifted progress and year/episode captions. AND-042-03: skeletons for
-Home, Discover, Search and Live, with no loading copy and automatic paging.
+Acceptance AND-042-01: phone Home shows the header (the VIPTV mark, the remote
+button once a TV is paired, the profile menu with **Settings**), then the Home
+tab row, then the rounded hero. AND-042-02: labelled nav segments (Home, Live,
+Calendar, My List) with the same accessible names, content-type headings, live
+logo tiles, 6dp lifted progress and year/episode captions. AND-042-03:
+skeletons for Home, Discover, Search and Live, with no loading copy and
+automatic paging.
 AND-042-04: on phone and TV, select, turn off and reject an unavailable
 subtitle, select audio, then Back/close and confirm focus or controls are
 restored. Emulator evidence is not physical-device parity.
@@ -374,7 +377,7 @@ normalization, artwork, source identity, progress and continuation rules.
   the safe inset. TV-034's 1824px final-card bound remains for shared TV-web.
 - Phones follow the phone references at native density: Onest body text,
   Bricolage display type, 16dp gutters, rounded hero, 54dp primary controls,
-  44dp minimum touch targets, and a floating Home/Discover/Live/My List bar
+  44dp minimum touch targets, and a floating Home/Live/Calendar/My List bar
   with a separate Search button. Honour status/navigation/keyboard insets and
   system font scaling. Portrait and landscape layouts scroll without clipping.
 - Select layout from the native television UI mode, not screen width alone.
