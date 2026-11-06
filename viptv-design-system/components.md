@@ -514,6 +514,9 @@ trending term keeps its normal results area rather than a blank.
 | Web Details hero | clear to 30 %, 55 at 52 %, 86 at 70 %, the dialog's own surface |
 | Phone Live preview | clear to 34 %, 90 at 52 %, 97 |
 | TV Live preview | clear to 58 %, 90 at 82 %, 97 |
+| Live empty state, wide | 92, 60 at 45 %, 18 |
+| Live empty state, tall crop | clear, 35 at 40 %, 90 |
+| Live empty state, phone band | clear, 30 at 45 %, 86 at 80 %, ground |
 
 The Live preview's copy sits on its artwork, not beside it: the phone card is at
 least 196 dp tall and draws the channel number and name, the programme title,
@@ -521,10 +524,15 @@ the progress bar and the status line inside the 90 to 97 band; on TV only
 "OK to watch" sits on the picture, in the band at its bottom edge. The LIVE
 badge keeps its own red fill above the band.
 
+The Live empty state's crops, placement and credit stay
+[LIVE-EMPTY-001](../specs/behavior/live-empty-state.md#artwork)'s; this table owns
+the stop and the duty under it. Its phone band ends on the page ground and draws
+its copy below the band, so only the wide and tall crops carry copy.
+
 `TextOverArtworkContrastTest` in `viptv-org/app` renders every Home hero, every
-Details layout, the phone and TV Live previews and the TV top bar over flat
-white artwork, samples the brightest background around every drawn line and
-fails the ones under 4.5:1. It skips a line whose ground is a coloured fill
+Details layout, the phone and TV Live previews, the Live empty state and the TV
+top bar over flat white artwork, samples the brightest background around every
+drawn line and fails the ones under 4.5:1. It skips a line whose ground is a coloured fill
 rather than the artwork, which is how the LIVE badge is left to its own colour.
 
 ## Implemented component contracts (2026-10-19)
