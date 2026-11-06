@@ -1,5 +1,17 @@
 # Design changes
 
+## 2026-11-07 — A card's LIVE tag is dropped where the glass badge is drawn
+
+The TV preview said LIVE twice: the one glass badge above the channel line, then
+the add-on's own **LIVE** tag in the tag row beside **1080p**
+([app#1074](https://github.com/viptv-org/app/pull/1074)). §3's LIVE entry now
+records the rule beside the badge: a card's own **LIVE** tag is dropped wherever
+the glass badge is drawn, so a surface never says it twice, and the row keeps
+every other tag. No copy is added — the tag is the add-on's word.
+
+Refs [design#209](https://github.com/viptv-org/design/issues/209),
+[app#1055](https://github.com/viptv-org/app/issues/1055).
+
 ## 2026-11-07 — The Live empty state's scrim stops join §14
 
 [app#1056](https://github.com/viptv-org/app/issues/1056) found the Live empty
