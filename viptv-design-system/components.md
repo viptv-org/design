@@ -32,6 +32,7 @@ Platform keys: **P** = phone, **D** = desktop app and web, **T** = TV.
 - Loading: a spinner replaces the icon and the label reads "Saving…" / "Signing in…".
 
 **Special buttons**
+- **Favourite (icon-only toggle):** the star is an outline in the control's own ink while the channel is not saved and a filled star in `accent` once it is, so the state reads without the label. The label names the action — **Favourite channel** / **Remove favourite channel** (`copy.md` §Live) — and **Saving…** replaces it while the write runs.
 - **Split button (D):** Play plus a chevron that opens the source drawer. Each half hovers separately, and there is one focus ring around the pair.
 - **TV source pill:** quality badge + provider name ("1080p LordStreams"). It opens the source panel.
 
@@ -72,7 +73,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 ## 3. Badges and indicators
 
 - **Quality badge:** "1080p", "4K", "SD". 4 px radius (D) or 8 px (T), with a 0.16 white fill.
-- **LIVE:** red `#FF5A4E` is used only here. It appears as a glass badge over art (a 6 px dot + "LIVE"), as a row label, and on TV as a solid red block. It marks only the programme that is on air: the Live preview draws it, with the progress bar and "[N] min left", while `now` is inside the programme, and reads "Starts at [time] · [N] min" before it and "Ended" after it (`copy.md` §Live, LIVE-PREVIEW-001).
+- **LIVE:** red `#FF5A4E` is used only here, and only as the badge's dot. One glass badge, on every layout: `bg` at 0.72, a 6 px dot in `#FF5A4E`, then the word **LIVE** in `text.primary`. There is no solid red block: white at 11/700 reads 3.9:1 on the red the app used to fill it with and 3.1:1 on `#FF5A4E`, and the glass grounds the word at 7.3:1 over a flat white frame and over the brightest artwork. Geometry: 6 radius, 8 × 4 padding, a 6 gap after the dot; the label is 11/700 on P and D and 18 × scale extrabold with 1.08 × scale tracking on T, the dot 6 or 9 × scale. It is one component wherever it draws: the Live preview on every layout, a TV channel card's art and a TV search result. It marks only the programme that is on air: the Live preview draws it, with the progress bar and "[N] min left", while `now` is inside the programme, and reads "Starts at [time] · [N] min" before it and "Ended" after it (`copy.md` §Live, LIVE-PREVIEW-001). The word is measured against the badge's own fill (§14).
 - **UP NEXT** and **WATCHING:** uppercase eyebrow badges on episodes.
 - **Android completed episode (proposed, AND-EPISODE-WATCHED-001):** a noninteractive check + `Watched` pill beside the episode-number caption on TV and wider phone layouts. On a narrow phone text column, wrap the full badge onto the next caption line when the complete episode number and badge cannot fit together; retain their reading order and never ellipsize the badge or episode number. Keep existing artwork and the 44 dp episode-options target. Use surface-3 ground and text-primary, accent check, pill radius, height 32 px on TV or 24 dp on phone, 8 px/dp horizontal padding and 4 px/dp icon gap. TV text is 18 px with a 20 px icon; phone text is 11 sp with a 14 dp icon. Render only the current profile's authoritative `watched=true`; no local completion percentage threshold. Completed cards omit the partial-progress bar; incomplete cards retain it. Preserve artwork, title, card geometry and remote focus behavior. Include `Watched` in the card's accessible content without another focus stop. Missing or failed progress has no completed badge; a false fact removes it. Lazy-card reuse and profile switching cannot retain another episode/profile's badge.
 - **Best match:** an accent eyebrow on the first source row of the **Best matches** group (proposed, SRC-BEST-MATCH-001; previously specified as the first source row).
@@ -485,8 +486,9 @@ trending term keeps its normal results area rather than a blank.
 - The stop under copy is opaque enough for `text.secondary` and `text.tertiary`
   as well as `text.primary` and `text.body`, because a hero draws all four.
 - The scrim is not part of the artwork and adds no copy, motion or focus stop.
-- A component's own opaque fill is not the artwork: the LIVE badge's white label
-  is measured against the badge's red, not against the frame behind it.
+- A component's own opaque fill is not the artwork, and its label keeps 4.5:1
+  against that fill: the LIVE badge's word is measured against the badge's
+  glass, not against the frame behind it.
 
 **Stops** (fraction of the surface, then the ground's opacity)
 
