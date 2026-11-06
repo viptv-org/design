@@ -165,7 +165,7 @@ Live preview (LIVE-PREVIEW-001): the preview frames the programme the guide pick
 - VIPTV receiver did not serve its app bundle. The TV was not launched.
 - Could not check the VIPTV receiver. Check your connection and try again.
 - The TV accepted the launch request. Check its screen to confirm VIPTV opened.
-- This code expired. (TV pairing, with "Try again")
+- This code expired. (sign-in code; TV pairing offers **Try again**, phone and desktop **New code**)
 
 ## Native playback failure reasons (SRC-TORRENT-NATIVE-001)
 
@@ -226,16 +226,52 @@ recovery dialog and can be quoted when reporting a failure.
 | App update (Android) | Update ready · Update required · Couldn't update VIPTV | See the [app updates contract](../specs/behavior/app-updates.md) for descriptions · Install · Later · Try again |
 | Updating screen (Android, proposed) | Updating VIPTV to [version]… · Allow updates | A full-screen cover rather than a dialog; copy, states and failure flow in [app-updates.md](../specs/behavior/app-updates.md#updating-screen) · Open settings · Try again · Later |
 
-## Sign-in
+## Sign-in and entry
 
-- Sign in to VIPTV. Your shows, channels and progress. All in one place.
-- Create an account or recover access
-- Use another device · Reconnect
-- Use without an account: "Your addons and playback stay on this device. No account, profiles, or sync." (local builds only)
-- TV: "Visit this address, then enter the code shown below." [viptv.syek.tech/device] [AB12CD34EF]
-- Desktop: Continue in browser. "Sign in securely in your browser. This window will connect automatically."
+The entry surfaces: Connect and the sign-in choice, the password panels, TV pairing, device pairing, the device-approval page, the profile picker and the startup screen. A **bold** string is a control that is drawn or an accessible name; a quoted string is body copy or a status line.
+
+### Connect and the sign-in choice
+
+- Browser (`ConnectScreen`): heading **Welcome back**, "Sign in to your VIPTV server.", the fields **Username** and **Password** with **Show password** / **Hide password**, **Sign in** (**Signing in…** while it runs), **Create account** and **Use recovery code**.
+- Phone and tablet (`MobileSignIn`), desktop and web (`DesktopSignIn`): heading **Sign in to VIPTV** over "Pick whichever is easiest. They all reach the same account.", then **Continue in browser** · "Approve this sign-in through your server", **Use a password**, **Use another device** · "Scan a code and approve this sign-in", **Create account** · "Open your server’s web sign-in page", and on local builds **Use without an account** · "Everything stays on this device". **All sign-in options** returns from a step.
+- Password panels: heading **Sign in with a password** (TV: eyebrow **Use a password** over **Sign in with your password**) with the fields **Username** and **Password**, **Show password** / **Hide password**, **Sign in** (**Signing in…** while it runs), **Forgot password?** (inactive with "Enter your server address first." while no address is set), **Use another server** (desktop: **Hide server address** while the field is open), and on TV **Delete character** and "Typing with a remote is slow. Scanning a code with your phone is quicker.".
+- TV welcome (`TvWelcome`): the wordmark over "Your shows, channels and progress. All in one place.", **Sign in** and, on local builds, **Use without an account**; local builds read "Your addons and playback stay on this device. No account, profiles, or sync." under the actions.
+- TV choice (`TvSignInChoice`): heading **Sign in to VIPTV**, **Use your phone** · "Scan a QR code — quickest", **Use a browser** · "Go to a web address and type a code", **Use a password**, local builds **Use without an account** · "Everything stays on this TV", and beside the artwork "All of these reach the same VIPTV account. You can add more ways to sign in later from your phone or computer.".
+
+### TV pairing
+
+The TV pairs by QR code or by a browser, both halves on one screen:
+
+- **Scan with your phone** · "Point your camera at the code. You’ll finish on your phone and this TV signs in by itself." over the QR code; with no code yet, "Request a sign-in code, then scan it with your phone." over the empty code tile.
+- **Use any browser** with the numbered steps **1 Go to** [viptv.syek.tech/device] and **2 Enter this code** [AB12CD34EF], "Code expires in [m:ss]" beside **New code**. **Use another server** replaces the server.
+- The status line under the board reads "Creating your sign-in code…" while a code is requested, "Request a sign-in code to continue." with none, and "Waiting for you to sign in…" while the code waits. An expired code reads "This code expired." and the action becomes **Try again**.
+
+### Device pairing (phone, desktop and web)
+
+- **Use another device** over "Scan this code with another device, or go to [address] and enter the code. Sign in there and approve this device.", the QR code, **Code** [AB12CD34EF] with "Expires in [m:ss]", and **New code** · **Use another server**. The status reads "Creating a sign-in code…" or "Waiting for approval…".
+- Browser variant (**Continue in browser**): heading **Finish signing in in your browser**; with no code, "Create a sign-in link, then approve this device in your browser." and **Create a new code**; with a code, "We opened [address]. This window connects by itself when you’re done." or, when it did not open, "Approve this device at [address]. This window connects by itself when you’re done.", beside **Open browser again** and **Copy link**. A browser that cannot open reads "Could not open your browser. Copy the link to continue.". **All sign-in options** returns.
+
+### Device approval page (/device)
+
+- **Checking your session...** while the account session restores.
+- Code step: **Enter the code on your TV** · "You'll find it on your TV under Sign in.", the **Device code** field and **Continue** (enabled at eight digits), then **Enter a different code**. A signed-in phone reads "Signed in as [username] - " with **Not you?**, and **Scan the code on your TV** opens its camera where the device has one.
+- Confirm step: **Sign in to this TV?** · "Only continue if the code matches the one on your TV." over the device's name and its code in groups of four, with **Waiting for approval** or **Approved** beside it, then **Sign in the TV** · **Deny**.
+- Done: **Device signed in** · "It can now pick its profile." · **Add another device**. Denied: **Denied** · "That device will not be signed in." · **Add another device**.
+- A page without a session reads **Sign in to continue** · "Approve the TV with your VIPTV account." with **Username**, **Password** and **Sign in**; an unreachable server reads "Could not reach your server. Try again.".
+
+### Startup screen
+
+- The wordmark over the startup progress and **Getting VIPTV ready…**, with **Change connection**; the screen's accessible name is **Starting VIPTV**. Every layout that shares the entry screen draws it while the saved session restores ([STARTUP-RECOVERY-001](../specs/behavior/startup-recovery.md)).
 - Startup recovery ([STARTUP-RECOVERY-001](../specs/behavior/startup-recovery.md)): when the saved session can't reach the server, the entry screen shows the reason — **"Could not reach your server. Check the connection and try again."** for a transport failure, the server's own message on a 5xx — and **"Try again"** under it. An expired session reads the existing **"Session expired. Sign in again."** and offers no action.
-- Profiles: Who's watching? · Manage profiles · Add a profile · Edit profile · "A space for their favorites, shows, and discoveries." · Find your favorite · "[468] avatars. Pick a world, then pick your character."
+
+### Server address
+
+- The dialog is titled **Server address** with the field **HTTPS server address** and **Connect** (phone and desktop: **Continue**). Every server-address field shares one error, drawn inline under the field (components.md §4): **"Enter an HTTPS server address, without a page path."** It covers a non-HTTPS address, a page path, a query or fragment, and embedded credentials.
+
+### Profile picker
+
+- **Who's watching?** · **Manage profiles** · **Done** while managing · **Add a profile** (the dialog is titled **Add a profile** with the **Name** field and **Add** / **Cancel**) · the per-profile action **Edit profile**.
+- A PIN-protected profile draws the lock glyph; its accessible name is **Locked**. "A space for their favorites, shows, and discoveries." · **Find your favorite** · "[468] avatars. Pick a world, then pick your character."
 
 
 ## Settings

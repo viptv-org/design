@@ -91,6 +91,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Password:** masked, with a show / hide eye button.
 - **PIN:** 4–8 boxes (the drawn example has 6). Filled boxes show a dot, the active box shows the accent caret, and errors turn the boxes' borders danger. Error copy: "Incorrect PIN. Try again." / "Enter a 4–8 digit parent PIN".
 - **URL field:** monospace value. Errors: "Enter an HTTPS manifest URL." / "That does not look like an addon URL." / "This addon is already installed."
+- **Server address field:** label **HTTPS server address**; every server-address field validates the same way and reports one inline error, "Enter an HTTPS server address, without a page path.", for a non-HTTPS address, a page path, a query or fragment, or embedded credentials (`copy.md` §Server address).
 - **Search:** P is a pill field docked above the nav, with a fade behind it. D has a title-bar search (460 × 30, radius 9, "Search movies and series", a clear button once there is text, no shortcut hint) and a page search on web. T has a field with a caret plus the on-screen keyboard; native Android TV uses its device IME under AND-KEYBOARD-001.
 - **TV text entry:** Android TV uses a native editable field and device IME with Done/Cancel (AND-KEYBOARD-001); the app renders no character or PIN key grid. Other TV platforms use the full-screen design: the field on the left, the keyboard on the right (a–z, 0–9, `: / . - _ @`, Aa, Space, Delete, Done, Cancel). Digits use the **PIN keypad** (1–9, ⌫, 0, Done, Cancel).
 - **Android TV episode jump (proposed, AND-EPISODE-JUMP-001):** a compact `Episode #` chip ends the season strip above the lazy episode row, after every season badge; Right steps the seasons and then reaches the chip, and Down from any badge enters the episode row. It opens a native numeric-input dialog; a successful exact current-season match scrolls to and focuses the card. See [episode-number-jump.md](../specs/behavior/episode-number-jump.md) for input, error and Back rules. Roku and TV-web keep their existing episode controls.
@@ -141,7 +142,7 @@ This supersedes the segments-or-dropdown threshold of app#57 / app#59 (`useSelec
 - **Press (P, tablet, D):** the art frame scales to 0.98 (`motion.pressed-scale-card`) under the press and returns on release; the caption and the card's slot in the grid never move. A press that becomes a scroll returns the scale and does not activate.
 - **Focus (D):** the keyboard ring outside the tile. **Focus (T):** a 4 px white ring without scale; the caption brightens.
 - **Touch overflow (P):** a ⋯ button (44 target) on posters and continue cards opens the title menu. Long-press does the same.
-- **Profile tiles:** a lock badge on PIN-protected profiles. "Add profile" shows as a dashed tile and is disabled at 12 profiles.
+- **Profile tiles:** a lock glyph on PIN-protected profiles, with the accessible name **Locked** and no visible word. **Add a profile** shows as a dashed tile and is disabled at 12 profiles.
 - **Avatar tiles:** the selected tile shows a check badge. Worlds are shown as chips, one grid page at a time (P 15, D and T 18) with Previous / Next.
 
 ---
