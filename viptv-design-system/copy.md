@@ -71,6 +71,7 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | My List, results still arriving | **Loading matching titles…** · Results update as metadata becomes available. |
 | My List, first read failed | **Couldn’t load My List** · the message the request read · **Try again** |
 | Continue Watching | Nothing in progress. Titles you start watching appear here. |
+| Continue Watching, first read failed | **Couldn’t load Continue Watching** · the message the request read, otherwise **Check the connection and try again.** · **Try again** |
 | Home, no catalogs | **No catalogs are available.** · Add or enable a catalog add-on in Settings. · **Open settings** |
 | Home, catalogs with no titles | **No titles yet** · Your catalogs answered with nothing for this profile. · **Try again** |
 | Home, first read failed | **Couldn’t load Home** · the message the request read · **Try again** |
