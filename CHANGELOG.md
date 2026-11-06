@@ -1,5 +1,38 @@
 # Design changes
 
+## 2026-11-06 — Home's words, its hidden failed rows and the TV search idle page
+
+Home was the only page whose copy lived nowhere but Kotlin, so no reviewer could
+check the most-seen screen against the design. [copy.md](viptv-design-system/copy.md#home)
+gains a **Home** section: the hero's **Featured** eyebrow and its **Featured · [N]
+of [M]** form (desktop and web), the **Continue watching** eyebrow the hover
+preview uses, the hero's **Play**, **More info** and save control (**My List** on
+phone, **Add to My List** / **Remove from My List** as the icon-only accessible
+name elsewhere, **Saving…** while a write runs), a row's **See all** link and
+card, **See all [row], [N] titles**, the shelf arrows' **Next items** /
+**Previous items**, the hover preview's three circles, and the full card menu
+with the **Mark unwatched**, **In My List**, **Resume** / **Play** and **More
+info** rows the §8 list omitted.
+[components.md §8](viptv-design-system/components.md#8-overlays) now lists that
+menu in the order it draws.
+
+The **Copy decisions** row-failure rule followed a "Couldn't load this row" card
+the app never draws: app#14 settles it as hide-and-retry, so a failed row leaves
+no heading, gap or retry, the freshness lane and the next Home rebuild bring it
+back, and a page whose rows all fail draws the §13 page state block. That is now
+the rule in both files.
+
+The TV Search page's no-query state had no geometry anywhere.
+[components.md §13](viptv-design-system/components.md#13-empty-states-and-artwork)
+records it: the **Recent** heading with **Clear** as a focus stop, 72 × scale
+rows inside the page insets, **Trending searches** 32 × scale below, Down entering
+the list from the field, Left returning to it, and Clear emptying the recent
+terms only.
+
+Refs [design#185](https://github.com/viptv-org/design/issues/185),
+[app#14](https://github.com/viptv-org/app/issues/14),
+[app#1038](https://github.com/viptv-org/app/issues/1038).
+
 ## 2026-11-07 — The phone Calendar's week range gets a line of its own
 
 The phone Calendar's week row is wider than the screen at 320 and 390 dp, so
