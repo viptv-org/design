@@ -296,7 +296,14 @@ Title **Account**. Rows, in order, each its own page or dialog:
    This page, not a Settings row of its own, is how pairing is reached.
 6. **Add-ons** — the existing inventory page. Add-ons belong to the account;
    only the account owner can install, enable, disable or remove one. The switch
-   on a row enables one for the current profile and the page says so.
+   on a row enables one for the current profile and the page says so. A source's
+   **Configure [add-on]** (`components.md` §6, SRC-ROW-MENU-001) opens this page
+   on that add-on: its row is scrolled into view, focused and drawn with the
+   row's focus fill plus a 2 dp accent ring, on phone, tablet, desktop, web and
+   TV. The ring is the arrival marker and is gone once the page is left; the row
+   is otherwise the ordinary inventory row, so the switch turns the add-on off in
+   one action. Back returns to the source picker it came from with its rows and
+   filters unchanged.
 7. **Source integrations** — VIPTV Sources and M3U. Only the account owner can
    add, change or remove one; a member reads the list.
 8. **Xtream connections** — the account's Xtream providers; see
