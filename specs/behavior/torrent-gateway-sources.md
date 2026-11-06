@@ -2,7 +2,9 @@
 
 Status: proposed implementation contract, 2026-10-02, for
 [playback-gateway issue 15](https://github.com/viptv-org/playback-gateway/issues/15).
-Review and implementation/device qualification remain pending.
+Review and implementation/device qualification remain pending. The opening
+screen's real progress art is the owner's 2026-11-06 decision
+([design#142](https://github.com/viptv-org/design/issues/142)).
 
 Source revisions: design `18b19af378b27655e3b6401f17b92321739dba83`; gateway
 `76d100b8fce0922aefca203e791c10e41f83019c` (reviewed transport source
@@ -145,7 +147,15 @@ existing `No playable sources from [provider]` state; pending producers retain
 through the normal immutable design/Core adoption path.
 
 Selection prepares the existing `starting` lease and its existing busy/skeleton
-surface; no fabricated percentages or torrent progress counters appear.
+surface. **Real progress only:** the player's opening screen shows the title's
+logo art, or the title in display type when there is no logo, dimmed to about
+25 % opacity and filling to full opacity from bottom to top as startup advances through
+the three measured stages of
+[components.md §9](../../viptv-design-system/components.md#9-feedback):
+discovery and ranking, the source opening and buffering. The fill follows real
+signals only, never moves backwards and never invents a value; when the current
+stage has no measurable signal it holds and a subtle shimmer shows activity.
+The status line stays under the art. No percentage or byte counter is shown.
 Capacity, unavailable gateway, timeout and unsupported-selection failures use
 existing safe retry/source-choice surfaces. `torrent_cache_capacity` maps to
 the existing `gateway_capacity` classification and copy. Unsupported output
@@ -190,6 +200,10 @@ releases only that viewer; another authorized viewer continues normally.
    failure cannot revive obsolete media or leave an owned active lease.
 8. Source error copy matches all equivalents, with source/title/queue focus
    restoration tested independently. No layout parity follows from pin checks.
+9. During preparation the opening screen's fill moves only on measured stages:
+   it holds while a stage has no signal, never regresses across a stage change
+   and never exceeds what the last measured stage reported. The status line
+   below the art names the current stage.
 
 Record source/image/design/Core/app pins and functional/browser/installed/emulator
 results independently. Ready-viewer cache exhaustion, sustained peer workloads

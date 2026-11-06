@@ -5,7 +5,8 @@ and core `985a23f`: the ranking order and hard filters below without the
 decode-class and series-memory keys, the Best matches and All sources groups
 with their headers and the Best match marker, progressive ranking, and the
 immediate start of the best match
-([app#336](https://github.com/viptv-org/app/issues/336)). Also shipped: the
+([app#336](https://github.com/viptv-org/app/issues/336)), which the owner's
+grace window below supersedes. Also shipped: the
 [fallback](#fallback) with its notices in app `805b7c0f`
 ([app#411](https://github.com/viptv-org/app/issues/411)), the [remembered
 source](#remembered-source) in app `5e4ebbc7`
@@ -16,8 +17,14 @@ last-three-minutes preparation in app `f19e0dc6` and `9e236f52`
 ([app#417](https://github.com/viptv-org/app/issues/417),
 [app#420](https://github.com/viptv-org/app/issues/420)). Proposed, not
 implemented: decode-class ranking, series memory and device capability
-reporting ([core#32](https://github.com/viptv-org/core/issues/32)). No device
-evidence is recorded for the shipped parts.
+reporting ([core#32](https://github.com/viptv-org/core/issues/32)), and the
+owner's 2026-11-06 decisions — the [grace window](#start) and start cap,
+[provider affinity](#provider-affinity-proposed) and [racing
+starts](#racing-starts-proposed-not-authorised) — recorded in
+[design#142](https://github.com/viptv-org/design/issues/142). The player's
+opening screen and its progress art are [components.md
+§9](../../viptv-design-system/components.md#9-feedback). No device evidence is
+recorded for the shipped parts.
 
 Source revisions: design `05c6078`; app `62e0c949`, `805b7c0f`, `f19e0dc6`,
 `9e236f52` and `5e4ebbc7`; backend `e1ec02d`; core `985a23f`. Prior art and
@@ -26,11 +33,15 @@ note](https://github.com/viptv-org/workspace/blob/main/docs/research/source-auto
 
 Owner decisions: the best match starts as soon as it meets every preference and
 at the end of discovery otherwise
-([app#336](https://github.com/viptv-org/app/issues/336)); one audio preference
-for every title type (no anime override); automatic fallback to the next source,
-at most three attempts; WEB and BluRay releases preferred; HDR/Dolby Vision
-preference exists but is off by default; the source list sorts by the preference
-ranking into a named batch (see [Source
+([app#336](https://github.com/viptv-org/app/issues/336)), **superseded** by a
+1.5 s grace window for a better row and a 5 s start cap
+([design#142](https://github.com/viptv-org/design/issues/142)); one audio
+preference for every title type (no anime override); automatic fallback to the
+next source, at most three attempts; WEB and BluRay releases preferred;
+HDR/Dolby Vision preference exists but is off by default; the profile remembers
+the provider of its last presented start and that provider breaks ties; racing
+two starts ships only after measurement; the source list sorts by the
+preference ranking into a named batch (see [Source
 groups](#source-groups-best-matches-and-all-sources)).
 
 ## Intent
@@ -72,20 +83,33 @@ episode](next-episode-autoplay.md#how-the-next-episode-starts).
    filter never become the target.
 2. The target is the first Best matches row, the same row that carries the Best
    match marker (`best_match_id`). Every rule below starts that row.
-3. The target starts as soon as a ranking reports that it fully meets every
-   preference (below). The picker closes and playback opens on that source,
-   exactly as if the viewer had activated the row. A row that arrives later
-   neither replaces it nor interrupts playback.
-4. Without such a ranking the target starts when discovery ends, that is when
-   the last provider has answered. When the provider ceiling ends discovery
-   instead, the picker keeps the rows that arrived and nothing starts.
-5. With no row passing the hard filters there is no target and nothing starts.
-6. On **Always ask** nothing starts on its own, except a title with a
+3. **Grace window.** When a ranking reports a target that fully meets every
+   preference (below), the picker waits **1.5 s** for a better row, then starts
+   the best row so far that fully meets every preference. Only a row that also
+   fully meets every preference and ranks above the target takes the start, and
+   the window is fixed: a later arrival neither restarts nor extends it, so a
+   row that ranks higher without meeting every preference never starts this way.
+   The picker closes and playback opens on that source, exactly as if the viewer
+   had activated the row. A row that arrives later neither replaces it nor
+   interrupts playback.
+4. **Start cap.** When no ranking has reported a full match, the best eligible
+   row starts **5 s** after the first eligible row arrived, or when discovery
+   ends, whichever comes first, and the picker closes exactly as above. A row
+   arriving after either leaves playback alone. Discovery is never waited out
+   for its slowest provider.
+5. When the provider ceiling ends discovery, the picker keeps the rows that
+   arrived and nothing starts.
+6. With no row passing the hard filters there is no target and nothing starts.
+7. On **Always ask** nothing starts on its own, except a title with a
    [remembered source](#remembered-source) and the [controlled next
    episode](next-episode-autoplay.md#how-the-next-episode-starts).
 
 A discovery starts at most one source. Group membership is computed before the
-provider and quality filters, so a filter never changes the target.
+provider and quality filters, so a filter never changes the target. The two
+timers are the owner's 2026-11-06 decision
+([design#142](https://github.com/viptv-org/design/issues/142)); they supersede
+the earlier "as soon as" and "when discovery ends" starts and are proposed, not
+implemented.
 
 ### Fully meets every preference
 
@@ -115,6 +139,21 @@ Any of these stops it, and nothing starts for the rest of that discovery:
 These do not stop it: rows arriving and re-ranking, initial focus placement,
 moving focus with the D-pad or arrow keys, wheel scrolling, pointer hover,
 window focus changes, and changing the provider or quality filter.
+
+### Racing starts (proposed, not authorised)
+
+For a start whose target is a torrent, or whose provider's recent startup
+failure rate on this device is high, the app may open the next ranked row in
+parallel — muted and unseen — and keep whichever reaches a first frame first,
+cancelling and releasing the other. Only the winner's provider reaches
+[provider affinity](#provider-affinity-proposed), and the loser is never
+announced.
+
+It ships only behind the measurement in
+[app#955](https://github.com/viptv-org/app/issues/955): time to first frame and
+failure rate for single and raced starts, per provider and delivery type, with
+the extra bandwidth and connections recorded. Until that measurement recommends
+it, a discovery starts exactly one source.
 
 ## Remembered source
 
@@ -154,6 +193,35 @@ ranked rows and end on the picker with the `Didn’t start` labels.
 **Choose source** always opens the picker, and so does any title without an
 entry. Another profile never inherits one.
 
+## Provider affinity (proposed)
+
+Owner decision 2026-11-06 ([design#142](https://github.com/viptv-org/design/issues/142)),
+not implemented.
+
+**Stored:** the provider of the last start on this profile that reached a
+presented frame — the add-on's `provider_id` or, for a debrid source, the debrid
+service that served it (for example `TB+`). One entry per profile, in the
+device's own store, beside the [remembered source](#remembered-source) and
+under the same boundaries: written on this device only, survives restarts,
+never leaves the device, never shared with another profile.
+
+**Written** by every start that reaches a presented frame, manual or automatic,
+and only by one. A start that failed, never decoded or was cancelled before the
+first frame leaves the stored provider in place, so the entry follows the source
+that actually played. (The [remembered source](#remembered-source) differs: only
+a manual pick writes it.)
+
+**Read** by ranking as the tie-breaker of key 7: rows from that provider win
+ties within their tier. It cannot lift a row over a better language tier,
+quality cap class, resolution or HDR answer, cannot subvert a hard filter and
+never decides the target on its own. For an episode the series-memory key still
+outranks it. The [remembered source](#remembered-source) start ignores it,
+because it starts the remembered add-on's row.
+
+The shared ranking applies it; clients render the order it returns and never
+recompute the tie-break. A row whose provider is unknown neither wins nor loses
+a tie.
+
 ## Ranking
 
 Rows are normalized once at ingestion (next section); ranking reads only the
@@ -175,8 +243,9 @@ other row:
 
 ### Order (each key breaks ties of the previous one)
 
-The shipped order is this list without keys 1 and 4, which are proposed
-([core#32](https://github.com/viptv-org/core/issues/32)).
+The shipped order is this list without keys 1, 4 and 7, which are proposed
+([core#32](https://github.com/viptv-org/core/issues/32),
+[design#142](https://github.com/viptv-org/design/issues/142)).
 
 1. **Decode class:** supported, unknown, risky. *Risky* is a Dolby Vision
    release without an HDR10/SDR base layer on a device without a Dolby Vision
@@ -188,15 +257,24 @@ The shipped order is this list without keys 1 and 4, which are proposed
    the last successfully started episode of this series on this profile ranks
    first within its tier.
 5. **Resolution:** highest first, within the cap.
-6. **Release type:** WEB-DL and BluRay encodes; WEBRip; unknown; BluRay remux;
-   HDTV, DVD and other rips. Remux sits below because its size makes starts
-   slow; it is not filtered.
-7. **HDR/Dolby Vision preference:** applies only if the profile changed it from
+6. **HDR/Dolby Vision preference:** applies only if the profile changed it from
    **No preference**. *Prefer* ranks HDR10, HDR10+, HLG and decodable Dolby
    Vision first; *Avoid* ranks SDR first.
-8. **Delivery:** direct HTTP(S) (including debrid) before torrents; among
+7. **Provider affinity:** rows from the provider, add-on or debrid service, of
+   the last start on this profile that reached a presented frame rank first
+   within their tier (see [Provider affinity](#provider-affinity-proposed)).
+8. **Release type:** WEB-DL and BluRay encodes; WEBRip; unknown; BluRay remux;
+   HDTV, DVD and other rips. Remux sits below because its size makes starts
+   slow; it is not filtered.
+9. **Delivery:** direct HTTP(s) (including debrid) before torrents; among
    torrents, more seeders first.
-9. Provider order, then arrival order (stable).
+10. Provider order, then arrival order (stable).
+
+Owner decision 2026-11-06 ([design#142](https://github.com/viptv-org/design/issues/142))
+puts affinity after the quality, audio and HDR keys and before release type:
+HDR/Dolby Vision preference therefore outranks release type from key 6 on,
+where it used to sit below it. Affinity and that move are proposed, not
+implemented.
 
 ### Language tiers
 
@@ -430,40 +508,47 @@ No release-type setting: the order above is fixed.
 
 | Timer | Value |
 |---|---|
-| Start | The first ranking whose best match meets every preference, otherwise the last provider answer |
+| Grace window | 1.5 s after a target that fully meets every preference arrives; then the best full match so far starts |
+| Start cap | 5 s after the first eligible row arrives, or when discovery ends, whichever comes first |
 | Provider ceiling | 60 s; discovery ends there, the picker keeps the rows that arrived and nothing starts |
 | Direct-source startup deadline | 20 s to first frame |
 | Fallback notice | 2 s |
 | Attempts | 3 per session |
 
 The Best matches group size (at most 5 rows) is fixed the same way. Changing a
-value needs a behaviour review. The last three timers belong to
-[fallback](#fallback); the last-three-minutes preparation has its own timers in
+value needs a behaviour review. The first three timers govern the automatic
+start; the last three belong to [fallback](#fallback); the last-three-minutes
+preparation has its own timers in
 [PLAY-NEXT-AUTOPLAY-001](next-episode-autoplay.md#preparation).
 
 ## Acceptance scenarios
 
 1. Best match, **Preferred quality** 1080p: a direct provider returns a 4K
-   WEB-DL and a 1080p WEB-DL. The 1080p row is the best match, carries the
-   marker and starts at once; the 4K row is listed under `All sources`.
+   WEB-DL and a 1080p WEB-DL. The 1080p row is the best match and carries the
+   marker; it starts at the end of its 1.5 s grace window, and the 4K row is
+   listed under `All sources`.
 2. A second provider is still running when the first answer already ranks a
    1080p direct WEB-DL first, with **No preference** for HDR and no audio
-   languages reported: that row starts immediately and the picker does not wait
-   for the second provider.
+   languages reported: that row becomes the target and starts at the end of its
+   1.5 s grace window unless a better full match arrives in it, and the picker
+   never waits for the second provider.
 3. The best match is a 1080p torrent with 40 seeders: it meets the quality and
    audio preferences but not delivery, so nothing starts while discovery runs;
-   it starts when the last provider answers.
+   it starts 5 s after the first eligible row arrived, or when the last provider
+   answers, whichever comes first.
 4. **HDR and Dolby Vision** set to **Prefer**: the best match is a 1080p direct
    WEB-DL with no HDR, so nothing starts while discovery runs. When a 1080p
-   HDR10 direct row ranks first, that row starts immediately.
+   HDR10 direct row ranks first, that row becomes the target and starts at the
+   end of its 1.5 s grace window.
 5. The viewer drags the list while discovery runs: nothing starts, neither when
    a fully matching row arrives nor when discovery ends. The picker stays with
    the rows, the headers and the marker.
 6. Changing the provider or quality filter does not stop an automatic start.
 7. Back during discovery closes the picker and nothing starts.
 8. No ranking reports a best match that fully meets the preferences: the best
-   match starts when the last provider answers. With only camera releases there
-   is no best match and nothing starts.
+   match starts 5 s after the first eligible row arrived, or when the last
+   provider answers, whichever comes first. With only camera releases there is
+   no best match and nothing starts.
 9. Original-language preference on an anime episode with original language
    Japanese: an unmarked release ranks first, then Torrentio's
    `Dual Audio / 🇬🇧`, then a `Dubbed` release that lists only English. With
@@ -503,8 +588,8 @@ value needs a behaviour review. The last three timers belong to
     Provider B returns a better row at 2 s: it appears first and takes the
     marker and the focus. At no point are rows shown in arrival order, and
     nothing reorders when the last provider finishes. On Best match the same
-    rows start playback as soon as a best match meets every preference
-    (scenario 2), so the list is only seen until then.
+    rows start playback at the end of the target's grace window (scenario 2),
+    so the list is only seen until then.
 21. Progressive ranking, TV, viewer navigated: focus is on the fifth Best
     matches row when two better rows arrive. Focus stays on that same source,
     now the second All sources row, at the same on-screen position; Down moves
@@ -534,12 +619,36 @@ value needs a behaviour review. The last three timers belong to
     so it is after a single failed start.
 28. Another profile, and an unrelated title, find no entry: the picker opens
     and nothing starts on its own.
+29. Grace window, better row inside it: a 1080p direct WEB-DL fully meets every
+    preference at 1 s and the picker waits. At 2 s a 1080p HDR10 direct WEB-DL
+    arrives that also fully meets every preference and ranks above it under
+    **Prefer**; that row starts at 2.5 s. Without it the first row starts at
+    2.5 s.
+30. Grace window, better row after it closes: playback is already on the row
+    that started when a better full match arrives at 3 s. Playback is not
+    interrupted and the late row only re-ranks the list.
+31. Start cap: rows pass the hard filters but none fully meets every
+    preference. The first eligible row arrives at 1 s and the last provider
+    answers at 40 s; the best eligible row starts at 6 s and the picker never
+    waits for that provider.
+32. Provider affinity: two 1080p direct WEB-DLs tie on every key above release
+    type, one from the add-on of the last start that reached a presented frame
+    and one from a second add-on. The affinity row comes first and carries the
+    marker. A 1080p remux from that provider still ranks below a WEB-DL from
+    another add-on, and for an episode a row from the series-memory add-on still
+    ranks above it.
+33. Provider affinity is written by an automatic start that presents a frame
+    and not by one that fails, is cancelled or never decodes: after the failure
+    the stored provider is the one that last played.
 
 ## Open items
 
 - Boards for the fallback notice and the failed-row label on every surface. The
   app ships them; the canvas does not pin them, like the group headers, the
   release/audio badges and the Best match marker.
+- Racing starts await the measurement in
+  [app#955](https://github.com/viptv-org/app/issues/955). The grace window,
+  start cap and provider affinity have no implementation issue yet.
 - A prepared successor can hand off a source outside the remembered audio while
   the same next episode taken without a preparation opens the picker
   ([app#475](https://github.com/viptv-org/app/issues/475)).

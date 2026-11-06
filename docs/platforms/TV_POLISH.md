@@ -210,8 +210,11 @@ at `b7e36df` is the comparison for Home composition and queue content.
   current program's end time; unknown guide data shows “Live” as the end label.
   This supersedes TV-034's omission of the line. It is never focusable or
   seekable; show audio, captions and exit, without pause/skip/next controls.
-- Preparing playback shows the accent spinner above a horizontally centered
-  label. Back cancels preparation. Search preserves separate addon/catalog rows
+- Preparing playback shows the title's art dimmed to about 25 % opacity and
+  filling bottom to top with real startup progress, the status line under it
+  ([components §9](../../viptv-design-system/components.md#9-feedback)); the
+  accent spinner above a label is superseded. Back cancels preparation. Search
+  preserves separate addon/catalog rows
   with their source labels; remove result counts. Slow addons cannot hold up
   rows already available from other addons.
 - SRC-OVERFLOW-001 (proposed, design revision of this commit): In the responsive
