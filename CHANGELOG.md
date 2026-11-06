@@ -1,5 +1,19 @@
 # Design changes
 
+## 2026-11-07 — One metadata line on every detail hero
+
+The Details entry added yesterday recorded a split the app then had: desktop
+joined genres with a comma, wrote the rating as **IMDb 8.0** and dropped the
+runtime, while phone, tablet, web and TV joined with ** / **, wrote **★ 8.0**
+and kept the runtime. [app#1032](https://github.com/viptv-org/app/issues/1032)
+built the line from the one shared builder on all five layouts, so the
+[Details](viptv-design-system/copy.md#details) entry now records a single form —
+kind on phone, tablet and desktop, year, runtime, genres joined ** / **, rating
+**★ 8.0**, then the presentation badges — with no desktop exception.
+
+Refs [design#183](https://github.com/viptv-org/design/issues/183),
+[app#1032](https://github.com/viptv-org/app/issues/1032).
+
 ## 2026-11-07 — copy.md records the Details page and the player
 
 The two surfaces a viewer spends the most time in had no entry in
