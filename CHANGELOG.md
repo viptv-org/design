@@ -7,8 +7,8 @@ shipping as four solid blocks in two reds, none of them the glass badge
 [§3](viptv-design-system/components.md#3-badges-and-indicators) asked for, and
 its white label under 4.5:1 — 3.9:1 on the `#E8434F` the phone preview filled it
 with, 3.1:1 on §3's own `#FF5A4E`. A solid fill cannot hold that label, and §3
-never said what fill the glass badge had. The product owner chose the glass
-badge on every layout, so §3 now records one badge with no solid form: `bg` at
+never said what fill the glass badge had. The badge is now glass on every
+layout, so §3 records one badge with no solid form: `bg` at
 0.72, a 6 px dot in `#FF5A4E`, the word **LIVE** in `text.primary` at 7.3:1 over
 a flat white frame, its geometry, and that it is one component on every layout
 including TV's card art and search results.
