@@ -41,22 +41,27 @@ included.
   difference hash: for each row, the 31 comparisons between a pixel and its
   right neighbour (558 bits). Subtitles, controls and the notice itself are
   separate layers and never part of the sample.
-- **Rule:** a source is a probable error slate when **every** sample is
-  **identical** — the hashes have Hamming distance 0, not "similar". So a slow
-  scene, a still talking head, film grain or any moving pixel keeps it quiet.
-  Two identical samples are enough only when the stream's bitrate is also very
-  low for its resolution (under 250 kbps per megapixel, read from the player's
-  own metadata); three identical samples need no other evidence.
+- **Rule:** a source is a probable error slate when **every** sample
+  **matches**: the same 558-bit difference hash, and no grayscale difference
+  above 2 levels, so encoder noise still reads as one picture while any moved
+  pixel does not. Two matching samples are enough only when the stream's
+  bitrate is also very low for its resolution (under 250 kbps per megapixel,
+  read from the player's own metadata); three matching samples need no other
+  evidence. A slow scene, a still talking head and any real motion keep it
+  quiet; a locked-off shot that really does not change for 20 s reports the
+  same way, which is why the notice says "might".
 - **Never:** it does not fire for Live (a fixed camera can hold one frame), for
   the browser and iOS players (a cross-origin `<video>` frame cannot be read
   and AVPlayer has no frame-output path here — see [Parity](#parity)), while the
-  player is paused, buffering, opened over an error, or within 10 s of a seek.
+  player is paused, buffering or opened over an error. A seek throws away the
+  evidence taken so far and sampling starts again from the new position.
 - **Cost:** one sample must stay under one decode-time frame. Measured at app
   `fix/957-error-slate-detect` on this host: D 0.15 ms per sample (0.9 % of a
   60 Hz frame) with no dropped frames in a 24 s run; T/Android 1.2–6.8 ms of
   GPU capture and 0.13–1.4 ms of main-thread CPU per sample on the software-GPU
   emulator, no extra decode and no extra seek. The figures and their method are
-  in [app#957](https://github.com/viptv-org/app/pull/957).
+  in [app#957](https://github.com/viptv-org/app/pull/957). Desktop spends the one
+  Skia setup cost on the first drawn frame, not on the 2 s sample.
 - **Once:** one notice per source per player session. Changing source, or
   replaying the same source after choosing another one, may show it again.
 - The notice says "might" because the evidence is probabilistic: a title that
@@ -92,23 +97,25 @@ actions **Configure source** and **Choose another source**.
 
 | | Placement |
 |---|---|
-| P, tablet | Bottom centre, above the control layer, 16 from the side edges, max 650 wide, radius 12, `color.surface.2` at 0.86 |
-| D | Bottom centre, 24 from the bottom edge and above the transport bar, max 560 wide, radius 12, `color.surface.2` at 0.86 |
-| T | Bottom centre, above the transport bar (bottom 132 × scale), max 1100 × scale, radius 12 × scale, `color.surface.2` at 0.82 |
+| P, tablet | Bottom centre, just above the timeline (the tracks panel's own inset), 16 from the sides, max 650 wide |
+| D | Bottom centre, 104 above the bottom edge and above the transport bar, max 560 wide |
+| T | Bottom centre, above the control row (bottom 264 × scale), max 1100 × scale |
 
-The title line is `color.text` (T: 26 × scale; D 14; P 13), the add-on line
-`color.text.secondary` on the next line, and the actions sit under the copy:
-**Configure source** as the quieter action, **Choose another source** as the
-one filled action. On T both are 64 × scale tall, focusable, and reached with
-Down from the controls; the notice is drawn whether or not the control layer is
-showing, so the viewer can act without waiting for it.
+Radius 12 (12 × scale on T), `color.surface.2` at 0.86 (0.82 on T). The title
+line is `color.text` (T: 26 × scale; D 14; P 13), the add-on line
+`color.text.secondary` under it (one line on D and T, up to two on P), and both
+actions are 44 tall on P and D and 64 × scale on T. Order: the quieter
+**Configure source** first, then the filled **Choose another source** on D and
+T; on P the filled action comes first and the text action under it, because a
+390-wide card has no room for both in one row. On T both are D-pad targets: the
+notice never takes focus by itself, Up from the controls reaches
+**Configure source** and Down leaves it again.
 
-It stays 30 s of playback, then leaves on its own. It also leaves at once when
-the viewer chooses another source, the title ends, the player closes, or the
-source fails. It does not reappear for that source in the same session, and it
-never queues behind another notice: it is the only player notice shown while it
-is up (an audio-language notice and a seek notice wait, and a newer audio
-notice replaces nothing while it is visible).
+It stays 30 s, then leaves on its own. It also leaves at once when the viewer
+chooses another source, the title ends, the player closes, or the source fails.
+It does not reappear for that source in the same session, and it never queues
+behind another notice: it is the only player notice shown while it is up (an
+audio-language notice waits while it is visible).
 
 Announced once to assistive technology when it appears (polite live region):
 "This source might not be working. Configure source. Choose another source."
@@ -129,7 +136,7 @@ Announced once to assistive technology when it appears (polite live region):
    Back returns to the player at the same position, paused→resumed as today.
 6. Live, web and iOS never show it; a paused player, a seek and a buffering
    stall never produce a sample.
-7. On T the notice is reachable with Down from the controls and never takes
+7. On T the notice is reachable with Up from the controls and never takes
    focus when it appears; on P and D it is drawn above the control layer and
    its buttons are 44 tall.
 8. Nothing about playback changes on its own: no seek, no source change, no
