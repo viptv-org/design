@@ -1,5 +1,22 @@
 # Design changes
 
+## 2026-11-07 — copy.md records the Calendar row's airing status
+
+Every Calendar row carries its air time and whether it has aired, and the app
+draws a status from them, but
+[copy.md §Calendar](viptv-design-system/copy.md#calendar) recorded no word for
+it: the only renders that showed one came from preview fixtures that set the
+string by hand ([app#1063](https://github.com/viptv-org/app/issues/1063)). The
+section now records **Airing status** — **Out now** once a release has aired,
+otherwise its distance from the shared calendar clock (**in 45m**, **in 6h
+40m**, **in 3d 2h**: the two largest non-zero units, seconds never shown, under
+a minute **in 1m**, an all-day release counting from the start of its day) —
+following the clock, so a row that reaches its air time turns into **Out now**
+while it is on screen.
+
+Refs [design#207](https://github.com/viptv-org/design/issues/207),
+[app#1063](https://github.com/viptv-org/app/issues/1063).
+
 ## 2026-11-07 — One glass LIVE badge, and a saved favourite fills its star
 
 [app#1055](https://github.com/viptv-org/app/issues/1055) found the LIVE badge
