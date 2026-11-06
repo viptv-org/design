@@ -66,7 +66,7 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 
 | Where | Copy |
 |---|---|
-| My List | Your list is empty. Add titles with the + button. |
+| My List | Your list is empty. Add titles with the + button. · **Browse Home** |
 | My List, no matches | No matching titles. Try changing or clearing the filters. · **Clear filters** |
 | My List, results still arriving | **Loading matching titles…** · Results update as metadata becomes available. |
 | My List, first read failed | **Couldn’t load My List** · the message the request read · **Try again** |
@@ -133,6 +133,25 @@ repeats once per failed provider and never replaces the results that loaded.
 ## Live
 
 Live preview (LIVE-PREVIEW-001): the preview frames the programme the guide picked by the clock, not by the selection. Phone draws the **LIVE** badge, the progress bar and **"[N] min left"** only while it is on air; before it starts the line reads **"Starts at [time] · [N] min"**, where [N] is the programme's own length, and after it ends **"Ended"**. A programme that is not on air carries no LIVE badge and no bar. TV and the desktop preview keep their **"start – end"** line and append **" · [N] min left"** while it is on air, **" · [N] min"** before it starts and **" · Ended"** after it ends.
+
+- **Preview:** the channel line reads **"[number] · [channel]"** (**101 · BBC One HD**), then the programme's title, then the description on TV and the desktop; phone stops after the status line. Tablet, desktop and the browser draw **Watch** (play icon) as the primary beside it and **Full guide** (grid icon) when the channel has a guide that day; the guide replaces the preview and a **Show preview** text button brings it back. Phone has no actions: tapping the card starts the channel.
+- **Favourite:** one control, one wording. **Favourite channel** saves it, **Remove favourite channel** removes it, **Saving…** replaces the label while the write is in flight, and **Retry** (rotate icon) replaces it once with the server's own line above when the save failed. The phone channel rows' star carries the same two labels as its accessible name, and the filter chip is **Favourites**.
+- **TV preview:** the same star action under the programme, and the artwork tile beside it is one focus stop reading **OK to watch** (play icon) over the picture.
+- **Channel rows** (phone, tablet, desktop): the programme on now, then **"[start]–[end]"** beside the progress bar, then **"Next: [programme] [time]"** when the guide knows what follows. The row's thumbnail carries the channel number under its artwork.
+- **Favourites with nothing to show:** **No favourite channels from [source].**, **No favourite channels from this source.** when the server named no source, or **Loading favourite channels…** while the first read is still open, with the **All channels** action.
+
+## Calendar
+
+- **Chip row:** **Type: All** (default), **Type: TV**, **Type: Anime** or **Type: Movies**; **Shows: Your shows** (default) or **Shows: All**; the week actions **Previous week**, **This week** and **Next week**; and the week's range, its first and last day, each the month, day and year in the device's locale, joined by **–** (**Nov 6, 2026 – Nov 12, 2026**; French **6 nov. 2026 – 12 nov. 2026**). One row filters first on tablet, desktop, web and TV; phone puts the week actions and the range on the row above and **Clear** with the filters. **Previous week** and **Next week** are absent at the 52-week ends.
+- **Day strip:** phone cells read the weekday's short form (**Mon**) over the day's number (**13**), with a dot under a day that has releases; wider layouts read **Today**, **Tomorrow** or the weekday's full name (**Friday**), shortened to the short form when the name does not fit its column. The phone's group heading repeats the day: **Today** beside **Nov 6, 2026**.
+- **Release row:** the time (**8:00 PM**, or the 24-hour form on a 24-hour device), the title, then **"S[season] E[episode] · [episode title]"** (**S4 E3 · Negotiating with Tigers**), and the badge **Your show** when the release comes from the profile's own list (My List or Continue Watching).
+- **Row action:** once the release has aired, **Find S3 E3** for an episode or **Find sources** for a movie; before it airs the row has no action.
+- **TV preview:** the title, **Your show**, the description, and one action — **View details** (info icon) when there is nothing to play, otherwise the row's own action label with the play icon — and, when the release did not come from the profile's own list, **Data from Simkl** under it.
+- **Fallback:** when nothing from the viewer's list airs in the visible week, **Nothing from your list this week — showing all releases.** sits above the list, which then shows every public release.
+
+## My List
+
+- The **History** row above the grid reads **History** over **Everything you've played**, with a chevron, and opens the viewing history.
 
 ## Details
 

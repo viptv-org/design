@@ -1,5 +1,34 @@
 # Design changes
 
+## 2026-11-07 — Live, Calendar and My List copy is in copy.md
+
+[copy.md](viptv-design-system/copy.md) calls itself the exact strings used on the
+screens, but the Live, Calendar and My List pages shipped copy it never recorded,
+so those pages could not be copy-reviewed from the design system
+([app#1048](https://github.com/viptv-org/app/issues/1048), the gap app#1009
+closed for Details and the player). [§Live](viptv-design-system/copy.md#live)
+gains the preview's **Watch**, **Full guide**, **Show preview** and **OK to
+watch**, the channel rows' **Next: [programme] [time]**, and the
+**No favourite channels from [source].** / **Loading favourite channels…**
+lines; [§Calendar](viptv-design-system/copy.md#calendar) the **Type** and
+**Shows** values, the three week actions with the week's range, the day strip,
+the release row, **Your show**, **Find S3 E3** / **Find sources**, TV's **View
+details** and **Data from Simkl**, and the fallback line; [§My
+List](viptv-design-system/copy.md#my-list) the **History** · **Everything you've
+played** row, and the Empty states table gives the My List row its **Browse
+Home** action.
+
+The three wordings the favourite control shipped with — **Favourite** /
+**Favourited** on the tablet and desktop preview, **Favourite channel** /
+**Remove favourite** on TV, **Favourite channel** / **Remove favourite channel**
+as the phone rows' accessible name — become one, naming the action the way
+**Add to My List** / **Remove from My List** do: **Favourite channel**,
+**Remove favourite channel**, **Saving…**, **Retry** after a failed save. The
+app follows in [app#1048](https://github.com/viptv-org/app/issues/1048).
+
+Refs [design#195](https://github.com/viptv-org/design/issues/195),
+[app#1048](https://github.com/viptv-org/app/issues/1048).
+
 ## 2026-11-07 — The phone Calendar's two rows are the spec
 
 [app#249](https://github.com/viptv-org/app/issues/249) gave the phone Calendar's
