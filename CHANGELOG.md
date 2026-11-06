@@ -1,5 +1,18 @@
 # Design changes
 
+## 2026-11-07 — The phone Calendar's two rows are the spec
+
+[app#249](https://github.com/viptv-org/app/issues/249) gave the phone Calendar's
+week navigation its own row ([app#257](https://github.com/viptv-org/app/pull/257)),
+so [§2 FILTER-CHIP-001](viptv-design-system/components.md#2-chips-and-segmented-controls)
+records that exception: P keeps the week actions on a row above **Type: All ·
+Shows: Your shows**, each row scrolling sideways on its own, with the week range
+label ending the week row and reached by scrolling it and **Clear** staying with
+the filters. Tablet, desktop, web and TV keep the one row, filters first.
+
+Refs [design#187](https://github.com/viptv-org/design/issues/187),
+[app#249](https://github.com/viptv-org/app/issues/249).
+
 ## 2026-11-07 — The Live preview's scrim stops join the text-over-artwork rule
 
 [app#1042](https://github.com/viptv-org/app/issues/1042) measured the phone
