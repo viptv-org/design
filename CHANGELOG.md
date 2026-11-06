@@ -1,5 +1,19 @@
 # Design changes
 
+## 2026-11-07 — The phone Calendar's week range gets a line of its own
+
+The phone Calendar's week row is wider than the screen at 320 and 390 dp, so
+"reached by scrolling it" left the viewer unable to read the dates the week
+covers ([app#1058](https://github.com/viptv-org/app/issues/1058)).
+[§2 FILTER-CHIP-001](viptv-design-system/components.md#2-chips-and-segmented-controls)
+now puts the range on a line of its own between the week actions and the
+filters — 12 sp secondary, one line, at the gutter — with **Type: All · Shows:
+Your shows** below it and the day rail after on P; tablet, desktop, web and TV
+keep the label last in their single row.
+
+Refs [design#198](https://github.com/viptv-org/design/issues/198),
+[app#1058](https://github.com/viptv-org/app/issues/1058).
+
 ## 2026-11-07 — Live, Calendar and My List copy is in copy.md
 
 [copy.md](viptv-design-system/copy.md) calls itself the exact strings used on the
