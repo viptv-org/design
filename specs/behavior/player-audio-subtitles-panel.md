@@ -39,7 +39,8 @@ the popover is focusable and keyboard focus stays inside on web.
 - **Inline settings:** the compact settings below the two columns edit the
   profile's subtitle preferences and apply immediately (see
   [apply](#apply)). They are **Show subtitles** (mode), **Language**,
-  **Size** and **Background**.
+  **Size** and **Background**, in one row under both columns on D and stacked
+  on P.
 - **Footer:** the **Subtitles & audio settings** link stays and opens the full
   page, unchanged.
 
@@ -105,12 +106,16 @@ and 1280 × 800.
 
 | Layout | Panel |
 |---|---|
-| D (desktop app, web) | Bottom-right popover above the transport bar: end inset 150, bottom inset 76, width up to 680, height up to 460. It stays inside the player at 1280 and 1440 wide. |
+| D (desktop app, web) | Bottom-right popover above the transport bar: end inset 150, bottom inset 76, width up to 680, height up to 520. It stays inside the player at 1280 and 1440 wide, and every inline setting is visible without scrolling. |
 | P | Full-height end sheet, 0.82 × window wide, single-column stack (Audio, Subtitles, inline settings) |
 | T | Bottom focus panel, existing geometry (1920 × 1080, 540 × scale tall): Audio, Subtitles and Subtitle size columns, unchanged |
 
-On D the two track columns sit side by side above the inline settings; on P they
-stack vertically so the grouped two-line rows have room on a 390-wide screen.
+On D the two track columns sit side by side above the inline settings, which
+share one row under them; on P they stack vertically so the grouped two-line
+rows have room on a 390-wide screen.
+
+The transport bar the popover sits above skips **−10** and **+10** seconds on
+every platform (`components.md` §10).
 
 ## Platforms
 
@@ -135,8 +140,9 @@ All strings live in [copy.md](../../viptv-design-system/copy.md#player-audio--su
 ## Acceptance
 
 1. **PLAY-TRACKS-01:** at 1440 × 900 and 1280 × 800 the panel is fully inside
-   the player; no subtitle label wraps or clips (long names ellipsize), and
-   every subtitle row has the same height with the check in the same column.
+   the player; no subtitle label wraps or clips (long names ellipsize), every
+   subtitle row has the same height with the check in the same column, and all
+   four inline settings are fully drawn below the two columns.
 2. **PLAY-TRACKS-02:** two provider sources of English show as one **English**
    row whose secondary line names both sources; an **English (SDH)** embedded
    track stays its own row.
