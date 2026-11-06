@@ -1,5 +1,21 @@
 # Design changes
 
+## 2026-11-06 — My List and the Calendar read from copy.md, and the removal confirmation is recorded
+
+[app#891](https://github.com/viptv-org/app/issues/891) found My List's empty body
+shipping as **Tap + on any movie or series to save it here.** against
+[copy.md](viptv-design-system/copy.md#empty-states)'s **Add titles with the + button.**, which
+reads on a remote and with a pointer. The Empty states table now also records My List's
+no-matches, results-still-arriving and first-read-failed answers, and the Calendar's
+nothing-scheduled, no-source, empty-day and first-read-failed lines with their **Manage
+integrations** and **Try again** actions. The Dialogs table gains **Remove from My List?**
+and **Remove from Continue Watching?** with *"“{title}” leaves this list. Watched history
+is preserved."*, Cancel and danger **Remove**, followed by the §9 toast with **Undo**.
+[components.md §9](viptv-design-system/components.md#9-feedback) already owns the toast;
+nothing else changes.
+
+Refs [design#139](https://github.com/viptv-org/design/issues/139), [app#891](https://github.com/viptv-org/app/issues/891).
+
 ## 2026-11-06 — The toast carries a removal's Undo, and My List removals get a line
 
 [app#892](https://github.com/viptv-org/app/issues/892) needs one notice surface for every

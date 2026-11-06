@@ -65,7 +65,14 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | Where | Copy |
 |---|---|
 | My List | Your list is empty. Add titles with the + button. |
+| My List, no matches | No matching titles. Try changing or clearing the filters. · **Clear filters** |
+| My List, results still arriving | **Loading matching titles…** · Results update as metadata becomes available. |
+| My List, first read failed | **Couldn’t load My List** · the message the request read · **Try again** |
 | Continue Watching | Nothing in progress. Titles you start watching appear here. |
+| Calendar, nothing scheduled | Nothing is scheduled in these dates. · **Manage integrations** |
+| Calendar, no source | The calendar needs series in My List or a Simkl connection. · **Manage integrations** |
+| Calendar, empty day | None of your shows air this day. (All shows: No releases for this day.) |
+| Calendar, first read failed | **Couldn’t load the calendar** · the message the request read · **Try again** |
 | Discover, no catalogs | No catalogs are available. Add or enable a catalog addon in Settings. |
 | Discover, required filter | Choose the required filters to browse this catalog. |
 | Discover, no titles | No titles yet |
@@ -205,6 +212,8 @@ recovery dialog and can be quoted when reporting a failure.
 | Sign out a device | Sign out [device name]? | "This device will need to sign in again. Your profiles, lists and history stay on your account." · Cancel · Sign out (danger) |
 | Delete account | Delete account | "This deletes [name]'s account, its profiles, their history, My List, add-ons and paired devices. It cannot be undone." · Cancel · Delete account (danger) |
 | Delete profile | Delete profile | "Delete [name]? This permanently removes this profile's watch history, favorites and preferences." Cancel · Delete profile (danger) |
+| Remove from My List | Remove from My List? | "“{title}” leaves this list. Watched history is preserved." · Cancel · Remove (danger) · then the §9 toast with **Undo** |
+| Remove from Continue Watching | Remove from Continue Watching? | "“{title}” leaves this list. Watched history is preserved." · Cancel · Remove (danger) · then the §9 toast with **Undo** |
 | Remove addon | Remove [Addon]? | "Its catalogs leave this device." (local mode) · Cancel · Remove (danger) |
 | Manage addon | Manage [Addon] | Enable / Disable · Remove addon (danger) · Cancel |
 | Parent PIN | Enter parent PIN (TV sign-out: "Enter parent PIN to sign out") | "Enter the parent PIN to continue." (TV: "Use your remote or a connected keyboard.") · Done · Cancel |
