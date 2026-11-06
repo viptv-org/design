@@ -1,5 +1,22 @@
 # Design changes
 
+## 2026-11-07 — Live's channel search gets its words and its place
+
+[copy.md §Empty states](viptv-design-system/copy.md#empty-states) already gave
+Live's empty search result, but nothing recorded the field itself
+([app#1050](https://github.com/viptv-org/app/issues/1050)).
+[copy.md §Live](viptv-design-system/copy.md#live) now carries the placeholder
+**Search channels** as its accessible name, **Clear search** as the action that
+empties it and keeps the chosen source and group, and that a term matching
+nothing draws **No channels match your search.** with that action while the chip
+row stays. [components.md §2](viptv-design-system/components.md#2-chips-and-segmented-controls)
+records the field's place — above the chip row at the page gutter, capped at 460
+wide off phone, and on T the first stop of the chip row so Left from **Group:
+All** reaches it — and the states table gains Live's empty-search row.
+
+Refs [design#215](https://github.com/viptv-org/design/issues/215),
+[app#1050](https://github.com/viptv-org/app/issues/1050).
+
 ## 2026-11-07 — A card's LIVE tag is dropped where the glass badge is drawn
 
 The TV preview said LIVE twice: the one glass badge above the channel line, then
