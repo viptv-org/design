@@ -303,7 +303,18 @@ Title **Account**. Rows, in order, each its own page or dialog:
    TV. The ring is the arrival marker and is gone once the page is left; the row
    is otherwise the ordinary inventory row, so the switch turns the add-on off in
    one action. Back leaves Settings for the screen the picker was opened over,
-   as Back from any Settings entry does; the picker is not restored.
+   as Back from any Settings entry does; the picker is not restored. A row whose
+   manifest declares `behaviorHints.configurable` also carries **Reconfigure**,
+   which changes that add-on's own settings: the server hands out a short-lived
+   link (`POST /api/addons/:id/configure-link`, relative to the server origin,
+   five minutes), and the app opens it in the browser on phone, tablet, desktop
+   and web. The token stays on the server: the client only ever holds the
+   ticketed path. Only the account owner sees **Reconfigure**, like every other
+   add-on write. On TV, where OK on a row toggles the switch, holding OK opens
+   the **Manage [Addon]** panel and **Reconfigure** there opens the same link as
+   a QR code with its address, "This code expires in 5 minutes." and **New
+   code** for a stale one; a request the server refuses shows "Couldn't get the
+   configure link." with the server's own line, **Try again** and **Close**.
 7. **Source integrations** — VIPTV Sources and M3U. Only the account owner can
    add, change or remove one; a member reads the list.
 8. **Xtream connections** — the account's Xtream providers; see
