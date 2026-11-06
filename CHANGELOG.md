@@ -1,5 +1,29 @@
 # Design changes
 
+## 2026-11-07 — One glass LIVE badge, and a saved favourite fills its star
+
+[app#1055](https://github.com/viptv-org/app/issues/1055) found the LIVE badge
+shipping as four solid blocks in two reds, none of them the glass badge
+[§3](viptv-design-system/components.md#3-badges-and-indicators) asked for, and
+its white label under 4.5:1 — 3.9:1 on the `#E8434F` the phone preview filled it
+with, 3.1:1 on §3's own `#FF5A4E`. A solid fill cannot hold that label, and §3
+never said what fill the glass badge had. The product owner chose the glass
+badge on every layout, so §3 now records one badge with no solid form: `bg` at
+0.72, a 6 px dot in `#FF5A4E`, the word **LIVE** in `text.primary` at 7.3:1 over
+a flat white frame, its geometry, and that it is one component on every layout
+including TV's card art and search results.
+
+[§1](viptv-design-system/components.md#1-buttons) gains the favourite control:
+the unsaved star is the outline in the control's own ink, the saved one the
+filled star in `accent`, with the label naming the action.
+
+[§14](viptv-design-system/components.md#14-text-over-artwork) changes with it: a
+label on a component's own opaque fill keeps 4.5:1 against that fill instead of
+being skipped, so `TextOverArtworkContrastTest` measures the badge too.
+
+Refs [design#204](https://github.com/viptv-org/design/issues/204),
+[app#1055](https://github.com/viptv-org/app/issues/1055).
+
 ## 2026-11-06 — Home's words, its hidden failed rows and the TV search idle page
 
 Home was the only page whose copy lived nowhere but Kotlin, so no reviewer could
