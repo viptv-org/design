@@ -1,5 +1,21 @@
 # Design changes
 
+## 2026-11-07 — AND-042 describes the phone Home and navigation that ship
+
+AND-042 still specified a headerless phone Home and a Discover nav segment. The
+phone app draws its header on Home (VIPTV mark, the remote button once a TV is
+paired, the profile menu with **Settings**) above the Home tab row, and the
+bottom bar's tabs are Home, Live, Calendar and My List with Search on its own
+disc. [ANDROID_DESIGN.md](docs/platforms/ANDROID_DESIGN.md#and-042--phone-presentation-and-player-track-menus-2026-09-30)
+now says so; AND-042-NAV points at [components.md
+§7](viptv-design-system/components.md#7-navigation) for the bar instead of
+restating it, and the hero line reads the shipped 16dp radius, 470dp height and
+12dp under the tab row. AND-042-01 and -02 acceptance and the phone responsive
+bullet name the same pages.
+
+Refs [design#170](https://github.com/viptv-org/design/issues/170),
+[app#918](https://github.com/viptv-org/app/issues/918).
+
 ## 2026-11-07 — The header remote button lives on Home, Live and My List
 
 Phone and tablet have no Discover page, so naming it in the Watch on TV copy
