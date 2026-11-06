@@ -1,5 +1,20 @@
 # Design changes
 
+## 2026-11-07 — The Starring line belongs to every detail hero
+
+[components.md §6](viptv-design-system/components.md#6-cards-and-tiles) scoped the
+**Title Starring line** to the phone and TV hero, while
+[copy.md](viptv-design-system/copy.md#title-detail-starring-line) asked for it on
+the detail hero without a platform, and the Details audit
+([app#1004](https://github.com/viptv-org/app/issues/1004)) found desktop, tablet
+and web drawing no line at all. The entry now covers every hero: phone 14/21,
+tablet, desktop and web 14/20, TV 22 × scale/30 × scale, all secondary text and
+one line with a trailing ellipsis, up to three top-billed names in billing order,
+directly under the description and omitted when the title has no cast.
+
+Refs [design#179](https://github.com/viptv-org/design/issues/179),
+[app#1004](https://github.com/viptv-org/app/issues/1004).
+
 ## 2026-11-07 — AND-042 describes the phone Home and navigation that ship
 
 AND-042 still specified a headerless phone Home and a Discover nav segment. The
