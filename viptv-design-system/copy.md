@@ -48,6 +48,8 @@ Next-episode end panel (PLAY-NEXT-AUTOPLAY-001):
 
 Source groups (proposed, SRC-BEST-MATCH-001): source list group headers **"Best matches"** and **"All sources"**, displayed uppercase as group labels and announced as headings. The row marker stays **"Best match"**.
 
+Source row menu (proposed, SRC-ROW-MENU-001): **"Play this source"**, **"Source details"**, **"Configure [add-on]"**, **"Hide this add-on's sources"**, **"Cancel"**. **Configure** names the add-on the source came from (**"Configure Torrentio"**); a source whose add-on reports no name reads **"Configure this add-on"**. Hiding leaves **"No matching sources. Choose another provider or quality."** where the hidden rows were.
+
 Source picker status (proposed, [SRC-DRAWER-001](../specs/behavior/source-drawer.md#no-best-match-hint)): no layout shows a hint about how Play picks a source. **"Play always starts the best match. Change … in Settings › Playback."** is retired on phone, tablet, desktop/web and TV. The TV status line under the list reads **"Finding sources"** while nothing has arrived, **"Still checking sources"** once sources have arrived but discovery is still in flight, and **"Opening stream…"** (or the current opening stage) while a stream opens. It is hidden otherwise.
 
 Phone title source-summary row (AND-043): accessible name **"Choose source"**. With a best source it reads a quality badge — **"Auto"** when the source reports no quality — then **`[provider] · [N sources]`**, singular **`1 source`**. A settled discovery with no rows reads **"No sources found"**; a failed or timed-out discovery with no rows reads **"Sources unavailable"**.
