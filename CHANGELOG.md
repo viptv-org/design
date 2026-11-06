@@ -1,5 +1,23 @@
 # Design changes
 
+## 2026-11-07 — The Live empty state's scrim stops join §14
+
+[app#1056](https://github.com/viptv-org/app/issues/1056) found the Live empty
+state's three scrims living in `features/live/LiveEmptyArtwork.kt`, outside
+`Scrim`, so §14's rule that a surface reads its stops from `theme/Scrims.kt` did
+not hold for them and `TextOverArtworkContrastTest` never measured that copy.
+[§14](viptv-design-system/components.md#14-text-over-artwork)'s stops table gains
+**Live empty state, wide** (92, 60 at 45 %, 18), **Live empty state, tall crop**
+(clear, 35 at 40 %, 90) and **Live empty state, phone band** (clear, 30 at 45 %,
+86 at 80 %, ground), and its test sentence now lists the empty state. The crops,
+placement and credit stay
+[LIVE-EMPTY-001](specs/behavior/live-empty-state.md#artwork)'s, which now points
+at §14 for the stops. The app PR measures the empty state at 5.84:1 on desktop
+and 5.93:1 on TV over a flat white frame, so no stop changes.
+
+Refs [design#212](https://github.com/viptv-org/design/issues/212),
+[app#1056](https://github.com/viptv-org/app/issues/1056).
+
 ## 2026-11-07 — The Calendar draws the page state block
 
 [components.md §13](viptv-design-system/components.md#13-empty-loading-and-error-states)'s

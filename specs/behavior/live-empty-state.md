@@ -193,8 +193,9 @@ appears in either crop.
   left to right: 92 % at the left edge, 60 % at 45 %, 18 % at the right. Tall,
   top to bottom: 0 % at the top, 35 % at 40 %, 90 % at the bottom. Phone band,
   top to bottom: 0 %, 30 % at 45 %, 86 % at 80 %, 100 % at the bottom, so the
-  band ends exactly on `bg` at its bottom edge. Those are the shipped stops; a
-  page does not substitute its own.
+  band ends exactly on `bg` at its bottom edge. Those are the shipped stops,
+  named in [components.md §14](../../viptv-design-system/components.md#14-text-over-artwork)
+  and read from `Scrim` (`theme/Scrims.kt`); a page does not substitute its own.
 - **Placement:** the page area only — under the TV navigation, the phone header,
   the desktop rail and the browser title bar, which keep their own grounds.
   Cover, anchored centre: at 1920 × 948 the wide crop loses 66 px at the top and
