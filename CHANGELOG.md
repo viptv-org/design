@@ -1,5 +1,28 @@
 # Design changes
 
+## 2026-11-07 — copy.md records the Details page and the player
+
+The two surfaces a viewer spends the most time in had no entry in
+[copy.md](viptv-design-system/copy.md), so their strings could not be reviewed
+without reading Kotlin — the gap [app#911](https://github.com/viptv-org/app/issues/911)
+found in Settings, tracked for these two surfaces as
+[app#1009](https://github.com/viptv-org/app/issues/1009). A new **Details**
+section records the hero's Play/Resume labels and their episode naming, the
+progress line, the restart, the metadata line and its badges, the episode row
+captions and the season picker, the Details-tab facts, the source row, My List
+and its failure line, the page's failure and cover states, the web dialog's
+close action and the signed-out copy. A new **Player** section records the
+transport actions, the timeline and its seek preview, the skip prompts and the
+end panel with its countdown, the loading and failure lines including the
+device's decode sentence, the track failures, and the TV picker's fourth
+subtitle size; the panel's own strings stay in their existing entry and are
+cross-referenced. One app string moves to the recorded wording: TV's
+**More Like This** heading becomes **More like this**, the sentence case the
+phone, tablet, desktop and web sections already use.
+
+Refs [design#181](https://github.com/viptv-org/design/issues/181),
+[app#1009](https://github.com/viptv-org/app/issues/1009).
+
 ## 2026-11-07 — The Starring line belongs to every detail hero
 
 [components.md §6](viptv-design-system/components.md#6-cards-and-tiles) scoped the

@@ -129,6 +129,19 @@ repeats once per failed provider and never replaces the results that loaded.
 
 Live preview (LIVE-PREVIEW-001): the preview frames the programme the guide picked by the clock, not by the selection. Phone draws the **LIVE** badge, the progress bar and **"[N] min left"** only while it is on air; before it starts the line reads **"Starts at [time] · [N] min"**, where [N] is the programme's own length, and after it ends **"Ended"**. A programme that is not on air carries no LIVE badge and no bar. TV and the desktop preview keep their **"start – end"** line and append **" · [N] min left"** while it is on air, **" · [N] min"** before it starts and **" · Ended"** after it ends.
 
+## Details
+
+A title's page (`components.md` §6). Phone and tablet switch sections with the tabs **Episodes**, **More like this** and **Details**; desktop and web stack **Episodes** and **More like this**; TV shelves them under the hero.
+
+- Hero actions: **Play**, or **Resume** while the profile is part way through, with the episode named: **Resume S1 E3**, **Play S1 E3**. The restart beside it is **Play from the beginning** (the title menu's same action is **Watch from the beginning**). A part way episode's progress line reads **14m left**, or **Almost done** under 1 minute. The play trigger's accessible name while it starts is **Starting playback**.
+- Above the actions: the metadata line — the kind (**Series**) on phone, tablet and desktop, the year, the runtime (**44m**, **1h 40m**), genres joined **Drama / Mystery** everywhere except desktop's **Drama, Mystery**, the rating **★ 8.0** everywhere except desktop's **IMDb 8.0**, then presentation badges (**4K**, **HDR**) and a certification such as **TV-MA**. The Starring line under the description has its own entry above.
+- Episode list: a row's caption is `[number]. [title]`, the phone row adds its runtime (**44m**, **1h 4m**) and **14m left** for the episode being continued, and the episode being played from this page reads **Now playing**. Air dates and upcoming rows are in the [Details episode selector](#names) entry above. The season picker reads **Season 1**, **Specials** for season 0 and **Other episodes** for unnumbered episodes; a season's count is **6 episodes** or **1 episode**. TV's chip reads **Season 1**, or **Episodes** when the title has one season, and its jump chip **Episode #**.
+- Details tab facts: the label column reads **Season** / **Seasons**, **Episode** / **Episodes**, **Votes** and **Also known as**.
+- Source row under Play: **Auto** while the best source has no quality, then `[provider] · [N sources]` (**1 source** in the singular); a settled search with no rows reads **No sources found** and a failed one **Sources unavailable**. Its accessible name is **Choose source**. TV's source button is **Best match**.
+- My List: **My List** under the phone control, **Add to My List** / **Remove from My List** as the control's accessible name and the tablet and web label, **Saving…** while the write runs, and on failure the line **Could not save this change. Try again.** with **Retry**.
+- Failures and cover: **This title couldn’t load** with **The provider didn’t return this title’s details.**, **Try again** and **Go back**; **Loading title details** while it reads. TV's dialog is **Title options**, and **No trailer is available for this title.** is its body. The web dialog's close action is **Close details (Esc)** and its pane name **Title details**; TV's season selector closes with **Close seasons** and the picker **Choose season**.
+- Signed out: **Sign in**, **Sign in to watch**, and **Already using VIPTV on a TV? Sign in here with the same account.**
+
 ## Toasts, notices and loading
 
 - Added to My List
@@ -205,6 +218,16 @@ in [the native contract](../specs/behavior/torrent-native-android.md).
 Native failure messages append a blank line and `Diagnostic: <observed reason>`
 using only the validated closed code in the table. This is visible in the existing
 recovery dialog and can be quoted when reporting a failure.
+
+## Player
+
+Controls and states on every platform (`components.md` §10). Phone, tablet and web show the picture mode toggle **Fit** / **Fill** (see the [picture mode](#names) entry above), and the track panel's strings are in the [Audio & subtitles](#names) entry above.
+
+- Transport: **Play** / **Pause**, **Forward 10 seconds**, **Back 10 seconds**, **Mute or unmute**, **Volume**, **Enter fullscreen** / **Exit fullscreen**, **Hide controls** / **Show controls**, **Lock** / **Unlock controls**, **Close playback**, **Episodes** with **Close episodes**, the track panel button **Audio & subtitles**, and **Streams** for the compact audio/subtitle button.
+- Timeline: the position and duration labels read `[12:48]` / `[52:10]`, TV adds **Ends at 8:42**, the slider's accessible label is **Playback position**, TV's timeline description begins **Position.**, and TV's frame preview is **Seek preview**.
+- Skip prompts: **Skip intro**, **Skip recap**, **Skip credits**. At the end of an episode the panel is **Up next** with **Watch credits** or **Keep watching credits** and **Play next episode**, and with autoplay on the action counts down **Next episode in 8** (its own contract and timing are in [next-episode-autoplay.md](../specs/behavior/next-episode-autoplay.md)). TV adds **Starts automatically. Press any button to cancel.** while the countdown runs and **Nothing plays on its own.** once it stops.
+- Loading and failure: **Starting playback** while an output opens; **This source stopped working** with the failure line and **Try [next source]** / **Choose another source** / **Back** are in the [Errors](#errors) list above; **This source might not be working.** with **Next source** or **Choose another source** on the fallback notice; **This device can’t decode this stream.** when the device cannot decode the stream, and TV's **This TV can’t decode this stream. Choose another source — the 4K Dolby Vision releases are not supported by this device’s decoder.** The player's title line reads the playable's title, or **Playback** when it has none.
+- Tracks: a subtitle failure reads **Couldn't load subtitles.** and an audio failure **Couldn't switch audio.**, each on the row that failed. The track panel's own strings — **Audio & subtitles**, **Audio**, **Default audio**, **Subtitles**, **Off**, **No subtitle tracks available**, **Show subtitles**, **Language**, **Size**, **Background** with **Small** / **Medium** / **Large** / **None** / **Box** — are recorded in the [Audio & subtitles](#names) entry above; TV's picker offers **Extra large** as a fourth subtitle size.
 
 ## Dialogs
 
