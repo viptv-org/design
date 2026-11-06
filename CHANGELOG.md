@@ -1,5 +1,19 @@
 # Design changes
 
+## 2026-11-07 — The Calendar draws the page state block
+
+[components.md §13](viptv-design-system/components.md#13-empty-loading-and-error-states)'s
+page state block listed Home, Continue Watching, My List and the catalog page,
+but the Calendar draws the same two page states — a week with nothing scheduled
+and a calendar with no source — and drew them as its own left-aligned line and
+button ([app#1054](https://github.com/viptv-org/app/issues/1054)). The section
+now lists the Calendar: its copy.md sentence is the headline, it draws no help
+line, and **Manage integrations** is the primary action. A single empty day in a
+non-empty week stays an inline day line, not a page state.
+
+Refs [design#210](https://github.com/viptv-org/design/issues/210),
+[app#1054](https://github.com/viptv-org/app/issues/1054).
+
 ## 2026-11-07 — copy.md records the Calendar row's airing status
 
 Every Calendar row carries its air time and whether it has aired, and the app
