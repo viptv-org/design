@@ -82,7 +82,10 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | Calendar, first read failed | **Couldn’t load the calendar** · the message the request read · **Try again** |
 | Discover, no catalogs | No catalogs are available. Add or enable a catalog add-on in Settings. |
 | Discover, required filter | Choose the required filters to browse this catalog. |
-| Discover, no titles | No titles yet |
+| Discover, no titles | No titles yet, and no action: nothing is filtered |
+| Discover, a filter leaves nothing | **Nothing matches these filters** · [Catalog] has no [noun] matching “[filter]”. · **Remove “[filter]”** |
+| Discover, several filters leave nothing | **Nothing matches these filters** · [Catalog] has no [noun] with all [n] filters. Removing the newest one usually helps. · **Remove “[newest filter]”** · **Clear all filters** |
+| Discover, first read failed | **Couldn’t load [catalog]** · the message the request read, otherwise **Check the connection and try again.** · **Try again** |
 | Search, no results | No matching titles |
 | Search, no query | **Recent** · **Clear** · **Trending searches** |
 | Search, provider failed | **This search provider could not respond. Try again.** · **Try again** |
@@ -383,7 +386,11 @@ starts from until it ships (`components.md` §11). A TV signs in with
   source yet. You can still watch this channel." It never claims a per-channel
   failure and never renders above the category chips.
 - Empty and failure are separate messages on every list: "Nothing matches these
-  filters" (with Clear all) versus "Couldn’t load this catalog" (with Try again).
+  filters" (with the newest filter's Remove and Clear all) versus "Couldn’t load
+  this catalog" (with Try again). A page with no filter set never blames
+  filters: it reads "No titles yet" and offers no clear action. A filtered or
+  failed catalog offers **Choose another catalog** as a second action when the
+  page has more than one catalog.
 - A row that fails shows a titled card — "Couldn’t load this row" plus the
   provider's message plus "Try again" — never the provider text alone in a button.
 - "Could not load" strings are never used for a title page; it is "This title
