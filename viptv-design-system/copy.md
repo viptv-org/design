@@ -70,6 +70,8 @@ Filter bar and chip lists (FILTER-CHIP-001, `components.md` §2): a chip reads *
 | My List, no matches | No matching titles. Try changing or clearing the filters. · **Clear filters** |
 | My List, results still arriving | **Loading matching titles…** · Results update as metadata becomes available. |
 | My List, first read failed | **Couldn’t load My List** · the message the request read · **Try again** |
+| History | Nothing watched yet. (TV: **Nothing watched yet** · Titles you play show up here. · **Browse Home**) |
+| History, first read failed | **Couldn’t load history** · the message the request read · **Try again** |
 | Continue Watching | Nothing in progress. Titles you start watching appear here. |
 | Continue Watching, first read failed | **Couldn’t load Continue Watching** · the message the request read, otherwise **Check the connection and try again.** · **Try again** |
 | Home, no catalogs | **No catalogs are available.** · Add or enable a catalog add-on in Settings. · **Open settings** |
@@ -196,7 +198,18 @@ Live preview (LIVE-PREVIEW-001): the preview frames the programme the guide pick
 
 ## My List
 
-- The **History** row above the grid reads **History** over **Everything you've played**, with a chevron, and opens the viewing history.
+- The **History** row above the grid reads **History** over **Everything you've played**, with a chevron, and opens [History](#history).
+
+## History
+
+The page My List's **History** row opens, on phone, tablet, desktop, web and TV.
+
+- The title is **History** on every layout, with the header action **Clear** on phone and **Clear history** on tablet, desktop, web and TV; TV adds **Everything watched on this profile, newest first.** under it. The action is disabled while the list is empty or a read is in flight.
+- Clearing: **Clear history?** — "This removes viewing history for this profile." — **Clear** / **Cancel**.
+- Day headings: **Today**, **Yesterday**, the weekday's name (**Tuesday**), **Last week** for the 7–13 days before, then the date with its month, day and year in the device's locale (**Dec 13, 2025**; French **13 déc. 2025**).
+- Row caption: the title, then **[descriptor] · [state]**, where the descriptor is **S1 · E2** for an episode and the kind (**Movie**, **Series**) for a title, and the state is **Watched**, **In progress**, **Unwatched** or **Watched · Rewatch in progress**. A completion-only import whose watch date is unknown adds **Imported — date unknown**, and TV ends the row with **[N]% watched** while the title is part way through.
+- Row actions: the ⋯ is **History actions** and holds **View details**, **Mark watched** / **Mark unwatched** and **Resume at…**. TV puts the last two on the bar under the list, beside the focused row's title in quotes. **Resume at…** opens **Resume at (seconds)** with the field of the same name, **Up to [N] seconds.** and **Save position** / **Cancel**.
+- Local mode shows **Progress corrections need a server.** under the header and offers no correction on a row or the TV bar. The empty and failed reads are in [Empty states](#empty-states).
 
 ## Details
 
