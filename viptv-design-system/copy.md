@@ -30,7 +30,7 @@ Title detail Starring line:
 
 - The detail hero reads **`Starring [names]`** — up to three top-billed cast names, comma-separated, in billing order — on one muted line under the description. A title with no cast names shows no Starring line.
 
-Responsive player picture mode (WEB-PLAYER-FIT-001): visible toggle **"Fit"** / **"Fill"**; accessible actions **"Fill video"** / **"Fit video"**.
+Responsive player picture mode (WEB-PLAYER-FIT-001): visible toggle **"Fit"** / **"Fill"**, the word alone with no icon; accessible actions **"Fill video"** / **"Fit video"**.
 
 Player Audio & subtitles panel ([PLAY-TRACKS-001](../specs/behavior/player-audio-subtitles-panel.md)):
 
