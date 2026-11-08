@@ -10,6 +10,10 @@ focus order, images and playback controls. Do not introduce another application,
 renderer chooser or platform-specific source-selection policy. Roku retains its
 native SceneGraph host.
 
+Scale the authored canvas uniformly to fit the available browser viewport,
+including a console window with browser chrome visible. Center it without
+cropping controls. Startup does not request browser fullscreen.
+
 Load the selected backend's fonts before mounting text. Canvas uses browser
 fonts with the existing family names and metrics; it does not request SDF
 atlases. A WebGL launch must not fetch the Canvas backend. Native browser video
