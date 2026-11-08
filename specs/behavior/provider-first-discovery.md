@@ -34,3 +34,12 @@ five-second timeout, immediate errors, canceled/late work, stale configuration a
 old/new client-server compatibility. Record browser, real API and physical TV evidence
 separately; under-five-second playback is a target for healthy sources, not a network
 guarantee. Rendering and gateway/seek contracts remain unchanged.
+
+Discovery requests carry optional remembered_source/cross_title_source and device
+hints after preferred_source_discovery_supported is advertised in bootstrap. The
+existing source-ranking result adds Core-computed source_reuse_ready independently
+of perfect soft matches. A reuse_audio_language observation is forwarded through
+the existing audio_language playback intent, preserving explicit track overrides.
+Startup failure requests fallback with exclude_preferred_source; the server validates
+and excludes only the scoped, resolved supplier. Exhausted matching shows
+“No matching source could start. Choose a source.” without rewriting preferences.
