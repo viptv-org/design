@@ -67,3 +67,9 @@ Acceptance:
   unavailable-context and failed-font cases preserve saved state.
 - Browser simulation qualifies only the exercised backend and input boundary.
   PS4 firmware, controller input and actual media require physical evidence.
+
+Async image URLs retain their reactive binding when initially absent. Detail
+backdrops and icons must load after mount without a persistent plain rectangle.
+The source drawer uses subtitle y=138, hold hint y=174, filter buttons y=216,
+group label y=288 and five 120px rows beginning y=320 (1920x1080 coordinates).
+The last row ends at 920, above the status/footer region.
