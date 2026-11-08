@@ -93,3 +93,7 @@ the seek opens. Superseded seeks cannot overwrite the current presentation.
 PS4 Back cancels a delivered, cancelable browser key default while still reaching
 the shared Back handler. Browser-reserved fullscreen exit remains a device limit;
 do not automatically force fullscreen again.
+
+Managed seeks pause the outgoing decoder picture and release its gateway lease
+before admitting a new producer, avoiding a second slot requirement. Keep source
+replacement admission semantics unchanged; cancellation fences both phases.
