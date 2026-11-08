@@ -127,8 +127,11 @@ memory](#order-each-key-breaks-ties-of-the-previous-one) stays a separate
 **Stored:** the add-on's `provider_id` and the source's audio languages and optional structured supplier name, never
 the source id or URL, because both expire and are resolved again from a fresh
 discovery. One entry per profile and title, in the device's own store, at most
-200 titles and 8 languages per title; it survives restarts and never leaves the
-device. An episode is stored as its series, so every later episode inherits it;
+200 titles and 8 languages per title; it survives restarts and is stored only
+on that device, without account synchronization. The server-authoritative TV
+wrapper sends bounded supplier/language observations with a ranking request;
+the service uses them for that request and does not persist the device history.
+An episode is stored as its series, so every later episode inherits it;
 a movie is stored as itself.
 
 An add-on that multiplexes suppliers may report a structured `provider_name`
