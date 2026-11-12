@@ -83,8 +83,10 @@ owns (`subtitle_mode`, `preferred_subtitle_language`, `subtitle_font_scale`,
   and no live path in any renderer, so the inline Background stays **None** /
   **Box**. The TV Settings page's **Shadow** option is unchanged and still
   writes a box colour.
-- A **subtitle timing offset** is not offered: no renderer reports support for
-  a live ±0.5 s cue delay. It is a future setting, not a gap to paper over.
+- Baseline paths without live cue correction do not offer subtitle timing.
+  The capability-gated provider-caption prototype is specified separately in
+  [PLAY-SUBTITLE-SYNC-001](subtitle-synchronization.md); it does not imply support
+  in every renderer or delivery.
 
 ### Apply
 
