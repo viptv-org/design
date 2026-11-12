@@ -137,6 +137,46 @@ no persistent bitmap cache or animation-loop image work is added.
   Branding contrast, poster separation, reduced motion and bounded decode sizes
   remain correct. Browser evidence does not qualify physical firmware.
 
+## TV-RESUME-135 — Authoritative saved time
+
+Status: owner-approved shared TV direction, with implementation qualification
+recorded by [tv-web #135](https://github.com/viptv-org/tv-web/issues/135) and
+[backend #316](https://github.com/viptv-org/backend/issues/316). This changes
+presentation, not history, source selection or playback intent. No new assets,
+design-pin migration or unrelated-client adoption is required.
+
+Continue Watching captions and Details omit `minutes left`, `seconds left` and
+the corresponding remaining-time line. Keep typed episode coordinates, progress
+bars, watched/rewatch facts and the ordinary metadata runtime. The player's
+timeline clocks are unchanged.
+
+The primary resume action reads **Resume at M:SS** below one hour and
+**Resume at H:MM:SS** at or above one hour. Use the winning saved record's
+positive millisecond position, flooring only the displayed seconds. A positive
+subsecond position displays **Resume at 0:00** but retains its precise admission
+position. Never multiply progress by a catalog runtime to invent display time.
+An explicit absent/zero position uses the ordinary **Play** label. Next and
+restart retain their existing Play/episode copy; restart stays at zero.
+
+A fresh resolved action takes precedence over stale Home presentation. While
+the action is pending, a known authoritative Home clock may supply its label;
+an older server without that clock may retain plain **Resume**. A late result
+from an obsolete title/profile cannot change the current action or admission
+position. Explicit seek/retry positions and source replacement clocks retain
+their existing ownership and take precedence over saved-position updates.
+
+Keep the action height and typography. Resume controls use at least 360px width
+in the 1920px reference frame and may grow to at most 520px to fit their label;
+the adjacent My List control remains 20px after the action edge. The progress
+bar follows the action width. Preserve the detail skeleton/shimmer, branding
+motion, focus order, press/release/repeat/700ms hold and Back/return behavior.
+
+Acceptance covers subminute, hour and subsecond positions; absent or mismatched
+metadata runtime; no saved position; explicit restart/Next; specials/absolute
+episode coordinates; active rewatch; stale Home versus fresh action; exact
+admission seconds; no remaining-time copy and unclipped labels in Canvas and
+WebGL. Physical firmware and other-client adoption remain separate evidence.
+
 ## Acceptance for TV-PRESENTATION-114
 
 - Inspect bright/dark art, missing/failed logos and slow/stale responses in WebGL,

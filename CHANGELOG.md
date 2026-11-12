@@ -1,5 +1,12 @@
 # Design changes
 
+## 2026-11-12 — Exact saved-time copy for shared TV
+
+[TV-RESUME-135](docs/platforms/TV_PRESENTATION_REFINEMENT.md#tv-resume-135--authoritative-saved-time)
+records the owner-requested Resume at clock and removal of remaining-time text.
+It preserves episode context, progress, playback intent and existing loading
+presentation. Implementation and physical-device qualification are separate.
+
 ## 2026-11-12 — TV-web branding follows its content layout
 
 [TV-PRESENTATION-133](docs/platforms/TV_PRESENTATION_REFINEMENT.md#tv-presentation-133--coherent-branding-and-preview-composition)
