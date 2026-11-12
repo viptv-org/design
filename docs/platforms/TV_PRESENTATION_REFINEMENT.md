@@ -8,6 +8,10 @@ Home preview blur, full-screen artwork and loading-copy requirements; other scre
 and platform contracts retain their existing behavior. Private captures are review
 evidence only and are not packaged assets.
 
+For TV-web, the owner-approved TV-PRESENTATION-133 amendment below supersedes
+the Home preview composition and pending-logo rules where stated. Other clients
+retain their existing adoption and qualification status.
+
 ## Home and Continue Watching
 
 In the 1920×1080 frame, sharp landscape artwork occupies x480, y0, 1440×810.
@@ -65,7 +69,75 @@ visibility and cannot force dismissed controls back onscreen. Source-opening Bac
 cancels that attempt. Actual exit retains lease cleanup and return-focus behavior.
 Other directional, OK, release and 700ms hold/context actions retain their contracts.
 
-## Acceptance
+## TV-PRESENTATION-133 — Coherent branding and preview composition
+
+Status: owner-approved TV-web direction, proposed until implementation
+qualification. Source: [tv-web #133](https://github.com/viptv-org/tv-web/issues/133).
+This is a scoped amendment to TV-PRESENTATION-114, not an unrelated design-pin
+or cross-platform migration. Existing copy, focus order, release/700ms hold,
+navigation, source intent and return-focus contracts are unchanged.
+
+### Branding layout and readiness
+
+Home shelf previews use one common branding origin for the logo, metadata and
+synopsis. Moving between Continue Watching and portrait shelves moves that whole
+layout coherently, including while replacement artwork is pending. The logo slot
+is 640×120 at x96. Its y coordinate is
+`max(96, 132 + max(0, shelfTitleY - 40 - 132 - 310) / 2)`; metadata begins 144px
+below that origin and synopsis 194px below it. Current and retiring logos follow
+the same target geometry, leaving at least 24px before metadata throughout motion.
+
+Movie and series Details both compact their branding when focus enters episodes,
+seasons or More Like This. The compact logo fits 220×68 at (96,54); a movie must
+not leave its full 640×190 logo over the upward-moving metadata, synopsis or Play
+button. The normal movie and series logo boxes remain 640×190 at (96,220) and
+640×134 at (96,250). Existing movie body/list offsets and series episode/synopsis
+visibility remain intact. Use a shared 220ms ease-out layout transition for logo
+position/scale and corresponding summary/list movement. Reduced motion applies
+the final geometry immediately. Reuse the prepared logo pixels during layout
+motion rather than loading or rasterizing each intermediate size.
+
+On Home and Details, a supplied but pending logo reserves its branding slot;
+do not substitute the title merely because its pixels have not arrived. Title
+text appears when no logo exists or loading has definitively failed. Preserve
+the existing movie/series detail skeleton and restrained shared shimmer while
+detail data is unavailable. There is no minimum loading delay, new loading copy
+or navigation gate. Late callbacks cannot restore another title, route or scope.
+
+### Artwork composition and cost
+
+Non-Continue portrait/poster previews use a full-width 1920×1080 background
+blurred through the existing image proxy with blur 8 and a 960×540 preview
+decode, scaled by the device image-pixel policy. Keep the separate sharp
+240×360 poster at (1584,144). Do not apply CSS, canvas or per-frame blur.
+
+Featured and Continue/single-landscape previews retain the sharp clipped
+right-side viewport at (480,0), 1440×810, and the existing black copy/lower mask.
+Enlarge the image content by 4/3 inside that viewport: a centered 1920×1080 image
+at local (-240,-135), clipped to the viewport. The visible subject grows about
+one third while the rendering footprint and black branding ground remain stable.
+Use cover fitting, no proxy blur, a bounded 1440×810 hero decode and a 1280×720
+focused-preview decode. Detail's existing full-width composition stays unchanged.
+Keep only the current/incoming presentation and existing bounded shelf/card pools;
+no persistent bitmap cache or animation-loop image work is added.
+
+### Acceptance for the amendment
+
+- Traverse movie and series Details into/out of More Like This; synopsis and
+  actions never paint over branding at the start, middle or end of motion.
+- Traverse Continue Watching ↔ My List/portrait shelves with cached and delayed
+  artwork. Both fading logos follow the same geometry as the summary; reverse
+  direction before completion and retain the correct title and focus.
+- Delay a supplied logo on first Details entry: its title is absent until actual
+  logo failure, while a missing/failed logo has the ordinary title fallback.
+  Existing data skeleton/shimmer and cancellation remain correct.
+- Inspect actual proxy requests and private subject/text captures in WebGL and
+  Canvas at 1920×1080 and 1540×754. Only portrait previews request blur 8 and a
+  full-width background; single-image content is enlarged inside its right clip.
+  Branding contrast, poster separation, reduced motion and bounded decode sizes
+  remain correct. Browser evidence does not qualify physical firmware.
+
+## Acceptance for TV-PRESENTATION-114
 
 - Inspect bright/dark art, missing/failed logos and slow/stale responses in WebGL,
   Canvas and the native host; text/marker contrast must remain readable.

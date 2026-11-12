@@ -11,6 +11,10 @@ Proposed scope and availability are defined by
 - Normal detail loading uses skeletons without a visible Loading label. Source
   preparation uses the title/clearlogo and progress, with **Press Back to cancel**.
   Actual failures retain the existing error/retry copy.
+- TV-web Home/Details reserve a supplied logo's slot while its pixels load;
+  the ordinary title fallback appears only when that logo is absent or fails.
+  [TV-PRESENTATION-133](../docs/platforms/TV_PRESENTATION_REFINEMENT.md#tv-presentation-133--coherent-branding-and-preview-composition)
+  changes no visible strings or skeleton/shimmer copy.
 - **Find provider subtitles**, **Off**, **Subtitle timing ([signed delay] s)**.
 - Timing states: **Original timing**, **Checking automatic timing**, **Automatic
   timing (prototype)**, **Automatic timing unavailable**, **Manual timing**.
