@@ -1,3 +1,7 @@
+Current shared TV/Roku refinements: [TV-PRESENTATION-114](TV_PRESENTATION_REFINEMENT.md).
+Its explicitly scoped owner-approved rules supersede the older blur/loading and
+control presentation below; Android-specific rules otherwise retain their scope.
+
 # Android TV static hero and immediate navigation — TV-042-STATIC
 
 Status: owner-approved Android TV presentation. Implementation source:

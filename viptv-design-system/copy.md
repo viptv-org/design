@@ -2,6 +2,22 @@
 
 These are the exact strings used on the screens. Text in `[brackets]` is a placeholder or proposed value, not final copy. Sentence case everywhere except eyebrows (uppercase) and product names.
 
+## TV presentation and experimental subtitle timing
+
+Proposed scope and availability are defined by
+[TV-PRESENTATION-114](../docs/platforms/TV_PRESENTATION_REFINEMENT.md) and
+[PLAY-SUBTITLE-SYNC-001](../specs/behavior/subtitle-synchronization.md).
+
+- Normal detail loading uses skeletons without a visible Loading label. Source
+  preparation uses the title/clearlogo and progress, with **Press Back to cancel**.
+  Actual failures retain the existing error/retry copy.
+- **Find provider subtitles**, **Off**, **Subtitle timing ([signed delay] s)**.
+- Timing states: **Original timing**, **Checking automatic timing**, **Automatic
+  timing (prototype)**, **Automatic timing unavailable**, **Manual timing**.
+- Actions: **Earlier by 0.5 s**, **Later by 0.5 s**, **Reset automatic timing**.
+- Qualified native experimental paths: **Automatic timing (experimental)** with
+  **Off** and **On**. The feature is not advertised as available on unsupported paths.
+
 ## Names
 
 - **My List** is the saved-titles list, everywhere (the nav tab, page title, menu item and toasts). Do not use "Library" or "Watchlist".
