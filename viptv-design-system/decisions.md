@@ -1,5 +1,19 @@
 # Decisions
 
+## TV-web coherent branding and preview composition (TV-PRESENTATION-133)
+
+The 2026-11-12 owner correction in
+[tv-web #133](https://github.com/viptv-org/tv-web/issues/133) supersedes sharp
+backgrounds for non-Continue poster previews. Those previews restore proxy blur
+8 and their separate sharp poster. Single-image artwork grows by 4/3 inside its
+existing clipped right viewport and black copy mask. Home and movie/series
+Details share coherent branding motion; known pending logos reserve their slot
+without a title flash. Existing skeleton/shimmer and input meanings are preserved.
+Geometry, decode bounds, failure states and acceptance are specified in
+[the scoped amendment](../docs/platforms/TV_PRESENTATION_REFINEMENT.md#tv-presentation-133--coherent-branding-and-preview-composition).
+This is approved direction pending implementation qualification, not a physical
+TV or unrelated-client adoption claim.
+
 ## Live empty state (LIVE-EMPTY-001)
 
 From the 2026-10-30 owner report

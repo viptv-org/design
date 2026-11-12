@@ -1,5 +1,16 @@
 # Design changes
 
+## 2026-11-12 — TV-web branding follows its content layout
+
+[TV-PRESENTATION-133](docs/platforms/TV_PRESENTATION_REFINEMENT.md#tv-presentation-133--coherent-branding-and-preview-composition)
+records the owner's new preview composition and fixes the specified layout
+boundaries: movie and series compact branding, coherent Home shelf motion and
+no title fallback while a known logo is pending. Poster previews regain proxy
+blur; single-image content grows inside its bounded sharp right viewport.
+The existing skeleton/shimmer, input, source and focus contracts remain intact.
+This scoped amendment supersedes only the named parts of TV-PRESENTATION-114.
+Refs [tv-web #133](https://github.com/viptv-org/tv-web/issues/133).
+
 ## 2026-11-07 — Live's channel search gets its words and its place
 
 [copy.md §Empty states](viptv-design-system/copy.md#empty-states) already gave
