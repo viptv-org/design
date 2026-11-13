@@ -50,6 +50,10 @@ is opened.
 
 ## Who owns what
 
+The proposed [own-account integration permission](integration-permissions.md)
+overrides the global-owner-only add-on/source-connection write rules below.
+It does not change gateway, device-administration or parent/PIN authority.
+
 Every row below is one setting or one action, with its real owner. "Account" and
 "Profile" are the terms in [CONTEXT.md](../../CONTEXT.md).
 
