@@ -39,6 +39,11 @@ reports `capabilities.manage_account` only for the owner.
 
 ## Intent
 
+For integration setup actions, the proposed
+[own-account integration permission](integration-permissions.md) supersedes the
+owner-role-only action gate described in the baseline. Existing profile and
+parent/PIN restrictions remain in force.
+
 The Live page is two different stories and it tells neither: with no live
 source configured it draws a filter chip over an empty page, one line and a
 button into the whole of Settings. With a source configured but no channels
