@@ -18,8 +18,8 @@ at 1440×900 with preview data. No device evidence is recorded yet.
 
 ## Intent
 
-Give source titles, quality badges and the file/description line more room on
-wide desktop and web windows. Keep the title's Details visible behind the
+Give the quality badge, the provider and the add-on's own text
+(SRC-ROW-TEXT-001) more room on wide desktop and web windows. Keep the title's Details visible behind the
 source drawer on web, so choosing a source feels like a step inside Details
 and closing it puts the viewer back where they were. Remove the hint about how
 Play picks a source from every source picker: it repeats a setting and takes

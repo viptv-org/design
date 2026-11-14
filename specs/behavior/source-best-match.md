@@ -438,9 +438,15 @@ markers set flags; `Multi Subs`, `VOSTFR`, `Subbed` and hardsub markers are
 subtitle evidence only. Flag emoji map to languages as today. Seeders come from
 a declared field or Torrentio's `👤 N` marker.
 
-Source rows show the release type and audio flags beside the quality badge
-(for example `WEB-DL`, `Dual audio`, `Dubbed`); badges that do not fit are
-dropped. The two-line description window (SRC-OVERFLOW-001) is unchanged.
+Source rows show the add-on's own text and the fixed tag set
+(SRC-ROW-TEXT-001): the quality badge, the provider, the add-on's lines as
+returned and a chip per confident tag — `Dubbed`, `Multi audio`, `HDR`,
+`Dolby Vision`, `Remux`, `3D`, `CAM` — plus the add-on's own size. Release
+type, codec, tracker, release group, language and season-pack labels are not
+displayed, because they were read from the same text the row already shows.
+The two-line description window (SRC-OVERFLOW-001) is unchanged. Ranking
+still reads the normalized facts above, including the languages the row no
+longer prints.
 
 ## Device capability
 
@@ -645,7 +651,7 @@ preparation has its own timers in
 
 - Boards for the fallback notice and the failed-row label on every surface. The
   app ships them; the canvas does not pin them, like the group headers, the
-  release/audio badges and the Best match marker.
+  tag chips (SRC-ROW-TEXT-001) and the Best match marker.
 - Racing starts await the measurement in
   [app#955](https://github.com/viptv-org/app/issues/955). The grace window,
   start cap and provider affinity have no implementation issue yet.
