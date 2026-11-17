@@ -5,7 +5,8 @@
 The owner asked for outro skipping. An outro is a `credits` segment, and the
 row reads **Skip credits and outros automatically**. With it on, credits that
 end more than 10 s before the media's end skip to the scene after them; credits
-at the very end still hand over to Up next
+at the very end still hand over to Up next, and a `mixed` intro or ending
+(story over it) only shows its Skip prompt
 ([PLAY-AUTO-SKIP-001](specs/behavior/auto-skip-segments.md)). Profiles saved
 before the `skip_credits` preference read with both skips on. Refs
 [core#83](https://github.com/viptv-org/core/issues/83).

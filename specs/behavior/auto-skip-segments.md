@@ -12,7 +12,9 @@ it, and plays when the viewer goes into it on purpose. Segments come from the
 playback's segment markers (AniSkip and the other sources the backend reads:
 `GET /api/playback/:id/segments`, kinds `intro`, `recap`, `credits`). An
 outro (AniSkip `ed` or `mixed-ed`, other sources' `outro`) is a `credits`
-segment.
+segment. A segment marked `mixed` (AniSkip `mixed-op`, `mixed-ed`) has story
+over it: it shows its **Skip intro** or **Skip credits** prompt but never
+skips itself.
 
 ## Settings
 
@@ -30,7 +32,7 @@ web on the preferences page, TV in the Playback list. A change saves at once.
 
 A segment skips when **all** of these hold:
 
-- its kind's setting is on;
+- its kind's setting is on and it is not marked `mixed`;
 - playback is running, not paused, and no seek is in flight;
 - the position is inside the segment;
 - the playback **ran into it**: the position where the current stretch of
@@ -105,3 +107,5 @@ After an automatic skip, a notice takes the skip prompt's place for 5 s:
    Up next opens when the media ends.
 9. The same credits with the setting off: Up next opens at 20:00 when a next
    episode is known; otherwise the **Skip credits** prompt shows.
+10. A `mixed` intro at 1:00–2:30, setting on, playback from 0:30: the intro
+    plays and the **Skip intro** prompt shows.
