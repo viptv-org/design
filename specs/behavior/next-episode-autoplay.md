@@ -125,8 +125,9 @@ following must hold:
 - the viewer has not dismissed the panel for this end.
 
 Reaching a marked credits segment opens the panel the same way, before the
-media ends; with **Skip credits automatically** on, the panel takes over
-instead of a skip ([auto-skip-segments.md](auto-skip-segments.md#when-a-segment-skips)).
+media ends. With **Skip credits and outros automatically** on, credits that end
+more than 10 s before the media's end skip instead, and the panel opens at the
+end ([auto-skip-segments.md](auto-skip-segments.md#when-a-segment-skips)).
 
 A next episode that resolves only after the end still opens the panel. If the
 next episode is withdrawn while the panel is open, the panel closes and

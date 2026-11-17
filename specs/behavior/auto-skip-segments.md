@@ -1,17 +1,18 @@
 # PLAY-AUTO-SKIP-001 — Skip intros, recaps and credits automatically
 
 Status: **proposed**, owner request ([app#1150](https://github.com/viptv-org/app/issues/1150)).
-The KMP app (phone, tablet, desktop, web and TV) implements it. The credits
-setting and the on-by-default profile value need a `skip_credits` profile
-preference and a new default in core first; until then the app reads the
-profile's existing `skip_intros` value and never skips credits.
+The KMP app (phone, tablet, desktop, web and TV) implements it. The settings
+are the profile preferences `skip_intros` and `skip_credits`; a profile saved
+before `skip_credits` existed reads with both on.
 
 ## Intent
 
 A marked intro, recap or credits segment skips itself when playback runs into
 it, and plays when the viewer goes into it on purpose. Segments come from the
 playback's segment markers (AniSkip and the other sources the backend reads:
-`GET /api/playback/:id/segments`, kinds `intro`, `recap`, `credits`).
+`GET /api/playback/:id/segments`, kinds `intro`, `recap`, `credits`). An
+outro (AniSkip `ed` or `mixed-ed`, other sources' `outro`) is a `credits`
+segment.
 
 ## Settings
 
@@ -20,7 +21,7 @@ Settings › Playback, saved with the profile like the other playback rows:
 | Row | Description | Default |
 |---|---|---|
 | `Skip intros and recaps automatically` | `Skips them when you play into them. Seek into one to watch it.` | on |
-| `Skip credits automatically` | `At the end of an episode, Up next takes over.` | on |
+| `Skip credits and outros automatically` | `Jumps to any scene after them. At the end of an episode, Up next takes over.` | on |
 
 Phone and tablet show them as switch rows in the Playback group, desktop and
 web on the preferences page, TV in the Playback list. A change saves at once.
@@ -52,10 +53,14 @@ landed. So:
 Markers that arrive after playback started follow the same rule: playback
 that ran from before the segment skips it when the markers arrive.
 
-**Credits.** When a next episode is known, reaching the credits opens the
-Up next panel as today ([next-episode-autoplay.md](next-episode-autoplay.md)),
-and nothing skips. Without one (a movie, a finale), playback jumps to the end
-of the credits segment, which plays any scene after them or ends the title.
+**Credits.** Credits that end more than 10 s before the media's end (a
+post-credits scene or a next-episode preview follows) skip like an intro:
+playback jumps to the segment's end and plays on, and Up next opens when the
+media ends. Credits that run to the end, end within 10 s of it, or play in
+media of unknown length are the end of the title: when a next episode is
+known, reaching them opens the Up next panel as today
+([next-episode-autoplay.md](next-episode-autoplay.md)) and nothing skips;
+without one (a movie, a finale), playback jumps to the segment's end.
 
 With a setting off, its segments only show the **Skip intro**, **Skip recap**
 or **Skip credits** prompt, as today. The prompt also shows while a segment
@@ -93,9 +98,10 @@ After an automatic skip, a notice takes the skip prompt's place for 5 s:
    later seek to 0:30 and natural playback into it does not skip it again.
 5. Setting off: nothing skips; the **Skip intro** prompt shows.
 6. A fresh episode with an intro at 0:00–1:30 starts at 1:30.
-7. Credits with a next episode: Up next opens; nothing skips.
-
-## Unknowns
-
-- Whether profiles that saved `skip_intros` off before this contract keep it
-  off or adopt the new default is the core migration's decision.
+7. Credits at 21:30–22:55 in a 23:00 episode with a next episode: Up next
+   opens; nothing skips.
+8. Credits at 20:00–21:30 in a 23:00 episode, setting on: the player seeks to
+   21:30, shows `Skipped credits` · **Undo** and plays the scene after them;
+   Up next opens when the media ends.
+9. The same credits with the setting off: Up next opens at 20:00 when a next
+   episode is known; otherwise the **Skip credits** prompt shows.
