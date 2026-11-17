@@ -124,6 +124,10 @@ following must hold:
 - playback has not failed and, on TV, is not the undecodable state;
 - the viewer has not dismissed the panel for this end.
 
+Reaching a marked credits segment opens the panel the same way, before the
+media ends; with **Skip credits automatically** on, the panel takes over
+instead of a skip ([auto-skip-segments.md](auto-skip-segments.md#when-a-segment-skips)).
+
 A next episode that resolves only after the end still opens the panel. If the
 next episode is withdrawn while the panel is open, the panel closes and
 nothing plays. A finale (no next episode), a movie or a live channel never

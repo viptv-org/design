@@ -1,5 +1,13 @@
 # Design changes
 
+## 2026-11-17 — Intros, recaps and credits skip themselves
+
+[PLAY-AUTO-SKIP-001](specs/behavior/auto-skip-segments.md) skips a marked
+intro, recap or credits segment when playback runs into it, plays it when the
+viewer seeks or resumes into it, and shows **Skipped intro** · **Undo** after a
+skip. Settings › Playback gains **Skip credits automatically**, and both skip
+settings default on. Refs [app#1150](https://github.com/viptv-org/app/issues/1150).
+
 ## 2026-11-17 — Audio rows read name over language and layout
 
 [PLAY-TRACKS-001](specs/behavior/player-audio-subtitles-panel.md#panel) gives an
