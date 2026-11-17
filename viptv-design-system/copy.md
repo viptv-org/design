@@ -55,7 +55,7 @@ Responsive player picture mode (WEB-PLAYER-FIT-001): visible toggle **"Fit"** / 
 Player Audio & subtitles panel ([PLAY-TRACKS-001](../specs/behavior/player-audio-subtitles-panel.md)):
 
 - Panel title **Audio & subtitles**; accessible pane name **Audio and subtitles**; the × is **Close track selection**.
-- Audio column heading **Audio**, collapsed to **Default audio** with zero or one track.
+- Audio column heading **Audio**, collapsed to **Default audio** with zero or one track. An audio row's primary line is the track's name or language (**Japanese**), else **Audio track [n]**; its secondary line is the language when a name is shown and the channel layout (**Mono** · **Stereo** · **5.1** · **7.1** · **[n] channels**), e.g. **Commentary** / **English · Stereo**.
 - Subtitles column heading **Subtitles**; the first row is **Off**; the empty note is **No subtitle tracks available**. A subtitle row's primary line is the language name (**English**, **Croatian**) and its secondary line the source (**OpenSubtitles v3**); several sources of one language join with ** · **. An embedded track the file names shows that name as its primary line and the language as its secondary line (**Signs & Songs** / **English**); one with no name or language reads **Subtitle [n]**.
 - Inline settings rows share the Settings page copy: **Show subtitles** (**Always** · **When audio isn’t [language]** · **Never**), **Language** (**Default** when none), **Size** (**Small** · **Medium** · **Large**), **Background** (**None** · **Box**).
 - The footer link stays **Subtitles & audio settings**.
