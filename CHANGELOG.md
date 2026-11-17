@@ -1,5 +1,13 @@
 # Design changes
 
+## 2026-11-17 — Audio rows read name over language and layout
+
+[PLAY-TRACKS-001](specs/behavior/player-audio-subtitles-panel.md#panel) gives an
+audio row the track's name (or language) as its primary line and the language
+and channel layout (**Stereo**, **5.1**) as its secondary line, so a row no
+longer repeats the language as a raw code. Refs
+[app#1144](https://github.com/viptv-org/app/issues/1144).
+
 ## 2026-11-17 — Embedded subtitle names and full-dialogue auto-selection
 
 [PLAY-TRACKS-001](specs/behavior/player-audio-subtitles-panel.md#panel) gives an

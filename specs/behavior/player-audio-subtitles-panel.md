@@ -29,8 +29,15 @@ the popover is focusable and keyboard focus stays inside on web.
   **Close track selection**). The panel's pane is titled **Audio and
   subtitles**.
 - **Audio:** when zero or one audio track is known the column collapses to one
-  quiet line, **Default audio**. With two or more tracks it lists them by name,
-  one line each; the selected one carries the check.
+  quiet line, **Default audio**. With two or more tracks it lists one row per
+  track; the selected one carries the check. A row's primary line is the
+  track's name, or its language in full words when the file names none
+  (**Japanese**), or **Audio track [n]** with neither. The secondary line is
+  the language when a name is shown, then the channel layout — **Mono**,
+  **Stereo**, **5.1**, **7.1**, otherwise **[n] channels** — joined with
+  ** · ** (**Commentary** / **English · Stereo**). The language never appears
+  twice and never as a raw code. TV's single-line rows join both lines with
+  ** · **.
 - **Subtitles:** **Off** as the first row, followed by one row per language.
   Provider sources that offer the same language are grouped into that single
   row: the primary line is the language in full words, the secondary line names
@@ -173,6 +180,10 @@ All strings live in [copy.md](../../viptv-design-system/copy.md#player-audio--su
    (forced, default) and **Full Subtitles** tracks lists two rows, **Signs &
    Songs** and **Full Subtitles**, each with **English** as its secondary
    line, on Android (Media3) and desktop (mpv).
+10. **PLAY-TRACKS-10:** a file with Japanese and English stereo tracks named
+   **Japanese** and **English** lists **Japanese** / **Stereo** and
+   **English** / **Stereo**; an unnamed 5.1 Japanese track reads **Japanese** /
+   **5.1**, on Android (Media3), desktop (mpv), web and iOS.
 
 ## Unknowns
 
