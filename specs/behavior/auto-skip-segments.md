@@ -67,8 +67,8 @@ After an automatic skip, a notice takes the skip prompt's place for 5 s:
 `Skipped intro` (`Skipped recap`, `Skipped credits`) and **Undo**.
 
 - **Phone, tablet, desktop, web:** a 44 high bar at the bottom end, 24 from
-  the end, in the skip prompt's place: 104 from the bottom on desktop and
-  web, and on phone and tablet 12 above the timeline (at least 104), radius 12,
+  the end, in the skip prompt's place: 12 above the timeline and at least 104
+  from the bottom, so it never covers the timeline or its times, radius 12,
   `color.surface.2`, 16 horizontal padding: the label in 14 semibold primary
   text, a 12 gap, then **Undo** as a 14 bold accent text button. It shows
   whether the controls are shown or not, and over nothing else: a panel, the
