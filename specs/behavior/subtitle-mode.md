@@ -20,7 +20,7 @@ Playback preferences row **Subtitles** opens the existing one-choice dialog:
 | Label | Value | Behaviour |
 |---|---|---|
 | `Always` | `always` | Start with subtitles in the **Subtitle language**. |
-| `Foreign audio only` | `foreign` | Start with subtitles only when the audio that plays is not the **Preferred audio** language. |
+| `Foreign audio only` | `foreign` | Start with full subtitles when the audio that plays is not the **Preferred audio** language; on a dub (audio in the Preferred audio language) start with the file's signs-only track in the **Subtitle language**, if it has one. |
 | `Never` | `never` | Start without subtitles. |
 
 The row shows the chosen label. Saving shows the existing message **`Applies
@@ -50,15 +50,21 @@ audio track's reported language and the subtitle tracks.
   embedded track in that language is signs-only counts as having none, so a
   provider subtitle in that language is used when one exists; otherwise the
   signs track stays on.
+- `foreign` on a dub: when the selected audio's language is known and is the
+  preferred audio language, the subtitle track is the first signs-only
+  embedded track in the subtitle language, preferring one the file marks
+  default. With none, subtitles stay off and no provider subtitle is used.
 
 ## Playback behaviour (native/direct playback)
 
 1. In `Foreign audio only`, playback starts with subtitles off. When the player
    reports its selected audio, the decision runs once and turns on the matching
-   subtitle track if the audio is foreign.
+   full-dialogue subtitle track if the audio is foreign, or the signs-only
+   track if the audio is a dub.
 2. Choosing another audio track in the player re-runs the decision (for
-   example, switching a dual-audio title to Japanese turns English subtitles
-   on; switching back to English turns them off).
+   example, switching a dual-audio title to Japanese turns full English
+   subtitles on; switching back to English turns them to **Signs & Songs**, or
+   off when the file has no signs track).
 3. Once the viewer picks a subtitle track or Off in the player, automatic
    choices stop for that playback. Seeking, retry and source-replacement keep
    the current tracks.
@@ -74,7 +80,10 @@ The KMP app adopts this mode on the shared engine preferences used by
 `/api/profiles/:id/preferences`. The middle option's visible label names the
 preferred audio language: `When audio isn't [language]`, with English when the
 preference is **Original language** or empty (value `foreign`, behaviour
-unchanged). The row lives on **Subtitles & audio** as **Subtitles**; the TV
+unchanged). In the one-choice dialog that option carries a one-line
+secondary note, **Signs & songs on dubs**, on every layout (phone, desktop
+and web, TV, and the player panel's **Show subtitles** dialog); the row's
+value stays the label alone. The row lives on **Subtitles & audio** as **Subtitles**; the TV
 Playback page no longer shows **Start with subtitles**.
 
 TV **Subtitles & audio** is one vertical list, moved with Up/Down, in this
@@ -113,3 +122,13 @@ while the server's `subtitles_enabled` is on.
    Subtitles**: `Always`, and `Foreign audio only` with Japanese audio, start
    with **Full Subtitles** on Android and desktop. The viewer can still pick
    **Signs & Songs** in the panel.
+7. **PLAY-SUBTITLE-MODE-07:** `Foreign audio only`, English audio and
+   subtitles preferred, the same file: English audio starts with **Signs &
+   Songs**; switching to Japanese turns on **Full Subtitles**; switching back
+   turns on **Signs & Songs** again. A file with no signs-only English track
+   plays English audio with subtitles off. After a manual subtitle or Off, an
+   audio switch changes nothing. `Always` still starts **Full Subtitles** on
+   English audio.
+8. **PLAY-SUBTITLE-MODE-08:** the `When audio isn't [language]` choice shows
+   **Signs & songs on dubs** under its label in the Settings dialog on phone,
+   desktop, web and TV.
