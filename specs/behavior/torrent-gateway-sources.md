@@ -148,14 +148,15 @@ through the normal immutable design/Core adoption path.
 
 Selection prepares the existing `starting` lease and its existing busy/skeleton
 surface. **Real progress only:** the player's opening screen shows the title's
-logo art, or the title in display type when there is no logo, dimmed to about
-25 % opacity and filling to full opacity from bottom to top as startup advances through
+logo art, or the title in display type when there is no logo, muted to about
+25 % opacity and filling to full strength from left to right as startup advances through
 the three measured stages of
 [components.md §9](../../viptv-design-system/components.md#9-feedback):
 discovery and ranking, the source opening and buffering. The fill follows real
 signals only, never moves backwards and never invents a value; when the current
-stage has no measurable signal it holds and a subtle shimmer shows activity.
-The status line stays under the art. No percentage or byte counter is shown.
+stage has no measurable signal it holds still. The status line stays under the
+art. It shows only before the first frame; a later gateway reopen for a seek
+shows the buffering ring over the last frame instead. No percentage or byte counter is shown.
 Capacity, unavailable gateway, timeout and unsupported-selection failures use
 existing safe retry/source-choice surfaces. `torrent_cache_capacity` maps to
 the existing `gateway_capacity` classification and copy. Unsupported output
@@ -203,7 +204,13 @@ releases only that viewer; another authorized viewer continues normally.
 9. During preparation the opening screen's fill moves only on measured stages:
    it holds while a stage has no signal, never regresses across a stage change
    and never exceeds what the last measured stage reported. The status line
-   below the art names the current stage.
+   below the art names the current stage. At 25, 50 and 75 % the filled part
+   is the left 25, 50 and 75 % of the art.
+10. After the first frame, a seek that reopens the gateway stream never shows the
+    opening screen: the buffering ring sits over the last frame with the controls
+    visible. Three seeks in a row while it buffers are all accepted and the last
+    target plays. The next episode or another source shows the opening screen
+    again.
 
 Record source/image/design/Core/app pins and functional/browser/installed/emulator
 results independently. Ready-viewer cache exhaustion, sustained peer workloads

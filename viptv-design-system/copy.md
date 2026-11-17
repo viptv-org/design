@@ -260,7 +260,7 @@ A title's page (`components.md` §6). Phone and tablet switch sections with the 
 - The stream could not seek there. (player notice)
 - Error-slate notice ([SRC-ERROR-SLATE-001](../specs/behavior/error-slate-detect.md)): **This source might not be working.** Then **[Add-on] handed back this video. Its settings may need a new key.** (no provider name: **This source's settings may need a new key.**) with **Configure source** and **Choose another source**.
 - Preparing playback…
-- Player opening screen (proposed, [SRC-BEST-MATCH-001](../specs/behavior/source-best-match.md) and [components §9](components.md#9-feedback)): the dimmed title art fills with real startup progress and the status line under it names the stage. It reuses the existing lines — **Finding sources**, **Still checking sources**, **Opening [provider] [quality]…** — and never shows a percentage or a byte counter, so no string is added.
+- Player opening screen (proposed, [SRC-BEST-MATCH-001](../specs/behavior/source-best-match.md) and [components §9](components.md#9-feedback)): the muted title art fills left to right with real startup progress before the first frame and the status line under it names the stage. It reuses the existing lines — **Finding sources**, **Still checking sources**, **Opening [provider] [quality]…** — and never shows a percentage or a byte counter, so no string is added.
 - Loading more titles… / Loading more channels… / Loading more channels… [120] of [860]
 - Paging footer: a finished list reads **"You’ve reached the end."**; a later page that fails reads **"Couldn’t load more"** with a **Retry** button.
 - Still checking [2] addons

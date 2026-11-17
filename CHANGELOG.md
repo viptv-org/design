@@ -1,5 +1,21 @@
 # Design changes
 
+## 2026-11-17 — Opening screen fills left to right, before the first frame only
+
+The owner ([app#1151](https://github.com/viptv-org/app/issues/1151)): "When I
+said I wanted it filled in I wanted it to basically show the text or the landing
+image art of the content and have that get filled in from left to right." and
+"once the video has actually started to show and render, we could simply show a
+normal buffering icon in the UI." [components.md §9](viptv-design-system/components.md#9-feedback):
+the player opening screen's title art, over the dimmed landing image on D and T,
+fills left to right from muted to full strength, with no shimmer; it shows only
+before a playback's first frame. Afterwards buffering is the buffering ring over
+the last frame with the controls usable, and seeking is never blocked (the latest
+target wins). [SRC-TORRENT-GATEWAY-001](specs/behavior/torrent-gateway-sources.md),
+[TV-034](docs/platforms/TV_POLISH.md), copy.md and decisions.md §Settled 15
+follow; the gateway spec gains the fill-direction and post-first-frame
+acceptance scenarios. Refs [design#237](https://github.com/viptv-org/design/issues/237).
+
 ## 2026-11-17 — Filler and Mixed labels on episodes
 
 [EPISODE-FILLER-001](specs/behavior/episode-filler-labels.md): every episode
