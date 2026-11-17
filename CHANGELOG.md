@@ -1,5 +1,15 @@
 # Design changes
 
+## 2026-11-17 — Embedded subtitle names and full-dialogue auto-selection
+
+[PLAY-TRACKS-001](specs/behavior/player-audio-subtitles-panel.md#panel) gives an
+embedded subtitle track its own name as the primary line and its language as
+the secondary line, so **Signs & Songs** and **Full Subtitles** read apart.
+[PLAY-SUBTITLE-MODE-001](specs/behavior/subtitle-mode.md#decision) defines a
+signs-only track (forced, or named signs/songs/forced) and has auto-selection
+prefer a full-dialogue track in the subtitle language on every mode that shows
+subtitles. Refs [app#1140](https://github.com/viptv-org/app/issues/1140).
+
 ## 2026-11-12 — Exact saved-time copy for shared TV
 
 [TV-RESUME-135](docs/platforms/TV_PRESENTATION_REFINEMENT.md#tv-resume-135--authoritative-saved-time)

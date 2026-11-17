@@ -34,8 +34,14 @@ the popover is focusable and keyboard focus stays inside on web.
 - **Subtitles:** **Off** as the first row, followed by one row per language.
   Provider sources that offer the same language are grouped into that single
   row: the primary line is the language in full words, the secondary line names
-  the source or sources. A subtitle with no source part (for example an
-  embedded **English (SDH)**) is its own row with no secondary line.
+  the source or sources. Every embedded track is its own row: a track the file
+  names shows that name as the primary line and its language in full words as
+  the secondary line (**Signs & Songs** / **English**, **Full Subtitles** /
+  **English**); an unnamed track shows its language alone, and a track with
+  neither shows **Subtitle [n]**.
+- The column shows **No subtitle tracks available** only when the player
+  reports no subtitle track at all; a file whose text tracks are all off still
+  lists them under **Off**.
 - **Inline settings:** the compact settings below the two columns edit the
   profile's subtitle preferences and apply immediately (see
   [apply](#apply)). They are **Show subtitles** (mode), **Language**,
@@ -163,6 +169,10 @@ All strings live in [copy.md](../../viptv-design-system/copy.md#player-audio--su
 8. **PLAY-TRACKS-08:** the **Subtitles & audio settings** link still opens the
    full page, and returning from it reopens the player without losing the
    changes the panel already saved.
+9. **PLAY-TRACKS-09:** a dual-audio anime file with English **Signs & Songs**
+   (forced, default) and **Full Subtitles** tracks lists two rows, **Signs &
+   Songs** and **Full Subtitles**, each with **English** as its secondary
+   line, on Android (Media3) and desktop (mpv).
 
 ## Unknowns
 

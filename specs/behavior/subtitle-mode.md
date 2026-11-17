@@ -38,9 +38,18 @@ audio track's reported language and the subtitle tracks.
 - `foreign`: audio is foreign only when its reported language is known and
   differs from the preferred audio. Missing, `und`, `mul` or `zxx` audio counts
   as not foreign, so subtitles stay off.
-- The subtitle track is the first non-forced track in the subtitle language
-  (or the only non-forced track when that preference is empty). If none
-  matches, nothing is selected.
+- The subtitle track is the first full-dialogue track in the subtitle language
+  (or the only full-dialogue track when that preference is empty), preferring
+  one the file marks default. If none matches, nothing is selected.
+- A track is **signs-only**, never full dialogue, when the file flags it forced
+  or its name mentions signs, songs or forced (`Signs & Songs`, `Signs/Songs`,
+  `Forced`) without mentioning full or dialogue. Anime releases flag their
+  signs track forced and default, and Media3 and mpv would otherwise pick it.
+- `Always` uses the same choice: a full-dialogue embedded track in the
+  subtitle language wins over the player's own default. A file whose only
+  embedded track in that language is signs-only counts as having none, so a
+  provider subtitle in that language is used when one exists; otherwise the
+  signs track stays on.
 
 ## Playback behaviour (native/direct playback)
 
@@ -99,3 +108,8 @@ while the server's `subtitles_enabled` is on.
    subtitles; a title with no subtitle in the subtitle language shows none.
 5. **PLAY-SUBTITLE-MODE-05:** `Always` and `Never` behave as before; an older
    client sees `Foreign audio only` as subtitles on.
+6. **PLAY-SUBTITLE-MODE-06:** English subtitles preferred, a dual-audio anime
+   file with English **Signs & Songs** (forced, default) then **Full
+   Subtitles**: `Always`, and `Foreign audio only` with Japanese audio, start
+   with **Full Subtitles** on Android and desktop. The viewer can still pick
+   **Signs & Songs** in the panel.
