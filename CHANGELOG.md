@@ -1,5 +1,13 @@
 # Design changes
 
+## 2026-11-17 — Filler and Mixed labels on episodes
+
+[EPISODE-FILLER-001](specs/behavior/episode-filler-labels.md): every episode
+list marks AnimeFillerList's filler episodes **Filler** and mixed canon/filler
+episodes **Mixed** with a quiet tag on the still; nothing is skipped. Settings ›
+About credits **Filler data: AnimeFillerList.** Refs
+[app#1149](https://github.com/viptv-org/app/issues/1149).
+
 ## 2026-11-17 — Signs & Songs on dubs
 
 [PLAY-SUBTITLE-MODE-001](specs/behavior/subtitle-mode.md#decision): in

@@ -31,6 +31,7 @@ Proposed scope and availability are defined by
 - Android TV native input: **"Results"**, **"Done"**, **"Unlock"**, **"Cancel"**. The device owns IME action labels; the app shows no custom keyboard or jump-to-results hint.
 - Android TV episode jump (AND-EPISODE-JUMP-001): chip **"Episode #"**; dialog **"Jump to episode"**; field **"Episode number"**; actions **"Go"**, **"Cancel"**; invalid input **"Episode not found in this season."**
 - Android completed episode (AND-EPISODE-WATCHED-001): visible and accessible badge **"Watched"**.
+- Episode filler labels ([EPISODE-FILLER-001](../specs/behavior/episode-filler-labels.md)): tag **"Filler"** or **"Mixed"** on the episode still; spoken **"Filler episode"** or **"Mixed canon and filler episode"**. Settings › About credit: **"Filler data: AnimeFillerList."**
 
 Continue Watching card, caught up (a series the profile has finished as far as it is released):
 
