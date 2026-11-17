@@ -1,5 +1,14 @@
 # Design changes
 
+## 2026-11-17 — Signs & Songs on dubs
+
+[PLAY-SUBTITLE-MODE-001](specs/behavior/subtitle-mode.md#decision): in
+**Foreign audio only**, audio in the preferred language (a dub) starts the
+file's signs-only track in the subtitle language, else stays off; foreign audio
+keeps full dialogue, and the choice re-runs on audio switches until a manual
+pick. The option's dialog row notes **Signs & songs on dubs**. Owner request;
+refs [app#1148](https://github.com/viptv-org/app/issues/1148).
+
 ## 2026-11-17 — Audio rows read name over language and layout
 
 [PLAY-TRACKS-001](specs/behavior/player-audio-subtitles-panel.md#panel) gives an
