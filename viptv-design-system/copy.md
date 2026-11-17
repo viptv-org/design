@@ -31,6 +31,7 @@ Proposed scope and availability are defined by
 - Android TV native input: **"Results"**, **"Done"**, **"Unlock"**, **"Cancel"**. The device owns IME action labels; the app shows no custom keyboard or jump-to-results hint.
 - Android TV episode jump (AND-EPISODE-JUMP-001): chip **"Episode #"**; dialog **"Jump to episode"**; field **"Episode number"**; actions **"Go"**, **"Cancel"**; invalid input **"Episode not found in this season."**
 - Android completed episode (AND-EPISODE-WATCHED-001): visible and accessible badge **"Watched"**.
+- Episode filler labels ([EPISODE-FILLER-001](../specs/behavior/episode-filler-labels.md)): tag **"Filler"** or **"Mixed"** on the episode still; spoken **"Filler episode"** or **"Mixed canon and filler episode"**. Settings › About credit: **"Filler data: AnimeFillerList."**
 
 Continue Watching card, caught up (a series the profile has finished as far as it is released):
 
@@ -57,7 +58,7 @@ Player Audio & subtitles panel ([PLAY-TRACKS-001](../specs/behavior/player-audio
 - Panel title **Audio & subtitles**; accessible pane name **Audio and subtitles**; the × is **Close track selection**.
 - Audio column heading **Audio**, collapsed to **Default audio** with zero or one track. An audio row's primary line is the track's name or language (**Japanese**), else **Audio track [n]**; its secondary line is the language when a name is shown and the channel layout (**Mono** · **Stereo** · **5.1** · **7.1** · **[n] channels**), e.g. **Commentary** / **English · Stereo**.
 - Subtitles column heading **Subtitles**; the first row is **Off**; the empty note is **No subtitle tracks available**. A subtitle row's primary line is the language name (**English**, **Croatian**) and its secondary line the source (**OpenSubtitles v3**); several sources of one language join with ** · **. An embedded track the file names shows that name as its primary line and the language as its secondary line (**Signs & Songs** / **English**); one with no name or language reads **Subtitle [n]**.
-- Inline settings rows share the Settings page copy: **Show subtitles** (**Always** · **When audio isn’t [language]** · **Never**), **Language** (**Default** when none), **Size** (**Small** · **Medium** · **Large**), **Background** (**None** · **Box**).
+- Inline settings rows share the Settings page copy: **Show subtitles** (**Always** · **When audio isn’t [language]** with the note **Signs & songs on dubs** under it in the choice dialog · **Never**), **Language** (**Default** when none), **Size** (**Small** · **Medium** · **Large**), **Background** (**None** · **Box**).
 - The footer link stays **Subtitles & audio settings**.
 
 Next-episode end panel (PLAY-NEXT-AUTOPLAY-001):
@@ -259,7 +260,7 @@ A title's page (`components.md` §6). Phone and tablet switch sections with the 
 - The stream could not seek there. (player notice)
 - Error-slate notice ([SRC-ERROR-SLATE-001](../specs/behavior/error-slate-detect.md)): **This source might not be working.** Then **[Add-on] handed back this video. Its settings may need a new key.** (no provider name: **This source's settings may need a new key.**) with **Configure source** and **Choose another source**.
 - Preparing playback…
-- Player opening screen (proposed, [SRC-BEST-MATCH-001](../specs/behavior/source-best-match.md) and [components §9](components.md#9-feedback)): the dimmed title art fills with real startup progress and the status line under it names the stage. It reuses the existing lines — **Finding sources**, **Still checking sources**, **Opening [provider] [quality]…** — and never shows a percentage or a byte counter, so no string is added.
+- Player opening screen (proposed, [SRC-BEST-MATCH-001](../specs/behavior/source-best-match.md) and [components §9](components.md#9-feedback)): the muted title art fills left to right with real startup progress before the first frame and the status line under it names the stage. It reuses the existing lines — **Finding sources**, **Still checking sources**, **Opening [provider] [quality]…** — and never shows a percentage or a byte counter, so no string is added.
 - Loading more titles… / Loading more channels… / Loading more channels… [120] of [860]
 - Paging footer: a finished list reads **"You’ve reached the end."**; a later page that fails reads **"Couldn’t load more"** with a **Retry** button.
 - Still checking [2] addons

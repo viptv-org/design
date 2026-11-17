@@ -8,6 +8,39 @@ viewer seeks or resumes into it, and shows **Skipped intro** · **Undo** after a
 skip. Settings › Playback gains **Skip credits automatically**, and both skip
 settings default on. Refs [app#1150](https://github.com/viptv-org/app/issues/1150).
 
+## 2026-11-17 — Opening screen fills left to right, before the first frame only
+
+The owner ([app#1151](https://github.com/viptv-org/app/issues/1151)): "When I
+said I wanted it filled in I wanted it to basically show the text or the landing
+image art of the content and have that get filled in from left to right." and
+"once the video has actually started to show and render, we could simply show a
+normal buffering icon in the UI." [components.md §9](viptv-design-system/components.md#9-feedback):
+the player opening screen's title art, over the dimmed landing image on D and T,
+fills left to right from muted to full strength, with no shimmer; it shows only
+before a playback's first frame. Afterwards buffering is the buffering ring over
+the last frame with the controls usable, and seeking is never blocked (the latest
+target wins). [SRC-TORRENT-GATEWAY-001](specs/behavior/torrent-gateway-sources.md),
+[TV-034](docs/platforms/TV_POLISH.md), copy.md and decisions.md §Settled 15
+follow; the gateway spec gains the fill-direction and post-first-frame
+acceptance scenarios. Refs [design#237](https://github.com/viptv-org/design/issues/237).
+
+## 2026-11-17 — Filler and Mixed labels on episodes
+
+[EPISODE-FILLER-001](specs/behavior/episode-filler-labels.md): every episode
+list marks AnimeFillerList's filler episodes **Filler** and mixed canon/filler
+episodes **Mixed** with a quiet tag on the still; nothing is skipped. Settings ›
+About credits **Filler data: AnimeFillerList.** Refs
+[app#1149](https://github.com/viptv-org/app/issues/1149).
+
+## 2026-11-17 — Signs & Songs on dubs
+
+[PLAY-SUBTITLE-MODE-001](specs/behavior/subtitle-mode.md#decision): in
+**Foreign audio only**, audio in the preferred language (a dub) starts the
+file's signs-only track in the subtitle language, else stays off; foreign audio
+keeps full dialogue, and the choice re-runs on audio switches until a manual
+pick. The option's dialog row notes **Signs & songs on dubs**. Owner request;
+refs [app#1148](https://github.com/viptv-org/app/issues/1148).
+
 ## 2026-11-17 — Audio rows read name over language and layout
 
 [PLAY-TRACKS-001](specs/behavior/player-audio-subtitles-panel.md#panel) gives an
