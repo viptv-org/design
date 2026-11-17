@@ -22,7 +22,7 @@ First-release exclusions: automatic recap/preview skipping, automatic mixed open
 | --- | --- |
 | Native product behavior with backend adapters | Consistent controls and preferences across web, Android, desktop and Roku; adapters can be replaced without distributing third-party executable plugins |
 | AniSkip first for anime markers | MAL + episode + runtime lookup provides explicit intervals; its ±20-second filter is evidence, not proof of an identical cut |
-| Jikan first for positive filler/recap observations | Episode flags align with MAL IDs; absence of a badge is not confirmed canon |
+| AnimeFillerList for filler labels ([EPISODE-FILLER-001](../../specs/behavior/episode-filler-labels.md)) | The only source with Filler, Mixed and Canon per episode; matched by exact normalized title, absolute numbering, crawl delay respected. Jikan lacks Mixed and depends on scraping MAL |
 | TheIntroDB next for general media | TMDB/IMDb and duration-based lookup; multiple intro/recap/credits/preview intervals |
 | Anime Skip as secondary | Richer segment taxonomy, but registered client ID, alternate identity join and timestamp-boundary conversion increase scope |
 | Fribb is an optional mapping input | Useful joins/offsets, not definitive episode correspondence; shipping a snapshot depends on merged-data rights clarification |
