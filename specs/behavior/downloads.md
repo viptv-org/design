@@ -55,7 +55,7 @@ size) and resuming with an HTTP `Range` request.
 | `Paused` | ring at progress, pause glyph | `Paused · [42]%` |
 | `WaitingForNetwork` | ring at progress, pause glyph | `Waiting for Wi‑Fi` (Wi‑Fi only on) or `Waiting for a connection` |
 | `WaitingForSpace` | ring at progress, pause glyph | `Storage limit reached` |
-| `Completed` | check | `[1080p] · [2.4] GB`, or `Watched · deletes in [23 h]` |
+| `Completed` | check | `[1080p] · [2.4] GB` (`[1080p] · [2.4] GB · Kept` when kept), or `Watched · deletes in [23 h]` (`Watched · kept`) |
 | `Failed` | alert icon | `Couldn't download` · the `failure` text |
 
 A tap on the control:
@@ -63,8 +63,8 @@ A tap on the control:
 - none or `Failed`: starts (or retries) the download.
 - active (`Queued` to `WaitingForSpace`): a menu with **Pause** (or
   **Resume**) and **Cancel download**. Cancel removes the partial file.
-- `Completed`: a menu with **Play**, **Delete download**, and **Keep** while an
-  expiry is set (**Don't keep** while `keep` is on).
+- `Completed`: a menu with **Play**, **Delete download**, and **Keep**
+  (**Don't keep** while `keep` is on).
 
 The Downloads page rows carry the same actions as buttons and menu items.
 
@@ -81,8 +81,9 @@ and from a **Downloads** entry at the top of **My List**. Title **Downloads**.
   episodes in order. A row: still or poster, `S1 E3 · [title]`, the state
   line, the control. A group header shows the series, its download count and
   total size, and **Delete** for the group.
-- **Delete watched** in the header deletes every watched download at once and
-  shows **Deleted [N] watched downloads**. It is absent when none is watched.
+- **Delete watched** in the header deletes every watched download that is not kept and
+  shows **Deleted [N] watched downloads**. It is absent when
+  none qualifies.
 - Tapping a completed row plays the local file; any other row opens its menu.
 - Empty: **No downloads yet** · `Download episodes from a title's page to
   watch them without a connection.` · **Browse** (to Home; absent offline).
@@ -119,7 +120,8 @@ order:
    counts by `addedAtMillis`, as older than any played one).
 
 Never deleted to make space: a queued or downloading item, the item playing
-now, and the protected smart-downloads episode. When nothing can be deleted
+now, the protected smart-downloads episode, and a kept item. When nothing can
+be deleted, because only these remain,
 the new item stays in `WaitingForSpace` and starts by itself once space
 frees (a deletion, a raised limit). The page shows above the list
 **Storage limit reached** · `Raise the limit or delete downloads to continue.`
@@ -137,9 +139,18 @@ hour**, **After 1 day** (default), **After 1 week**, **Never**. An episode is
 watched (`watchedAtMillis`) when playback reaches 95 % or its credits; its
 expiry (`expiresAtMillis`) counts from when the player is left. The row reads
 `Watched · deletes in [23 h]` (`[45 min]`, `[6 d]`; **Right after watching**
-deletes on leaving the player and shows no line). **Keep** cancels that
-item's expiry and the line reads `Watched · kept`; **Don't keep** restarts it
-from now. A movie follows the same rule.
+deletes on leaving the player and shows no line). A movie follows the same
+rule.
+
+## Keep
+
+**Keep** sets `keep` on a completed download: it is never deleted
+automatically, neither by expiry nor to make space, and goes only when the
+viewer deletes it from its row or its group; **Delete watched** passes it
+by. A kept watched
+row reads `Watched · kept`, any other kept row ends `· Kept`. **Don't keep**
+clears it: a watched item's expiry restarts from now, and the item is again
+evictable in its turn.
 
 ## Settings › Downloads
 
@@ -180,11 +191,12 @@ A failed row offers **Try again** and **Remove**.
 5. With a 10 GB limit and 9 GB used, a 2 GB download deletes a watched episode
    first, then the least recently played completed one, and the page shows
    **Removed 1 old download to make space**.
-6. When everything stored is downloading, playing or protected, the new item
+6. When everything stored is downloading, playing, protected or kept, the new item
    reads `Storage limit reached` with **Raise limit** and **Manage**, and
    starts by itself after **Raise limit** to 25 GB.
 7. With **After 1 day**, an episode finished and left reads `Watched · deletes
-   in 23 h` an hour later and is gone a day later; **Keep** stops that.
+   in 23 h` an hour later and is gone a day later; **Keep** stops that, and
+   the kept episode is never deleted to make space.
 8. With Smart downloads 3, finishing E2 queues the next three released
    episodes not yet downloaded.
 9. Web, iOS and TV show no download control, page, tab or setting.

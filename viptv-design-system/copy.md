@@ -426,7 +426,7 @@ The TV pairs by QR code or by a browser, both halves on one screen:
 
 - Title actions: **Download** (movie) · **Download season** · **Download next 3** / **Download next 5** / **Download next 10** · **Download series**. Episode row control accessible names: **Download [S1 E3]**, **Downloading [42]%**, **Downloaded**.
 - Row menus: **Pause** / **Resume** · **Cancel download** · **Play** · **Delete download** · **Keep** / **Don't keep** · failed rows **Try again** and **Remove**.
-- State lines: **Queued** · **Finding a source** · `[42]% · [1.1] of [2.6] GB` · `Paused · [42]%` · **Waiting for Wi‑Fi** · **Waiting for a connection** · **Storage limit reached** · `[1080p] · [2.4] GB` · `Watched · deletes in [23 h]` · `Watched · kept` · **Couldn't download**.
+- State lines: **Queued** · **Finding a source** · `[42]% · [1.1] of [2.6] GB` · `Paused · [42]%` · **Waiting for Wi‑Fi** · **Waiting for a connection** · **Storage limit reached** · `[1080p] · [2.4] GB` · `[1080p] · [2.4] GB · Kept` · `Watched · deletes in [23 h]` · `Watched · kept` · **Couldn't download**.
 - Failure texts: "No downloadable source found." · "The source stopped working." · "Not enough space on this device." · "Something went wrong."
 - Downloads page: title and tab **Downloads**; storage `[12.4] GB of [50] GB used · [31] GB free on this device` (no limit: `[12.4] GB used · [31] GB free on this device`); **Delete watched**, then the toast **Deleted [N] watched downloads**; group **Delete**.
 - Storage limit: **Storage limit reached** · "Raise the limit or delete downloads to continue." · **Raise limit** · **Manage**. Eviction notice **Removed [N] old downloads to make space** (one: **Removed 1 old download to make space**).
