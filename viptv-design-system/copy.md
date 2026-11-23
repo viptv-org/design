@@ -420,11 +420,25 @@ The TV pairs by QR code or by a browser, both halves on one screen:
 - A PIN-protected profile draws the lock glyph; its accessible name is **Locked**. "A space for their favorites, shows, and discoveries." · **Find your favorite** · "[468] avatars. Pick a world, then pick your character."
 
 
+## Downloads
+
+[DOWNLOADS-001](../specs/behavior/downloads.md), on platforms with downloads (Android first; never web, iOS or TV).
+
+- Title actions: **Download** (movie) · **Download season** · **Download next 3** / **Download next 5** / **Download next 10** · **Download series**. Episode row control accessible names: **Download [S1 E3]**, **Downloading [42]%**, **Downloaded**.
+- Row menus: **Pause** / **Resume** · **Cancel download** · **Play** · **Delete download** · **Keep** / **Don't keep** · failed rows **Try again** and **Remove**.
+- State lines: **Queued** · **Finding a source** · `[42]% · [1.1] of [2.6] GB` · `Paused · [42]%` · **Waiting for Wi‑Fi** · **Waiting for a connection** · **Storage limit reached** · `[1080p] · [2.4] GB` · `Watched · deletes in [23 h]` · `Watched · kept` · **Couldn't download**.
+- Failure texts: "No downloadable source found." · "The source stopped working." · "Not enough space on this device." · "Something went wrong."
+- Downloads page: title and tab **Downloads**; storage `[12.4] GB of [50] GB used · [31] GB free on this device` (no limit: `[12.4] GB used · [31] GB free on this device`); **Delete watched**, then the toast **Deleted [N] watched downloads**; group **Delete**.
+- Storage limit: **Storage limit reached** · "Raise the limit or delete downloads to continue." · **Raise limit** · **Manage**. Eviction notice **Removed [N] old downloads to make space** (one: **Removed 1 old download to make space**).
+- Empty: **No downloads yet** · "Download episodes from a title's page to watch them without a connection." · **Browse**.
+- Offline banner: "You're offline. Downloads still play." · **Downloads**.
+- Settings › Downloads (This device): **Download on Wi‑Fi only** ("Waits for Wi‑Fi before downloading.") · **Download quality** ("Highest quality to download.": **Best**, **1080p**, **720p**, **480p**) · **Storage limit** ("Old downloads are deleted to stay under it.": **10 GB**, **25 GB**, **50 GB**, **100 GB**, **No limit**) · **Delete watched downloads** (**Right after watching**, **After 1 hour**, **After 1 day**, **After 1 week**, **Never**) · **Smart downloads** ("Keeps the next episodes of a series you're watching downloaded.": **Off**, **1**, **3**, **5**) · footer `[12.4] GB used by downloads · [31] GB free`.
+
 ## Settings
 
 [ACCT-SPLIT-001](../specs/behavior/account-and-profile-settings.md) groups Settings into **Profile**, **Playback**, **This device** and **Account**, in that order, on every platform.
 
-- Rows — Profile: **Profile** · **Linked services** · **Parental controls** · **Import from Stremio**. Playback: **Playback** · **Subtitles & audio**. This device: **Display** (TV) · **About** · **Help**. Account: **Account** · **Password** · **Household PIN** · **Devices & sessions** · **Add a device** · **Add-ons** · **Source integrations** · **Sign out** · **Delete account**.
+- Rows — Profile: **Profile** · **Linked services** · **Parental controls** · **Import from Stremio**. Playback: **Playback** · **Subtitles & audio**. This device: **Display** (TV) · **Downloads** (where the platform has downloads) · **About** · **Help**. Account: **Account** · **Password** · **Household PIN** · **Devices & sessions** · **Add a device** · **Add-ons** · **Source integrations** · **Sign out** · **Delete account**.
 - The profile card above the groups reads the profile's name with **Switch profile**. On TV the rail entry is **Switch profile**, beside a separate **Profile** entry that opens the page below.
 - Profile page: **Name** · **Avatar** · **Kids profile** ("Limits titles, search and Live for this profile.") · **Maturity limit** ("Titles above this rating are hidden for this profile"; values **All ratings**, `G` `PG` `PG-13` `R` `NC-17`, `TV-Y` `TV-Y7` `TV-G` `TV-PG` `TV-14` `TV-MA`) · **Approved titles** ("Only these titles show in the kids library") · **Profile lock** ("Ask for a PIN before this profile opens") · **Language** ("Default audio and subtitles for this profile") · **Delete profile**.
 - Profile page dialogs: **Name** (one field, **Save** / **Cancel**) · **Choose an avatar** (**Cancel**) · **Maturity limit** — "Titles above this rating are hidden for this profile", **Movies up to** and **Series up to** the rating labels, **All ratings**, **Allow titles with no rating**, "Unrated titles and titles whose ratings disagree stay hidden unless you allow them.", **Save** / **Cancel**. · **Set profile PIN** / **Change profile PIN** — "Ask for a PIN before this profile opens.", **Current PIN**, **New PIN** (a locked profile reads **New PIN (blank removes the lock)**), **Save PIN**, **Remove PIN**, **Cancel**. · **Delete [name]?** — "This permanently removes this profile's watch history, favorites and preferences.", **Delete profile** (danger) / **Cancel**. A write in flight keeps its dialog and draws the pending label on the acted control (**Saving…**, **Deleting…**).
