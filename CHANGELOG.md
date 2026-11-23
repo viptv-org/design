@@ -1,5 +1,15 @@
 # Design changes
 
+## 2026-11-23 — Downloads for offline playback
+
+[DOWNLOADS-001](specs/behavior/downloads.md) downloads an episode, a season,
+the next 3/5/10 episodes, a series or a movie on Android (desktop when cheap),
+plays it with no network, and syncs offline progress later. A Downloads page,
+tab and Settings › Downloads (Wi‑Fi only, quality, a 50 GB storage limit that
+deletes watched then least recently played downloads, watched downloads that
+expire after 1 day unless kept, smart downloads) follow the umbrella
+[app#1185](https://github.com/viptv-org/app/issues/1185).
+
 ## 2026-11-17 — Credits and outros skip to the scene after them
 
 The owner asked for outro skipping. An outro is a `credits` segment, and the
